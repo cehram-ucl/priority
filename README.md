@@ -137,7 +137,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [stroke.csv](codelists/stroke.csv)
 
-##### Ischaemic heart disease (previously unstable angina)
+##### Ischaemic heart disease (broadened from unstable angina)
 1. PubMed validated codelist search:
     - Search: "ischaemic heart disease validated (CPRD OR SNOMED CT)"
     - 9 results
@@ -216,7 +216,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [smoking_status.csv](codelists/smoking_status.csv)
 
-#### Alcohol consumption (codes to indicate a problem with alcohol consumption)
+#### Alcohol use disorder
 *Suggest using the recommended codelist by [Cook et al.](https://doi.org/10.2147/CLEP.S477778): [Alcohol use disorder.csv](https://github.com/NHLI-Respiratory-Epi/Alcohol_use_disorder_codelist/blob/main/Alcohol%20use%20disorder.csv)*
 1. PubMed validated codelist search:
     - Search: "alcohol validated (CPRD OR SNOMED CT)"
@@ -280,3 +280,70 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - [ethnicity.do](codelists/ethnicity.do)
 4. Finished codelist:
     - [ethnicity.csv](codelists/ethnicity.csv)
+
+### Value codes:
+
+#### Cholesterol (broadened from low-density lipoprotein cholesterol (LDL-C))
+1. PubMed validated codelist search:
+    - Search: "cholesterol validated (CPRD OR SNOMED CT)"
+    - 6 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "cholesterol"
+      - 41 results
+      - no suitable codelists
+    - LSHTM Data Compass:
+      - Search: "cholesterol codelist"
+      - 6 results
+      - no suitable codelists
+    - OpenCodelists:
+      - Search: "cholesterol"
+      - 22 results
+      - 13 suitable codelists:
+        - https://www.opencodelists.org/codelist/ardens/cholesterol-total-level/2020-11-06/
+        - https://www.opencodelists.org/codelist/opensafely/cholesterol-tests/09896c09/
+        - https://www.opencodelists.org/codelist/opensafely/cholesterol-tests-numerical-value/7e3a22f3/
+        - https://www.opencodelists.org/codelist/ardens/hdl-cholesterol/2020-11-06/
+        - https://www.opencodelists.org/codelist/bristol/hdl-cholesterol/64775990/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/hdlcchol_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ldlcchol_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ndacholest_cod/20200812/
+        - https://www.opencodelists.org/codelist/ardens/non-hdl-cholesterol/2020-11-06/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/nonhdlcchol_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chol_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chol2_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/tcholhdl_cod/20200812/
+3. Codelist creation script:
+    - [cholesterol.do](codelists/cholesterol.do)
+4. Finished codelist:
+    - [cholesterol.csv](codelists/cholesterol.csv)
+
+#### Blood pressure (broadened from systolic blood pressure)
+1. PubMed validated codelist search:
+    - Search: "blood pressure validated (CPRD OR SNOMED CT)"
+    - 8 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "blood pressure"
+      - 24 results
+      - no suitable codelists
+    - LSHTM Data Compass:
+      - Search: "blood pressure codelist"
+      - 20 results
+      - 2 suitable codelists:
+      	- https://datacompass.lshtm.ac.uk/id/eprint/4214/
+      	- https://datacompass.lshtm.ac.uk/id/eprint/3590/
+    - OpenCodelists:
+      - Search: "blood pressure"
+      - 10 results
+      - 4 suitable codelists:
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/abpm_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/homebp_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/bp_cod/20200812/
+        - https://www.opencodelists.org/codelist/opensafely/systolic-blood-pressure-qof/3572b5fb/
+3. Codelist creation script:
+    - [blood_pressure.do](codelists/blood_pressure.do)
+4. Finished codelist:
+    - [blood_pressure.csv](codelists/blood_pressure.csv)
