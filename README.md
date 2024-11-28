@@ -368,11 +368,11 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - 7 results
       - 6 suitable codelists:
         - https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20/
-	- https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests-numerical-value/5134e926/
-	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/dccthba1c_cod/20200812/
-	- https://www.opencodelists.org/codelist/ardens/hba1c-level/2020-11-06/
-	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbamd_cod/20211221/
-	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbam_cod/20200812/
+        - https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests-numerical-value/5134e926/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/dccthba1c_cod/20200812/
+        - https://www.opencodelists.org/codelist/ardens/hba1c-level/2020-11-06/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbamd_cod/20211221/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbam_cod/20200812/
 3. Codelist creation script:
     - [HbA1c.do](codelists/HbA1c.do)
 4. Finished codelist:
