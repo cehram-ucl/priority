@@ -347,3 +347,33 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - [blood_pressure.do](codelists/blood_pressure.do)
 4. Finished codelist:
     - [blood_pressure.csv](codelists/blood_pressure.csv)
+
+#### Glycated haemoglobin (HbA1c)
+1. PubMed validated codelist search:
+    - Search: "hba1c validated (CPRD OR SNOMED CT)"
+    - 5 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "hba1c"
+      - 74 results
+      - 1 suitable codelists:
+      	- https://phenotypes.healthdatagateway.org/phenotypes/PH833/version/1745/detail/
+    - LSHTM Data Compass:
+      - Search: "hba1c codelist"
+      - 1 results
+      - no suitable codelists
+    - OpenCodelists:
+      - Search: "hba1c"
+      - 7 results
+      - 6 suitable codelists:
+        - https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests/2ab11f20/
+	- https://www.opencodelists.org/codelist/opensafely/glycated-haemoglobin-hba1c-tests-numerical-value/5134e926/
+	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/dccthba1c_cod/20200812/
+	- https://www.opencodelists.org/codelist/ardens/hba1c-level/2020-11-06/
+	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbamd_cod/20211221/
+	- https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ifcchbam_cod/20200812/
+3. Codelist creation script:
+    - [HbA1c.do](codelists/HbA1c.do)
+4. Finished codelist:
+    - [HbA1c.csv](codelists/HbA1c.csv)
