@@ -93,7 +93,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "myocardial infarction codelist"
       - 36 results
-      - 4 suitable codelists (need limiting to just "myocardial infarction" variables):
+      - 5 suitable codelists (need limiting to just "myocardial infarction" variables):
         - https://datacompass.lshtm.ac.uk/id/eprint/2102/
         - https://datacompass.lshtm.ac.uk/id/eprint/2196/
         - https://datacompass.lshtm.ac.uk/id/eprint/2815/
@@ -125,10 +125,13 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "stroke codelist"
       - 36 results
-      - 3 suitable codelists (need limiting to just "stroke" variables):
+      - 6 suitable codelists (need limiting to just "stroke" variables):
+        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
         - https://datacompass.lshtm.ac.uk/id/eprint/2196/
         - https://datacompass.lshtm.ac.uk/id/eprint/2815/
         - https://datacompass.lshtm.ac.uk/id/eprint/3265/
+        - https://datacompass.lshtm.ac.uk/id/eprint/3590/
+        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
       - Search: "stroke"
       - 17 results
