@@ -377,3 +377,58 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - [HbA1c.do](codelists/HbA1c.do)
 4. Finished codelist:
     - [HbA1c.csv](codelists/HbA1c.csv)
+
+#### Weight/Body mass index (BMI) (broadened from just weight)
+1. PubMed validated codelist search:
+    - Search: "(weight OR body mass index OR BMI) validated (CPRD OR SNOMED CT)"
+    - 31 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "body mass index" and "bmi" and "weight"
+      - 18 and 50 and 22 results
+      - no suitable codelists
+    - LSHTM Data Compass:
+      - Search: "bmi codelist" and "weight codelist"
+      - 3 and 9 results
+      - 2 suitable codelists:
+      	- https://datacompass.lshtm.ac.uk/id/eprint/2413/
+	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
+    - OpenCodelists:
+      - Search: "bmi" and "weight" and "height"
+      - 20 and 12 and 4 results
+      - 4 suitable codelists:
+        - https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi/v2.5/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/bmival_cod/20201016/
+        - https://www.opencodelists.org/codelist/opensafely/weight-snomed/5459abc6/
+        - https://www.opencodelists.org/codelist/opensafely/height-snomed/3b4a3891/
+3. Codelist creation script:
+    - [bmi.do](codelists/bmi.do)
+4. Finished codelist:
+    - [bmi.csv](codelists/bmi.csv)
+
+#### Alcohol consumption (possible? alcohol use disorder codelist may be sufficient)
+1. PubMed validated codelist search:
+    - Search: "alcohol validated (CPRD OR SNOMED CT)"
+    - 8 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "alcohol"
+      - 62 results
+      - no suitable codelists (descriptive rather than value codes)
+    - LSHTM Data Compass:
+      - Search: "alcohol codelist"
+      - 58 results
+      - no suitable codelists (descriptive rather than value codes)
+    - OpenCodelists:
+      - Search: "alcohol"
+      - 19 results
+      - 3 suitable codelists:
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/auditc_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/audit_cod/20200812/
+        - https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/fast_cod/20200812/
+3. Codelist creation script:
+    - [alcohol_consumption.do](codelists/alcohol_consumption.do)
+4. Finished codelist:
+    - [alcohol_consumption.csv](codelists/alcohol_consumption.csv)
