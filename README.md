@@ -62,8 +62,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "diabetes codelist"
       - 3 results
-      - 1 suitable codelists:
-      	- https://datacompass.lshtm.ac.uk/id/eprint/3743/
+      - No suitable codelists (only combined type 1 and 2 lists)
     - OpenCodelists:
       - Search "diabetes"
       - 61 results
