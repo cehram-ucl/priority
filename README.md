@@ -126,7 +126,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - Search: "stroke codelist"
       - 36 results
       - 6 suitable codelists (need limiting to just "stroke" variables):
-        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
+        - https://datacompass.lshtm.ac.uk/id/eprint/2102/
         - https://datacompass.lshtm.ac.uk/id/eprint/2196/
         - https://datacompass.lshtm.ac.uk/id/eprint/2815/
         - https://datacompass.lshtm.ac.uk/id/eprint/3265/
@@ -159,10 +159,12 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "ischaemic heart disease codelist OR angina codelist"
       - 27 results
-      - 3 suitable codelists (need limiting to just "ischaemic heart disease" variables):
+      - 4 suitable codelists (need limiting to just "ischaemic heart disease" variables):
+        - https://datacompass.lshtm.ac.uk/id/eprint/2102/
         - https://datacompass.lshtm.ac.uk/id/eprint/2196/
         - https://datacompass.lshtm.ac.uk/id/eprint/2815/
         - https://datacompass.lshtm.ac.uk/id/eprint/3265/
+        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
       - Search: "ischaemic heart disease" and "angina"
       - 0 and 2 results
@@ -238,7 +240,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - Search: "alcohol codelist"
       - 58 results
       - 1 suitable codelists:
-        - https://datacompass.lshtm.ac.uk/id/eprint/3421/
+        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
       - Search: "alcohol"
       - 19 results
@@ -400,6 +402,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - 2 suitable codelists:
       	- https://datacompass.lshtm.ac.uk/id/eprint/2413/
 	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
+ 	- https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
       - Search: "bmi" and "weight" and "height"
       - 20 and 12 and 4 results
