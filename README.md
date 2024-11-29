@@ -159,7 +159,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "ischaemic heart disease codelist OR angina codelist"
       - 27 results
-      - 4 suitable codelists (need limiting to just "ischaemic heart disease" variables):
+      - 5 suitable codelists (need limiting to just "ischaemic heart disease" variables):
         - https://datacompass.lshtm.ac.uk/id/eprint/2102/
         - https://datacompass.lshtm.ac.uk/id/eprint/2196/
         - https://datacompass.lshtm.ac.uk/id/eprint/2815/
@@ -399,7 +399,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - LSHTM Data Compass:
       - Search: "bmi codelist OR weight codelist"
       - 10 results
-      - 2 suitable codelists:
+      - 3 suitable codelists:
       	- https://datacompass.lshtm.ac.uk/id/eprint/2413/
 	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
  	- https://datacompass.lshtm.ac.uk/id/eprint/4214/
