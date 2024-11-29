@@ -1,0 +1,1351 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\type_2_diabetes.log
+  log type:  text
+ opened on:  29 Nov 2024, 22:32:23
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local t2dm " "*type 2*diabet*" "*type ii*diabet*" "*diabet*type 2*" "*diabet*type ii*" "*diabet*remission*" "*remission*diabet*" "*non*insulin*dependent*diabet*" "*diabet*non
+> *insulin*" "*adult*onset*diabet*" "*diabet*adult*onset*" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+. //==========================================================================
+. 
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/t2dm/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(123 real changes made)
+(50 real changes made)
+(20 real changes made)
+(5 real changes made)
+(3 real changes made)
+(0 real changes made)
+(19 real changes made)
+(3 real changes made)
+(0 real changes made)
+(8 real changes made)
+
+. 
+. keep if /**/t2dm/**/ == 1
+(240,768 observations deleted)
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str135
+  (24,948 bytes saved)
+
+. 
+. gsort /**/t2dm/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/t2dm/**/
+
+-> tabulation of t2dm  
+
+       t2dm |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        231      100.00      100.00
+------------+-----------------------------------
+      Total |        231      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*type 1*" "*type i *" "*family*history*" "*maternal*history*" "*score*" "*risk*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(231 missing values generated)
+(1 real change made)
+(1 real change made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(9 real changes made)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list term if exclude == 1
+
+     +----------------------------------------------------------------------------------------------+
+     |                                                                                         term |
+     |----------------------------------------------------------------------------------------------|
+  8. |                                                   Family history of diabetes mellitus type 2 |
+ 22. | Type 2 diabetes mellitus risk assessment invitation SMS (short message service) text message |
+ 26. |                                                  Family history of diabetes mellitus type II |
+ 29. |                                             QDiabetes (QDScore) type 2 diabetes 10 year risk |
+ 37. |                             Type 2 diabetes mellitus risk assessment invitation first letter |
+     |----------------------------------------------------------------------------------------------|
+ 97. |                                                        Type I diabetes mellitus in remission |
+ 99. |                                          Type 2 diabetes mellitus risk assessment invitation |
+100. |                            Type 2 diabetes mellitus risk assessment invitation second letter |
+108. |                                                        Type 1 diabetes mellitus in remission |
+144. |                                Type 2 diabetes mellitus risk assessment telephone invitation |
+     |----------------------------------------------------------------------------------------------|
+158. |                                            Type 2 diabetes mellitus risk assessment declined |
+170. |                             Type 2 diabetes mellitus risk assessment invitation third letter |
+191. |                                               Assessment of risk of type 2 diabetes mellitus |
+197. |                                   Type 2 diabetes mellitus risk assessment verbal invitation |
+210. |                                                 Maternal history of diabetes mellitus type 2 |
+     +----------------------------------------------------------------------------------------------+
+
+. /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+. 
+. drop if exclude == 1 ///
+> /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+(15 observations deleted)
+
+. 
+. drop exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+
+. count
+  216
+
+. compress
+  (0 bytes saved)
+
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. /* EVERYTHING LOOKS OK
+> // **medcodeids to remove**
+> local initial_remove "123"
+> 
+> gen byte remove = 0
+> 
+> foreach medcode of local initial_remove {
+>         
+>         replace remove = 1 if medcodeid == "`medcode'"
+> }
+> 
+> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+> drop if remove == 1
+> drop remove
+> 
+> compress
+> tab1 /**/t2dm/**/
+> */
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str17)
+
+         Unique values: 83                        Missing "": 0/216
+
+              Examples: "237599002"
+                        "395204000"
+                        "421750000"
+                        "443694000"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  216
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/t2dm/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/t2dm/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(133 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               221  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str17
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str135
+  (23,868 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             5
+        from master                         5  
+        from using                          0  
+
+    Matched                               216  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/t2dm/**/, last
+
+. gsort /**/t2dm/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/t2dm/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: t2dm
+
+     +-----------------------------------------------------------------------------------------+
+     | snome~tid   originalrea~e                                                          term |
+     |-----------------------------------------------------------------------------------------|
+  6. |  44054006         C1001-1                                       Maturity onset diabetes |
+ 15. | 422166005           C1071   Diabetes mellitus, adult, + peripheral circulatory disorder |
+ 16. | 421631007           C1072                        Diabetes mellitus, adult with gangrene |
+ 61. | 420756003           C109E   Non-insulin depend diabetes mellitus with diabetic cataract |
+204. | 237604008   ^ESCTMO510962            MODY - Maturity onset diabetes glucokinase-related |
+     +-----------------------------------------------------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(216 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(0 observations deleted)
+
+. 
+.         count
+  5
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 237604008
+
+     +--------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                 term   new_sn~m |
+     |--------------------------------------------------------------------------------------------------|
+ 77. |  840971000006112            C10D         Diabetes mellitus autosomal dominant type II          0 |
+ 78. |        356085010          C10D-1              Maturity onset diabetes in youth type 2          0 |
+198. | 5109561000006119   ^ESCTMA510956         Maturity onset diabetes of the young, type 2          0 |
+203. | 5109611000006116   ^ESCTMO510961       MODY - Maturity onset diabetes in youth type 2          0 |
+204. | 5109621000006112   ^ESCTMO510962   MODY - Maturity onset diabetes glucokinase-related          1 |
+     +--------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 420756003
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                          term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------|
+ 61. |  281161000006114           C109E   Non-insulin depend diabetes mellitus with diabetic cataract          1 |
+ 62. |   84871000006117         C109E-1                      Cataract due to diabetes mellitus type 2          0 |
+ 63. |   84501000006114         C109E-2               Type 2 diabetes mellitus with diabetic cataract          0 |
+107. |  914301000006111           C10FE               Type 2 diabetes mellitus with diabetic cataract          0 |
+108. |  914311000006114         C10FE-1              Type II diabetes mellitus with diabetic cataract          0 |
+     |-----------------------------------------------------------------------------------------------------------|
+173. | 6959811000006110   ^ESCTDI695981                                 Diabetes type 2 with cataract          0 |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 421631007
+
+     +-------------------------------------------------------------------------------------------------+
+     |         medcodeid   originalre~e                                                term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------|
+ 16. |   616561000006113          C1072              Diabetes mellitus, adult with gangrene          1 |
+ 37. |   281211000006117          C1095   Gangrene associated with type 2 diabetes mellitus          0 |
+ 38. |    84881000006119        C1095-1             Type II diabetes mellitus with gangrene          0 |
+ 39. |    84511000006112        C1095-2              Type 2 diabetes mellitus with gangrene          0 |
+ 91. |         292583018          C10F5              Type 2 diabetes mellitus with gangrene          0 |
+     |-------------------------------------------------------------------------------------------------|
+ 92. |         292582011        C10F5-1             Type II diabetes mellitus with gangrene          0 |
+150. | 14083961000006111   ^ESCT1408396            Gangrene due to type 2 diabetes mellitus          0 |
+     +-------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 422166005
+
+     +------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid   originalre~e                                                                       term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 15. |   616581000006115          C1071                Diabetes mellitus, adult, + peripheral circulatory disorder          1 |
+ 17. |   674961000006118          C1074   Peripheral circulatory disorder associated with type 2 diabetes mellitus          0 |
+156. | 14084111000006114   ^ESCT1408411            Peripheral circulatory disorder due to type 2 diabetes mellitus          0 |
+     +------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 44054006
+
+     +-----------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                              term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------|
+  6. |  223291000000111         C1001-1                           Maturity onset diabetes          1 |
+  7. |         73466011         C1001-2           Non-insulin dependent diabetes mellitus          0 |
+ 18. |  280571000006116            C109           Non-insulin dependent diabetes mellitus          0 |
+ 19. |        493773010          C109-1   NIDDM - Non-insulin dependent diabetes mellitus          0 |
+ 20. |   84471000006119          C109-2                          Type 2 diabetes mellitus          0 |
+     |-----------------------------------------------------------------------------------------------|
+ 21. |   84841000006113          C109-3                         Type II diabetes mellitus          0 |
+ 79. |        197761014            C10F                          Type 2 diabetes mellitus          0 |
+ 80. |        493774016          C10F-1                         Type II diabetes mellitus          0 |
+170. | 3209431000006116   ^ESCTDI320943                         Diabetes mellitus type II          0 |
+171. | 3209441000006114   ^ESCTDI320944                          Diabetes mellitus type 2          0 |
+     +-----------------------------------------------------------------------------------------------+
+
+. 
+. 
+. // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. /*
+> // **Search terms for each categorisation desired**
+> local cat1 " "*cat1*" "
+> local cat2 " "*cat2*" "
+> 
+> //Search for codes
+> foreach categoryterm in /**/cat1 cat2/**/ {
+>         
+>         gen byte `categoryterm' = .
+>         
+>         foreach codeterm in lower(term) {
+>                 
+>                 foreach searchterm in ``categoryterm'' {                
+>                         
+>                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+>                 }
+>         }
+> }
+> 
+> tab1 cat1 cat2
+> */
+. 
+. // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
+. //====================================================
+. 
+. //Comment this section out if no previous codelist
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/dmtype2_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 17 obs)
+
+.         
+.         local name "refset_dmtype2"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000006.tmp saved as .dta format
+
+. restore
+
+. 
+. preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/dmtype2audit_cod/20210127/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 119 obs)
+
+.         
+.         local name "refset_dmtype2audit"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable term_refset_dmtype2audit was strL now str135
+  (634 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000008.tmp saved as .dta format
+
+. restore
+
+. 
+. 
+. foreach codelist in refset_dmtype2 refset_dmtype2audit {
+  2.         
+.         //Merge previous codelist
+.         merge m:1 snomedctconceptid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list snomedctconceptid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace t2dm = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           147
+        from master                       146  (_merge==1)
+        from using                          1  (_merge==2)
+
+    Matched                                75  (_merge==3)
+    -----------------------------------------
+
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                 term                                              term_refset_dmtype2 |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 29. |                Type II diabetes mellitus with multiple complications           Multiple complications due to type 2 diabetes mellitus |
+ 30. |  Non-insulin-dependent diabetes mellitus with multiple complications           Multiple complications due to type 2 diabetes mellitus |
+ 31. |                 Type 2 diabetes mellitus with multiple complications           Multiple complications due to type 2 diabetes mellitus |
+ 32. |                Type II diabetes mellitus with multiple complications           Multiple complications due to type 2 diabetes mellitus |
+ 33. |                 Type 2 diabetes mellitus with multiple complications           Multiple complications due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 35. |                                  Type 2 diabetes mellitus with ulcer                             Type II diabetes mellitus with ulcer |
+ 36. |                                  Type 2 diabetes mellitus with ulcer                             Type II diabetes mellitus with ulcer |
+ 39. |                   Non-insulin-dependent diabetes mellitus with ulcer                             Type II diabetes mellitus with ulcer |
+ 42. |              Insulin treated non-insulin dependent diabetes mellitus                         Insulin treated type 2 diabetes mellitus |
+ 44. |                                           Diabetes type 2 on insulin                         Insulin treated type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 45. |                            Insulin treated Type II diabetes mellitus                         Insulin treated type 2 diabetes mellitus |
+ 47. |                            Insulin treated Type II diabetes mellitus                         Insulin treated type 2 diabetes mellitus |
+ 62. |                        Type 2 diabetes mellitus without complication                   Type II diabetes mellitus without complication |
+ 63. |           Diabetes mellitus, adult onset, no mention of complication                   Type II diabetes mellitus without complication |
+ 64. |                        Type 2 diabetes mellitus without complication                   Type II diabetes mellitus without complication |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 65. |         Non-insulin-dependent diabetes mellitus without complication                   Type II diabetes mellitus without complication |
+ 67. |                  Type 2 diabetes mellitus with peripheral angiopathy            Peripheral angiopathy due to type 2 diabetes mellitus |
+ 68. |                 Type II diabetes mellitus with peripheral angiopathy            Peripheral angiopathy due to type 2 diabetes mellitus |
+ 69. |                  Type 2 diabetes mellitus with peripheral angiopathy            Peripheral angiopathy due to type 2 diabetes mellitus |
+ 70. |   Non-insulin-dependent diabetes mellitus with peripheral angiopathy            Peripheral angiopathy due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 71. |                 Type II diabetes mellitus with peripheral angiopathy            Peripheral angiopathy due to type 2 diabetes mellitus |
+ 72. |             Non-insulin dependent diabetes mellitus with arthropathy                      Arthropathy due to type 2 diabetes mellitus |
+ 73. |                           Type II diabetes mellitus with arthropathy                      Arthropathy due to type 2 diabetes mellitus |
+ 74. |                           Type II diabetes mellitus with arthropathy                      Arthropathy due to type 2 diabetes mellitus |
+ 75. |                            Type 2 diabetes mellitus with arthropathy                      Arthropathy due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 76. |                            Type 2 diabetes mellitus with arthropathy                      Arthropathy due to type 2 diabetes mellitus |
+ 78. |                Type 2 diabetes mellitus with neuropathic arthropathy           Type II diabetes mellitus with neuropathic arthropathy |
+ 79. | Non-insulin dependent diabetes mellitus with neuropathic arthropathy           Type II diabetes mellitus with neuropathic arthropathy |
+ 81. |                Type 2 diabetes mellitus with neuropathic arthropathy           Type II diabetes mellitus with neuropathic arthropathy |
+ 85. |           Hyperosmolar non-ketotic state in type 2 diabetes mellitus   Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 86. |           Hyperosmolar non-ketotic state in type 2 diabetes mellitus   Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+ 88. |          Hyperosmolar non-ketotic state in type II diabetes mellitus   Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+130. |                            Ketoacidosis in type II diabetes mellitus                     Ketoacidosis due to type 2 diabetes mellitus |
+131. |                                    Diabetes type 2 with ketoacidosis                     Ketoacidosis due to type 2 diabetes mellitus |
+132. |                             Ketoacidosis in type 2 diabetes mellitus                     Ketoacidosis due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+133. |                    Diabetes mellitus, adult onset, with ketoacidosis                     Ketoacidosis due to type 2 diabetes mellitus |
+135. |                          Type II diabetes mellitus with ketoacidosis                     Ketoacidosis due to type 2 diabetes mellitus |
+139. |                        Ketoacidotic coma in type 2 diabetes mellitus                Ketoacidotic coma due to type 2 diabetes mellitus |
+140. |               Diabetes mellitus, adult onset, with ketoacidotic coma                Ketoacidotic coma due to type 2 diabetes mellitus |
+141. |                       Ketoacidotic coma in type II diabetes mellitus                Ketoacidotic coma due to type 2 diabetes mellitus |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+142. |                        Ketoacidotic coma in type 2 diabetes mellitus                Ketoacidotic coma due to type 2 diabetes mellitus |
+167. |                      NIDDM - Non-insulin dependent diabetes mellitus                                         Diabetes mellitus type 2 |
+168. |                                            Diabetes mellitus type II                                         Diabetes mellitus type 2 |
+169. |                              Non-insulin dependent diabetes mellitus                                         Diabetes mellitus type 2 |
+170. |                                             Type 2 diabetes mellitus                                         Diabetes mellitus type 2 |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+171. |                                            Type II diabetes mellitus                                         Diabetes mellitus type 2 |
+173. |                                            Type II diabetes mellitus                                         Diabetes mellitus type 2 |
+174. |                                              Maturity onset diabetes                                         Diabetes mellitus type 2 |
+175. |                                             Type 2 diabetes mellitus                                         Diabetes mellitus type 2 |
+176. |                              Non-insulin dependent diabetes mellitus                                         Diabetes mellitus type 2 |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+177. |                          Type II diabetes mellitus poorly controlled                           Type II diabetes mellitus uncontrolled |
+179. |                                Type 2 diabetes mellitus uncontrolled                           Type II diabetes mellitus uncontrolled |
+180. |                             Type II diabetes mellitus - poor control                           Type II diabetes mellitus uncontrolled |
+181. |                             Type II diabetes mellitus - poor control                           Type II diabetes mellitus uncontrolled |
+182. |                              Type 2 diabetes mellitus - poor control                           Type II diabetes mellitus uncontrolled |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+184. |                                     Brittle type 2 diabetes mellitus                                Brittle type II diabetes mellitus |
+185. |                                   Unstable type II diabetes mellitus                                Brittle type II diabetes mellitus |
+190. |                                Type 2 diabetes mellitus in remission                           Type II diabetes mellitus in remission |
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +-----------------------------------------------------+
+     | snome~tid                       term_refset_dmtype2 |
+     |-----------------------------------------------------|
+222. | 190390000   Type II diabetes mellitus with gangrene |
+     +-----------------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            58
+        from master                        14  (_merge==1)
+        from using                         44  (_merge==2)
+
+    Matched                               208  (_merge==3)
+    -----------------------------------------
+
+     +--------------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                     term                                          term_refset_dmtype2audit |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+  1. |                         Diabetes type 2 with diabetic ulcer of left foot                Ulcer of left foot due to type 2 diabetes mellitus |
+  2. |              Diabetic ulcer of left foot due to diabetes mellitus type 2                Ulcer of left foot due to type 2 diabetes mellitus |
+  3. |                                Leg ulcer due to type 2 diabetes mellitus               Ulcer of lower limb due to type 2 diabetes mellitus |
+  6. |                            Hypoglycaemia due to type 2 diabetes mellitus                      Hypoglycemia due to type 2 diabetes mellitus |
+  7. |                          Hyperlipidaemia due to type 2 diabetes mellitus                    Hyperlipidemia due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 12. |                    Neuropathic toe ulcer due to type 2 diabetes mellitus          Neuropathic ulcer of toe due to type 2 diabetes mellitus |
+ 14. |                     Ischaemic foot ulcer due to type 2 diabetes mellitus            Ischemic ulcer of foot due to type 2 diabetes mellitus |
+ 17. |  Diabetic vitreous haemorrhage associated with type II diabetes mellitus               Vitreous hemorrhage due to type 2 diabetes mellitus |
+ 18. |       Proliferative diabetic retinopathy due to type 2 diabetes mellitus         Proliferative retinopathy due to type 2 diabetes mellitus |
+ 19. |                               Peripheral neuropathy with type 2 diabetes             Peripheral neuropathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 20. | Diabetic peripheral neuropathy associated with type II diabetes mellitus             Peripheral neuropathy due to type 2 diabetes mellitus |
+ 21. |                               Foot ulcer due to type 2 diabetes mellitus                     Ulcer of foot due to type 2 diabetes mellitus |
+ 22. |    Nonproliferative diabetic retinopathy due to type 2 diabetes mellitus      Nonproliferative retinopathy due to type 2 diabetes mellitus |
+ 27. |                   Diabetes mellitus, adult onset, with hyperosmolar coma                 Hyperosmolar coma due to type 2 diabetes mellitus |
+ 28. |                          Type 2 diabetes mellitus with hyperosmolar coma                 Hyperosmolar coma due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 30. |                     Type 2 diabetes mellitus with multiple complications            Multiple complications due to type 2 diabetes mellitus |
+ 31. |                     Type 2 diabetes mellitus with multiple complications            Multiple complications due to type 2 diabetes mellitus |
+ 32. |                    Type II diabetes mellitus with multiple complications            Multiple complications due to type 2 diabetes mellitus |
+ 33. |                    Type II diabetes mellitus with multiple complications            Multiple complications due to type 2 diabetes mellitus |
+ 34. |      Non-insulin-dependent diabetes mellitus with multiple complications            Multiple complications due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 35. |                       Non-insulin-dependent diabetes mellitus with ulcer                              Type II diabetes mellitus with ulcer |
+ 37. |                                      Type 2 diabetes mellitus with ulcer                              Type II diabetes mellitus with ulcer |
+ 39. |                                      Type 2 diabetes mellitus with ulcer                              Type II diabetes mellitus with ulcer |
+ 42. |                    Pre-existing diabetes mellitus, non-insulin-dependent                             Pre-existing type 2 diabetes mellitus |
+ 43. |                                Insulin treated Type II diabetes mellitus                          Insulin treated type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 45. |                                Insulin treated Type II diabetes mellitus                          Insulin treated type 2 diabetes mellitus |
+ 47. |                                               Diabetes type 2 on insulin                          Insulin treated type 2 diabetes mellitus |
+ 48. |                  Insulin treated non-insulin dependent diabetes mellitus                          Insulin treated type 2 diabetes mellitus |
+ 55. |                    Pregnancy and non-insulin-dependent diabetes mellitus                            Pregnancy and type 2 diabetes mellitus |
+ 57. |                                              Type II diabetes on insulin                                        Type 2 diabetic on insulin |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 58. |                                            Type II diabetes on diet only                                      Type 2 diabetic on diet only |
+ 60. |                                                  Diabetes type II review                                            Diabetes type 2 review |
+ 62. |               Diabetes mellitus, adult onset, no mention of complication                    Type II diabetes mellitus without complication |
+ 63. |                            Type 2 diabetes mellitus without complication                    Type II diabetes mellitus without complication |
+ 65. |             Non-insulin-dependent diabetes mellitus without complication                    Type II diabetes mellitus without complication |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 66. |                            Type 2 diabetes mellitus without complication                    Type II diabetes mellitus without complication |
+ 68. |                      Type 2 diabetes mellitus with peripheral angiopathy             Peripheral angiopathy due to type 2 diabetes mellitus |
+ 69. |       Non-insulin-dependent diabetes mellitus with peripheral angiopathy             Peripheral angiopathy due to type 2 diabetes mellitus |
+ 70. |                     Type II diabetes mellitus with peripheral angiopathy             Peripheral angiopathy due to type 2 diabetes mellitus |
+ 71. |                      Type 2 diabetes mellitus with peripheral angiopathy             Peripheral angiopathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 72. |                     Type II diabetes mellitus with peripheral angiopathy             Peripheral angiopathy due to type 2 diabetes mellitus |
+ 73. |                               Type II diabetes mellitus with arthropathy                       Arthropathy due to type 2 diabetes mellitus |
+ 74. |                 Non-insulin dependent diabetes mellitus with arthropathy                       Arthropathy due to type 2 diabetes mellitus |
+ 75. |                               Type II diabetes mellitus with arthropathy                       Arthropathy due to type 2 diabetes mellitus |
+ 76. |                                Type 2 diabetes mellitus with arthropathy                       Arthropathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 77. |                                Type 2 diabetes mellitus with arthropathy                       Arthropathy due to type 2 diabetes mellitus |
+ 80. |                    Type 2 diabetes mellitus with neuropathic arthropathy            Type II diabetes mellitus with neuropathic arthropathy |
+ 82. |                    Type 2 diabetes mellitus with neuropathic arthropathy            Type II diabetes mellitus with neuropathic arthropathy |
+ 83. |     Non-insulin dependent diabetes mellitus with neuropathic arthropathy            Type II diabetes mellitus with neuropathic arthropathy |
+ 84. |                           Hyperglycaemia due to type 2 diabetes mellitus                     Hyperglycemia due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 86. |               Hyperosmolar non-ketotic state in type 2 diabetes mellitus    Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+ 87. |               Hyperosmolar non-ketotic state in type 2 diabetes mellitus    Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+ 89. |              Hyperosmolar non-ketotic state in type II diabetes mellitus    Hyperosmolar non-ketotic state due to type 2 diabetes mellitus |
+ 90. |                 Non-insulin-dependent diabetes mellitus with renal comps                    Renal disorder due to type 2 diabetes mellitus |
+ 91. |                        Type 2 diabetes mellitus with renal complications                    Renal disorder due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 92. |                 Renal disorder associated with type II diabetes mellitus                    Renal disorder due to type 2 diabetes mellitus |
+ 93. |                 Non-insulin dependent diabetes mellitus with nephropathy                    Renal disorder due to type 2 diabetes mellitus |
+ 94. |                       Type II diabetes mellitus with renal complications                    Renal disorder due to type 2 diabetes mellitus |
+ 95. |                                         Diabetes type 2 with nephropathy                    Renal disorder due to type 2 diabetes mellitus |
+ 96. |                 Diabetes mellitus, adult onset, with renal manifestation                    Renal disorder due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+ 97. |                                Type 2 diabetes mellitus with nephropathy                    Renal disorder due to type 2 diabetes mellitus |
+ 98. |                       Type II diabetes mellitus with renal complications                    Renal disorder due to type 2 diabetes mellitus |
+100. |                               Type II diabetes mellitus with nephropathy                    Renal disorder due to type 2 diabetes mellitus |
+101. |                             Type 2 diabetes mellitus with mononeuropathy                    Mononeuropathy due to type 2 diabetes mellitus |
+102. |                             Mononeuropathy with type 2 diabetes mellitus                    Mononeuropathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+103. |                            Type II diabetes mellitus with mononeuropathy                    Mononeuropathy due to type 2 diabetes mellitus |
+104. |              Non-insulin dependent diabetes mellitus with mononeuropathy                    Mononeuropathy due to type 2 diabetes mellitus |
+105. |                             Type 2 diabetes mellitus with mononeuropathy                    Mononeuropathy due to type 2 diabetes mellitus |
+107. |     Persistent microalbuminuria associated with type 2 diabetes mellitus       Persistent microalbuminuria due to type 2 diabetes mellitus |
+108. |               Type II diabetes mellitus with persistent microalbuminuria       Persistent microalbuminuria due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+109. |                                            Diabetes type 2 with cataract                   Cataract of eye due to diabetes mellitus type 2 |
+110. |                         Type II diabetes mellitus with diabetic cataract                   Cataract of eye due to diabetes mellitus type 2 |
+111. |                          Type 2 diabetes mellitus with diabetic cataract                   Cataract of eye due to diabetes mellitus type 2 |
+112. |                          Type 2 diabetes mellitus with diabetic cataract                   Cataract of eye due to diabetes mellitus type 2 |
+113. |                                 Cataract due to diabetes mellitus type 2                   Cataract of eye due to diabetes mellitus type 2 |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+114. |              Non-insulin depend diabetes mellitus with diabetic cataract                   Cataract of eye due to diabetes mellitus type 2 |
+115. |                 Type 2 diabetes mellitus with neurological complications        Disorder of nervous system due to type 2 diabetes mellitus |
+116. |                               Neurological disorder with diabetes type 2        Disorder of nervous system due to type 2 diabetes mellitus |
+118. |             Neurologic disorder associated with type 2 diabetes mellitus        Disorder of nervous system due to type 2 diabetes mellitus |
+119. |                               Diabetes type 2 with neurological disorder        Disorder of nervous system due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+120. |                 Non-insulin-dependent diabetes mellitus with neuro comps        Disorder of nervous system due to type 2 diabetes mellitus |
+121. |             Neurologic disorder associated with type 2 diabetes mellitus        Disorder of nervous system due to type 2 diabetes mellitus |
+122. |                Type II diabetes mellitus with neurological complications        Disorder of nervous system due to type 2 diabetes mellitus |
+123. |             Diabetes mellitus, adult onset, + neurological manifestation        Disorder of nervous system due to type 2 diabetes mellitus |
+124. |                        Gangrene associated with type 2 diabetes mellitus                          Gangrene due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+126. |                                  Type II diabetes mellitus with gangrene                          Gangrene due to type 2 diabetes mellitus |
+127. |                                  Type II diabetes mellitus with gangrene                          Gangrene due to type 2 diabetes mellitus |
+128. |                                   Type 2 diabetes mellitus with gangrene                          Gangrene due to type 2 diabetes mellitus |
+129. |                                   Diabetes mellitus, adult with gangrene                          Gangrene due to type 2 diabetes mellitus |
+130. |                                   Type 2 diabetes mellitus with gangrene                          Gangrene due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+131. |                                Ketoacidosis in type II diabetes mellitus                      Ketoacidosis due to type 2 diabetes mellitus |
+132. |                              Type II diabetes mellitus with ketoacidosis                      Ketoacidosis due to type 2 diabetes mellitus |
+133. |                        Diabetes mellitus, adult onset, with ketoacidosis                      Ketoacidosis due to type 2 diabetes mellitus |
+134. |                                        Diabetes type 2 with ketoacidosis                      Ketoacidosis due to type 2 diabetes mellitus |
+135. |                                 Ketoacidosis in type 2 diabetes mellitus                      Ketoacidosis due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+137. |                      Exudative maculopathy with type 2 diabetes mellitus             Exudative maculopathy due to type 2 diabetes mellitus |
+139. |           Exudative maculopathy associated with type 2 diabetes mellitus             Exudative maculopathy due to type 2 diabetes mellitus |
+140. |                            Ketoacidotic coma in type 2 diabetes mellitus                 Ketoacidotic coma due to type 2 diabetes mellitus |
+141. |                           Ketoacidotic coma in type II diabetes mellitus                 Ketoacidotic coma due to type 2 diabetes mellitus |
+142. |                   Diabetes mellitus, adult onset, with ketoacidotic coma                 Ketoacidotic coma due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+143. |                            Ketoacidotic coma in type 2 diabetes mellitus                 Ketoacidotic coma due to type 2 diabetes mellitus |
+144. |          Persistent proteinuria associated with type 2 diabetes mellitus            Persistent proteinuria due to type 2 diabetes mellitus |
+146. |                    Type II diabetes mellitus with persistent proteinuria            Persistent proteinuria due to type 2 diabetes mellitus |
+148. |                                Retinopathy with type 2 diabetes mellitus                       Retinopathy due to type 2 diabetes mellitus |
+149. |                 Non-insulin-dependent diabetes mellitus with retinopathy                       Retinopathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+150. |                               Type II diabetes mellitus with retinopathy                       Retinopathy due to type 2 diabetes mellitus |
+151. |                               Type II diabetes mellitus with retinopathy                       Retinopathy due to type 2 diabetes mellitus |
+153. |                                Type 2 diabetes mellitus with retinopathy                       Retinopathy due to type 2 diabetes mellitus |
+154. |                                         Diabetes type 2 with retinopathy                       Retinopathy due to type 2 diabetes mellitus |
+156. |                            Disorder of eye with type 2 diabetes mellitus                   Disorder of eye due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+157. |              Non-insulin-dependent diabetes mellitus with ophthalm comps                   Disorder of eye due to type 2 diabetes mellitus |
+158. |               Diabetes mellitus, adult onset, + ophthalmic manifestation                   Disorder of eye due to type 2 diabetes mellitus |
+159. |                   Type 2 diabetes mellitus with ophthalmic complications                   Disorder of eye due to type 2 diabetes mellitus |
+160. |                  Type II diabetes mellitus with ophthalmic complications                   Disorder of eye due to type 2 diabetes mellitus |
+161. |                            Disorder of eye with type 2 diabetes mellitus                   Disorder of eye due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+162. |              Diabetes mellitus, adult, + peripheral circulatory disorder   Peripheral circulatory disorder due to type 2 diabetes mellitus |
+164. | Peripheral circulatory disorder associated with type 2 diabetes mellitus   Peripheral circulatory disorder due to type 2 diabetes mellitus |
+168. |                                                  Maturity onset diabetes                                          Diabetes mellitus type 2 |
+169. |                                                Type II diabetes mellitus                                          Diabetes mellitus type 2 |
+170. |                          NIDDM - Non-insulin dependent diabetes mellitus                                          Diabetes mellitus type 2 |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+172. |                                  Non-insulin dependent diabetes mellitus                                          Diabetes mellitus type 2 |
+173. |                                                 Type 2 diabetes mellitus                                          Diabetes mellitus type 2 |
+174. |                                                Diabetes mellitus type II                                          Diabetes mellitus type 2 |
+175. |                                                 Type 2 diabetes mellitus                                          Diabetes mellitus type 2 |
+176. |                                  Non-insulin dependent diabetes mellitus                                          Diabetes mellitus type 2 |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+177. |                                                Type II diabetes mellitus                                          Diabetes mellitus type 2 |
+179. |                                    Type 2 diabetes mellitus uncontrolled                            Type II diabetes mellitus uncontrolled |
+180. |                              Type II diabetes mellitus poorly controlled                            Type II diabetes mellitus uncontrolled |
+181. |                                 Type II diabetes mellitus - poor control                            Type II diabetes mellitus uncontrolled |
+182. |                                  Type 2 diabetes mellitus - poor control                            Type II diabetes mellitus uncontrolled |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+183. |                                 Type II diabetes mellitus - poor control                            Type II diabetes mellitus uncontrolled |
+184. |                                 Type 2 diabetes mellitus well controlled                         Type II diabetes mellitus well controlled |
+185. |                                         Brittle type 2 diabetes mellitus                                 Brittle type II diabetes mellitus |
+186. |                                       Unstable type II diabetes mellitus                                 Brittle type II diabetes mellitus |
+187. |                                             H/O diabetes mellitus type 2                               History of diabetes mellitus type 2 |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+189. |                    Mixed hyperlipidaemia due to type 2 diabetes mellitus              Mixed hyperlipidemia due to type 2 diabetes mellitus |
+191. |                                    Type 2 diabetes mellitus in remission                            Type II diabetes mellitus in remission |
+194. |                             Type II diabetes mellitus with gastroparesis                     Gastroparesis due to type 2 diabetes mellitus |
+196. |                              Gastroparesis with type 2 diabetes mellitus                     Gastroparesis due to type 2 diabetes mellitus |
+197. |                             Type 2 diabetes mellitus with polyneuropathy                    Polyneuropathy due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+198. |                            Type II diabetes mellitus with polyneuropathy                    Polyneuropathy due to type 2 diabetes mellitus |
+200. |                            Type II diabetes mellitus with polyneuropathy                    Polyneuropathy due to type 2 diabetes mellitus |
+201. |              Non-insulin dependent diabetes mellitus with polyneuropathy                    Polyneuropathy due to type 2 diabetes mellitus |
+202. |     Hypoglycaemic coma co-occurrent and due to diabetes mellitus type II                 Hypoglycemic coma due to type 2 diabetes mellitus |
+203. |                         Type 2 diabetes mellitus with hypoglycaemic coma                 Hypoglycemic coma due to type 2 diabetes mellitus |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+204. |                        Type II diabetes mellitus with hypoglycaemic coma                 Hypoglycemic coma due to type 2 diabetes mellitus |
+205. |                         Type 2 diabetes mellitus with hypoglycaemic coma                 Hypoglycemic coma due to type 2 diabetes mellitus |
+206. |                       Hypoglycaemic coma due to type 2 diabetes mellitus                 Hypoglycemic coma due to type 2 diabetes mellitus |
+207. |              Non-insulin dependent diabetes mellitus with hypoglyca coma                 Hypoglycemic coma due to type 2 diabetes mellitus |
+214. |                                           Type 2 diabetic dietary review                                   Type II diabetic dietary review |
+     |--------------------------------------------------------------------------------------------------------------------------------------------|
+218. |                          Angina associated with type 2 diabetes mellitus                            Angina due to type 2 diabetes mellitus |
+220. |                           Forefoot ulcer due to type 2 diabetes mellitus                 Ulcer of forefoot due to type 2 diabetes mellitus |
+222. |           Macular oedema and retinopathy due to type 2 diabetes mellitus     Macular edema and retinopathy due to type 2 diabetes mellitus |
+     +--------------------------------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +----------------------------------------------------------------------------------------------------------------------------+
+     | snomedctconceptid                                                                                 term_refset_dmtype2audit |
+     |----------------------------------------------------------------------------------------------------------------------------|
+223. |   102621000119101                                                            Ulcer of skin due to type 2 diabetes mellitus |
+224. |   104961000119108                                                       Ischemia of retina due to type 2 diabetes mellitus |
+225. | 10656271000119102                                                     Ulcer of skin of toe due to type 2 diabetes mellitus |
+226. | 10661671000119102                                                      Ulcer of right foot due to type 2 diabetes mellitus |
+227. |   108781000119105                                 Neuropathic ulcer of midfoot AND/OR heel due to type 2 diabetes mellitus |
+     |----------------------------------------------------------------------------------------------------------------------------|
+228. |   108791000119108                                                       Suspected glaucoma due to type 2 diabetes mellitus |
+229. |   110181000119105                                            Peripheral sensory neuropathy due to type 2 diabetes mellitus |
+230. |   119831000119106                                                 Hypoglycemia unawareness due to type 2 diabetes mellitus |
+231. |   127991000119101   Hypertension concurrent and due to end stage renal disease on dialysis due to type 2 diabetes mellitus |
+232. |    12811000119100                                                             Complication due to diabetes mellitus type 2 |
+     |----------------------------------------------------------------------------------------------------------------------------|
+233. |   138921000119104                                    Moderate nonproliferative retinopathy due to type 2 diabetes mellitus |
+234. |   140111000119107                           Hypertension in chronic kidney disease stage 4 due to type 2 diabetes mellitus |
+235. |   140131000119102                           Hypertension in chronic kidney disease stage 2 due to type 2 diabetes mellitus |
+236. |     1531000119102                                                               Dermopathy due to type 2 diabetes mellitus |
+237. |   164971000119101                                                              Type 2 diabetes mellitus controlled by diet |
+     |----------------------------------------------------------------------------------------------------------------------------|
+238. |      201000119106                                                 Disorder due to well controlled type 2 diabetes mellitus |
+239. |    28331000119107                                                            Retinal edema due to type 2 diabetes mellitus |
+240. |         359642000                                                                     Diabetes mellitus type 2 in nonobese |
+241. |   368591000119109                                                        Cheiroarthropathy due to diabetes mellitus type 2 |
+242. |    41911000119107                                                                 Glaucoma due to type 2 diabetes mellitus |
+     |----------------------------------------------------------------------------------------------------------------------------|
+243. |         427027005                                    Lumbosacral radiculoplexus neuropathy due to type 2 diabetes mellitus |
+244. |         428007007                                                     Erectile dysfunction due to type 2 diabetes mellitus |
+245. |    60951000119105                                                                Blindness due to type 2 diabetes mellitus |
+246. |         609567009                                                       Pre-existing type 2 diabetes mellitus in pregnancy |
+247. |         712883005                                                     Autonomic neuropathy due to type 2 diabetes mellitus |
+     |----------------------------------------------------------------------------------------------------------------------------|
+248. |    71421000119105                                   Hypertension in chronic kidney disease due to type 2 diabetes mellitus |
+249. |    71441000119104                                                       Nephrotic syndrome due to type 2 diabetes mellitus |
+250. |    72051000119101                                                      Severe malnutrition due to type 2 diabetes mellitus |
+251. |    72061000119104                                                            Osteomyelitis due to type 2 diabetes mellitus |
+252. |         721284006                                                                 Acidosis due to type 2 diabetes mellitus |
+     |----------------------------------------------------------------------------------------------------------------------------|
+253. |      761000119102                                                             Dyslipidemia due to type 2 diabetes mellitus |
+254. |      771000119108                                                   Chronic kidney disease due to type 2 diabetes mellitus |
+255. |         789567007                                                            Ulcer of heel due to type 2 diabetes mellitus |
+256. |         789570006                                             Neuropathic ulcer of midfoot due to type 2 diabetes mellitus |
+257. |          81531005                                                                        Diabetes mellitus type 2 in obese |
+     |----------------------------------------------------------------------------------------------------------------------------|
+258. |    82541000119100                                            Traction detachment of retina due to type 2 diabetes mellitus |
+259. |    82551000119103                                                          Rubeosis iridis due to type 2 diabetes mellitus |
+260. |    84361000119102                                            Insulin reactive hypoglycemia due to type 2 diabetes mellitus |
+261. |    87441000119104                                                           Ulcer of ankle due to type 2 diabetes mellitus |
+262. |    87921000119104                                                      Cranial nerve palsy due to type 2 diabetes mellitus |
+     |----------------------------------------------------------------------------------------------------------------------------|
+263. |    90791000119104                                      End stage renal disease on dialysis due to type 2 diabetes mellitus |
+264. |    97341000119105                             Proliferative retinopathy with retinal edema due to type 2 diabetes mellitus |
+265. |    97621000119107                                                             Stasis ulcer due to type 2 diabetes mellitus |
+266. |           9859006                                                     Acanthosis nigricans due to type 2 diabetes mellitus |
+     +----------------------------------------------------------------------------------------------------------------------------+
+(44 real changes made)
+(44 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if medcodeid == ""
+  45
+
+. gsort snomedctconceptid
+
+. list snomedctconceptid if medcodeid == ""
+
+     +-------------------+
+     | snomedctconceptid |
+     |-------------------|
+  1. |   102621000119101 |
+  2. |   104961000119108 |
+  3. | 10656271000119102 |
+  6. | 10661671000119102 |
+  7. |   108781000119105 |
+     |-------------------|
+  8. |   108791000119108 |
+ 10. |   110181000119105 |
+ 13. |   119831000119106 |
+ 15. |   127991000119101 |
+ 16. |    12811000119100 |
+     |-------------------|
+ 19. |   138921000119104 |
+ 21. |   140111000119107 |
+ 23. |   140131000119102 |
+ 35. |     1531000119102 |
+ 38. |   164971000119101 |
+     |-------------------|
+ 55. |         190390000 |
+ 58. |      201000119106 |
+ 78. |    28331000119107 |
+101. |         359642000 |
+104. |   368591000119109 |
+     |-------------------|
+109. |    41911000119107 |
+185. |         427027005 |
+187. |         428007007 |
+211. |    60951000119105 |
+212. |         609567009 |
+     |-------------------|
+218. |         712883005 |
+227. |    71421000119105 |
+228. |    71441000119104 |
+236. |    72051000119101 |
+237. |    72061000119104 |
+     |-------------------|
+239. |         721284006 |
+245. |      761000119102 |
+247. |      771000119108 |
+249. |         789567007 |
+251. |         789570006 |
+     |-------------------|
+253. |          81531005 |
+254. |    82541000119100 |
+255. |    82551000119103 |
+256. |    84361000119102 |
+257. |    87441000119104 |
+     |-------------------|
+260. |    87921000119104 |
+262. |    90791000119104 |
+264. |    97341000119105 |
+265. |    97621000119107 |
+266. |           9859006 |
+     +-------------------+
+
+. preserve
+
+.         keep if medcodeid == ""
+(221 observations deleted)
+
+.         keep snomedctconceptid
+
+.         generate byte nomatch = 1
+
+.         tempfile nomatch
+
+.         save `nomatch'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000a.tmp saved as .dta format
+
+. restore
+
+. 
+. //Compare newly found Concept IDs against dictionary
+. preserve
+
+.         //Merge SNOMED CT Concepts with medical dictionary
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(138 observations deleted)
+
+.         merge 1:m snomedctconceptid using `medical'
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,823
+        from master                        45  (_merge==1)
+        from using                    240,778  (_merge==2)
+
+    Matched                               221  (_merge==3)
+    -----------------------------------------
+
+.         list snomedctconceptid if _merge == 1
+
+        +-------------------+
+        | snomedctconceptid |
+        |-------------------|
+     1. |   102621000119101 |
+     2. |   104961000119108 |
+     3. | 10656271000119102 |
+     5. | 10661671000119102 |
+     6. |   108781000119105 |
+        |-------------------|
+     7. |   108791000119108 |
+     9. |   110181000119105 |
+    12. |   119831000119106 |
+    14. |   127991000119101 |
+    15. |    12811000119100 |
+        |-------------------|
+    18. |   138921000119104 |
+    20. |   140111000119107 |
+    22. |   140131000119102 |
+    32. |     1531000119102 |
+    35. |   164971000119101 |
+        |-------------------|
+    42. |         190390000 |
+    44. |      201000119106 |
+    51. |    28331000119107 |
+    56. |         359642000 |
+    59. |   368591000119109 |
+        |-------------------|
+    61. |    41911000119107 |
+    76. |         427027005 |
+    78. |         428007007 |
+    86. |    60951000119105 |
+    87. |         609567009 |
+        |-------------------|
+    92. |         712883005 |
+    95. |    71421000119105 |
+    96. |    71441000119104 |
+    99. |    72051000119101 |
+   100. |    72061000119104 |
+        |-------------------|
+   102. |         721284006 |
+   107. |      761000119102 |
+   109. |      771000119108 |
+   111. |         789567007 |
+   113. |         789570006 |
+        |-------------------|
+   115. |          81531005 |
+   116. |    82541000119100 |
+   117. |    82551000119103 |
+   118. |    84361000119102 |
+   119. |    87441000119104 |
+        |-------------------|
+   122. |    87921000119104 |
+   124. |    90791000119104 |
+   126. |    97341000119105 |
+   127. |    97621000119107 |
+   128. |           9859006 |
+        +-------------------+
+
+.         merge m:1 snomedctconceptid using `nomatch', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,999
+        from master                   240,999  
+        from using                          0  
+
+    Matched                                45  
+    -----------------------------------------
+
+.         gsort snomedctconceptid
+
+.         list if _merge != 1 & nomatch == 1
+
+. restore
+
+. 
+. //extra terms found weren't in CPRD Aurum dictionary
+. drop if medcode == ""
+(45 observations deleted)
+
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort refset_dmtype2 refset_dmtype2audit -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  (663 bytes saved)
+
+. save `filename', replace
+file type_2_diabetes.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file type_2_diabetes_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. 
+. //Load clinician classifications
+. local clinician "CCG"
+
+. 
+. import excel `filename'_raw_`clinician', firstrow clear
+(14 vars, 221 obs)
+
+. 
+. generate t2dm_incprev = incidentprevalent12
+(20 missing values generated)
+
+. 
+. //Reclassify incident/prevalent variable to 1s and 2s only
+. replace t2dm_incprev = strtrim(t2dm_incprev)
+(2 real changes made)
+
+. replace t2dm_incprev = "1" if t2dm_incprev == "" & `clinician' == 1
+(19 real changes made)
+
+. replace t2dm_incprev = "1" if strmatch(t2dm_incprev, "*likely 1*")
+(3 real changes made)
+
+. replace t2dm_incprev = "1" if t2dm_incprev == "1 or 2"
+(5 real changes made)
+
+. replace t2dm_incprev = "1" if strmatch(t2dm_incprev, "*I or 2*")
+(1 real change made)
+
+. replace t2dm_incprev = "1" if t2dm_incprev == "possible1"
+(1 real change made)
+
+. replace t2dm_incprev = "1" if strmatch(t2dm_incprev, "*incident*")
+(1 real change made)
+
+. replace t2dm_incprev = "1" if strmatch(t2dm_incprev, "*could be 1*")
+(1 real change made)
+
+. replace t2dm_incprev = "1" if strmatch(N, "*could be 1*")
+(1 real change made)
+
+. replace t2dm_incprev = "2" if strmatch(t2dm_incprev, "*likely 2*")
+(5 real changes made)
+
+. replace t2dm_incprev = "2" if t2dm_incprev == "possible 2"
+(65 real changes made)
+
+. 
+. //Destring and label
+. destring t2dm_incprev, replace
+t2dm_incprev: all characters numeric; replaced as byte
+(1 missing value generated)
+
+. label define t2dm_incprev 1 "Incident" 2 "Prevalent"
+
+. label values t2dm_incprev t2dm_incprev
+
+. 
+. //Remerge with original in case of any formatting issues with Excel spreadsheet
+. keep medcodeid `clinician' t2dm_incprev
+
+. 
+. tempfile `clinician'_classification
+
+. save ``clinician'_classification'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000c.tmp saved as .dta format
+
+. 
+. use `filename', clear
+
+. 
+. merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               221  
+    -----------------------------------------
+
+. 
+. //Remove codes marked for exclusion by clinician
+. display "Terms excluded by clinician..."
+Terms excluded by clinician...
+
+. list medcodeid snomedctconceptid term if `clinician' == 0
+
+     +-----------------------------------------------------------------------------------+
+     |        medcodeid   snome~tid                                                 term |
+     |-----------------------------------------------------------------------------------|
+ 88. | 5109621000006112   237604008   MODY - Maturity onset diabetes glucokinase-related |
+     +-----------------------------------------------------------------------------------+
+
+. drop if `clinician' == 0
+(1 observation deleted)
+
+. 
+. //Save clinican approved codelist
+. gsort snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym `clinician'
+
+. compress
+  (0 bytes saved)
+
+. save `filename', replace
+file type_2_diabetes.dta saved
+
+. export delimited `filename', replace quote
+(file type_2_diabetes.csv not found)
+file type_2_diabetes.csv saved
+
+. 
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Type 2 diabetes mellitus"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 10)  //year, month
+
+. local clinical_reviewer "Carolyn Chew-Graham"
+
+. local date_approved = ym(2024, 11)  //year, month
+
+. local notes "Created for PRIORITY study"
+
+. local keywords "type II diabetes"
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str24
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(1 real change made)
+
+. replace v2 = `date_approved' in 8
+(1 real change made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str24 now str26
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(1 real change made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file type_2_diabetes.meta not found)
+file type_2_diabetes.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\type_2_diabetes.log
+  log type:  text
+ closed on:  29 Nov 2024, 22:32:26
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
