@@ -192,25 +192,25 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 #### Smoking status
 *Suggest using codelist from [Phil's COPD prevalence paper](https://doi.org/10.2147/COPD.S411739): [smoking_status.dta.csv](https://github.com/NHLI-Respiratory-Epi/COPD_prevalence/blob/main/codelists/CSV/smoking_status.dta.csv).*
 1. PubMed validated codelist search:
-    - Search: "smoking status validated (CPRD OR SNOMED CT)"
-    - 4 results
+    - Search: "smoking validated (CPRD OR SNOMED CT)"
+    - 15 results
     - no validated codelists found
 2. Repository codelist search:
     - HDR UK Phenotype library:
-      - Search: "smoking status"
-      - 31 results
+      - Search: "smoking"
+      - 78 results
       - 2 suitable codelists:
         - https://phenotypes.healthdatagateway.org/phenotypes/PH982/version/2160/detail/
         - https://phenotypes.healthdatagateway.org/phenotypes/PH1017/version/2195/detail/
     - LSHTM Data Compass:
-      - Search: "smoking status codelist"
-      - 21 results
+      - Search: "smoking codelist"
+      - 15 results
       - 1 suitable codelists:
         - https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
-      - Search: "smoking status"
+      - Search: "smoking"
       - 3 results
-      - no suitable codelists
+      - no suitable codelists (no categorisation of status)
 3. Codelist creation script:
     - [smoking_status.do](codelists/smoking_status.do)
 4. Finished codelist:
