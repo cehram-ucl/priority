@@ -1,0 +1,2 @@
+# ignore ALL Stata automatic backup .stswp files
+*.stswp
