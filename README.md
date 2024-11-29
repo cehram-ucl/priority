@@ -389,8 +389,8 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - 18 and 50 and 22 results
       - no suitable codelists
     - LSHTM Data Compass:
-      - Search: "bmi codelist" and "weight codelist"
-      - 3 and 9 results
+      - Search: "bmi codelist OR weight codelist"
+      - 10 results
       - 2 suitable codelists:
       	- https://datacompass.lshtm.ac.uk/id/eprint/2413/
 	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
