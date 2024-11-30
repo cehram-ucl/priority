@@ -1,0 +1,1541 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\Phil\Documents\GitHub\priority\codelists\blood_pressure.log
+  log type:  text
+ opened on:  30 Nov 2024, 21:58:56
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/Phil/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/Phil/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_000001.tmp saved as .dta format
+
+. 
+. 
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local bp " "*blood*pressure*" "bp" "* bp *" "bp *" "* bp" "*arterial*pressure*" "*systolic*pressure*" "*systolic*bp*" "*systolic" "*diastolic*pressure*" "*diastol
+> ic*bp*" "*diastolic" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+. //==========================================================================
+. 
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/bp/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(218 real changes made)
+(0 real changes made)
+(28 real changes made)
+(25 real changes made)
+(41 real changes made)
+(34 real changes made)
+(5 real changes made)
+(0 real changes made)
+(2 real changes made)
+(1 real change made)
+(0 real changes made)
+(1 real change made)
+
+. 
+. keep if /**/bp/**/ == 1
+(240,644 observations deleted)
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str17
+  variable snomedctconceptid was str18 now str16
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str113
+  (45,085 bytes saved)
+
+. 
+. gsort /**/bp/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/bp/**/
+
+-> tabulation of bp  
+
+         bp |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        355      100.00      100.00
+------------+-----------------------------------
+      Total |        355      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*reminder*" "*score*" "*centile*" "*refused*" "*invitation*" "*removal*" "*understands*" "*loan*" "*return*" "*referral*" "*decline*" "*murmur*" 
+> "*not*indicated*" "*assess*" "*unrecordable*" "*no*record*" "*recommend*" "*leaflet*" "*respir*" "*unequal*" "*adverse*reaction*" "*request*" "*plaster*" "*height
+> *" "*bullous*pemphigoid*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(355 missing values generated)
+(1 real change made)
+(11 real changes made)
+(4 real changes made)
+(1 real change made)
+(7 real changes made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(3 real changes made)
+(3 real changes made)
+(1 real change made)
+(2 real changes made)
+(2 real changes made)
+(2 real changes made)
+(2 real changes made)
+(2 real changes made)
+(1 real change made)
+(3 real changes made)
+(1 real change made)
+(37 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list term if exclude == 1
+
+     +----------------------------------------------------------------------------------------------------+
+     |                                                                                               term |
+     |----------------------------------------------------------------------------------------------------|
+ 25. |                                                                   Blood pressure procedure refused |
+ 26. |                      Blood pressure monitoring invitation SMS (short message service) text message |
+ 36. |                                                      Referral for 24 hour blood pressure recording |
+ 41. |                                                       Removal of ambulatory blood pressure monitor |
+ 42. |                                    Understands importance of blood pressure monitoring and control |
+     |----------------------------------------------------------------------------------------------------|
+ 43. |                                                                                       BP box score |
+ 58. |                                                      Home blood pressure monitor loaned to patient |
+ 62. |                                                  Referral for ambulatory blood pressure monitoring |
+ 67. |                                                    Home blood pressure monitor returned by patient |
+ 70. |                                                            Home blood pressure monitoring declined |
+     |----------------------------------------------------------------------------------------------------|
+ 76. |                                                                       Blood pressure leaflet given |
+ 79. |                                                                            No record of BP reading |
+ 85. |                                                               Blood pressure monitoring invitation |
+ 93. |                                                       Ambulatory blood pressure recording declined |
+ 95. |                           ABCD2 (Age, Blood pressure, Clinical features, Duration, Diabetes) score |
+     |----------------------------------------------------------------------------------------------------|
+113. |                                                                              O/E - BP unrecordable |
+118. |                         Monitoring of blood pressure, temperature, pulse rate and respiratory rate |
+123. |                                                    Adverse reaction to Adsorbed Tetanus Vaccine Bp |
+124. |               CRB-65 (Confusion, Respiratory rate, Blood pressure, 65 years of age or older) score |
+126. |                                                                Reason for referral: Blood Pressure |
+     |----------------------------------------------------------------------------------------------------|
+128. |                                                                  Blood pressure procedure declined |
+129. |                                                Removal of ABPM (ambulatory blood pressure monitor) |
+131. |        CURB-65 (confusion, urea, respiratory rate, blood pressure, 65 years of age or older) score |
+132. |                                                  Blood pressure monitoring invitation first letter |
+133. |                                                 Blood pressure monitoring invitation second letter |
+     |----------------------------------------------------------------------------------------------------|
+138. |                                                           Patient requests remote monitoring of BP |
+148. |                                                                                   Murmur diastolic |
+150. |                                                 Ambulatory blood pressure monitoring not indicated |
+153. |                                            Recommendation to measure and record own blood pressure |
+155. |                                                                    Systolic blood pressure centile |
+     |----------------------------------------------------------------------------------------------------|
+158. |                                                                   Diastolic blood pressure centile |
+159. |                                                  Blood pressure monitoring invitation third letter |
+160. |               ABCD2 (Age, Blood pressure, Clinical features, Duration, Diabetes) stroke risk score |
+162. |                                                                   Blood pressure taking assessment |
+168. |                                                         Elevated pulse/respirations/blood pressure |
+     |----------------------------------------------------------------------------------------------------|
+169. |                                                                     Unequal blood pressure in arms |
+170. |                                                     Blood pressure monitoring telephone invitation |
+174. |        CURB-65 (confusion, urea, respiratory rate, blood pressure, 65 years of age or older) score |
+175. |                                            Adverse reaction to Poliomyelitis Vaccine,Live(Oral) Bp |
+176. |                                                            Adverse reaction to Elastic Adhesive Bp |
+     |----------------------------------------------------------------------------------------------------|
+177. |                                    Adverse reaction to Diphtheria,Tetanus And Pertussis Vaccine Bp |
+183. |                                                         Blood pressure monitoring email invitation |
+184. | Royal College of Physicians NEWS2 (National Early Warning Score 2) - systolic blood pressure score |
+185. |                                                       Adverse reaction to Elastic Adhesive Tape BP |
+192. |                                 Age, Blood pressure, Clinical features, Duration, Diabetes 2 score |
+     |----------------------------------------------------------------------------------------------------|
+194. |                                     Adverse reaction to Adsorbed Diphtheria And Tetanus Vaccine Bp |
+195. |                                                       Home blood pressure monitoring not indicated |
+196. |                                                   Adverse reaction to Elastic Adhesive Dressing Bp |
+204. |                                                            Adverse reaction to Plaster Of Paris Bp |
+206. |                                                             Child systolic blood pressure centiles |
+     |----------------------------------------------------------------------------------------------------|
+207. |                                                                       Assess blood pressure taking |
+214. |                                                            Child diastolic blood pressure centiles |
+215. |                                                                        Blood pressure unrecordable |
+230. |                                                                Adverse reaction to Starch Maize Bp |
+231. |                                                         Tele. Reminder for Systolic Blood Pressure |
+     |----------------------------------------------------------------------------------------------------|
+236. |                                                      Adverse reaction to Smallpox Vaccine Dried Bp |
+237. |                                                              Adverse reaction to Linctus Simple Bp |
+239. |                           ABCD2 (Age, Blood pressure, Clinical features, Duration, Diabetes) score |
+241. |                                                                 Adverse reaction to Animal Wool Bp |
+243. |                                                          Adverse reaction to Mepyramine Maleate Bp |
+     |----------------------------------------------------------------------------------------------------|
+246. |                                                                                Plaster Of Paris Bp |
+256. |                                                                Adverse reaction to Cotton Crepe Bp |
+257. |                                                        Adverse reaction to Simple Ointment BP 1988 |
+258. |                                                Adverse reaction to Sterile Braided Silk Sutures Bp |
+263. |                                                         Adverse reaction to Ichthammol Glycerin Bp |
+     |----------------------------------------------------------------------------------------------------|
+264. |                                     Adverse reaction to Permeable Woven Synthetic Adhesive Tape Bp |
+265. |                      Adverse reaction to Permeable, Apertured Non-Woven Synthetic Adhesive Tape BP |
+267. |                                                            Adverse reaction to Absorbent Cotton Bp |
+268. |                                                  Adverse reaction to Polyurethane Foam Dressing Bp |
+269. |                          Adverse reaction to Vapour-permeable waterproof Plastic wound dressing BP |
+     |----------------------------------------------------------------------------------------------------|
+274. |                                               Adverse reaction to Bumetanide And Slow Potassium BP |
+282. |                                                                                 Height weight & BP |
+283. |                                                    Adverse reaction to Cholera Vaccine Bp Wellcome |
+284. |                                                          Adverse reaction to Sodium Bicarbonate Bp |
+285. |                                                               Adverse reaction to Crepe Bandage Bp |
+     |----------------------------------------------------------------------------------------------------|
+286. |                                                      Adverse reaction to Sterile Catgut Chromic Bp |
+293. |                                            Recommendation to measure and record own blood pressure |
+294. |                                                             Adverse reaction to Squill Tincture BP |
+301. |                                     CURB (confusion, urea, respiratory rate, blood pressure) score |
+302. |                                                                       Adverse reaction to Syrup Bp |
+     |----------------------------------------------------------------------------------------------------|
+303. |                                         Adverse reaction to Porous Lexible Adhesive Bp (Poroplast) |
+314. |                                               Adverse reaction to Toughened Silver Nitrate Bp 1980 |
+315. |                                    Adverse reaction to Sterile polyamide 6 suture, Monofilament BP |
+329. |                                        Adverse reaction to Porous Flexible Adhesive Bp (Poroplast) |
+330. |                                                               Adverse reaction to Cod-Liver Oil Bp |
+     |----------------------------------------------------------------------------------------------------|
+331. |                                                                     Adverse reaction to Camphor BP |
+332. |                                                 Adverse reaction to Elasticated Tubular Bandage BP |
+333. |                                                   Adverse reaction to Cotton Conforming Bandage BP |
+339. |                                                                No record of blood pressure reading |
+347. |                             Record of blood pressure, temperature, pulse rate and respiratory rate |
+     |----------------------------------------------------------------------------------------------------|
+349. |                                                                            BP - Bullous pemphigoid |
+352. |                                     CURB (confusion, urea, respiratory rate, blood pressure) score |
+     +----------------------------------------------------------------------------------------------------+
+
+. /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+. 
+. drop if exclude == 1 ///
+> /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+(92 observations deleted)
+
+. 
+. drop exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+
+. count
+  263
+
+. compress
+  variable originalreadcode was str17 now str13
+  (1,052 bytes saved)
+
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. /* EVERYTHING LOOKS OK
+> // **medcodeids to remove**
+> local initial_remove "123"
+> 
+> gen byte remove = 0
+> 
+> foreach medcode of local initial_remove {
+>         
+>         replace remove = 1 if medcodeid == "`medcode'"
+> }
+> 
+> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+> drop if remove == 1
+> drop remove
+> 
+> compress
+> tab1 /**/bp/**/
+> */
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                  SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str16)
+
+         Unique values: 209                       Missing "": 0/263
+
+              Examples: "164783007"
+                        "1994021000006104"
+                        "314448008"
+                        "446695008"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  263
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/bp/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/bp/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(54 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               287  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str16
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str113
+  (37,597 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            24
+        from master                        24  
+        from using                          0  
+
+    Matched                               263  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/bp/**/, last
+
+. gsort /**/bp/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/bp/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: bp
+
+     +----------------------------------------------------------------------------+
+     | snomedctconce~d   originalrea~e                                       term |
+     |----------------------------------------------------------------------------|
+ 59. |         2004005            662R                               Normotensive |
+ 67. |       183413003            8G93                     Conscious B.P. control |
+ 68. | 715051000000108             9OD      Hypertension screening administration |
+ 83. | 715051000000108            9ODZ             Hypertension screen admin. NOS |
+110. |        38341003              G2                       Hypertensive disease |
+     |----------------------------------------------------------------------------|
+113. |        38341003          G20z-1                               Hypertension |
+114. |        38341003             G2y       Other specified hypertensive disease |
+115. |        38341003             G2z                      Hypertensive disorder |
+116. |        45007003             G87                                Hypotension |
+117. |        45007003           G87-1                                 Hypopiesis |
+     |----------------------------------------------------------------------------|
+118. |        45007003            G87z                            Hypotension NOS |
+119. |        38341003            Gyu2                   [X]Hypertensive diseases |
+120. |        45007003           Gyu90                       [X]Other hypotension |
+168. |        38341003   ^ESCTBP311750                         BP+ - Hypertension |
+195. |        38341003   ^ESCTHT311748                          HT - Hypertension |
+     |----------------------------------------------------------------------------|
+196. |        38341003   ^ESCTHT311751                         HTN - Hypertension |
+197. |        38341003   ^ESCTHY311742              Hypertensive vascular disease |
+198. |        38341003   ^ESCTHY311752   Hypertensive disorder, systemic arterial |
+243. |       258057004   ^ESCTNI539061                               NIBP monitor |
+248. |        53813002   ^ESCTNO337255                  Normal diastolic arterial |
+     |----------------------------------------------------------------------------|
+264. |       255236000   ^ESCTPE535787                    Peak systolic, function |
+276. |        38341003   ^ESCTSY311746             Systemic arterial hypertension |
+279. |       111973004   ^ESCTSY420186                                    Systole |
+281. |       111973004   ^ESCTSY420188                          Systole, function |
+     +----------------------------------------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(263 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(15 observations deleted)
+
+. 
+.         count
+  9
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 111973004
+
+     +-----------------------------------------------------------------+
+     |        medcodeid   originalrea~e                term   new_sn~m |
+     |-----------------------------------------------------------------|
+279. | 4201861000006110   ^ESCTSY420186             Systole          1 |
+280. | 4201871000006115   ^ESCTSY420187            Systolic          0 |
+281. | 4201881000006117   ^ESCTSY420188   Systole, function          1 |
+     +-----------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 183413003
+
+     +--------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                               term   new_sn~m |
+     |--------------------------------------------------------------------------------|
+ 67. |        283479012            8G93             Conscious B.P. control          1 |
+177. | 4722951000006111   ^ESCTCO472295   Conscious blood pressure control          0 |
+     +--------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 2004005
+
+     +---------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                    term   new_sn~m |
+     |---------------------------------------------------------------------|
+ 59. |       1222392019            662R            Normotensive          1 |
+244. | 2530601000006114   ^ESCTNO253060   Normal blood pressure          0 |
+     +---------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 255236000
+
+     +-----------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                      term   new_sn~m |
+     |-----------------------------------------------------------------------|
+263. | 5357861000006113   ^ESCTPE535786             Peak systolic          0 |
+264. | 5357871000006118   ^ESCTPE535787   Peak systolic, function          1 |
+     +-----------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 258057004
+
+     +-----------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                  term   new_sn~m |
+     |-----------------------------------------------------------------------------------|
+243. | 5390611000006115   ^ESCTNI539061                          NIBP monitor          1 |
+254. | 5390601000006118   ^ESCTNO539060   Non-invasive blood pressure monitor          0 |
+     +-----------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 38341003
+
+     +----------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                       term   new_sn~m |
+     |----------------------------------------------------------------------------------------|
+110. |         64168014              G2                       Hypertensive disease          1 |
+111. |  523801000006119            G2-1                  BP - hypertensive disease          0 |
+113. |  790121000006116          G20z-1                               Hypertension          1 |
+114. |        299686018             G2y       Other specified hypertensive disease          1 |
+115. |        299687010             G2z                      Hypertensive disorder          1 |
+     |----------------------------------------------------------------------------------------|
+119. |        300869017            Gyu2                   [X]Hypertensive diseases          1 |
+167. | 3117451000006117   ^ESCTBP311745                   BP - High blood pressure          0 |
+168. | 3117501000006115   ^ESCTBP311750                         BP+ - Hypertension          1 |
+190. | 3117471000006110   ^ESCTHB311747                  HBP - High blood pressure          0 |
+193. | 3117411000006118   ^ESCTHI311741                        High blood pressure          0 |
+     |----------------------------------------------------------------------------------------|
+194. | 3117491000006111   ^ESCTHI311749               High blood pressure disorder          0 |
+195. | 3117481000006113   ^ESCTHT311748                          HT - Hypertension          1 |
+196. | 3117511000006117   ^ESCTHT311751                         HTN - Hypertension          1 |
+197. | 3117421000006114   ^ESCTHY311742              Hypertensive vascular disease          1 |
+198. | 3117521000006113   ^ESCTHY311752   Hypertensive disorder, systemic arterial          1 |
+     |----------------------------------------------------------------------------------------|
+276. | 3117461000006115   ^ESCTSY311746             Systemic arterial hypertension          1 |
+     +----------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 45007003
+
+     +--------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                   term   new_sn~m |
+     |--------------------------------------------------------------------|
+116. |         75071013             G87            Hypotension          1 |
+117. |         75073011           G87-1             Hypopiesis          1 |
+118. |        300837014            G87z        Hypotension NOS          1 |
+120. |        300988013           Gyu90   [X]Other hypotension          1 |
+206. | 3226171000006113   ^ESCTLO322617     Low blood pressure          0 |
+     +--------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 53813002
+
+     +----------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                 term   new_sn~m |
+     |----------------------------------------------------------------------------------|
+247. | 3372531000006111   ^ESCTNO337253   Normal diastolic arterial pressure          0 |
+248. | 3372551000006116   ^ESCTNO337255            Normal diastolic arterial          1 |
+     +----------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 715051000000108
+
+     +------------------------------------------------------------------------------+
+     |      medcodeid   origin~e                                    term   new_sn~m |
+     |------------------------------------------------------------------------------|
+ 68. | 15881000000111        9OD   Hypertension screening administration          1 |
+ 69. | 15841000000115      9OD-1                BP screen administration          0 |
+ 70. | 15861000000119      9OD-2             Blood pressure screen admin          0 |
+ 83. | 15901000000114       9ODZ          Hypertension screen admin. NOS          1 |
+     +------------------------------------------------------------------------------+
+
+. 
+. 
+. // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Search terms for each categorisation desired**
+. local systolic_bp " "*systol*" "
+
+. local diastolic_bp " "*diastol*" "
+
+. 
+. //Search for codes
+. foreach categoryterm in /**/systolic_bp diastolic_bp/**/ {
+  2.         
+.         gen byte `categoryterm' = .
+  3.         
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``categoryterm'' {                
+  5.                         
+.                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(287 missing values generated)
+(51 real changes made)
+(287 missing values generated)
+(41 real changes made)
+
+. 
+. tab1 systolic_bp diastolic_bp
+
+-> tabulation of systolic_bp  
+
+systolic_bp |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         51      100.00      100.00
+------------+-----------------------------------
+      Total |         51      100.00
+
+-> tabulation of diastolic_bp  
+
+diastolic_b |
+          p |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         41      100.00      100.00
+------------+-----------------------------------
+      Total |         41      100.00
+
+. gsort systolic_bp diastolic_bp
+
+. 
+. 
+. // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
+. //====================================================
+. 
+. //Comment this section out if no pre-existing codelists
+. 
+. //MedCodeID codelists (LSHTM Data Compass)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/3590/28/codelist_blood_pressure_aurum.txt, stringcols(1 5 6) clear
+(encoding automatically selected: ISO-8859-1)
+(8 vars, 105 obs)
+
+.         
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_3590"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_000006.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/32/covariate_bp_aurum.txt, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(3 vars, 54 obs)
+
+.         
+.         local name "lshtm_4214"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_000007.tmp saved as .dta format
+
+. restore
+
+. 
+. foreach codelist in lshtm_3590 lshtm_4214 {
+  2.         
+.         //Merge previous codelist
+.         merge 1:1 medcodeid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list medcodeid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace /**/bp/**/ = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           230
+        from master                       206  (_merge==1)
+        from using                         24  (_merge==2)
+
+    Matched                                81  (_merge==3)
+    -----------------------------------------
+
+     +----------------------------------------------------------------+
+     |                        term                    term_lshtm_3590 |
+     |----------------------------------------------------------------|
+  3. |  Systolic arterial pressure            systolic blood pressure |
+130. |       Raised blood pressure   [d]raised blood pressure reading |
+131. |  Low blood pressure reading      [d]low blood pressure reading |
+238. | Diastolic arterial pressure           diastolic blood pressure |
+244. |     Elevated blood pressure                high blood pressure |
+     +----------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +-----------------------------------------------------------------------+
+     |         medcodeid                                     term_lshtm_3590 |
+     |-----------------------------------------------------------------------|
+288. | 12717981000006117                       [d]low blood pressure reading |
+289. |  1928511000006116                    baseline systolic blood pressure |
+290. |  1928521000006112                   baseline diastolic blood pressure |
+291. |  2885771000006113                 finding of increased blood pressure |
+292. |  2885791000006114                            blood pressure elevation |
+     |-----------------------------------------------------------------------|
+293. |  3676261000006112                          systolic arterial pressure |
+294. |  4556351000006110    on examination - blood pressure reading very low |
+295. |  4556361000006112                on examination - bp reading very low |
+296. |  4556381000006119         on examination - blood pressure reading low |
+297. |  4556391000006116                     on examination - bp reading low |
+     |-----------------------------------------------------------------------|
+298. |  4556411000006116      on examination - blood pressure borderline low |
+299. |  4556421000006112                  on examination - bp borderline low |
+300. |  4556451000006115                  on examination - bp reading normal |
+301. |  4556471000006113   on examination - blood pressure borderline raised |
+302. |  4556481000006111               on examination - bp borderline raised |
+     |-----------------------------------------------------------------------|
+303. |  4556511000006115                  on examination - bp reading raised |
+304. |  4556541000006116               on examination - bp reading very high |
+305. |  4556741000006114           on examination - blood pressure decreased |
+306. |  4634761000006110        on examination - initial high blood pressure |
+307. |  4634771000006115                    on examination - initial high bp |
+     |-----------------------------------------------------------------------|
+308. |  4634801000006118                      on examination - check high bp |
+309. |  8057991000006115            ambulatory diastolic bp (blood pressure) |
+310. |   923841000006113                        o/e - blood pressure reading |
+311. |   961661000006115          elevated pulse/respirations/blood pressure |
+     +-----------------------------------------------------------------------+
+(24 real changes made)
+(24 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           257
+        from master                       257  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                54  (_merge==3)
+    -----------------------------------------
+
+     +--------------------------------------------------------+
+     |                        term            term_lshtm_4214 |
+     |--------------------------------------------------------|
+  3. |  Systolic arterial pressure    systolic blood pressure |
+259. | Diastolic arterial pressure   diastolic blood pressure |
+     +--------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if snomedctconceptid == ""
+  24
+
+. list medcodeid term if snomedctconceptid == ""
+
+     +-----------------------------------------------------------------------+
+     |         medcodeid                                                term |
+     |-----------------------------------------------------------------------|
+ 10. | 12717981000006117                       [d]low blood pressure reading |
+ 37. |  1928511000006116                    baseline systolic blood pressure |
+ 38. |  1928521000006112                   baseline diastolic blood pressure |
+114. |  2885771000006113                 finding of increased blood pressure |
+115. |  2885791000006114                            blood pressure elevation |
+     |-----------------------------------------------------------------------|
+146. |  3676261000006112                          systolic arterial pressure |
+158. |  4556351000006110    on examination - blood pressure reading very low |
+159. |  4556361000006112                on examination - bp reading very low |
+160. |  4556381000006119         on examination - blood pressure reading low |
+161. |  4556391000006116                     on examination - bp reading low |
+     |-----------------------------------------------------------------------|
+162. |  4556411000006116      on examination - blood pressure borderline low |
+163. |  4556421000006112                  on examination - bp borderline low |
+165. |  4556451000006115                  on examination - bp reading normal |
+166. |  4556471000006113   on examination - blood pressure borderline raised |
+167. |  4556481000006111               on examination - bp borderline raised |
+     |-----------------------------------------------------------------------|
+169. |  4556511000006115                  on examination - bp reading raised |
+171. |  4556541000006116               on examination - bp reading very high |
+178. |  4556741000006114           on examination - blood pressure decreased |
+193. |  4634761000006110        on examination - initial high blood pressure |
+194. |  4634771000006115                    on examination - initial high bp |
+     |-----------------------------------------------------------------------|
+196. |  4634801000006118                      on examination - check high bp |
+288. |  8057991000006115            ambulatory diastolic bp (blood pressure) |
+309. |   923841000006113                        o/e - blood pressure reading |
+310. |   961661000006115          elevated pulse/respirations/blood pressure |
+     +-----------------------------------------------------------------------+
+
+. 
+. //Compare newly found MedCodeIDs against Aurum dictionary
+. preserve
+
+.         //Merge new MedCodeIDs with medical dictionary
+.         keep medcodeid
+
+.         merge 1:1 medcodeid using `medical'
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,734
+        from master                        23  (_merge==1)
+        from using                    240,711  (_merge==2)
+
+    Matched                               288  (_merge==3)
+    -----------------------------------------
+
+.         generate byte not_in_dictionary = 1 if _merge == 1
+(240,999 missing values generated)
+
+.         list medcodeid if not_in_dictionary == 1
+
+        +-------------------+
+        |         medcodeid |
+        |-------------------|
+    10. | 12717981000006117 |
+    37. |  1928511000006116 |
+    38. |  1928521000006112 |
+   114. |  2885771000006113 |
+   115. |  2885791000006114 |
+        |-------------------|
+   146. |  3676261000006112 |
+   158. |  4556351000006110 |
+   159. |  4556361000006112 |
+   160. |  4556381000006119 |
+   161. |  4556391000006116 |
+        |-------------------|
+   162. |  4556411000006116 |
+   163. |  4556421000006112 |
+   165. |  4556451000006115 |
+   166. |  4556471000006113 |
+   167. |  4556481000006111 |
+        |-------------------|
+   169. |  4556511000006115 |
+   171. |  4556541000006116 |
+   178. |  4556741000006114 |
+   193. |  4634761000006110 |
+   194. |  4634771000006115 |
+        |-------------------|
+   196. |  4634801000006118 |
+   288. |  8057991000006115 |
+   309. |   923841000006113 |
+        +-------------------+
+
+.         keep if not_in_dictionary == 1
+(240,999 observations deleted)
+
+.         keep medcodeid not_in_dictionary
+
+.         tempfile notindict
+
+.         save `notindict'
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_000009.tmp saved as .dta format
+
+. restore
+
+. 
+. //Remove codes not in Aurum dictionary
+. merge 1:1 medcodeid using `notindict'
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           288
+        from master                       288  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                23  (_merge==3)
+    -----------------------------------------
+
+. list medcodeid term if not_in_dictionary == 1
+
+     +-----------------------------------------------------------------------+
+     |         medcodeid                                                term |
+     |-----------------------------------------------------------------------|
+ 10. | 12717981000006117                       [d]low blood pressure reading |
+ 37. |  1928511000006116                    baseline systolic blood pressure |
+ 38. |  1928521000006112                   baseline diastolic blood pressure |
+114. |  2885771000006113                 finding of increased blood pressure |
+115. |  2885791000006114                            blood pressure elevation |
+     |-----------------------------------------------------------------------|
+146. |  3676261000006112                          systolic arterial pressure |
+158. |  4556351000006110    on examination - blood pressure reading very low |
+159. |  4556361000006112                on examination - bp reading very low |
+160. |  4556381000006119         on examination - blood pressure reading low |
+161. |  4556391000006116                     on examination - bp reading low |
+     |-----------------------------------------------------------------------|
+162. |  4556411000006116      on examination - blood pressure borderline low |
+163. |  4556421000006112                  on examination - bp borderline low |
+165. |  4556451000006115                  on examination - bp reading normal |
+166. |  4556471000006113   on examination - blood pressure borderline raised |
+167. |  4556481000006111               on examination - bp borderline raised |
+     |-----------------------------------------------------------------------|
+169. |  4556511000006115                  on examination - bp reading raised |
+171. |  4556541000006116               on examination - bp reading very high |
+178. |  4556741000006114           on examination - blood pressure decreased |
+193. |  4634761000006110        on examination - initial high blood pressure |
+194. |  4634771000006115                    on examination - initial high bp |
+     |-----------------------------------------------------------------------|
+196. |  4634801000006118                      on examination - check high bp |
+288. |  8057991000006115            ambulatory diastolic bp (blood pressure) |
+309. |   923841000006113                        o/e - blood pressure reading |
+     +-----------------------------------------------------------------------+
+
+. drop if not_in_dictionary == 1
+(23 observations deleted)
+
+. drop not_in_dictionary _merge
+
+. 
+. //Check for any additional new codes that haven't been accounted for
+. list medcodeid term if snomedctconceptid == ""
+
+     +--------------------------------------------------------------+
+     |       medcodeid                                         term |
+     |--------------------------------------------------------------|
+287. | 961661000006115   elevated pulse/respirations/blood pressure |
+     +--------------------------------------------------------------+
+
+. 
+. //doesn't look relevant
+. drop if snomedctconceptid == ""
+(1 observation deleted)
+
+. 
+. 
+. //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/abpm_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "refset_abpm"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_00000b.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/homebp_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "refset_homebpp"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_00000c.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/bp_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 97 obs)
+
+.         
+.         local name "refset_bp"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable term_refset_bp was strL now str113
+  (1,194 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_00000d.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/opensafely/systolic-blood-pressure-qof/3572b5fb/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 21 obs)
+
+.         
+.         local name "qof44"
+
+. 
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_00000e.tmp saved as .dta format
+
+. restore
+
+. 
+. foreach codelist in refset_abpm refset_homebpp refset_bp qof44 {
+  2.         
+.         //Merge previous codelist
+.         merge m:1 snomedctconceptid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list snomedctconceptid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace /**/bp/**/ = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           283
+        from master                       283  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 4  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------+
+     |                                    term                     term_refset_abpm |
+     |------------------------------------------------------------------------------|
+105. | Ambulatory systolic BP (blood pressure)   Ambulatory systolic blood pressure |
+     +------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           284
+        from master                       284  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 3  (_merge==3)
+    -----------------------------------------
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           166
+        from master                       162  (_merge==1)
+        from using                          4  (_merge==2)
+
+    Matched                               125  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------------------------------------+
+     |                                      term                                              term_refset_bp |
+     |-------------------------------------------------------------------------------------------------------|
+ 18. | Decreased blood pressure, not hypotension                         Finding of decreased blood pressure |
+ 19. |            Normal systolic blood pressure                           Normal systolic arterial pressure |
+ 24. |                      O/E - blood pressure                     On examination - blood pressure reading |
+ 25. |                          O/E - BP reading                     On examination - blood pressure reading |
+ 26. |            O/E-blood pressure reading NOS                     On examination - blood pressure reading |
+     |-------------------------------------------------------------------------------------------------------|
+ 28. |              O/E - blood pressure reading                     On examination - blood pressure reading |
+ 29. |                 O/E - BP reading very low            On examination - blood pressure reading very low |
+ 30. |                      O/E - BP reading low                 On examination - blood pressure reading low |
+ 31. |                   O/E - BP borderline low              On examination - blood pressure borderline low |
+ 32. |                   O/E - BP reading normal              On examination - blood pressure reading normal |
+     |-------------------------------------------------------------------------------------------------------|
+ 34. |                O/E - BP borderline raised           On examination - blood pressure borderline raised |
+ 35. |                   O/E - BP reading raised              On examination - blood pressure reading raised |
+ 38. |                O/E - BP reading very high           On examination - blood pressure reading very high |
+ 39. | On examination - BP reading:postural drop      On examination - blood pressure reading: postural drop |
+ 40. |            O/E - BP reading:postural drop      On examination - blood pressure reading: postural drop |
+     |-------------------------------------------------------------------------------------------------------|
+ 41. |                 O/E - Systolic BP reading            On examination - Systolic blood pressure reading |
+ 42. |     On examination - Diastolic BP reading           On examination - Diastolic blood pressure reading |
+ 43. |                O/E - Diastolic BP reading           On examination - Diastolic blood pressure reading |
+ 45. |                           O/E - BP stable                      On examination - blood pressure stable |
+ 46. |              Lying blood pressure reading                                        Lying blood pressure |
+     |-------------------------------------------------------------------------------------------------------|
+ 48. |           Standing blood pressure reading                                     Standing blood pressure |
+ 50. |            Sitting blood pressure reading                                      Sitting blood pressure |
+ 52. |            O/E - blood pressure decreased                   On examination - blood pressure decreased |
+ 53. |                           O/E - BP labile                      On examination - blood pressure labile |
+ 58. |                     O/E - initial high BP                On examination - initial high blood pressure |
+     |-------------------------------------------------------------------------------------------------------|
+ 59. |                       O/E - check high BP                  On examination - check high blood pressure |
+ 69. |     High systolic arterial pulse pressure                        Increased systolic arterial pressure |
+105. |   Ambulatory systolic BP (blood pressure)                          Ambulatory systolic blood pressure |
+110. |                              Normotensive                                       Normal blood pressure |
+115. |          High diastolic arterial pressure                       Increased diastolic arterial pressure |
+     |-------------------------------------------------------------------------------------------------------|
+117. |                   Elevated blood pressure                         Finding of increased blood pressure |
+118. |                     Raised blood pressure                         Finding of increased blood pressure |
+122. |          Non-invasive mean blood pressure                         Non-invasive mean arterial pressure |
+124. |              MAP - Mean arterial pressure                         Non-invasive mean arterial pressure |
+137. |               Diastolic arterial pressure                                    Diastolic blood pressure |
+     |-------------------------------------------------------------------------------------------------------|
+152. |        O/E - BP reading: no postural drop   On examination - blood pressure reading: no postural drop |
+183. | Self measured BP (blood pressure) reading                        Self measured blood pressure reading |
+206. |             ABP - Arterial blood pressure                                     Arterial blood pressure |
+209. |             SBP - Systemic blood pressure                                     Systemic blood pressure |
+240. |                 Normal diastolic arterial                          Normal diastolic arterial pressure |
+     |-------------------------------------------------------------------------------------------------------|
+243. |                 MBP - Mean blood pressure                                         Mean blood pressure |
+244. |              MAP - Mean arterial pressure                                         Mean blood pressure |
+256. |                   Systolic blood pressure                                  Systolic arterial pressure |
+263. |                       BP - Blood pressure                                              Blood pressure |
+     +-------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +---------------------------------------------------------+
+     | snomedctconce~d                          term_refset_bp |
+     |---------------------------------------------------------|
+288. |       251078009   Post-vasodilatation arterial pressure |
+289. |       723237002             Non-invasive blood pressure |
+290. |        81010002    Decreased systolic arterial pressure |
+291. | 852301000000109             Minimum mean blood pressure |
+     +---------------------------------------------------------+
+(4 real changes made)
+(4 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           268
+        from master                       268  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                23  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------+
+     |                                    term                           term_qof44 |
+     |------------------------------------------------------------------------------|
+104. | Ambulatory systolic BP (blood pressure)   Ambulatory systolic blood pressure |
+258. |                 Systolic blood pressure           Systolic arterial pressure |
+     +------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if medcodeid == ""
+  4
+
+. list snomedctconceptid term if medcodeid == ""
+
+     +---------------------------------------------------------+
+     | snomedctconce~d                                    term |
+     |---------------------------------------------------------|
+126. |       251078009   Post-vasodilatation arterial pressure |
+262. |       723237002             Non-invasive blood pressure |
+268. |        81010002    Decreased systolic arterial pressure |
+274. | 852301000000109             Minimum mean blood pressure |
+     +---------------------------------------------------------+
+
+. 
+. //Compare newly found Concept IDs against Aurum dictionary
+. preserve
+
+.         //Merge SNOMED CT Concepts with medical dictionary
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(78 observations deleted)
+
+.         merge 1:m snomedctconceptid using `medical'
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,716
+        from master                         4  (_merge==1)
+        from using                    240,712  (_merge==2)
+
+    Matched                               287  (_merge==3)
+    -----------------------------------------
+
+.         generate byte not_in_dictionary = 1 if _merge == 1
+(240,999 missing values generated)
+
+.         list snomedctconceptid if not_in_dictionary == 1
+
+        +-----------------+
+        | snomedctconce~d |
+        |-----------------|
+    89. |       251078009 |
+   186. |       723237002 |
+   191. |        81010002 |
+   197. | 852301000000109 |
+        +-----------------+
+
+.         keep if not_in_dictionary == 1
+(240,999 observations deleted)
+
+.         keep snomedctconceptid not_in_dictionary
+
+.         tempfile notindict
+
+.         save `notindict'
+file C:\Users\Phil\AppData\Local\Temp\ST_2b98_00000g.tmp saved as .dta format
+
+. restore
+
+. 
+. //Remove codes not in Aurum dictionary
+. merge m:1 snomedctconceptid using `notindict'
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           287
+        from master                       287  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 4  (_merge==3)
+    -----------------------------------------
+
+. list snomedctconceptid term if not_in_dictionary == 1
+
+     +---------------------------------------------------------+
+     | snomedctconce~d                                    term |
+     |---------------------------------------------------------|
+126. |       251078009   Post-vasodilatation arterial pressure |
+262. |       723237002             Non-invasive blood pressure |
+268. |        81010002    Decreased systolic arterial pressure |
+274. | 852301000000109             Minimum mean blood pressure |
+     +---------------------------------------------------------+
+
+. drop if not_in_dictionary == 1
+(4 observations deleted)
+
+. drop not_in_dictionary _merge
+
+. 
+. //Check for any additional new codes that haven't been accounted for
+. list snomedctconceptid term if medcode == ""
+
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort systolic_bp diastolic_bp -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  variable medcodeid was str18 now str17
+  variable snomedctconceptid was str18 now str16
+  (1,722 bytes saved)
+
+. save `filename', replace
+file blood_pressure.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file blood_pressure_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. /*
+> //Load clinician classifications
+> local clinician "ABC"
+> 
+> import excel `filename'_raw_`clinician', firstrow clear
+> 
+> //Remerge with original in case of any formatting issues with Excel spreadsheet
+> keep medcodeid `clinician'
+> 
+> tempfile `clinician'_classification
+> save ``clinician'_classification'
+> 
+> use `filename', clear
+> 
+> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+> 
+> //Remove codes marked for exclusion by clinician
+> display "Terms excluded by clinician..."
+> list medcodeid snomedctconceptid term if `clinican' == 0
+> drop if `clinician' == 0
+> 
+> //Save clinican approved codelist
+> gsort snomedctconceptid snomedctdescriptionid originalreadcode
+> drop new_snomedct_synonym /*codestatus*/ `clinician'
+> compress
+> save `filename', replace
+> export delimited `filename', replace quote
+> */
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Blood pressure measurement"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 10)  //year, month
+
+. local clinical_reviewer "Christina Avgerinou"
+
+. local date_approved = . //ym(2024, 11)  //year, month
+
+. local notes "Created for PRIORITY study. This codelist identifies values/measurements of blood pressure only and is not intended to included diagnosis codes"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str26
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(1 real change made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str26 now str143
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file blood_pressure.meta not found)
+file blood_pressure.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\Phil\Documents\GitHub\priority\codelists\blood_pressure.log
+  log type:  text
+ closed on:  30 Nov 2024, 21:59:02
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
