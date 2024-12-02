@@ -1,0 +1,1697 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\cholesterol.log
+  log type:  text
+ opened on:   2 Dec 2024, 11:16:23
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local cholesterol " "*cholesterol*" "*dens*lipo*" "
+
+. local triglycerides " "*triglyceride*" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+. //==========================================================================
+. 
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/cholesterol triglycerides/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(225 real changes made)
+(29 real changes made)
+(240,999 missing values generated)
+(49 real changes made)
+
+. 
+. keep if /**/cholesterol == 1 | triglycerides/**/ == 1
+(240,708 observations deleted)
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str18
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str17
+  variable term was str233 now str135
+  (29,682 bytes saved)
+
+. 
+. gsort /**/cholesterol triglycerides/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/cholesterol triglycerides/**/
+
+-> tabulation of cholesterol  
+
+cholesterol |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        254      100.00      100.00
+------------+-----------------------------------
+      Total |        254      100.00
+
+-> tabulation of triglycerides  
+
+triglycerid |
+         es |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         49      100.00      100.00
+------------+-----------------------------------
+      Total |         49      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*mildly*" "*mutation*" "*disorder*" "*fh:*" "*family*history*" "*education*" "*emia*" "*programme*" "*diet*" "*provision*" "*decline*" "*clinic*" "*cholester
+> olosis*" "*embol*" "*gall*" "*prophylaxis*" "*genotyp*" "*adverse*" "*granuloma*" "*polyp*" "*supplement*" "*intake*" "*7-dehydrocholesterol reductase*" "*high cholesterol*" 
+> "*high blood cholesterol*" "*disease*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(291 missing values generated)
+(0 real changes made)
+(6 real changes made)
+(2 real changes made)
+(4 real changes made)
+(5 real changes made)
+(1 real change made)
+(52 real changes made)
+(6 real changes made)
+(6 real changes made)
+(1 real change made)
+(1 real change made)
+(3 real changes made)
+(3 real changes made)
+(2 real changes made)
+(3 real changes made)
+(1 real change made)
+(1 real change made)
+(6 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list term if exclude == 1
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                                                                                    term |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+  7. |                                                                                                    High blood cholesterol/triglycerides |
+  9. | Dyslipidemia with high density lipoprotein below reference range and triglyceride above reference range due to type 2 diabetes mellitus |
+ 10. |                                                                                     Mixed hypercholesterolemia and hypertriglyceridemia |
+ 24. |                                                                                                              Pure hypercholesterolaemia |
+ 29. |                                                                                                          Low cholesterol diet education |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 39. |                                                                                                                   Hypercholesterolaemia |
+ 43. |                                                                                                               FH: Hypercholesterolaemia |
+ 44. |                                                                                                         Cholesterol reduction programme |
+ 46. |                                                                                                          Familial hypercholesterolaemia |
+ 50. |                                                                                                                    Low cholesterol diet |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 53. |                                                                                                          Pure hypercholesterolaemia NOS |
+ 54. |                                                                    Provision of written information about diabetes and high cholesterol |
+ 57. |                                                                                        Family history of familial hypercholesterolaemia |
+ 64. |                                                                                                          Familial hypercholesterolaemia |
+ 65. |                                                                                      FH: Hypercholesterolaemia in first degree relative |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 66. |                                                                                                              Seen in cholesterol clinic |
+ 68. |                                                                                                               Cholesterol test declined |
+ 69. |                                                                                                          No FH of hypercholesterolaemia |
+ 72. |                                                                              Referral for assessment for familial hypercholesterolaemia |
+ 76. |                                                                                                      Disorder of cholesterol metabolism |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 77. |                                                                     Referral for assessment for familial hypercholesterolaemia declined |
+ 78. |                                                                                               Cholesterol reduction programme - invited |
+ 79. |                                                                                                 Possible familial hypercholesterolaemia |
+ 82. |                                                                                           Assessment for familial hypercholesterolaemia |
+ 84. |                                                                                                               Cholesterol-lowering diet |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 85. |                                                                                Low-density-lipoprotein-type (LDL) hyperlipoproteinaemia |
+ 86. |                                                                                           Dietary surveillance in hypercholesterolaemia |
+ 87. |                                                    Assessment using Simon Broome diagnostic criteria for familial hypercholesterolaemia |
+ 89. |                                                                                              Other specified pure hypercholesterolaemia |
+ 90. |                                                                                                         Polygenic hypercholesterolaemia |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 92. |                                                                                              Cholesterol reduction programme - attended |
+ 96. |                                                              Simon Broome diagnostic criteria for familial hypercholesterolaemia result |
+ 97. |                                                                                                         Secondary hypercholesterolaemia |
+ 99. |                                                                                              Cholesterol reduction programme - declined |
+100. |                                                                                                 DNA - Did not attend cholesterol clinic |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+102. |                                                                                                 Probable familial hypercholesterolaemia |
+103. |                                                 Dutch Lipid Clinic Network diagnostic criteria for familial hypercholesterolaemia score |
+104. |                                                                                                 Patient advised re low cholesterol diet |
+106. |                                                                                                           Primary hypercholesterolaemia |
+108. |                            Family history of total cholesterol greater than 7.5 millimoles per litre in first or second degree relative |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+109. |                                                                                                          Cholesterolosis of gallbladder |
+111. |                                                                                           Familial hypercholesterolaemia - heterozygous |
+113. |                                                                                                            Cholesterol embolus syndrome |
+116. |                                                                                              History of secondary hypercholesterolaemia |
+117. |                                                                                                                    Hypercholesterolemia |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+118. |                                                                                                            Low density lipoproteinaemia |
+123. |                                                                                                             O/E: cholesterol gall stone |
+124. |                                                                                                                 Cholesterol prophylaxis |
+127. |                                                                                   Suspected heterozygous familial hypercholesterolaemia |
+134. |                                                                                                                        High cholesterol |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+140. |                                      Assessment using Dutch Lipid Clinic Network diagnostic criteria for familial hypercholesterolaemia |
+143. |                                                                Familial hypercholesterolaemia due to heterozygous LDL receptor mutation |
+145. |                                                                                             Familial hypercholesterolaemia - homozygous |
+156. |                                                                                                Cholesterol reduction programme declined |
+157. |                                                                                                          Polygenic hypercholesterolemia |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+158. |                                                                                             Low density lipoprotein receptor genotyping |
+159. |                                                                                                         Adverse reaction to Cholesterol |
+162. |                                                                     Genetic variant causing familial hypercholesterolaemia not detected |
+163. |                                                                                                           Familial hypercholesterolemia |
+164. |                                                                  Familial hypercholesterolaemia due to homozygous LDL receptor mutation |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+169. |                                                                                                              O/E: cholesterol gallstone |
+171. |                                                                                                        Very low density lipoprotinaemia |
+172. |                                                                                                       Did not attend cholesterol clinic |
+174. |                                                                                    Possible heterozygous familial hypercholesterolaemia |
+176. |                                                                             Familial hypercholesterolaemia targeted genetic test result |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+178. |                                                                                 Low density lipoprotein receptor gene mutation positive |
+180. |                                                                Familial hypercholesterolaemia due to genetic defect of apolipoprotein B |
+182. |                                                                                                                    Hypocholesterolaemia |
+185. |                                                                                                        Cholesterol polyp of gallbladder |
+188. |                                                                        Familial hypercholesterolaemia comprehensive genetic test result |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+190. |                                                                                         Adverse reaction to Cholesterol And Simvastatin |
+191. |                                                                                                              Dietary cholesterol intake |
+192. |                                                                                                                         Cholesterolosis |
+197. |                                                                                                   Family history: Hypercholesterolaemia |
+199. |                                                                                                             Cholesterol retinal embolus |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+200. |                                                                                               Low density lipoprotein receptor mutation |
+201. |                                                                                    Familial hypercholesterolaemia targeted genetic test |
+202. |                                                                                                    Family history: Hypercholesterolemia |
+203. |                                                                                                               Pure hypercholesterolemia |
+204. |                                                                                                  Cholesterol reduction programme status |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+207. |                                                                                                       Cholesterol ester storage disease |
+208. |                                                                                      Double heterozygous familial hypercholesterolaemia |
+213. |                                                                                                   Low density lipoprotein-lowering diet |
+216. |                                                                                         LDL - Low density lipoprotein receptor disorder |
+217. |                                                                                                  Possible familial hypercholesterolemia |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+218. |                                                                                                                     Hypocholesterolemia |
+219. |                                                                  Hypercholesterolaemia due to cholesterol 7alpha-hydroxylase deficiency |
+225. |                                                                     Family history of double heterozygous familial hypercholesterolemia |
+230. |                                                                                   Mixed hypercholesterolaemia and hypertriglyceridaemia |
+231. |                                                                                                     H/O secondary hypercholesterolaemia |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+232. |                                                                      Referral for assessment for familial hypercholesterolaemia refused |
+233. |                                                                                                                FH: Hypercholesterolemia |
+235. |                                                                          LDLR (low density lipoprotein receptor) gene mutation positive |
+236. |                                                                                                            Primary hypercholesterolemia |
+237. |                                                            Familial hypercholesterolaemia due to genetic defect of apolipoprotein B-100 |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+244. |                                                                 Familial hypercholesterolemia due to genetic defect of apolipoprotein B |
+245. |                                                                                                                   Cholesterol granuloma |
+246. |                                                                                                         History of hypercholesterolemia |
+247. |                                                                                               7-Dehydrocholesterol reductase deficiency |
+248. |                                                                                        LDLR (low density lipoprotein receptor) mutation |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+250. |                                                                                                                       Cholesterol polyp |
+252. |                                                                                                             Gallbladder cholesterolosis |
+268. |                                                                                                                   FH: Triglyceride high |
+276. |                                                                                                              Triglyceride-lowering diet |
+277. |                                           Adverse reaction to Knitted Polyester Primary Dressing Impregnated with Neutral Triglycerides |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+278. |                                                                                                                    Hypertriglyceridemia |
+282. |                                                                                          Adverse reaction to Omega-3-Acid Triglycerides |
+285. |                                                                                                       Adverse reaction to Triglycerides |
+287. |                                                                                          Adverse reaction to Medium Chain Triglycerides |
+289. |                                                                                         MCT - Medium chain triglyceride supplementation |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+290. |                                                                                                        Medium chain triglyceride intake |
+     +-----------------------------------------------------------------------------------------------------------------------------------------+
+
+. /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+. 
+. drop if exclude == 1 ///
+> /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+(111 observations deleted)
+
+. 
+. drop exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+
+. count
+  180
+
+. compress
+  variable originalreadcode was str18 now str13
+  variable snomedctconceptid was str17 now str16
+  variable term was str135 now str95
+  (8,280 bytes saved)
+
+. /* 
+>    Use this command to check new possible exclusion terms:
+>    list term if strmatch(lower(term), lower("*example*"))
+> */
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. /* EVERYTHING LOOKS OK
+> // **medcodeids to remove**
+> local initial_remove "123"
+> 
+> gen byte remove = 0
+> 
+> foreach medcode of local initial_remove {
+>         
+>         replace remove = 1 if medcodeid == "`medcode'"
+> }
+> 
+> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+> drop if remove == 1
+> drop remove
+> 
+> compress
+> tab1 /**/cholesterol triglycerides/**/
+> */
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str16)
+
+         Unique values: 140                       Missing "": 0/180
+
+              Examples: "1026461000000104"
+                        "1109831000000104"
+                        "259557002"
+                        "442480001"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  180
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/cholesterol triglycerides/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/cholesterol triglycerides/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(40 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               192  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str16
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctdescriptionid was str18 now str17
+  variable term was str233 now str95
+  (28,416 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            12
+        from master                        12  
+        from using                          0  
+
+    Matched                               180  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/cholesterol triglycerides/**/, last
+
+. gsort /**/cholesterol triglycerides/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/cholesterol triglycerides/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: cholesterol
+
+     +-------------------------------------------------------------------+
+     | snomedctconcep~d   originalrea~e                             term |
+     |-------------------------------------------------------------------|
+ 37. |        166854003            44R3     Lipoprotein electroph. - HDL |
+ 38. |        166854003          44R3-1            HDL - electrophoresis |
+ 54. | 1015881000000105            44q8   Hyperlipidaemia screening test |
+ 61. | 1015881000000105            6879           Hyperlipidaemia screen |
+ 63. | 1015881000000105          6879-2                     Lipid screen |
+     |-------------------------------------------------------------------|
+ 95. |          9422000   ^ESCTHD265014                              HDL |
+ 96. |         17888004   ^ESCTHD278385                  HDL measurement |
+103. |        250743005   ^ESCTHD528957                    HDL/LDL ratio |
+105. | 1029071000000109   ^ESCTHD841003                    HDL/LDL ratio |
+113. |         22244007   ^ESCTLD285435                              LDL |
+     |-------------------------------------------------------------------|
+162. |         56516007   ^ESCTVL341814                             VLDL |
+     +-------------------------------------------------------------------+
+New terms found for: triglycerides
+
+     +--------------------------------------------+
+     | snom~tid   originalrea~e              term |
+     |--------------------------------------------|
+189. | 85600001   ^ESCTTR389151   Triacylglycerol |
+     +--------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(180 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(3 observations deleted)
+
+. 
+.         count
+  9
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 1015881000000105
+
+     +------------------------------------------------------------------------+
+     |       medcodeid   origin~e                             term   new_sn~m |
+     |------------------------------------------------------------------------|
+ 54. |       458370015       44q8   Hyperlipidaemia screening test          1 |
+ 61. | 219121000000113       6879           Hyperlipidaemia screen          1 |
+ 62. | 551861000006118     6879-1               Cholesterol screen          0 |
+ 63. | 219141000000118     6879-2                     Lipid screen          1 |
+     +------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 1029071000000109
+
+     +------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                         term   new_sn~m |
+     |------------------------------------------------------------------------------------------|
+ 21. |  817601000006119            44PA   High density/low density lipoprotein ratio          0 |
+105. | 8410031000006119   ^ESCTHD841003                                HDL/LDL ratio          1 |
+     +------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 166854003
+
+     +------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                     term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------|
+ 37. |        259266018            44R3                             Lipoprotein electroph. - HDL          1 |
+ 38. |  817591000006110          44R3-1                                    HDL - electrophoresis          1 |
+119. | 4600561000006117   ^ESCTLI460056   Lipoprotein electrophoresis - High density lipoprotein          0 |
+     +------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 17888004
+
+     +------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                   term   new_sn~m |
+     |------------------------------------------------------------------------------------|
+ 96. | 2783851000006110   ^ESCTHD278385                        HDL measurement          1 |
+107. | 2783841000006113   ^ESCTHI278384   High density lipoprotein measurement          0 |
+     +------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 22244007
+
+     +-----------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                      term   new_sn~m |
+     |-----------------------------------------------------------------------|
+113. | 2854351000006110   ^ESCTLD285435                       LDL          1 |
+121. | 2854331000006115   ^ESCTLO285433   Low density lipoprotein          0 |
+     +-----------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 250743005
+
+     +------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                     term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------|
+103. | 5289571000006112   ^ESCTHD528957                                            HDL/LDL ratio          1 |
+111. | 5289551000006119   ^ESCTHI528955   High density/low density lipoprotein ratio measurement          0 |
+     +------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 56516007
+
+     +----------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                           term   new_sn~m |
+     |----------------------------------------------------------------------------|
+161. | 3418121000006115   ^ESCTVE341812   Very low density lipoprotein          0 |
+162. | 3418141000006110   ^ESCTVL341814                           VLDL          1 |
+     +----------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 85600001
+
+     +-----------------------------------------------------------------+
+     |        medcodeid   originalrea~e                term   new_sn~m |
+     |-----------------------------------------------------------------|
+186. | 3891541000006115   ^ESCTTG389154   TG - Triglyceride          0 |
+188. | 3891501000006117   ^ESCTTR389150       Triglycerides          0 |
+189. | 3891511000006119   ^ESCTTR389151     Triacylglycerol          1 |
+190. | 3891531000006113   ^ESCTTR389153        Triglyceride          0 |
+     +-----------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 9422000
+
+     +------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                       term   new_sn~m |
+     |------------------------------------------------------------------------|
+ 95. | 2650141000006111   ^ESCTHD265014                        HDL          1 |
+106. | 2650121000006116   ^ESCTHI265012   High density lipoprotein          0 |
+     +------------------------------------------------------------------------+
+
+. 
+. 
+. // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Search terms for each categorisation desired**
+. local ldl " "*ldl*" "*low*density*" "
+
+. local non_hdl " "*non*hdl*" "*non*high*" "
+
+. local hdl " "*hdl*" "*high*density*" "
+
+. local total " "*total*" "
+
+. local ratio " "ratio *" "* ratio" "* ratio *" "
+
+. local vldl "  "*vldl*" "*very*low*" "
+
+. 
+. //Search for codes
+. foreach categoryterm in /**/ldl non_hdl hdl total ratio vldl/**/ {
+  2.         
+.         gen byte `categoryterm' = .
+  3.         
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``categoryterm'' {                
+  5.                         
+.                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(192 missing values generated)
+(33 real changes made)
+(13 real changes made)
+(192 missing values generated)
+(9 real changes made)
+(11 real changes made)
+(192 missing values generated)
+(49 real changes made)
+(31 real changes made)
+(192 missing values generated)
+(17 real changes made)
+(192 missing values generated)
+(0 real changes made)
+(27 real changes made)
+(11 real changes made)
+(192 missing values generated)
+(7 real changes made)
+(2 real changes made)
+
+. 
+. replace ldl = . if vldl == 1
+(9 real changes made, 9 to missing)
+
+. replace hdl = . if non_hdl == 1 & ratio != 1
+(15 real changes made, 15 to missing)
+
+. tab1 ldl non_hdl hdl total ratio vldl
+
+-> tabulation of ldl  
+
+        ldl |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         37      100.00      100.00
+------------+-----------------------------------
+      Total |         37      100.00
+
+-> tabulation of non_hdl  
+
+    non_hdl |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         20      100.00      100.00
+------------+-----------------------------------
+      Total |         20      100.00
+
+-> tabulation of hdl  
+
+        hdl |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         65      100.00      100.00
+------------+-----------------------------------
+      Total |         65      100.00
+
+-> tabulation of total  
+
+      total |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         17      100.00      100.00
+------------+-----------------------------------
+      Total |         17      100.00
+
+-> tabulation of ratio  
+
+      ratio |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         38      100.00      100.00
+------------+-----------------------------------
+      Total |         38      100.00
+
+-> tabulation of vldl  
+
+       vldl |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          9      100.00      100.00
+------------+-----------------------------------
+      Total |          9      100.00
+
+. gsort ratio ldl non_hdl hdl total vldl cholesterol triglycerides
+
+. 
+. 
+. // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
+. //====================================================
+. 
+. //Comment this section out if no pre-existing codelist
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://www.opencodelists.org/codelist/ardens/cholesterol-total-level/2020-11-06/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 5 obs)
+
+.         
+.         local name "oc_chol_total"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000006.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/opensafely/cholesterol-tests/09896c09/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 16 obs)
+
+.         
+.         local name "oc_chol_test"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/opensafely/cholesterol-tests-numerical-value/7e3a22f3/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "oc_chol_value"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000008.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/ardens/hdl-cholesterol/2020-11-06/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "oc_hdlc"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/bristol/hdl-cholesterol/64775990/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 2 obs)
+
+.         
+.         local name "oc_hdlc_2"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000a.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/hdlcchol_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 8 obs)
+
+.         
+.         local name "refset_hdlcchol"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000b.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ldlcchol_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 8 obs)
+
+.         
+.         local name "refset_ldlcchol"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000c.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ndacholest_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 22 obs)
+
+.         
+.         local name "refset_ndacholest"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000d.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/ardens/non-hdl-cholesterol/2020-11-06/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 1 obs)
+
+.         
+.         local name "oc_nonhdlc"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000e.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/nonhdlcchol_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "refset_nonhdlcchol"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chol_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 12 obs)
+
+.         
+.         local name "refset_chol"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000g.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/chol2_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 8 obs)
+
+.         
+.         local name "refset_chol2"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/tcholhdl_cod/20200812/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 4 obs)
+
+.         
+.         local name "refset_tcholhdl"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000i.tmp saved as .dta format
+
+. restore
+
+. 
+. foreach codelist in oc_chol_total oc_chol_test oc_chol_value oc_hdlc oc_hdlc_2 refset_hdlcchol refset_ldlcchol refset_ndacholest oc_nonhdlc refset_nonhdlcchol refset_chol ref
+> set_chol2 refset_tcholhdl {
+  2.         
+.         //Merge previous codelist
+.         merge m:1 snomedctconceptid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list snomedctconceptid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace cholesterol = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           186
+        from master                       186  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 6  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------+
+     |                      term                      term_oc_chol_total |
+     |-------------------------------------------------------------------|
+  4. |     Serum cholesterol NOS                 Serum cholesterol level |
+161. | Fasting serum cholesterol   Fasting serum cholesterol (EMIS code) |
+     +-------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           188
+        from master                       180  (_merge==1)
+        from using                          8  (_merge==2)
+
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------+
+     |                              term                     term_oc_chol_test |
+     |-------------------------------------------------------------------------|
+  4. |             Serum cholesterol NOS               Serum cholesterol level |
+137. |                 Cholesterol level          Finding of cholesterol level |
+138. |       Cholesterol level - finding          Finding of cholesterol level |
+139. |           Serum cholesterol level    Finding of serum cholesterol level |
+140. | Serum cholesterol level - finding    Finding of serum cholesterol level |
+     |-------------------------------------------------------------------------|
+148. |     Serum total cholesterol level   Serum total cholesterol measurement |
+     +-------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +---------------------------------------------------------+
+     | snomedctconce~d                       term_oc_chol_test |
+     |---------------------------------------------------------|
+193. | 114711000000101           Serum total cholesterol level |
+194. | 119291000000100           Serum total cholesterol level |
+195. |       270996006           Serum cholesterol measurement |
+196. |       389608004          Plasma total cholesterol level |
+197. |       390340002          Plasma total cholesterol level |
+     |---------------------------------------------------------|
+198. |       390956002          Plasma total cholesterol level |
+199. |       393025009   Pre-treatment serum cholesterol level |
+200. |       393981000   Pre-treatment serum cholesterol level |
+     +---------------------------------------------------------+
+(8 real changes made)
+(8 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           196
+        from master                       196  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 4  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------+
+     |                  term        term_oc_chol_value |
+     |-------------------------------------------------|
+  4. | Serum cholesterol NOS   Serum cholesterol level |
+     +-------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           196
+        from master                       196  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 4  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------------------------------------------+
+     |                                                    term                                        term_oc_hdlc |
+     |-------------------------------------------------------------------------------------------------------------|
+  7. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
+ 11. | Plasma HDL (high density lipoprotein) cholesterol level   Plasma high density lipoprotein cholesterol level |
+185. |                                   HDL cholesterol level                   HDL cholesterol level (EMIS code) |
+     +-------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           197
+        from master                       197  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 3  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------------------------------------------+
+     |                                                    term                                      term_oc_hdlc_2 |
+     |-------------------------------------------------------------------------------------------------------------|
+  7. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
+ 11. | Plasma HDL (high density lipoprotein) cholesterol level   Plasma high density lipoprotein cholesterol level |
+     +-------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           191
+        from master                       191  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 9  (_merge==3)
+    -----------------------------------------
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                         term                                                        term_refset_hdlcchol |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+  7. |                       Serum HDL (high density lipoprotein) cholesterol level                            Serum high density lipoprotein cholesterol level |
+ 11. |                      Plasma HDL (high density lipoprotein) cholesterol level                           Plasma high density lipoprotein cholesterol level |
+ 38. |               Serum fasting HDL (high density lipoprotein) cholesterol level                    Serum fasting high density lipoprotein cholesterol level |
+ 39. |                Serum random HDL (high density lipoprotein) cholesterol level                     Serum random high density lipoprotein cholesterol level |
+ 51. |               Plasma random HDL (high density lipoprotein) cholesterol level                    Plasma random high density lipoprotein cholesterol level |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 52. |              Plasma fasting HDL (high density lipoprotein) cholesterol level                   Plasma fasting high density lipoprotein cholesterol level |
+ 70. | HDL (high density lipoprotein) cholesterol substance concentration in plasma   Substance concentration of high density lipoprotein cholesterol in plasma |
+ 71. |  HDL (high density lipoprotein) cholesterol substance concentration in serum    Substance concentration of high density lipoprotein cholesterol in serum |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           191
+        from master                       191  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 9  (_merge==3)
+    -----------------------------------------
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                          term                                                       term_refset_ldlcchol |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 12. |                        Plasma LDL (low density lipoprotein) cholesterol level                           Plasma low density lipoprotein cholesterol level |
+ 35. |                         Serum LDL (low density lipoprotein) cholesterol level                            Serum low density lipoprotein cholesterol level |
+ 40. |                 Serum fasting LDL (low density lipoprotein) cholesterol level                    Serum fasting low density lipoprotein cholesterol level |
+ 41. |                  Serum random LDL (low density lipoprotein) cholesterol level                     Serum random low density lipoprotein cholesterol level |
+ 53. |                 Plasma random LDL (low density lipoprotein) cholesterol level                    Plasma random low density lipoprotein cholesterol level |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 54. |                Plasma fasting LDL (low density lipoprotein) cholesterol level                   Plasma fasting low density lipoprotein cholesterol level |
+ 74. | LDL-C (low density lipoprotein cholesterol) substance concentration in plasma   Substance concentration of low density lipoprotein cholesterol in plasma |
+ 75. |  LDL-C (low density lipoprotein cholesterol) substance concentration in serum    Substance concentration of low density lipoprotein cholesterol in serum |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           175
+        from master                       174  (_merge==1)
+        from using                          1  (_merge==2)
+
+    Matched                                26  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------------------------------------------------+
+     |                                                    term                                         term_refset_ndacholest |
+     |------------------------------------------------------------------------------------------------------------------------|
+  4. |                                   Serum cholesterol NOS                                        Serum cholesterol level |
+  7. |  Serum HDL (high density lipoprotein) cholesterol level               Serum high density lipoprotein cholesterol level |
+ 18. |  Serum cholesterol/HDL (high density lipoprotein) ratio               Serum cholesterol/high density lipoprotein ratio |
+ 19. | Plasma cholesterol/HDL (high density lipoprotein) ratio              Plasma cholesterol/high density lipoprotein ratio |
+ 50. |  Total cholesterol:HDL (high density lipoprotein) ratio               Total cholesterol:high density lipoprotein ratio |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 62. |                           HDL : total cholesterol ratio   High density lipoprotein/total cholesterol ratio measurement |
+ 63. |                 HDL/total cholesterol ratio measurement   High density lipoprotein/total cholesterol ratio measurement |
+133. |                                   Cholesterol/HDL ratio         Cholesterol/High density lipoprotein ratio measurement |
+134. |                       Cholesterol/HDL ratio measurement         Cholesterol/High density lipoprotein ratio measurement |
+     +------------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +---------------------------------------------------+
+     | snomedctconce~d            term_refset_ndacholest |
+     |---------------------------------------------------|
+201. | 247801000000106   Serum fasting total cholesterol |
+     +---------------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           199
+        from master                       199  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 2  (_merge==3)
+    -----------------------------------------
+
+     +----------------------------------------------------------------------------+
+     |                      term                                  term_oc_nonhdlc |
+     |----------------------------------------------------------------------------|
+ 59. | Non HDL cholesterol level   Non high density lipoprotein cholesterol level |
+     +----------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           196
+        from master                       196  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 5  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------------------------------------------------+
+     |                                                       term                                term_refset_nonhdlcchol |
+     |-------------------------------------------------------------------------------------------------------------------|
+ 10. | Serum non HDL (high density lipoprotein) cholesterol level   Serum non high density lipoprotein cholesterol level |
+ 59. |                                  Non HDL cholesterol level         Non high density lipoprotein cholesterol level |
+     +-------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           190
+        from master                       189  (_merge==1)
+        from using                          1  (_merge==2)
+
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------------------------+
+     |                                         term                                  term_refset_chol |
+     |------------------------------------------------------------------------------------------------|
+  5. |                        Serum cholesterol NOS                           Serum cholesterol level |
+ 69. | Cholesterol substance concentration in serum   Substance concentration of cholesterol in serum |
+     +------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +---------------------------------------------------------------------+
+     | snomedctconcep~d                                   term_refset_chol |
+     |---------------------------------------------------------------------|
+202. | 1106531000000105   Substance concentration of cholesterol in plasma |
+     +---------------------------------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           193
+        from master                       193  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 9  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------------------------+
+     |                                         term                                 term_refset_chol2 |
+     |------------------------------------------------------------------------------------------------|
+  5. |                        Serum cholesterol NOS                           Serum cholesterol level |
+ 70. | Cholesterol substance concentration in serum   Substance concentration of cholesterol in serum |
+     +------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           196
+        from master                       196  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 6  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------------------------------------------+
+     |                                                    term                                     term_refset_tcholhdl |
+     |------------------------------------------------------------------------------------------------------------------|
+ 18. |  Serum cholesterol/HDL (high density lipoprotein) ratio         Serum cholesterol/high density lipoprotein ratio |
+ 19. | Plasma cholesterol/HDL (high density lipoprotein) ratio        Plasma cholesterol/high density lipoprotein ratio |
+ 50. |  Total cholesterol:HDL (high density lipoprotein) ratio         Total cholesterol:high density lipoprotein ratio |
+135. |                                   Cholesterol/HDL ratio   Cholesterol/High density lipoprotein ratio measurement |
+136. |                       Cholesterol/HDL ratio measurement   Cholesterol/High density lipoprotein ratio measurement |
+     +------------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if medcodeid == ""
+  10
+
+. list snomedctconceptid term if medcodeid == ""
+
+     +---------------------------------------------------------------------+
+     | snomedctconcep~d                                               term |
+     |---------------------------------------------------------------------|
+ 69. | 1106531000000105   Substance concentration of cholesterol in plasma |
+ 82. |  114711000000101                      Serum total cholesterol level |
+ 83. |  119291000000100                      Serum total cholesterol level |
+117. |  247801000000106                    Serum fasting total cholesterol |
+122. |        270996006                      Serum cholesterol measurement |
+     |---------------------------------------------------------------------|
+149. |        389608004                     Plasma total cholesterol level |
+150. |        390340002                     Plasma total cholesterol level |
+152. |        390956002                     Plasma total cholesterol level |
+153. |        393025009              Pre-treatment serum cholesterol level |
+154. |        393981000              Pre-treatment serum cholesterol level |
+     +---------------------------------------------------------------------+
+
+. 
+. //Compare newly found Concept IDs against Aurum dictionary
+. preserve
+
+.         //Merge SNOMED CT Concepts with medical dictionary
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(52 observations deleted)
+
+.         merge 1:m snomedctconceptid using `medical'
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,817
+        from master                        10  (_merge==1)
+        from using                    240,807  (_merge==2)
+
+    Matched                               192  (_merge==3)
+    -----------------------------------------
+
+.         generate byte not_in_dictionary = 1 if _merge == 1
+(240,999 missing values generated)
+
+.         list snomedctconceptid if not_in_dictionary == 1
+
+        +------------------+
+        | snomedctconcep~d |
+        |------------------|
+    52. | 1106531000000105 |
+    62. |  114711000000101 |
+    63. |  119291000000100 |
+    87. |  247801000000106 |
+    91. |        270996006 |
+        |------------------|
+   108. |        389608004 |
+   109. |        390340002 |
+   111. |        390956002 |
+   112. |        393025009 |
+   113. |        393981000 |
+        +------------------+
+
+.         keep if not_in_dictionary == 1
+(240,999 observations deleted)
+
+.         keep snomedctconceptid not_in_dictionary
+
+.         tempfile notindict
+
+.         save `notindict'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000k.tmp saved as .dta format
+
+. restore
+
+. 
+. //Remove codes not in Aurum dictionary
+. merge m:1 snomedctconceptid using `notindict'
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           192
+        from master                       192  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                10  (_merge==3)
+    -----------------------------------------
+
+. list snomedctconceptid term if not_in_dictionary == 1
+
+     +---------------------------------------------------------------------+
+     | snomedctconcep~d                                               term |
+     |---------------------------------------------------------------------|
+ 69. | 1106531000000105   Substance concentration of cholesterol in plasma |
+ 82. |  114711000000101                      Serum total cholesterol level |
+ 83. |  119291000000100                      Serum total cholesterol level |
+117. |  247801000000106                    Serum fasting total cholesterol |
+122. |        270996006                      Serum cholesterol measurement |
+     |---------------------------------------------------------------------|
+149. |        389608004                     Plasma total cholesterol level |
+150. |        390340002                     Plasma total cholesterol level |
+152. |        390956002                     Plasma total cholesterol level |
+153. |        393025009              Pre-treatment serum cholesterol level |
+154. |        393981000              Pre-treatment serum cholesterol level |
+     +---------------------------------------------------------------------+
+
+. drop if not_in_dictionary == 1
+(10 observations deleted)
+
+. drop not_in_dictionary _merge
+
+. 
+. //Check for any addictional new codes that haven't been accounted for
+. list snomedctconceptid term if medcode == ""
+
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort ratio ldl non_hdl hdl total vldl cholesterol triglycerides -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  variable snomedctconceptid was str18 now str16
+  (960 bytes saved)
+
+. save `filename', replace
+file cholesterol.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file cholesterol_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. /*
+> //Load clinician classifications
+> local clinician "ABC"
+> 
+> import excel `filename'_raw_`clinician', firstrow clear
+> 
+> //Remerge with original in case of any formatting issues with Excel spreadsheet
+> keep medcodeid `clinician'
+> 
+> tempfile `clinician'_classification
+> save ``clinician'_classification'
+> 
+> use `filename', clear
+> 
+> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+> 
+> //Remove codes marked for exclusion by clinician
+> display "Terms excluded by clinician..."
+> list medcodeid snomedctconceptid term if `clinican' == 0
+> drop if `clinician' == 0
+> 
+> //Save clinican approved codelist
+> gsort snomedctconceptid snomedctdescriptionid originalreadcode
+> drop new_snomedct_synonym /*codestatus*/ `clinician'
+> compress
+> save `filename', replace
+> export delimited `filename', replace quote
+> */
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Cholesterol measurement"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 11)  //year, month
+
+. local clinical_reviewer "Christina Avgerinou"
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study. This codelist identifies values/measurements of cholesterol only and excludes codes that indicate a diagnosis of high cholesterol"
+
+. local keywords "ldl, hdl, triglycerides, total, ratio"
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str23
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(1 real change made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str23 now str157
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(1 real change made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+file cholesterol.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\cholesterol.log
+  log type:  text
+ closed on:   2 Dec 2024, 11:16:28
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
