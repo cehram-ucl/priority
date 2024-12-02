@@ -80,7 +80,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - Search: "myocardial infarction validated (CPRD OR SNOMED CT)"
     - 11 results
     - 1 validated codelists found (2 for CPRD GOLD):
-      - [Persson et al., 2021](https://doi.org/10.2147/CLEP.S319245) (78% concordance with Hospital Episode Statistics Admitted Patient Care)
+      - [Persson et al., 2021](https://doi.org/10.2147/CLEP.S319245) (78% concordance with Hospital Episode Statistics Admitted Patient Care) (copied [here](codelists/myocardial_infarction_persson2021.txt))
 2. Repository codelist search:
     - HDR UK Phenotype library:
       - Search: "myocardial infarction"
