@@ -268,7 +268,7 @@ preserve
 	local name "cl1"
 	
 	rename * *_`name'
-	rename code_`name' medcodeid
+	rename medcodeid_`name' medcodeid
 	
 	generate byte `name' = 1
 
@@ -282,7 +282,7 @@ restore, preserve
 	local name "cl2"
 	
 	rename * *_`name'
-	rename code_`name' medcodeid
+	rename medcodeid_`name' medcodeid
 	
 	generate byte `name' = 1
 
