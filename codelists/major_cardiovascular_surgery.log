@@ -1,0 +1,1605 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
+  log type:  text
+ opened on:   3 Dec 2024, 18:12:42
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local cv_surgery " "*cardi*surgery*" "*cardi*operation*" "*surgery*cardi*" "*operation*cardi*" "*coronary*surgery*" "*coronary*operation*" "*surgery*coronary*" "*operation*co
+> ronary*" "*heart*surgery*" "*heart*operation*" "*surgery*heart*" "*operation*heart*" "*artery*surgery*" "*artery*operation*" "*surgery*artery*" "*operation*artery*" "*coronar
+> y*artery*bypass*" "*cabg*" "*coronary*graft*" "*cardiac*stent*" "*angioplasty*" "*coronary*intervention*" "*endarterectomy*" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+. //==========================================================================
+. 
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/cv_surgery/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(23 real changes made)
+(14 real changes made)
+(0 real changes made)
+(8 real changes made)
+(1 real change made)
+(6 real changes made)
+(0 real changes made)
+(9 real changes made)
+(1 real change made)
+(20 real changes made)
+(0 real changes made)
+(49 real changes made)
+(0 real changes made)
+(17 real changes made)
+(0 real changes made)
+(95 real changes made)
+(49 real changes made)
+(1 real change made)
+(12 real changes made)
+(0 real changes made)
+(167 real changes made)
+(14 real changes made)
+(58 real changes made)
+
+. 
+. keep if /**/cv_surgery/**/ == 1
+(240,455 observations deleted)
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str187
+  (30,464 bytes saved)
+
+. 
+. gsort /**/cv_surgery/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/cv_surgery/**/
+
+-> tabulation of cv_surgery  
+
+ cv_surgery |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        544      100.00      100.00
+------------+-----------------------------------
+      Total |        544      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. /* 
+>    I THINK THESE COULD POTENTIALLY BE IMPORTANT, ESPECIALLY IF INTERESTED
+>    IN PREVALENT DISEASE SO I HAVEN'T EXCLUDED THEM FOR NOW
+> 
+> local exclude " "*following*" "*seen*in*" "*seen*by*" "*history*" "*h/o*" "*plan*" "*referral*" "
+> 
+> //Search for codes to exclude
+> foreach excludeterm in exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/ {
+> 
+>         gen byte `excludeterm' = .
+> 
+>         foreach codeterm in lower(term) {
+>                 
+>                 foreach searchterm in ``excludeterm'' {         
+>                         
+>                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+>                 }
+>         }
+> }
+> 
+> //Check that nothing important is highlighted for exclusion before dropping
+> list term if exclude == 1
+> /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+> 
+> drop if exclude == 1 ///
+> /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+> 
+> drop exclude /**/ /*ADD ANY EXTRA TERMS HERE*/ /**/
+> count
+> compress
+> */
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. /* EVERYTHING LOOKS OK
+> // **medcodeids to remove**
+> local initial_remove "123"
+> 
+> gen byte remove = 0
+> 
+> foreach medcode of local initial_remove {
+>         
+>         replace remove = 1 if medcodeid == "`medcode'"
+> }
+> 
+> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+> drop if remove == 1
+> drop remove
+> 
+> compress
+> tab1 /**/cv_surgery/**/
+> */
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str17)
+
+         Unique values: 309                       Missing "": 0/544
+
+              Examples: "175418002"
+                        "233282001"
+                        "308696000"
+                        "511000087101"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  544
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/cv_surgery/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/cv_surgery/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(235 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               729  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str17
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str187
+  (40,824 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           185
+        from master                       185  
+        from using                          0  
+
+    Matched                               544  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/cv_surgery/**/, last
+
+. gsort /**/cv_surgery/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/cv_surgery/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: cv_surgery
+
+     +------------------------------------------------------------------------------------------------------------------------------+
+     | snomedctconce~d   originalrea~e                                                                                         term |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 12. |        77371000            7909                                             Closure of defect of unspecified septum of heart |
+ 13. |        77371000          7909-1                                              Repair of defect of unspecified septum of heart |
+ 14. |        77371000           79090                                 Closure of defect of heart septum using prosthetic patch NEC |
+ 15. |        77371000         79090-1                                  Repair defect of septum of heart using prosthetic patch NEC |
+ 16. |        77371000           79091                                   Closure defect of heart septum using pericardial patch NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 17. |        77371000         79091-1                                    Repair defect of heart septum using pericardial patch NEC |
+ 18. |        77371000           79092                                  Closure of defect of septum of heart using tissue graft NEC |
+ 19. |        77371000         79092-1                                   Repair of defect of septum of heart using tissue graft NEC |
+ 20. |        77371000           79094                                                   Revision of closure of septum of heart NEC |
+ 21. |        77371000         79094-1                                                    Revision of repair of septum of heart NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 22. |        77371000           7909y                                   Other specified closure of defect unspecified heart septum |
+ 23. |        77371000         7909y-1                                 Other specified repair of defect of unspecified septum heart |
+ 24. |        77371000           7909z                                         Closure of defect of unspecified septum of heart NOS |
+ 25. |        77371000         7909z-1                                          Repair of defect of unspecified septum of heart NOS |
+ 36. |       233022006           790E1                                 Creation of conduit between right atrium and pulm artery NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 37. |       233022006         790E1-1                                 Creation of Fontan conduit between right atrium & pulmon art |
+ 39. |       307823003           790H0                                                      Excision of lesion of wall of heart NEC |
+ 40. |       307823003           790H2                                                                  Repair of wall of heart NEC |
+ 52. |        73544002            7914                                                 Plastic repair of unspecified valve of heart |
+ 53. |        73544002           79140                                                  Allograft replacement of valve of heart NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 54. |        73544002           79141                                                  Xenograft replacement of valve of heart NEC |
+ 55. |        73544002           7914y                                 Other specified plastic repair of unspecified valve of heart |
+ 56. |        73544002           7914z                                             Plastic repair of unspecified valve of heart NOS |
+ 58. |        73544002           79182                                                           Annuloplasty of valve of heart NEC |
+ 62. |       386727004          7919-1                                                          Percutaneous transluminal valvotomy |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 73. |         3546002            7920                                          Saphenous vein graft replacement of coronary artery |
+ 74. |         3546002          7920-1                                          Saphenous vein graft replacement of coronary artery |
+ 76. |       736967001           79200                                      Saphenous vein graft replacement of one coronary artery |
+ 81. |         3546002           7920z                                         Saphenous vein graft replacement coronary artery NOS |
+ 82. |       232717009            7921                                               Other autograft replacement of coronary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 83. |       232717009          7921-1                                                    Other autograft bypass of coronary artery |
+ 84. |       232719007           79210                                             Autograft replacement of one coronary artery NEC |
+ 85. |       232720001           79211                                           Autograft replacement of two coronary arteries NEC |
+ 86. |       232721002           79212                                         Autograft replacement of three coronary arteries NEC |
+ 87. |       232722009           79213                                  Autograft replacement of four of more coronary arteries NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 88. |       232717009           7921y                                            Other autograft replacement of coronary artery OS |
+ 89. |       232717009           7921z                                           Other autograft replacement of coronary artery NOS |
+ 90. |       232719007           79253                                  Single anastomosis of mammary artery to coronary artery NEC |
+ 91. |       232717009            7926                                       Connection of other thoracic artery to coronary artery |
+ 92. |       232720001           79260                                    Double anastom thoracic arteries to coronary arteries NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+ 93. |       232720001           79261                                  Double implant thoracic arteries into coronary arteries NEC |
+ 94. |       232719007           79262                                 Single anastomosis of thoracic artery to coronary artery NEC |
+ 95. |       232719007           79263                                 Single implantation thoracic artery into coronary artery NEC |
+ 96. |       232717009           7926z                                   Connection of other thoracic artery to coronary artery NOS |
+106. |        68466008        79280-99                                                               Percut angiopl coronary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+115. |       232726007           79296                                     Percutaneous transluminal atherectomy of coronary artery |
+116. |        31413008           7929y                                      Other therapeutic transluminal op on coronary artery OS |
+117. |        31413008           7929z                                     Other therapeutic transluminal op on coronary artery NOS |
+121. |        31413008            792B                                                                Repair of coronary artery NEC |
+124. |        31413008           792By                                                    Other specified repair of coronary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+125. |        31413008           792Bz                                                                Repair of coronary artery NOS |
+126. |       232717009            792C                                                         Other replacement of coronary artery |
+127. |       232717009           792Cy                                               Other specified replacement of coronary artery |
+128. |       232717009           792Cz                                                           Replacement of coronary artery NOS |
+130. |       232717009           792Dy                                              Other specified other bypass of coronary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+131. |       232717009           792Dz                                                          Other bypass of coronary artery NOS |
+141. |       307823003            7931                                                                      Other incision of heart |
+142. |       307823003           79311                                                                     Exploration of heart NEC |
+143. |       307823003           79312                                                                               Cardiotomy NEC |
+144. |       307823003           7931y                                                      Other specified other incision of heart |
+     |------------------------------------------------------------------------------------------------------------------------------|
+145. |       307823003           7931z                                                                  Other incision of heart NOS |
+150. |       175112006         7933-99                                                                              Other heart aid |
+151. |       175112006           79331                                            Transluminal insertion of heart assist system NEC |
+160. |        58380004           793C1                                                                  Fenestration of pericardium |
+171. | 936451000000108           793G1                                  Perc tran ball angio ins 3 or more drug elut stents cor art |
+     |------------------------------------------------------------------------------------------------------------------------------|
+173. |       429639007           793G3                                    Percutaneous cor balloon angiop 3 more stents cor art NEC |
+174. |       429639007           793Gy                                 OS perc translumina balloon angioplast stenting coronary art |
+180. |        38629001           793K0                                  Translum occlusion left internal mammary artery side branch |
+195. |        30904006              7A                                                                   Vascular surgery procedure |
+196. |        30904006            7A-1                                                                      Blood vessel operations |
+     |------------------------------------------------------------------------------------------------------------------------------|
+197. |        30904006           7A-87                                                               Aneurysm excision+reanastomos. |
+198. |        30904006           7A-88                                                                       Other vascular op. NOS |
+199. |        30904006           7A-89                                                                Vessel surgical occlusion NOS |
+200. |        30904006           7A-90                                                                       Vessel lesion excision |
+201. |        30904006           7A-91                                                                      Vein excision for graft |
+     |------------------------------------------------------------------------------------------------------------------------------|
+202. |        30904006           7A-92                                                                               Aneurysmectomy |
+203. |        30904006           7A-93                                                                         Repair of vessel NOS |
+204. |        30904006           7A-94                                                                             Aneurysmorrhaphy |
+205. |        30904006           7A-95                                                                Replacement of vascular graft |
+206. |        30904006           7A-96                                                                             Suture of vessel |
+     |------------------------------------------------------------------------------------------------------------------------------|
+207. |        30904006           7A-97                                                                             Repair of vessel |
+208. |        30904006           7A-98                                                                     Vessel shunt/by-pass NOS |
+209. |        30904006           7A-99                                                               Vascular prosth. by-pass graft |
+211. |       265488007           7A0-1                                                                      Great vessel operations |
+212. |       233226001            7A06                                  Other connection from subclavian artery to pulmonary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+213. |       233226001           7A060                                 Creation anastomosis right subclav art to right pulm art NEC |
+214. |       233226001           7A061                                   Creation anastomosis left subclav art to left pulm art NEC |
+215. |       233226001           7A062                                  Creation anastomosis subclavian artery to pulmonary art NEC |
+216. |        13662000         7A062-1                                 Blalock anastomosis of subclavian artery to pulmonary artery |
+217. |        13662000         7A062-2                                 Taussig anastomosis of subclavian artery to pulmonary artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+219. |       233226001           7A06z                                    Other connection from subclavian art to pulmonary art NOS |
+231. |       233114002            7A0C                                       Operation for major aortopulmonary collateral arteries |
+233. |       233114002           7A0Cz                                  Operations major systemic pulmonary collateral arteries NOS |
+256. |       265500000          7A23-2                                                         Circle of Willis aneurysm operations |
+261. |       175362007          7A24-2                                                    Other open operations on circle of Willis |
+     |------------------------------------------------------------------------------------------------------------------------------|
+262. |       175362007         7A24-99                                                                    Meningeal artery ligation |
+266. |       265502008           7A25y                                   Transluminal operation on cerebral art/circle of Willis OS |
+267. |       265502008           7A25z                                  Transluminal operation on cerebral art/circle of Willis NOS |
+299. |       175472009             7A3                                                       Branches of abdominal aorta operations |
+312. |       392242000            7A33                                   Reconstruction of other visceral branch of abdominal aorta |
+     |------------------------------------------------------------------------------------------------------------------------------|
+313. |       392242000           7A334                                                           Replantation of coeliac artery NEC |
+314. |       392242000           7A335                                               Replantation of superior mesenteric artery NEC |
+315. |       392242000           7A336                                               Replantation of inferior mesenteric artery NEC |
+316. |       392242000           7A337                                                        Replantation of suprarenal artery NEC |
+323. |       392242000           7A33J                                       Replantation of visceral branch of abdominal aorta NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+326. |       392242000           7A33y                                   Reconstruction of other visceral branch abdominal aorta OS |
+327. |       392242000           7A33z                                  Reconstruction of other visceral branch abdominal aorta NOS |
+328. |       175472009            7A34                                  Other open operations other visceral branch abdominal aorta |
+336. |       392242000           7A34K                                 Operation on aneurysm visceral branch of abdominal aorta NEC |
+337. |       175472009           7A34y                                    Other open op on other visceral branch abdominal aorta OS |
+     |------------------------------------------------------------------------------------------------------------------------------|
+338. |       175472009           7A34z                                   Other open op on other visceral branch abdominal aorta NOS |
+339. |       175472009            7A35                                       Transluminal ops other visceral branch abdominal aorta |
+348. |       175472009           7A35y                                     Transluminal op other visceral branch abdominal aorta OS |
+349. |       175472009           7A35z                                    Transluminal op other visceral branch abdominal aorta NOS |
+350. |       175472009            7A3y                                    Other specified operations on branches of abdominal aorta |
+     |------------------------------------------------------------------------------------------------------------------------------|
+351. |       175472009            7A3z                                                   Branches of abdominal aorta operations NOS |
+354. |       265516003            7A42                                                               Reconstruction of iliac artery |
+360. |       265516003           7A42y                                               Other specified reconstruction of iliac artery |
+361. |       265516003           7A42z                                                           Reconstruction of iliac artery NOS |
+372. |       265528006            7A49                                         Reconstruction of femoral artery or popliteal artery |
+     |------------------------------------------------------------------------------------------------------------------------------|
+377. |       265528006           7A49y                                             Reconstruction of femoral or popliteal artery OS |
+378. |       265528006           7A49z                                            Reconstruction of femoral or popliteal artery NOS |
+384. |       265528006           7A4A0                                                                 Repair of femoral artery NEC |
+398. |       392242000            7A52                                                                             Repair of artery |
+399. | 597571000000100         7A52-98                                                               Aneurysm excision+reanastomos. |
+     |------------------------------------------------------------------------------------------------------------------------------|
+403. |       275064002        7A520-99                                                                        Patch graft to artery |
+406. |       392031002        7A521-97                                                                       Removal of vessel clot |
+409. |       392242000           7A52y                                                       Other specified repair of other artery |
+410. |       392242000           7A52z                                                                   Repair of other artery NOS |
+412. |       118805000           7A533                                                               Open cannulation of artery NEC |
+     |------------------------------------------------------------------------------------------------------------------------------|
+418. |       118805000           7A543                                          Percutaneous transluminal cannulation of artery NEC |
+419. |       118805000           7A544                                             Percutaneous transluminal dilation of artery NEC |
+428. |       709019007           7A561                                     Percutaneous transluminal stent reconstruction of artery |
+430. |       118805000           7A56y                                 Other specified other therapeutic transluminal operat artery |
+444. |        30904006            7A6T                                                                   Operations on blood vessel |
+     |------------------------------------------------------------------------------------------------------------------------------|
+447. |        63697000           7M360                                                                       Cardiopulmonary bypass |
+448. |        63697000        7M360-99                                                                Artificial heart-lung by-pass |
+457. |        49601007               G                                                                      Cardiovascular disorder |
+458. |        49601007             G-1                                                                                  CVS disease |
+461. |        49601007            G5yX                                                            Disorder of cardiovascular system |
+     |------------------------------------------------------------------------------------------------------------------------------|
+462. |        49601007              G8                                                 Vein, lymphatic and circulatory diseases NOS |
+463. |        49601007             G8y                                 Other specified vein, lymphatic or other circulatory disease |
+464. |        49601007            G8yy                                                         Other specified circulatory disorder |
+465. |        49601007           G8yy1                                                            Venous collateral circulation NOS |
+466. |        49601007           G8yyz                                                     Other specified circulatory disorder NOS |
+     |------------------------------------------------------------------------------------------------------------------------------|
+467. |        49601007            G8yz                                                               Other circulatory disorder NOS |
+468. |        49601007             G8z                                           Vein, lymphatic and other circulatory diseases NOS |
+469. |        49601007              Gy                                               Other specified diseases of circulatory system |
+470. |        49601007           Gyu5g                                                       [X]Cardiovascular disease, unspecified |
+471. |        49601007            Gyu9            [X]Other and unspecified disorders of the circulatory system classification terms |
+     |------------------------------------------------------------------------------------------------------------------------------|
+473. |        49601007           Gyu92                                     [X]Other postprocedural disorders/circulatory system,NEC |
+474. |        49601007           Gyu93                                 [X]Cardiovascular disorders/oth infectous+parasitic diseases |
+475. |        49601007           Gyu95                                 [X]Other specifd disorders/circulatory system in diseases CE |
+476. |        49601007           Gyu96                                 [X]Other and unspecified disorders of the circulatory system |
+477. |        49601007              Gz                                                            Disorder of cardiovascular system |
+     |------------------------------------------------------------------------------------------------------------------------------|
+481. |       105501005            ZV45                                                                 [V]Other postsurgical states |
+483. |       105501005           ZV45D                                           [V]Presence of artificial limb (complete)(partial) |
+487. |       105501005            ZV46                                                     Dependence on enabling machine or device |
+489. |       736968006    ^ESCT1167250                                       Saphenous vein graft bypass of three coronary arteries |
+560. |       392242000   ^ESCTAR653099                                                                              Arterial repair |
+     |------------------------------------------------------------------------------------------------------------------------------|
+561. |       392242000   ^ESCTAR653100                                                                                Arterioplasty |
+567. |       232980009   ^ESCTBA504413                                                         Balloon dilatation of pulmonary vein |
+569. |       233214006   ^ESCTBA504732                                                       Balloon dilatation of pulmonary artery |
+578. |        13662000   ^ESCTBL271665                                                                        Blalock-Taussig shunt |
+579. |        13662000   ^ESCTBT271667                                                                  BTS - Blalock-Taussig shunt |
+     |------------------------------------------------------------------------------------------------------------------------------|
+580. |        49601007   ^ESCTCA330269                                                                       Cardiovascular disease |
+582. |        63697000   ^ESCTCA353597                                                                    Cardiopulmonary perfusion |
+601. |        29843007   ^ESCTCO298033                                                                Coronary atherectomy by laser |
+612. |       233022006   ^ESCTCO504475                                    Construction of conduit - right atrium to pulmonary trunk |
+625. |        63697000   ^ESCTCP353598                                                                 CPB - Cardiopulmonary bypass |
+     |------------------------------------------------------------------------------------------------------------------------------|
+626. |        49601007   ^ESCTCV330273                                                                 CVD - cardiovascular disease |
+627. |        49601007   ^ESCTDI330268                                                               Disorder of circulatory system |
+628. |        49601007   ^ESCTDI330271                                                           Disorder of the circulatory system |
+649. |       265488007   ^ESCTGR548650                                                  Great vessel and pulmonary artery procedure |
+650. |       118797008   ^ESCTHE431225                                                                              Heart procedure |
+     |------------------------------------------------------------------------------------------------------------------------------|
+663. |        31413008   ^ESCTOP300626                                                       Operative procedure on coronary artery |
+664. |        31413008   ^ESCTOP300627                                                     Operative procedure on coronary arteries |
+676. |        58380004   ^ESCTPE344846                                                                              Pericardiostomy |
+696. |       386727004   ^ESCTPE646043                                                  Percutaneous transluminal cardiac valvotomy |
+710. |       118797008   ^ESCTPR431224                                                                           Procedure on heart |
+     |------------------------------------------------------------------------------------------------------------------------------|
+711. |       118805000   ^ESCTPR431233                                                                          Procedure on artery |
+714. |       432952005   ^ESCTPT717112                                                                      PTA of dialysis fistula |
+716. |        68466008   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel |
+727. |       232721002   ^ESCTTR504019                                                                       Triple coronary bypass |
+728. |       233050006   ^ESCTVE504515                                                                        Ventricular operation |
+     +------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(544 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(138 observations deleted)
+
+. 
+.         count
+  47
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 105501005
+
+     +--------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                 term   new_sn~m |
+     |--------------------------------------------------------------------------------------------|
+481. | 343561000006119       ZV45                         [V]Other postsurgical states          1 |
+483. |       460692012      ZV45D   [V]Presence of artificial limb (complete)(partial)          1 |
+486. |       453269016      ZV45L         [V]Status following coronary angioplasty NOS          0 |
+487. |       460702010       ZV46             Dependence on enabling machine or device          1 |
+     +--------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 118797008
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+  6. |  864941000006116           79-99                                      Cardiovascular operations          0 |
+184. |  484131000000113            793M                   Therapeutic transluminal operations on heart          0 |
+185. |  484151000000118           793My   Other specified therapeutic transluminal operations on heart          0 |
+650. | 4312251000006111   ^ESCTHE431225                                                Heart procedure          1 |
+710. | 4312241000006114   ^ESCTPR431224                                             Procedure on heart          1 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 118805000
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+278. |        349466012          7A27-1                       Other open operations on axillary artery          0 |
+279. |        349465011          7A27-2                       Other open operations on brachial artery          0 |
+379. |        394341010            7A4A    Other open operations on femoral artery or popliteal artery          0 |
+380. |        410981011          7A4A-1                 Other open operations on common femoral artery          0 |
+381. |        410980012          7A4A-2                   Other open operations on deep femoral artery          0 |
+     |------------------------------------------------------------------------------------------------------------|
+382. |        410979014          7A4A-3                      Other open operations on popliteal artery          0 |
+383. |        410978018          7A4A-4            Other open operations on superficial femoral artery          0 |
+386. |        272038019           7A4A6                              Operation on popliteal artery NEC          0 |
+387. |   24571000006113           7A4Ay         Other open operation on femoral or popliteal artery OS          0 |
+388. |   24561000006118           7A4Az        Other open operation on femoral or popliteal artery NOS          0 |
+     |------------------------------------------------------------------------------------------------------------|
+397. |        272073017             7A5                                        Other artery operations          0 |
+411. |        272095018            7A53                          Other open operations on other artery          0 |
+412. |        272101017           7A533                                 Open cannulation of artery NEC          1 |
+413. |        272102012           7A534                            Operation on aneurysm of artery NEC          0 |
+414. |        272104013           7A53y           Other specified other open operation on other artery          0 |
+     |------------------------------------------------------------------------------------------------------------|
+415. |        272105014           7A53z                       Other open operation on other artery NOS          0 |
+416. |        272106010            7A54            Therapeutic transluminal operations on other artery          0 |
+418. |        272113010           7A543            Percutaneous transluminal cannulation of artery NEC          1 |
+419. |        394348016           7A544               Percutaneous transluminal dilation of artery NEC          1 |
+422. |  105321000006118           7A54y          Therapeutic transluminal operation on other artery OS          0 |
+     |------------------------------------------------------------------------------------------------------------|
+423. |        272121016           7A54z         Therapeutic transluminal operation on other artery NOS          0 |
+424. |        272122011            7A55             Diagnostic transluminal operations on other artery          0 |
+425. |  619411000006116           7A55y           Diagnostic transluminal operation on other artery OS          0 |
+426. |        272128010           7A55z          Diagnostic transluminal operation on other artery NOS          0 |
+427. |  359411000000112            7A56            Other therapeutic transluminal operations on artery          0 |
+     |------------------------------------------------------------------------------------------------------------|
+430. | 1548461000006113           7A56y   Other specified other therapeutic transluminal operat artery          1 |
+431. |  359351000000116           7A56z        Other therapeutic transluminal operations on artery NOS          0 |
+432. |        272129019            7A5y                     Other specified operations on other artery          0 |
+433. |        272130012            7A5z                                    Other artery operations NOS          0 |
+437. |        272297017           7A6G3                                        Operation on artery NEC          0 |
+     |------------------------------------------------------------------------------------------------------------|
+711. | 4312331000006112   ^ESCTPR431233                                            Procedure on artery          1 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 13662000
+
+     +-----------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                      term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------------------|
+216. |  515241000006111         7A062-1              Blalock anastomosis of subclavian artery to pulmonary artery          1 |
+217. |  107511000006111         7A062-2              Taussig anastomosis of subclavian artery to pulmonary artery          1 |
+523. | 2716611000006117   ^ESCTAN271661   Anastomosis of pulmonary-subclavian artery by Blalock-Taussig operation          0 |
+578. | 2716651000006116   ^ESCTBL271665                                                     Blalock-Taussig shunt          1 |
+579. | 2716671000006114   ^ESCTBT271667                                               BTS - Blalock-Taussig shunt          1 |
+     +-----------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 175112006
+
+     +---------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                  term   new_sn~m |
+     |---------------------------------------------------------------------------------------------|
+149. |       271193014       7933                  Transluminal heart assist operations          0 |
+150. | 865341000006119    7933-99                                       Other heart aid          1 |
+151. |       271196018      79331     Transluminal insertion of heart assist system NEC          1 |
+152. |       271206017      7933y   Other specified transluminal heart assist operation          0 |
+153. |       271207014      7933z               Transluminal heart assist operation NOS          0 |
+     +---------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 175362007
+
+     +------------------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------|
+241. |       271527011        7A2             Carotid, cerebral and subclavian artery operations          0 |
+246. |       271537018       7A21                        Other open operations on carotid artery          0 |
+248. |       271543016      7A21y         Other specified other open operation on carotid artery          0 |
+249. |       271544010      7A21z                     Other open operation on carotid artery NOS          0 |
+259. |       394311013       7A24   Other open operations on cerebral artery or circle of Willis          0 |
+     |------------------------------------------------------------------------------------------------------|
+260. |  24131000006118     7A24-1                       Other open operations on cerebral artery          0 |
+261. |  24151000006113     7A24-2                      Other open operations on circle of Willis          1 |
+262. | 865991000006112    7A24-99                                      Meningeal artery ligation          1 |
+263. |  24521000006112      7A24y    Other open operation on cerebral artery/circle of Willis OS          0 |
+264. |  24511000006116      7A24z   Other open operation on cerebral artery/circle of Willis NOS          0 |
+     |------------------------------------------------------------------------------------------------------|
+277. |       394314017       7A27                     Other open operations on subclavian artery          0 |
+280. |       349464010     7A27-3                      Other open operations on vertebral artery          0 |
+285. |       271644017      7A27y      Other specified other open operation on subclavian artery          0 |
+286. |       271645016      7A27z                  Other open operation on subclavian artery NOS          0 |
+297. | 538771000006114       7A2y          Carotid, cerebral and subclavian artery operations OS          0 |
+     |------------------------------------------------------------------------------------------------------|
+298. |       271679015       7A2z    Carotid and/or cerebral and/or subclavian artery operations          0 |
+     +------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 175472009
+
+     +----------------------------------------------------------------------------------------------------+
+     |      medcodeid   origin~e                                                          term   new_sn~m |
+     |----------------------------------------------------------------------------------------------------|
+299. |      271680017        7A3                        Branches of abdominal aorta operations          1 |
+302. |      271694016       7A31                         Other open operations on renal artery          0 |
+304. |      271700010      7A31y          Other specified other open operation on renal artery          0 |
+305. |      271701014      7A31z                      Other open operation on renal artery NOS          0 |
+328. | 23841000006117       7A34   Other open operations other visceral branch abdominal aorta          1 |
+     |----------------------------------------------------------------------------------------------------|
+329. |      349459011     7A34-1                       Other open operations on coeliac artery          0 |
+330. |      349458015     7A34-2           Other open operations on inferior mesenteric artery          0 |
+331. |      349457013     7A34-3           Other open operations on superior mesenteric artery          0 |
+332. |      349456016     7A34-4                    Other open operations on suprarenal artery          0 |
+337. | 24431000006111      7A34y     Other open op on other visceral branch abdominal aorta OS          1 |
+     |----------------------------------------------------------------------------------------------------|
+338. | 25261000006116      7A34z    Other open op on other visceral branch abdominal aorta NOS          1 |
+339. | 90141000006110       7A35        Transluminal ops other visceral branch abdominal aorta          1 |
+348. | 89801000006112      7A35y      Transluminal op other visceral branch abdominal aorta OS          1 |
+349. | 89791000006111      7A35z     Transluminal op other visceral branch abdominal aorta NOS          1 |
+350. |      271820016       7A3y     Other specified operations on branches of abdominal aorta          1 |
+     |----------------------------------------------------------------------------------------------------|
+351. |      271821017       7A3z                    Branches of abdominal aorta operations NOS          1 |
+     +----------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232717009
+
+     +----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                         term   new_sn~m |
+     |----------------------------------------------------------------------------------------------------------|
+ 71. |        348644016           792-1                      Coronary artery bypass graft operations          0 |
+ 82. |        271080018            7921               Other autograft replacement of coronary artery          1 |
+ 83. |       1221554018          7921-1                    Other autograft bypass of coronary artery          1 |
+ 88. |   36861000006113           7921y            Other autograft replacement of coronary artery OS          1 |
+ 89. |        271086012           7921z           Other autograft replacement of coronary artery NOS          1 |
+     |----------------------------------------------------------------------------------------------------------|
+ 91. |        271129017            7926       Connection of other thoracic artery to coronary artery          1 |
+ 96. |        271135017           7926z   Connection of other thoracic artery to coronary artery NOS          1 |
+126. |        271165010            792C                         Other replacement of coronary artery          1 |
+127. |        271167019           792Cy               Other specified replacement of coronary artery          1 |
+128. |        271168012           792Cz                           Replacement of coronary artery NOS          1 |
+     |----------------------------------------------------------------------------------------------------------|
+129. |        271169016            792D                                 Coronary artery bypass graft          0 |
+130. |        271170015           792Dy              Other specified other bypass of coronary artery          1 |
+131. |        271171016           792Dz                          Other bypass of coronary artery NOS          1 |
+584. | 5040091000006112   ^ESCTCA504009                          CABG - Coronary artery bypass graft          0 |
+595. | 5040101000006118   ^ESCTCB504010                                  CBG - Coronary bypass graft          0 |
+     |----------------------------------------------------------------------------------------------------------|
+605. | 5040111000006115   ^ESCTCO504011                              Coronary artery bypass grafting          0 |
+     +----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232719007
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+ 84. |        271081019           79210               Autograft replacement of one coronary artery NEC          1 |
+ 90. |        405092018           79253    Single anastomosis of mammary artery to coronary artery NEC          1 |
+ 94. |        271132019           79262   Single anastomosis of thoracic artery to coronary artery NEC          1 |
+ 95. |  142431000006114           79263   Single implantation thoracic artery into coronary artery NEC          1 |
+585. | 5040151000006119   ^ESCTCA504015                    CABG x 1 - Coronary artery bypass graft x 1          0 |
+     |------------------------------------------------------------------------------------------------------------|
+606. | 5040141000006116   ^ESCTCO504014                               Coronary artery bypass graft x 1          0 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232720001
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                          term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------|
+ 85. |        271082014           79211            Autograft replacement of two coronary arteries NEC          1 |
+ 92. |  627951000006112           79260     Double anastom thoracic arteries to coronary arteries NEC          1 |
+ 93. |  628031000006115           79261   Double implant thoracic arteries into coronary arteries NEC          1 |
+586. | 5040171000006112   ^ESCTCA504017                  CABG x 2 - Coronary artery bypass grafts x 2          0 |
+607. | 5040161000006117   ^ESCTCO504016                             Coronary artery bypass grafts x 2          0 |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232721002
+
+     +----------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                   term   new_sn~m |
+     |----------------------------------------------------------------------------------------------------|
+ 86. |        271083016           79212   Autograft replacement of three coronary arteries NEC          1 |
+587. | 5040201000006111   ^ESCTCA504020           CABG x 3 - Coronary artery bypass grafts x 3          0 |
+608. | 5040181000006110   ^ESCTCO504018                      Coronary artery bypass grafts x 3          0 |
+727. | 5040191000006113   ^ESCTTR504019                                 Triple coronary bypass          1 |
+     +----------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232722009
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                          term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------|
+ 87. |        271084010           79213   Autograft replacement of four of more coronary arteries NEC          1 |
+588. | 5040221000006118   ^ESCTCA504022                  CABG x 4 - Coronary artery bypass grafts x 4          0 |
+609. | 5040211000006114   ^ESCTCO504021                             Coronary artery bypass grafts x 4          0 |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232726007
+
+     +--------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                       term   new_sn~m |
+     |--------------------------------------------------------------------------------------------------------|
+115. |  354901000000117           79296   Percutaneous transluminal atherectomy of coronary artery          1 |
+684. | 5040281000006119   ^ESCTPE504028             Percutaneous endarterectomy of coronary artery          0 |
+     +--------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 232980009
+
+     +-------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                    term   new_sn~m |
+     |-------------------------------------------------------------------------------------|
+566. | 5044121000006115   ^ESCTBA504412   Balloon angioplasty of pulmonary vein          0 |
+567. | 5044131000006117   ^ESCTBA504413    Balloon dilatation of pulmonary vein          1 |
+     +-------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 233022006
+
+     +-------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                  term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------------------|
+ 36. |  600171000006110           790E1          Creation of conduit between right atrium and pulm artery NEC          1 |
+ 37. |  600271000006115         790E1-1          Creation of Fontan conduit between right atrium & pulmon art          1 |
+612. | 5044751000006111   ^ESCTCO504475             Construction of conduit - right atrium to pulmonary trunk          1 |
+648. | 5044761000006113   ^ESCTFO504476   Fontan operation with conduit from right atrium to pulmonary artery          0 |
+     +-------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 233050006
+
+     +-------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                      term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------|
+ 44. |  356921000000119            790N                   Other operations on ventricles of heart          0 |
+ 45. |  376641000000118           790Ny   Other specified other operations on ventricles of heart          0 |
+ 46. |  384141000000114           790Nz               Other operations on ventricles of heart NOS          0 |
+728. | 5045151000006113   ^ESCTVE504515                                     Ventricular operation          1 |
+     +-------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 233114002
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                          term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------|
+231. | 1548021000006110            7A0C        Operation for major aortopulmonary collateral arteries          1 |
+233. | 1548091000006112           7A0Cz   Operations major systemic pulmonary collateral arteries NOS          1 |
+658. | 5046031000006111   ^ESCTMA504603      MAPCA - Major aortopulmonary collateral artery operation          0 |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 233214006
+
+     +--------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                     term   new_sn~m |
+     |--------------------------------------------------------------------------------------|
+524. | 5047311000006118   ^ESCTAN504731          Angioplasty of pulmonary artery          0 |
+569. | 5047321000006114   ^ESCTBA504732   Balloon dilatation of pulmonary artery          1 |
+     +--------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 233226001
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+212. |        271365017            7A06    Other connection from subclavian artery to pulmonary artery          1 |
+213. |  599981000006114           7A060   Creation anastomosis right subclav art to right pulm art NEC          1 |
+214. |  599971000006111           7A061     Creation anastomosis left subclav art to left pulm art NEC          1 |
+215. |  599991000006112           7A062    Creation anastomosis subclavian artery to pulmonary art NEC          1 |
+219. |   33541000006117           7A06z      Other connection from subclavian art to pulmonary art NOS          1 |
+     |------------------------------------------------------------------------------------------------------------|
+726. | 5047511000006112   ^ESCTSU504751                 Subclavian to pulmonary artery shunt operation          0 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 265488007
+
+     +------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                               term   new_sn~m |
+     |------------------------------------------------------------------------------------------------|
+210. |        394297010             7A0      Great vessels and pulmonary artery operations          0 |
+211. |  807051000006113           7A0-1                            Great vessel operations          1 |
+234. |  807061000006110            7A0y     Great vessel or pulmonary artery operations OS          0 |
+235. |        271408019            7A0z   Great vessel and pulmonary artery operations NOS          0 |
+649. | 5486501000006111   ^ESCTGR548650        Great vessel and pulmonary artery procedure          1 |
+     +------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 265500000
+
+     +-------------------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                            term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------|
+254. | 542501000006110       7A23   Operations on aneurysm of cerebral artery or circle of Willis          0 |
+255. | 542511000006113     7A23-1                             Cerebral artery aneurysm operations          0 |
+256. | 557541000006111     7A23-2                            Circle of Willis aneurysm operations          1 |
+257. |  45861000006119      7A23y      Operation on cerebral artery/ circle of Willis aneurysm OS          0 |
+258. |  45851000006116      7A23z     Operation on cerebral artery/ circle of Willis aneurysm NOS          0 |
+     +-------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 265502008
+
+     +-------------------------------------------------------------------------------------------------------+
+     |      medcodeid   origin~e                                                             term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------|
+265. | 90011000006112       7A25   Transluminal operations on cerebral artery or circle of Willis          0 |
+266. | 89881000006115      7A25y       Transluminal operation on cerebral art/circle of Willis OS          1 |
+267. | 89871000006118      7A25z      Transluminal operation on cerebral art/circle of Willis NOS          1 |
+     +-------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 265516003
+
+     +----------------------------------------------------------------------------------+
+     | medcodeid   origin~e                                             term   new_sn~m |
+     |----------------------------------------------------------------------------------|
+354. | 394326010       7A42                   Reconstruction of iliac artery          1 |
+360. | 271880019      7A42y   Other specified reconstruction of iliac artery          1 |
+361. | 271881015      7A42z               Reconstruction of iliac artery NOS          1 |
+364. | 271891014      7A432        Operation on aneurysm of iliac artery NEC          0 |
+     +----------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 265528006
+
+     +----------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                   term   new_sn~m |
+     |----------------------------------------------------------------------------------------------|
+372. |       394340011       7A49   Reconstruction of femoral artery or popliteal artery          1 |
+377. | 187331000006112      7A49y       Reconstruction of femoral or popliteal artery OS          1 |
+378. |       272022013      7A49z      Reconstruction of femoral or popliteal artery NOS          1 |
+384. |       272029016      7A4A0                           Repair of femoral artery NEC          1 |
+385. |       272037012      7A4A5            Operation on aneurysm of femoral artery NEC          0 |
+     +----------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 275064002
+
+     +------------------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------|
+319. | 641511000006110      7A33A   Endarterectomy & patch repair inferior mesenteric artery NEC          0 |
+320. | 641721000006111      7A33B       Endarterectomy and patch repair of suprarenal artery NEC          0 |
+324. | 641501000006112      7A33K   Endarterectomy & patch rep visceral branch abdomin aorta NEC          0 |
+402. |       410987010    7A520-1                                      Endarterectomy and repair          0 |
+403. | 866191000006117   7A520-99                                          Patch graft to artery          1 |
+     +------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 29843007
+
+     +----------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                   term   new_sn~m |
+     |----------------------------------------------------------------------------------------------------|
+113. |        484402013           79290   Percutaneous transluminal laser coronary angioplasty          0 |
+601. | 2980331000006110   ^ESCTCO298033                          Coronary atherectomy by laser          1 |
+657. | 2980341000006117   ^ESCTLA298034                             Laser coronary angioplasty          0 |
+     +----------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 307823003
+
+     +------------------------------------------------------------------------------+
+     | medcodeid   origin~e                                         term   new_sn~m |
+     |------------------------------------------------------------------------------|
+ 11. | 451208015      790-4                        Heart wall operations          0 |
+ 38. | 270907012       790H            Other operations on wall of heart          0 |
+ 39. | 270908019      790H0      Excision of lesion of wall of heart NEC          1 |
+ 40. | 270910017      790H2                  Repair of wall of heart NEC          1 |
+ 42. | 270913015      790Hy   Other specified operation on wall of heart          0 |
+     |------------------------------------------------------------------------------|
+ 43. | 270914014      790Hz               Operation on wall of heart NOS          0 |
+141. | 271183019       7931                      Other incision of heart          1 |
+142. | 271185014      79311                     Exploration of heart NEC          1 |
+143. | 271186010      79312                               Cardiotomy NEC          1 |
+144. | 271187018      7931y      Other specified other incision of heart          1 |
+     |------------------------------------------------------------------------------|
+145. | 271188011      7931z                  Other incision of heart NOS          1 |
+     +------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 30904006
+
+     +--------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                           term   new_sn~m |
+     |--------------------------------------------------------------------------------------|
+195. | 491751000006111         7A                     Vascular surgery procedure          1 |
+196. |      2476471018       7A-1                        Blood vessel operations          1 |
+197. | 933331000006114      7A-87                 Aneurysm excision+reanastomos.          1 |
+198. | 865701000006115      7A-88                         Other vascular op. NOS          1 |
+199. | 865711000006117      7A-89                  Vessel surgical occlusion NOS          1 |
+     |--------------------------------------------------------------------------------------|
+200. | 865721000006113      7A-90                         Vessel lesion excision          1 |
+201. | 865731000006111      7A-91                        Vein excision for graft          1 |
+202. | 865741000006118      7A-92                                 Aneurysmectomy          1 |
+203. | 865751000006116      7A-93                           Repair of vessel NOS          1 |
+204. | 865761000006119      7A-94                               Aneurysmorrhaphy          1 |
+     |--------------------------------------------------------------------------------------|
+205. | 865771000006114      7A-95                  Replacement of vascular graft          1 |
+206. | 865781000006112      7A-96                               Suture of vessel          1 |
+207. | 865791000006110      7A-97                               Repair of vessel          1 |
+208. | 865801000006111      7A-98                       Vessel shunt/by-pass NOS          1 |
+209. | 865811000006114      7A-99                 Vascular prosth. by-pass graft          1 |
+     |--------------------------------------------------------------------------------------|
+444. | 483681000000117       7A6T                     Operations on blood vessel          1 |
+445. |       272311019        7Ay   Other specified operations on artery or vein          0 |
+446. |       272312014        7Az                 Artery and vein operations NOS          0 |
+     +--------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 31413008
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+ 70. |  220231000000118             792                                      Coronary artery operation          0 |
+ 72. |  865171000006113          792-99                                  Coronary artery operation NOS          0 |
+ 97. |        271136016            7927                       Other open operations on coronary artery          0 |
+100. |        271140013           7927y        Other specified other open operation on coronary artery          0 |
+101. |        271141012           7927z                    Other open operation on coronary artery NOS          0 |
+     |------------------------------------------------------------------------------------------------------------|
+112. |        271149014            7929   Other therapeutic transluminal operations on coronary artery          0 |
+116. |  250941000006110           7929y        Other therapeutic transluminal op on coronary artery OS          1 |
+117. |  250931000006117           7929z       Other therapeutic transluminal op on coronary artery NOS          1 |
+121. |        271161018            792B                                  Repair of coronary artery NEC          1 |
+124. |        271163015           792By                      Other specified repair of coronary artery          1 |
+     |------------------------------------------------------------------------------------------------------------|
+125. |        271164014           792Bz                                  Repair of coronary artery NOS          1 |
+134. |        271172011            792y                  Other specified operations on coronary artery          0 |
+136. |        271173018            792z                                 Coronary artery operations NOS          0 |
+602. | 3006281000006117   ^ESCTCO300628                                        Coronary artery surgery          0 |
+663. | 3006261000006110   ^ESCTOP300626                         Operative procedure on coronary artery          1 |
+     |------------------------------------------------------------------------------------------------------------|
+664. | 3006271000006115   ^ESCTOP300627                       Operative procedure on coronary arteries          1 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 3546002
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |         medcodeid   originalre~e                                                          term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------------|
+ 73. |        1228282017           7920           Saphenous vein graft replacement of coronary artery          1 |
+ 74. |   161451000006116         7920-1           Saphenous vein graft replacement of coronary artery          1 |
+ 75. |   865181000006111        7920-99                                  Coronary artery venous graft          0 |
+ 80. |   161481000006112          7920y   Aortocoronary artery bypass graft with saphenous vein graft          0 |
+ 81. |         271079016          7920z          Saphenous vein graft replacement coronary artery NOS          1 |
+     |-----------------------------------------------------------------------------------------------------------|
+513. | 14055221000006116   ^ESCT1405522        Coronary artery bypass graft with saphenous vein graft          0 |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 38629001
+
+     +------------------------------------------------------------------------------------------------------+
+     |        medcodeid   origin~e                                                          term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------|
+179. | 1547781000006110       793K   Transluminal operations internal mammary artery side branch          0 |
+180. | 1547791000006113      793K0   Translum occlusion left internal mammary artery side branch          1 |
+     +------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 386727004
+
+     +-----------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                    term   new_sn~m |
+     |-----------------------------------------------------------------------------------------------------|
+ 61. |  105381000006119            7919   Therapeutic transluminal operations on valve of heart          0 |
+ 62. |  233261000006114          7919-1                     Percutaneous transluminal valvotomy          1 |
+696. | 6460431000006117   ^ESCTPE646043             Percutaneous transluminal cardiac valvotomy          1 |
+     +-----------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 392031002
+
+     +--------------------------------------------------------------------------------------------------+
+     |       medcodeid   origin~e                                                       term   new_sn~m |
+     |--------------------------------------------------------------------------------------------------|
+325. |       271746010      7A33L   Endarterectomy of visceral branch of abdominal aorta NEC          0 |
+404. | 641751000006119      7A521                                             Endarterectomy          0 |
+405. | 932471000006114   7A521-96                                       Other endarterectomy          0 |
+406. | 866201000006119   7A521-97                                     Removal of vessel clot          1 |
+407. | 866211000006116   7A521-98                                   Other endarterectomy NOS          0 |
+     |--------------------------------------------------------------------------------------------------|
+408. | 866221000006112   7A521-99                                      Thromboendarterectomy          0 |
+     +--------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 392242000
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+312. |        394318019            7A33     Reconstruction of other visceral branch of abdominal aorta          1 |
+313. |        271726017           7A334                             Replantation of coeliac artery NEC          1 |
+314. |        271728016           7A335                 Replantation of superior mesenteric artery NEC          1 |
+315. |        271729012           7A336                 Replantation of inferior mesenteric artery NEC          1 |
+316. |        271730019           7A337                          Replantation of suprarenal artery NEC          1 |
+     |------------------------------------------------------------------------------------------------------------|
+323. |        271744013           7A33J         Replantation of visceral branch of abdominal aorta NEC          1 |
+326. |  187951000006118           7A33y     Reconstruction of other visceral branch abdominal aorta OS          1 |
+327. |  187941000006115           7A33z    Reconstruction of other visceral branch abdominal aorta NOS          1 |
+333. |        271775016           7A34C                    Operation on aneurysm of coeliac artery NEC          0 |
+334. |        271777012           7A34D        Operation on aneurysm of superior mesenteric artery NEC          0 |
+     |------------------------------------------------------------------------------------------------------------|
+335. |        271779010           7A34F                 Operation on aneurysm of suprarenal artery NEC          0 |
+336. |   46601000006110           7A34K   Operation on aneurysm visceral branch of abdominal aorta NEC          1 |
+398. |        272085013            7A52                                               Repair of artery          1 |
+409. |        272093013           7A52y                         Other specified repair of other artery          1 |
+410. |        272094019           7A52z                                     Repair of other artery NOS          1 |
+     |------------------------------------------------------------------------------------------------------------|
+560. | 6530991000006112   ^ESCTAR653099                                                Arterial repair          1 |
+561. | 6531001000006113   ^ESCTAR653100                                                  Arterioplasty          1 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 429639007
+
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   origin~e                                                                                         term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------------------------------------|
+169. | 1547631000006117       793G   Percutaneous transluminal balloon angioplasty with insertion of stent into coronary artery          0 |
+172. | 1547661000006114      793G2                                  Perc translum balloon angioplasty insert 1-2 stents cor art          0 |
+173. | 1547671000006119      793G3                                    Percutaneous cor balloon angiop 3 more stents cor art NEC          1 |
+174. | 1547681000006116      793Gy                                 OS perc translumina balloon angioplast stenting coronary art          1 |
+175. | 1547691000006118      793Gz                                  Perc translum balloon angioplasty stenting coronary art NOS          0 |
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 432952005
+
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                                    term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------------------------------------|
+701. | 7171111000006119   ^ESCTPE717111   Percutaneous transluminal angioplasty of dialysis fistula using fluoroscopic guidance          0 |
+714. | 7171121000006110   ^ESCTPT717112                                                                 PTA of dialysis fistula          1 |
+     +-------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 49601007
+
+     +---------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                                term   new_sn~m |
+     |---------------------------------------------------------------------------------------------------------------------------------|
+457. |  557611000006113               G                                                             Cardiovascular disorder          1 |
+458. |  223931000000117             G-1                                                                         CVS disease          1 |
+461. |  538131000006110            G5yX                                                   Disorder of cardiovascular system          1 |
+462. |        300648017              G8                                        Vein, lymphatic and circulatory diseases NOS          1 |
+463. |        300839012             G8y                        Other specified vein, lymphatic or other circulatory disease          1 |
+     |---------------------------------------------------------------------------------------------------------------------------------|
+464. |        300847012            G8yy                                                Other specified circulatory disorder          1 |
+465. |        300849010           G8yy1                                                   Venous collateral circulation NOS          1 |
+466. |        300854018           G8yyz                                            Other specified circulatory disorder NOS          1 |
+467. |        300855017            G8yz                                                      Other circulatory disorder NOS          1 |
+468. |        300856016             G8z                                  Vein, lymphatic and other circulatory diseases NOS          1 |
+     |---------------------------------------------------------------------------------------------------------------------------------|
+469. |        300857013              Gy                                      Other specified diseases of circulatory system          1 |
+470. |        300932016           Gyu5g                                              [X]Cardiovascular disease, unspecified          1 |
+471. |       1222329015            Gyu9   [X]Other and unspecified disorders of the circulatory system classification terms          1 |
+472. |        300989017           Gyu91                          [X]Other functional disturbances following cardiac surgery          0 |
+473. |  412801000006112           Gyu92                            [X]Other postprocedural disorders/circulatory system,NEC          1 |
+     |---------------------------------------------------------------------------------------------------------------------------------|
+474. |  370351000006115           Gyu93                        [X]Cardiovascular disorders/oth infectous+parasitic diseases          1 |
+475. |  413841000006119           Gyu95                        [X]Other specifd disorders/circulatory system in diseases CE          1 |
+476. |  417441000006113           Gyu96                        [X]Other and unspecified disorders of the circulatory system          1 |
+477. |        300996015              Gz                                                   Disorder of cardiovascular system          1 |
+580. | 3302691000006119   ^ESCTCA330269                                                              Cardiovascular disease          1 |
+     |---------------------------------------------------------------------------------------------------------------------------------|
+626. | 3302731000006110   ^ESCTCV330273                                                        CVD - cardiovascular disease          1 |
+627. | 3302681000006117   ^ESCTDI330268                                                      Disorder of circulatory system          1 |
+628. | 3302711000006116   ^ESCTDI330271                                                  Disorder of the circulatory system          1 |
+     +---------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 58380004
+
+     +----------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                           term   new_sn~m |
+     |----------------------------------------------------------------------------|
+160. |         97023017           793C1    Fenestration of pericardium          1 |
+161. |        498154019        793C1-99   Pericardial window operation          0 |
+676. | 3448461000006111   ^ESCTPE344846                Pericardiostomy          1 |
+     +----------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 597571000000100
+
+     +------------------------------------------------------------------------+
+     |       medcodeid   origin~e                             term   new_sn~m |
+     |------------------------------------------------------------------------|
+399. | 866171000006118    7A52-98   Aneurysm excision+reanastomos.          1 |
+400. | 866181000006115    7A52-99             Other endarterectomy          0 |
+     +------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 63697000
+
+     +--------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                               term   new_sn~m |
+     |--------------------------------------------------------------------------------|
+447. |        499653015           7M360             Cardiopulmonary bypass          1 |
+448. |  878761000006116        7M360-99      Artificial heart-lung by-pass          1 |
+581. | 3535951000006117   ^ESCTCA353595   Cardiopulmonary bypass operation          0 |
+582. | 3535971000006110   ^ESCTCA353597          Cardiopulmonary perfusion          1 |
+625. | 3535981000006113   ^ESCTCP353598       CPB - Cardiopulmonary bypass          1 |
+     +--------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 68466008
+
+     +------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                                         term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------------------------------------|
+105. |  238641000006117           79280                         Percutaneous transluminal balloon angioplasty of one coronary artery          0 |
+106. |  865301000006116        79280-99                                                               Percut angiopl coronary artery          1 |
+716. | 3614141000006115   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel          1 |
+     +------------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 709019007
+
+     +----------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                                     term   new_sn~m |
+     |----------------------------------------------------------------------------------------------------------------------|
+428. |  359451000000111           7A561                 Percutaneous transluminal stent reconstruction of artery          1 |
+707. | 7643011000006117   ^ESCTPE764301   Percutaneous transluminal arterial angioplasty with insertion of stent          0 |
+     +----------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 73544002
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                           term   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------|
+ 50. |  865121000006112          791-98                                      Heart valve operation NOS          0 |
+ 51. |  865131000006110          791-99                                         Heart valve operations          0 |
+ 52. |        394280016            7914                   Plastic repair of unspecified valve of heart          1 |
+ 53. |        270987010           79140                    Allograft replacement of valve of heart NEC          1 |
+ 54. |        270988017           79141                    Xenograft replacement of valve of heart NEC          1 |
+     |------------------------------------------------------------------------------------------------------------|
+ 55. |        270995014           7914y   Other specified plastic repair of unspecified valve of heart          1 |
+ 56. |        270996010           7914z               Plastic repair of unspecified valve of heart NOS          1 |
+ 57. |        271029019            7918                        Other open operations on valve of heart          0 |
+ 58. |        271036018           79182                             Annuloplasty of valve of heart NEC          1 |
+ 59. |        271038017           7918y         Other specified other open operation on valve of heart          0 |
+     |------------------------------------------------------------------------------------------------------------|
+ 60. |        271039013           7918z                     Other open operation on valve of heart NOS          0 |
+ 63. |  105301000006111           7919y           Therapeutic transluminal operation on heart valve OS          0 |
+ 64. |        271052015           7919z          Therapeutic transluminal operation on heart valve NOS          0 |
+ 65. |        271062010            791B       Other operations on structure adjacent to valve of heart          0 |
+ 66. |   45491000006113           791By              Operation on structure adjacent to heart valve OS          0 |
+     |------------------------------------------------------------------------------------------------------------|
+ 68. |  818851000006118            791y               Heart valve or adjacent structures operations OS          0 |
+ 69. |        271066013            791z             Heart valve and adjacent structures operations NOS          0 |
+665. | 3695691000006118   ^ESCTOP369569                                       Operation on heart valve          0 |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 736967001
+
+     +---------------------------------------------------------------------------------------------------------------------+
+     |  medcodeid   originalre~e                                                                           term   new_sn~m |
+     |---------------------------------------------------------------------------------------------------------------------|
+ 76. |  271073015          79200                        Saphenous vein graft replacement of one coronary artery          1 |
+488. | 3525968019   ^ESCT1167247   Aortocoronary artery bypass of one coronary artery with saphenous vein graft          0 |
+     +---------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 736968006
+
+     +-------------------------------------------------------------------------------------------------------------------------+
+     |  medcodeid   originalre~e                                                                               term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------------------------|
+ 78. |  271075010          79202   Aortocoronary artery bypass of three coronary arteries with saphenous vein graft          0 |
+489. | 3525970011   ^ESCT1167250                             Saphenous vein graft bypass of three coronary arteries          1 |
+     +-------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 77371000
+
+     +-------------------------------------------------------------------------------------------------------+
+     |        medcodeid   origin~e                                                           term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------|
+ 10. |  818791000006118      790-3                                    Operation on cardiac septum          0 |
+ 12. |        270839018       7909               Closure of defect of unspecified septum of heart          1 |
+ 13. |  511571000000110     7909-1                Repair of defect of unspecified septum of heart          1 |
+ 14. |  569881000006117      79090   Closure of defect of heart septum using prosthetic patch NEC          1 |
+ 15. | 1587401000006119    79090-1    Repair defect of septum of heart using prosthetic patch NEC          1 |
+     |-------------------------------------------------------------------------------------------------------|
+ 16. |  569651000006112      79091     Closure defect of heart septum using pericardial patch NEC          1 |
+ 17. | 1587411000006116    79091-1      Repair defect of heart septum using pericardial patch NEC          1 |
+ 18. |        270842012      79092    Closure of defect of septum of heart using tissue graft NEC          1 |
+ 19. |  511601000000115    79092-1     Repair of defect of septum of heart using tissue graft NEC          1 |
+ 20. |        270844013      79094                     Revision of closure of septum of heart NEC          1 |
+     |-------------------------------------------------------------------------------------------------------|
+ 21. |  511621000000112    79094-1                      Revision of repair of septum of heart NEC          1 |
+ 22. |   14671000006119      7909y     Other specified closure of defect unspecified heart septum          1 |
+ 23. | 1587451000006115    7909y-1   Other specified repair of defect of unspecified septum heart          1 |
+ 24. |        270846010      7909z           Closure of defect of unspecified septum of heart NOS          1 |
+ 25. |  511641000000117    7909z-1            Repair of defect of unspecified septum of heart NOS          1 |
+     |-------------------------------------------------------------------------------------------------------|
+ 26. |        270847018       790A                       Other open operations on septum of heart          0 |
+ 28. |        270853018      790Ay        Other specified other open operation on septum of heart          0 |
+ 29. |        270854012      790Az                    Other open operation on septum of heart NOS          0 |
+     +-------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 936451000000108
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   origin~e                                                                                                     term   new_sn~m |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+170. | 1547641000006110      793G0   Percutaneous transluminal balloon angioplasty and insertion of drug eluting stent into coronary artery          0 |
+171. | 1547651000006112      793G1                                              Perc tran ball angio ins 3 or more drug elut stents cor art          1 |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. 
+. // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. /*
+> // **Search terms for each categorisation desired**
+> local cat1 " "*cat1*" "
+> local cat2 " "*cat2*" "
+> 
+> //Search for codes
+> foreach categoryterm in /**/cat1 cat2/**/ {
+>         
+>         gen byte `categoryterm' = .
+>         
+>         foreach codeterm in lower(term) {
+>                 
+>                 foreach searchterm in ``categoryterm'' {                
+>                         
+>                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+>                 }
+>         }
+> }
+> 
+> tab1 cat1 cat2
+> */
+. 
+. // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
+. //====================================================
+. 
+. //Comment this section out if no previous codelist
+. /* THERE AREN'T ANY
+> 
+> //MedCodeID codelists (LSHTM Data Compass)
+> 
+> //Format pre-existing codelist(s) ready for merging
+> preserve
+>         import delimited https://www.example.com/download.csv, stringcols(1) clear
+>         
+>         local name "cl1"
+>         
+>         rename * *_`name'
+>         rename code_`name' snomedctconceptid
+>         
+>         generate byte `name' = 1
+> 
+>         tempfile `name'
+>         compress
+>         save ``name''
+> restore, preserve
+>         import delimited https://www.example.com/download.csv, stringcols(1) clear
+>         
+>         local name "cl2"
+>         
+>         rename * *_`name'
+>         rename code_`name' snomedctconceptid
+>         
+>         generate byte `name' = 1
+> 
+>         tempfile `name'
+>         compress
+>         save ``name''
+> restore
+> 
+> foreach codelist in cl1 cl2 {
+>         
+>         //Merge previous codelist
+>         merge 1:1 medcodeid using ``codelist''
+> 
+>         //Check for any differences
+>         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+> 
+>         //Comment on result above: **No meaningful differences**
+> 
+>         display "Terms on pre-existing list only..."
+>         list medcodeid term_`codelist' if _merge == 2
+>         
+>         //Put pre-existing codelist terms in current codelist term column
+>         replace term = term_`codelist' if _merge == 2
+>         replace /**/mi/**/ = 1 if _merge == 2
+> 
+>         //Drop old terms and merge variable
+>         drop *_`codelist' _merge
+> }
+> 
+> //Count number of codes that didn't match
+> count if snomedctconceptid == ""
+> list medcodeid term if snomedctconceptid == ""
+> 
+> //Compare newly found MedCodeIDs against Aurum dictionary
+> preserve
+>         //Merge new MedCodeIDs with medical dictionary
+>         keep medcodeid
+>         merge 1:1 medcodeid using `medical'
+>         generate byte not_in_dictionary = 1 if _merge == 1
+>         list medcodeid if not_in_dictionary == 1
+>         keep if not_in_dictionary == 1
+>         keep medcodeid not_in_dictionary
+>         tempfile notindict
+>         save `notindict'
+> restore
+> 
+> //Remove codes not in Aurum dictionary
+> merge 1:1 medcodeid using `notindict'
+> list medcodeid term if not_in_dictionary == 1
+> drop if not_in_dictionary == 1
+> drop not_in_dictionary _merge
+> 
+> //Check for any additional new codes that haven't been accounted for
+> list medcodeid term lshtm_* if snomedctconceptid == ""
+> 
+> //Add additional codes to list
+> rename term term_old
+> merge 1:1 medcodeid using `medical', update
+> drop if _merge == 2
+> order term, before(term_old)
+> list term_old term if lower(term_old) != lower(term)
+> drop term_old _merge
+> 
+> 
+> //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
+> 
+> //Format pre-existing codelist(s) ready for merging
+> preserve
+>         import delimited https://www.example.com/download.csv, stringcols(1) clear
+>         
+>         local name "cl1"
+>         
+>         rename * *_`name'
+>         rename code_`name' snomedctconceptid
+>         
+>         generate byte `name' = 1
+> 
+>         tempfile `name'
+>         compress
+>         save ``name''
+> restore, preserve
+>         import delimited https://www.example.com/download.csv, stringcols(1) clear
+>         
+>         local name "cl2"
+>         
+>         rename * *_`name'
+>         rename code_`name' snomedctconceptid
+>         
+>         generate byte `name' = 1
+> 
+>         tempfile `name'
+>         compress
+>         save ``name''
+> restore
+> 
+> 
+> foreach codelist in cl1 cl2 {
+>         
+>         //Merge previous codelist
+>         merge m:1 snomedctconceptid using ``codelist''
+> 
+>         //Check for any differences
+>         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+> 
+>         //Comment on result above: **No meaningful differences**
+> 
+>         display "Terms on pre-existing list only..."
+>         list snomedctconceptid term_`codelist' if _merge == 2
+>         
+>         //Put pre-existing codelist terms in current codelist term column
+>         replace term = term_`codelist' if _merge == 2
+>         replace cv_surgery = 1 if _merge == 2
+> 
+>         //Drop old terms and merge variable
+>         drop *_`codelist' _merge
+> }
+> 
+> //Count number of codes that didn't match
+> count if medcodeid == ""
+> list snomedctconceptid term if medcodeid == ""
+> 
+> //Compare newly found Concept IDs against Aurum dictionary
+> preserve
+>         //Merge SNOMED CT Concepts with medical dictionary
+>         keep snomedctconceptid
+>         bysort snomedctconceptid: keep if _n == 1
+>         merge 1:m snomedctconceptid using `medical'
+>         generate byte not_in_dictionary = 1 if _merge == 1
+>         list snomedctconceptid if not_in_dictionary == 1
+>         keep if not_in_dictionary == 1
+>         keep snomedctconceptid not_in_dictionary
+>         tempfile notindict
+>         save `notindict'
+> restore
+> 
+> //Remove codes not in Aurum dictionary
+> merge m:1 snomedctconceptid using `notindict'
+> list snomedctconceptid term if not_in_dictionary == 1
+> drop if not_in_dictionary == 1
+> drop not_in_dictionary _merge
+> 
+> //Check for any addictional new codes that haven't been accounted for
+> list snomedctconceptid term if medcode == ""
+> */
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  (2,187 bytes saved)
+
+. save `filename', replace
+(file major_cardiovascular_surgery.dta not found)
+file major_cardiovascular_surgery.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file major_cardiovascular_surgery_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. /*
+> //Load clinician classifications
+> local clinician "ABC"
+> 
+> import excel `filename'_raw_`clinician', firstrow clear
+> 
+> //Remerge with original in case of any formatting issues with Excel spreadsheet
+> keep medcodeid `clinician'
+> 
+> tempfile `clinician'_classification
+> save ``clinician'_classification'
+> 
+> use `filename', clear
+> 
+> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+> 
+> //Remove codes marked for exclusion by clinician
+> display "Terms excluded by clinician..."
+> list medcodeid snomedctconceptid term if `clinican' == 0
+> drop if `clinician' == 0
+> 
+> //Save clinican approved codelist
+> gsort snomedctconceptid snomedctdescriptionid originalreadcode
+> drop new_snomedct_synonym /*codestatus*/ `clinician'
+> compress
+> save `filename', replace
+> export delimited `filename', replace quote
+> */
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Major cardiovascular surgery"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 11)  //year, month
+
+. local clinical_reviewer "Christina Avgerinou"
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str28
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(1 real change made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file major_cardiovascular_surgery.meta not found)
+file major_cardiovascular_surgery.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
+  log type:  text
+ closed on:   3 Dec 2024, 18:12:45
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
