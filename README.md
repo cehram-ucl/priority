@@ -400,8 +400,8 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
       - 10 results
       - 3 suitable codelists:
       	- https://datacompass.lshtm.ac.uk/id/eprint/2413/
-	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
- 	- https://datacompass.lshtm.ac.uk/id/eprint/4214/
+       	- https://datacompass.lshtm.ac.uk/id/eprint/3323/
+        - https://datacompass.lshtm.ac.uk/id/eprint/4214/
     - OpenCodelists:
       - Search: "bmi" and "weight" and "height"
       - 20 and 12 and 4 results
