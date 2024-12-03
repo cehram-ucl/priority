@@ -1,0 +1,2620 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\ischaemic_heart_disease.log
+  log type:  text
+ opened on:   3 Dec 2024, 21:11:45
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local ihd " "*angina*" "*status*anginosus*" "*isch*emic*heart*disease*" "*impending*infarct*" "*pre*infarct*" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+. //==========================================================================
+. 
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/ihd/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(104 real changes made)
+(1 real change made)
+(45 real changes made)
+(1 real change made)
+(6 real changes made)
+
+. 
+. keep if /**/ihd/**/ == 1
+(240,842 observations deleted)
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str17
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str154
+  (13,345 bytes saved)
+
+. 
+. gsort /**/ihd/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/ihd/**/
+
+-> tabulation of ihd  
+
+        ihd |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        157      100.00      100.00
+------------+-----------------------------------
+      Total |        157      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*family*history*" "*fh:*" "*fh *" "*score*" "*risk*" "*herpangina*" "*vincent*" "*bullosa*haemorrhagica*" "*streptoc*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/stable/**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(157 missing values generated)
+(10 real changes made)
+(13 real changes made)
+(4 real changes made)
+(3 real changes made)
+(0 real changes made)
+(1 real change made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(157 missing values generated)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list term if exclude == 1
+
+     +------------------------------------------------------------------------------------------------------------------------+
+     |                                                                                                                   term |
+     |------------------------------------------------------------------------------------------------------------------------|
+  2. |                                                                                         No FH: Ischaemic heart disease |
+  4. |                                                                   FH: Ischaemic heart disease at greater than 60 years |
+  6. |                                                                                            FH: Ischaemic heart disease |
+ 10. |                                                                              Family history of ischaemic heart disease |
+ 18. |                                                                                                             FH: Angina |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 20. |                                                                      FH: Ischaemic heart disease at less than 60 years |
+ 21. |                                                                       FH: Angina in 1st degree male relative <55 years |
+ 25. |                                                                                       FH: Angina at less than 60 years |
+ 26. |                                                           Cardiovascular Limitations and Symptoms Profile angina score |
+ 28. |                                                                     FH: Angina in 1st degree female relative <65 years |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 30. |                                                                                                          No FH: Angina |
+ 31. |                                                                               Family history of ischemic heart disease |
+ 35. |                                                                                    FH: Angina at greater than 60 years |
+ 39. |                                                                                  FH angina male first degree age known |
+ 40. |                                                                                FH angina female first degree age known |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 44. |                                                                                FH angina male first degree age unknown |
+ 47. |                                                                              FH angina female first degree age unknown |
+ 48. |                                                                           No family history of ischaemic heart disease |
+ 55. |                                                                                                             Herpangina |
+ 77. |                                                                                           Angina bullosa haemorrhagica |
+     |------------------------------------------------------------------------------------------------------------------------|
+ 81. |                                                                                                       Vincent's angina |
+ 86. |                                                                                                 Family history: Angina |
+ 99. | Thrombolysis In Myocardial Infarction risk score for unstable angina or non-ST-segment-elevation myocardial infarction |
+109. |                                                                                                   Streptococcal angina |
+112. |                                                                       FH: Ischemic heart disease at less than 60 years |
+     |------------------------------------------------------------------------------------------------------------------------|
+113. |                                                                               Family history of ischemic heart disease |
+115. |                                                                                                     CLASP angina score |
+129. |                                                          Family history: Ischaemic heart disease at less than 60 years |
+136. |                                                                                             FH: Ischemic heart disease |
+144. |                                                                            No family history of ischemic heart disease |
+     |------------------------------------------------------------------------------------------------------------------------|
+145. |                                                                        Family history: Angina at greater than 60 years |
+148. |                                                                                         Vincent's angina - pharyngitis |
+150. |                                                                              No family history: Ischemic heart disease |
+151. |                                                           Family history: Ischemic heart disease at less than 60 years |
+152. |                                                                    FH: Ischemic heart disease at greater than 60 years |
+     +------------------------------------------------------------------------------------------------------------------------+
+
+. /**//**/
+. 
+. drop if exclude == 1 ///
+> /**//**/
+(35 observations deleted)
+
+. 
+. drop exclude /**//**/
+
+. count
+  122
+
+. compress
+  (0 bytes saved)
+
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. /* EVERYTHING LOOKS OK
+> // **medcodeids to remove**
+> local initial_remove "123"
+> 
+> gen byte remove = 0
+> 
+> foreach medcode of local initial_remove {
+>         
+>         replace remove = 1 if medcodeid == "`medcode'"
+> }
+> 
+> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+> drop if remove == 1
+> drop remove
+> 
+> compress
+> tab1 /**/ihd/**/
+> */
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str17)
+
+         Unique values: 73                        Missing "": 0/122
+
+              Examples: "194828000"
+                        "314116003"
+                        "414545008"
+                        "736059007"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  122
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/ihd/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/ihd/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(49 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               124  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str17
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str154
+  (10,540 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             2
+        from master                         2  
+        from using                          0  
+
+    Matched                               122  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/ihd/**/, last
+
+. gsort /**/ihd/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/ihd/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: ihd
+
+     +------------------------------------------------------------+
+     | snome~tid   originalrea~e                             term |
+     |------------------------------------------------------------|
+ 58. | 194828000           G33z1                      Stenocardia |
+108. |   4557003   ^ESCTIN257153   Intermediate coronary syndrome |
+     +------------------------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(122 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(0 observations deleted)
+
+. 
+.         count
+  2
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 194828000
+
+     +---------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                term   new_sn~m |
+     |---------------------------------------------------------------------------------|
+ 50. |        299757012             G33                     Angina pectoris          0 |
+ 56. |  482941000006119            G33z                 Angina pectoris NOS          0 |
+ 58. |        299758019           G33z1                         Stenocardia          1 |
+ 63. |        299765010           G33zz                 Angina pectoris NOS          0 |
+ 71. |        300874013           Gyu30   [X]Other forms of angina pectoris          0 |
+     |---------------------------------------------------------------------------------|
+ 92. | 4775971000006114   ^ESCTAN477597                              Angina          0 |
+ 93. | 4776001000006111   ^ESCTAN477600                    Anginal syndrome          0 |
+ 99. | 4775981000006112   ^ESCTCA477598                      Cardiac angina          0 |
+109. | 4776021000006118   ^ESCTIS477602     Ischemic heart disease - angina          0 |
+110. | 4776031000006115   ^ESCTIS477603    Ischaemic heart disease - angina          0 |
+     +---------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 4557003
+
+     +------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                             term   new_sn~m |
+     |------------------------------------------------------------------------------|
+ 38. |          7844010            G311           Preinfarction syndrome          0 |
+ 39. |          7847015          G311-1                 Crescendo angina          0 |
+ 41. |   72571000006115          G311-3                  Unstable angina          0 |
+ 43. |          7845011           G3111                  Unstable angina          0 |
+ 46. |        494261017           G3114                 Worsening angina          0 |
+     |------------------------------------------------------------------------------|
+ 47. |        299741012           G311z           Preinfarction syndrome          0 |
+108. | 2571531000006110   ^ESCTIN257153   Intermediate coronary syndrome          1 |
+113. | 2571561000006118   ^ESCTPR257156          Pre-infarction syndrome          0 |
+     +------------------------------------------------------------------------------+
+
+. 
+. 
+. // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. /*
+> // **Search terms for each categorisation desired**
+> local cat1 " "*cat1*" "
+> local cat2 " "*cat2*" "
+> 
+> //Search for codes
+> foreach categoryterm in /**/cat1 cat2/**/ {
+>         
+>         gen byte `categoryterm' = .
+>         
+>         foreach codeterm in lower(term) {
+>                 
+>                 foreach searchterm in ``categoryterm'' {                
+>                         
+>                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+>                 }
+>         }
+> }
+> 
+> tab1 cat1 cat2
+> */
+. 
+. // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
+. //====================================================
+. 
+. //Comment this section out if no previous codelist
+. 
+. //MedCodeID codelists (LSHTM Data Compass)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/2102/46/mace_aurum_jan20.txt, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(9 vars, 303 obs)
+
+.         
+.         keep if angina == 1
+(291 observations deleted)
+
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_2102_angina"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable medcodeid was str17 now str16
+  variable term_lshtm_2102_angina was str60 now str30
+  (372 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000006.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/2196/1/mace_aurum_jan20.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(9 vars, 303 obs)
+
+.         
+.         keep if angina == 1
+(291 observations deleted)
+
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_2196_angina"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable medcodeid was str17 now str16
+  variable term_lshtm_2196_angina was str60 now str30
+  (372 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/2815/1/mace_aurum_mar20.txt, stringcols(1 5 6) clear
+(encoding automatically selected: ISO-8859-1)
+(13 vars, 256 obs)
+
+.         
+.         keep if angina == 1
+(244 observations deleted)
+
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_2815_angina"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable medcodeid was str17 now str16
+  variable term_lshtm_2815_angina was str63 now str30
+  (408 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000008.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/3265/1/aad_aurum_clincodes.txt, stringcols(1 5 6) clear favorstrfixed
+(encoding automatically selected: ISO-8859-1)
+(14 vars, 2,286 obs)
+
+.         
+.         keep if coronary_heart_disease == 1
+(2,064 observations deleted)
+
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_3265"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable term_lshtm_3265 was str135 now str125
+  (2,220 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/21/covariate_ihd_aurum.txt, stringcols(1) clear favorstrfixed
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 492 obs)
+
+.         
+.         keep medcodeid term
+
+.         
+.         local name "lshtm_4214"
+
+.         
+.         rename * *_`name'
+
+.         rename medcodeid_`name' medcodeid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000a.tmp saved as .dta format
+
+. restore
+
+. 
+. foreach codelist in lshtm_2102_angina lshtm_2196_angina lshtm_2815_angina /*lshtm_3265 lshtm_4214*/ {
+  2.         
+.         //Merge previous codelist
+.         merge 1:1 medcodeid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list medcodeid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace /**/ihd/**/ = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           116
+        from master                       114  (_merge==1)
+        from using                          2  (_merge==2)
+
+    Matched                                10  (_merge==3)
+    -----------------------------------------
+
+     +-----------------------------------------------------+
+     |                   term       term_lshtm_2102_angina |
+     |-----------------------------------------------------|
+ 34. | Preinfarction syndrome   preinfarction syndrome nos |
+     +-----------------------------------------------------+
+Terms on pre-existing list only...
+
+     +-------------------------------------------------+
+     |        medcodeid         term_lshtm_2102_angina |
+     |-------------------------------------------------|
+125. | 2571571000006113           preinfarction angina |
+126. |        299745015   acute coronary insufficiency |
+     +-------------------------------------------------+
+(2 real changes made)
+(2 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           114
+        from master                       114  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+
+     +-----------------------------------------------------+
+     |                   term       term_lshtm_2196_angina |
+     |-----------------------------------------------------|
+ 35. | Preinfarction syndrome   preinfarction syndrome nos |
+     +-----------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           114
+        from master                       114  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                12  (_merge==3)
+    -----------------------------------------
+
+     +-----------------------------------------------------+
+     |                   term       term_lshtm_2815_angina |
+     |-----------------------------------------------------|
+ 35. | Preinfarction syndrome   preinfarction syndrome nos |
+     +-----------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if snomedctconceptid == ""
+  2
+
+. list medcodeid term if snomedctconceptid == ""
+
+     +-------------------------------------------------+
+     |        medcodeid                           term |
+     |-------------------------------------------------|
+ 27. | 2571571000006113           preinfarction angina |
+ 36. |        299745015   acute coronary insufficiency |
+     +-------------------------------------------------+
+
+. 
+. //Compare newly found MedCodeIDs against Aurum dictionary
+. preserve
+
+.         //Merge new MedCodeIDs with medical dictionary
+.         keep medcodeid
+
+.         merge 1:1 medcodeid using `medical'
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,875
+        from master                         1  (_merge==1)
+        from using                    240,874  (_merge==2)
+
+    Matched                               125  (_merge==3)
+    -----------------------------------------
+
+.         generate byte not_in_dictionary = 1 if _merge == 1
+(240,999 missing values generated)
+
+.         list medcodeid if not_in_dictionary == 1
+
+        +------------------+
+        |        medcodeid |
+        |------------------|
+    27. | 2571571000006113 |
+        +------------------+
+
+.         keep if not_in_dictionary == 1
+(240,999 observations deleted)
+
+.         keep medcodeid not_in_dictionary
+
+.         tempfile notindict
+
+.         save `notindict'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000c.tmp saved as .dta format
+
+. restore
+
+. 
+. //Remove codes not in Aurum dictionary
+. merge 1:1 medcodeid using `notindict'
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           125
+        from master                       125  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 1  (_merge==3)
+    -----------------------------------------
+
+. list medcodeid term if not_in_dictionary == 1
+
+     +-----------------------------------------+
+     |        medcodeid                   term |
+     |-----------------------------------------|
+ 27. | 2571571000006113   preinfarction angina |
+     +-----------------------------------------+
+
+. drop if not_in_dictionary == 1
+(1 observation deleted)
+
+. drop not_in_dictionary _merge
+
+. 
+. //Check for any additional new codes that haven't been accounted for
+. list medcodeid term lshtm_* if snomedctconceptid == ""
+
+     +---------------------------------------------------------------------------+
+     | medcodeid                           term   l~02_a~a   l~96_a~a   l~815_~a |
+     |---------------------------------------------------------------------------|
+ 35. | 299745015   acute coronary insufficiency          1          1          1 |
+     +---------------------------------------------------------------------------+
+
+. 
+. //Add additional codes to list
+. rename term term_old
+
+. merge 1:1 medcodeid using `medical', update
+(variable originalreadcode was str17, now str19 to accommodate using data's values)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+(variable snomedctdescriptionid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,874
+        from master                         0  (_merge==1)
+        from using                    240,874  (_merge==2)
+
+    Matched                               125
+        not updated                       124  (_merge==3)
+        missing updated                     1  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. drop if _merge == 2
+(240,874 observations deleted)
+
+. order term, before(term_old)
+
+. list term_old term if lower(term_old) != lower(term)
+
+. drop term_old _merge
+
+. 
+. 
+. //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH27/version/54/export/codes, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(10 vars, 7 obs)
+
+.         
+.         keep if strmatch(coding_system, "*SNOMED*")
+(0 observations deleted)
+
+.         keep code description
+
+.         rename description term
+
+.         
+.         local name "ph27"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000e.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH956/version/2134/export/codes, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(10 vars, 159 obs)
+
+.         
+.         keep if strmatch(coding_system, "*SNOMED*")
+(112 observations deleted)
+
+.         keep code description
+
+.         rename description term
+
+.         
+.         local name "ph956"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable term_ph956 was str255 now str106
+  (7,003 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH986/version/2164/export/codes, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(10 vars, 22 obs)
+
+.         
+.         keep if strmatch(coding_system, "*SNOMED*")
+(12 observations deleted)
+
+.         keep code description code_attributes
+
+.         rename description term
+
+.         
+.         local name "ph986"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  variable term_ph986 was str255 now str99
+  variable code_attributes_ph986 was str100 now str47
+  (2,090 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000g.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/angina_cod/20210127/download.csv, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 50 obs)
+
+.         
+.         local name "refset_angina"
+
+.         
+.         rename * *_`name'
+
+.         rename code_`name' snomedctconceptid
+
+.         
+.         generate byte `name' = 1
+
+. 
+.         tempfile `name'
+
+.         compress
+  (0 bytes saved)
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
+
+. restore
+
+. 
+. foreach codelist in /*ph27*/ ph956 ph986 refset_angina {
+  2.         
+.         //Merge previous codelist
+.         merge m:1 snomedctconceptid using ``codelist''
+  3. 
+.         //Check for any differences
+.         list term term_`codelist' if _merge == 3 ///
+>                 & lower(term) != lower(term_`codelist')
+  4. 
+.         //Comment on result above: **No meaningful differences**
+. 
+.         display "Terms on pre-existing list only..."
+  5.         list snomedctconceptid term_`codelist' if _merge == 2
+  6.         
+.         //Put pre-existing codelist terms in current codelist term column
+.         replace term = term_`codelist' if _merge == 2
+  7.         replace /**/ihd/**/ = 1 if _merge == 2
+  8. 
+.         //Drop old terms and merge variable
+.         drop *_`codelist' _merge
+  9. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            65
+        from master                        50  (_merge==1)
+        from using                         15  (_merge==2)
+
+    Matched                                75  (_merge==3)
+    -----------------------------------------
+
+     +------------------------------------------------------------------------------------------------------------+
+  5. |                                                                                              term          |
+     |                                 Unstable angina co-occurrent and due to coronary arteriosclerosis          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                               Unstable angina co-occurrent and due to coronary arteriosclerosis (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+  6. |                                                                                              term          |
+     |                                          Angina co-occurrent and due to coronary arteriosclerosis          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                        Angina co-occurrent and due to coronary arteriosclerosis (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+  8. |                                                                                              term          |
+     |                      Arteriosclerosis of autologous vein coronary artery bypass graft with angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     | Angina co-occurrent and due to arteriosclerosis of autologous vein coronary artery bypass graft (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+  9. |                                                                                              term          |
+     |          Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |        Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 21. |                                                                                              term          |
+     |                                                                                  Status anginosus          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Status anginosus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 22. |                                                                                              term          |
+     |                                                                      Acute coronary insufficiency          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                    Acute coronary insufficiency (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 23. |                                                                                              term          |
+     |                                                                   Ischemic heart disease - angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 24. |                                                                                              term          |
+     |                                                                               Angina pectoris NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 25. |                                                                                              term          |
+     |                                                                               Angina pectoris NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 26. |                                                                                              term          |
+     |                                                                                    Cardiac angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 27. |                                                                                              term          |
+     |                                                                                  Anginal syndrome          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 28. |                                                                                              term          |
+     |                                                                                            Angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 29. |                                                                                              term          |
+     |                                                                                       Stenocardia          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 30. |                                                                                              term          |
+     |                                                                 [X]Other forms of angina pectoris          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 31. |                                                                                              term          |
+     |                                                                  Ischaemic heart disease - angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 32. |                                                                                              term          |
+     |                                                                                   Angina pectoris          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                          Angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 36. |                                                                                              term          |
+     |                                                                                     Stable angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                   Stable angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 37. |                                                                                              term          |
+     |                                                                                  New onset angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                New onset angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 39. |                                                                                              term          |
+     |                                                                              Impending infarction          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                            Impending infarction (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 42. |                                                                                              term          |
+     |                                                                                  Angina of effort          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                         Exercise-induced angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 43. |                                                                                              term          |
+     |                                                                                 Exertional angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                         Exercise-induced angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 44. |                                                                                              term          |
+     |                                                                           Exercise-induced angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                         Exercise-induced angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 45. |                                                                                              term          |
+     |                                                                                  Angina on effort          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                         Exercise-induced angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 50. |                                                                                              term          |
+     |                                                                               Post infarct angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                             Post infarct angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 51. |                                                                                              term          |
+     |                                                                                 Refractory angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Refractory angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 54. |                                                                                              term          |
+     |                                                                                  Nocturnal angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Nocturnal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 55. |                                                                                              term          |
+     |                                                                                Progressive angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                              Progressive angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 56. |                                                                                              term          |
+     |                                                                                   Atypical angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                 Atypical angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 57. |                                                                                              term          |
+     |                             Recurrent angina after percutaneous transluminal coronary angioplasty          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                     Recurrent angina status post percutaneous transluminal coronary angioplasty (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 58. |                                                                                              term          |
+     |                                                   Recurrent angina after coronary stent placement          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                           Recurrent angina status post coronary stent placement (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 59. |                                                                                              term          |
+     |                                               Recurrent angina after coronary artery bypass graft          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                       Recurrent angina status post coronary artery bypass graft (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 60. |                                                                                              term          |
+     |                                                                                  Angina, class II          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina, class II (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 61. |                                                                                              term          |
+     |                                                                     Acute ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                    Acute ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 62. |                                                                                              term          |
+     |                                               Other specified chronic ischaemic heart disease NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 63. |                                                                                              term          |
+     |                                                                   Chronic ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 64. |                                                                                              term          |
+     |                                                                    Chronic ischemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 65. |                                                                                              term          |
+     |                                                 [X]Other forms of chronic ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 66. |                                                                                              term          |
+     |                                                   Other specified chronic ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 67. |                                                                                              term          |
+     |                                                         Other chronic ischaemic heart disease NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                  Chronic ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 68. |                                                                                              term          |
+     |                                                                           Ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 69. |                                                                                              term          |
+     |                                                           Other specified ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 70. |                                                                                              term          |
+     |                                                                      IHD - Ischemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 71. |                                                                                              term          |
+     |                                                  Other acute and subacute ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 72. |                                                                                              term          |
+     |                                                  Other acute and subacute ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 73. |                                                                                              term          |
+     |                                                                            Ischemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 74. |                                                                                              term          |
+     |                                                   [X]Other forms of acute ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 75. |                                                                                              term          |
+     |                                              Other acute and subacute ischaemic heart disease NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 76. |                                                                                              term          |
+     |                                                                     IHD - Ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 77. |                                                                                              term          |
+     |                                                                       Ischaemic heart disease NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 78. |                                                                                              term          |
+     |                                                                       [X]Ischaemic heart diseases          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 79. |                                                                                              term          |
+     |                                                                                    Typical angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                  Typical angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 80. |                                                                                              term          |
+     |                                                                            Preinfarction syndrome          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 81. |                                                                                              term          |
+     |                                                                                   Unstable angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 82. |                                                                                              term          |
+     |                                                                            Preinfarction syndrome          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 83. |                                                                                              term          |
+     |                                                                    Intermediate coronary syndrome          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 84. |                                                                                              term          |
+     |                                                                                  Crescendo angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 85. |                                                                                              term          |
+     |                                                                                   Unstable angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 86. |                                                                                              term          |
+     |                                                                           Pre-infarction syndrome          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 87. |                                                                                              term          |
+     |                                                                                  Worsening angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                          Preinfarction syndrome (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 90. |                                                                                              term          |
+     |                                                                              Angina decubitus NOS          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina decubitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 91. |                                                                                              term          |
+     |                                                                                    Angina at rest          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina decubitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 92. |                                                                                              term          |
+     |                                                                                    Angina at rest          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina decubitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 93. |                                                                                              term          |
+     |                                                                                  Angina decubitus          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina decubitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 94. |                                                                                              term          |
+     |                                                                        Anginal chest pain at rest          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina decubitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 95. |                                                                                              term          |
+     |                                                                                   Angina, class I          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                 Angina, class I (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+ 99. |                                                                                              term          |
+     |                                                                  Subacute ischaemic heart disease          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                 Subacute ischemic heart disease (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+105. |                                                                                              term          |
+     |                                                   Angina associated with type 2 diabetes mellitus          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                Angina associated with type II diabetes mellitus (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+108. |                                                                                              term          |
+     |                                                                                 Angina, class III          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Angina, class III (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+115. |                                                                                              term          |
+     |                                                                      Coronary artery spasm angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+116. |                                                                                              term          |
+     |                                                                           Variant angina pectoris          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+117. |                                                                                              term          |
+     |                                                                                    Variant angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+118. |                                                                                              term          |
+     |                                                                           Variant angina pectoris          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+119. |                                                                                              term          |
+     |                                                                                 Prinzmetal angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+120. |                                                                                              term          |
+     |                                                                               Prinzmetal's angina          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                               Prinzmetal angina (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+
+     +------------------------------------------------------------------------------------------------------------+
+121. |                                                                                              term          |
+     |                                                                                  Angina, class IV          |
+     |------------------------------------------------------------------------------------------------------------|
+     |                                                                                                 term_ph956 |
+     |                                                                                Angina, class IV (disorder) |
+     +------------------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +----------------------------------------------------------------------------------------------------------------+
+     | snomedctconceptid                                                                                   term_ph956 |
+     |----------------------------------------------------------------------------------------------------------------|
+126. |    10971000087107                                                Myocardial ischemia during surgery (disorder) |
+127. | 15960381000119109   Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder) |
+128. |          21470009                                                                  Syncope anginosa (disorder) |
+129. |         225566008                                                                Ischemic chest pain (finding) |
+130. |         233823002                                                        Silent myocardial ischemia (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+131. |         371811008                               Recurrent angina status post rotational atherectomy (disorder) |
+132. |         371812001                     Recurrent angina status post directional coronary atherectomy (disorder) |
+133. |         394659003                                                           Acute coronary syndrome (disorder) |
+134. |         413444003                                                         Acute myocardial ischemia (disorder) |
+135. |         413844008                                                       Chronic myocardial ischemia (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+136. |         414795007                                                               Myocardial ischemia (disorder) |
+137. |          46109009                                                           Subendocardial ischemia (disorder) |
+138. |         697976003                                              Microvascular ischemia of myocardium (disorder) |
+139. |         703214003                                               Silent coronary vasospastic disease (disorder) |
+140. |         712866001                   Resting ischemia co-occurrent and due to ischemic heart disease (disorder) |
+     +----------------------------------------------------------------------------------------------------------------+
+(15 real changes made)
+(15 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           123
+        from master                       123  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                17  (_merge==3)
+    -----------------------------------------
+
+     +-----------------------------------------------------------------------------------------------------+
+  6. |                                                                                          term       |
+     |                             Unstable angina co-occurrent and due to coronary arteriosclerosis       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                        Unstable angina co-occurrent and due to coronary arteriosclerosis (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 11. |                                                                                          term       |
+     |      Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     | Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 23. |                                                                                          term       |
+     |                                                                              Status anginosus       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                         Status anginosus (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 44. |                                                                                          term       |
+     |                                                                          Impending infarction       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                     Impending infarction (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 56. |                                                                                          term       |
+     |                                                                             Refractory angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                        Refractory angina (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 59. |                                                                                          term       |
+     |                                                                              Nocturnal angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                         Nocturnal angina (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 61. |                                                                                          term       |
+     |                                                                               Atypical angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                          Atypical angina (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 91. |                                                                                          term       |
+     |                                                                        Preinfarction syndrome       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 92. |                                                                                          term       |
+     |                                                                              Worsening angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 93. |                                                                                          term       |
+     |                                                                        Preinfarction syndrome       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 94. |                                                                                          term       |
+     |                                                                               Unstable angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 95. |                                                                                          term       |
+     |                                                                               Unstable angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 96. |                                                                                          term       |
+     |                                                                              Crescendo angina       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 97. |                                                                                          term       |
+     |                                                                Intermediate coronary syndrome       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------+
+ 98. |                                                                                          term       |
+     |                                                                       Pre-infarction syndrome       |
+     |-----------------------------------------------------------------------------------------------------|
+     |                                                                                          term_ph986 |
+     |                                                                   Preinfarction syndrome (disorder) |
+     +-----------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+(0 real changes made)
+(0 real changes made)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                            53
+        from master                        50  (_merge==1)
+        from using                          3  (_merge==2)
+
+    Matched                                90  (_merge==3)
+    -----------------------------------------
+
+     +-------------------------------------------------------------------------------------------------+
+  3. |                                                                                         term    |
+     |                                                Myocardial ischemia during surgery (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                              Myocardial ischemia during surgery |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+  9. |                                                                                         term    |
+     |   Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                 Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 10. |                                                                                         term    |
+     |                 Arteriosclerosis of autologous vein coronary artery bypass graft with angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     | Angina co-occurrent and due to arteriosclerosis of autologous vein coronary artery bypass graft |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 25. |                                                                                         term    |
+     |                                                                             Anginal syndrome    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 26. |                                                                                         term    |
+     |                                                                          Angina pectoris NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 27. |                                                                                         term    |
+     |                                                             Ischaemic heart disease - angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 28. |                                                                                         term    |
+     |                                                                              Angina pectoris    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 29. |                                                                                         term    |
+     |                                                                               Cardiac angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 31. |                                                                                         term    |
+     |                                                                                  Stenocardia    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 32. |                                                                                         term    |
+     |                                                              Ischemic heart disease - angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 33. |                                                                                         term    |
+     |                                                            [X]Other forms of angina pectoris    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 34. |                                                                                         term    |
+     |                                                                          Angina pectoris NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                          Angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 38. |                                                                                         term    |
+     |                                                                  Syncope anginosa (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                Syncope anginosa |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 39. |                                                                                         term    |
+     |                                                                Ischemic chest pain (finding)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                             Ischemic chest pain |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 42. |                                                                                         term    |
+     |                                                        Silent myocardial ischemia (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                      Silent myocardial ischemia |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 47. |                                                                                         term    |
+     |                                                                            Exertional angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                         Exercise-induced angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 49. |                                                                                         term    |
+     |                                                                             Angina on effort    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                         Exercise-induced angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 50. |                                                                                         term    |
+     |                                                                             Angina of effort    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                         Exercise-induced angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 62. |                                                                                         term    |
+     |                        Recurrent angina after percutaneous transluminal coronary angioplasty    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                     Recurrent angina status post percutaneous transluminal coronary angioplasty |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 63. |                                                                                         term    |
+     |                                              Recurrent angina after coronary stent placement    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                           Recurrent angina status post coronary stent placement |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 64. |                                                                                         term    |
+     |                                          Recurrent angina after coronary artery bypass graft    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                       Recurrent angina status post coronary artery bypass graft |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 65. |                                                                                         term    |
+     |                               Recurrent angina status post rotational atherectomy (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                             Recurrent angina status post rotational atherectomy |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 66. |                                                                                         term    |
+     |                     Recurrent angina status post directional coronary atherectomy (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                   Recurrent angina status post directional coronary atherectomy |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 67. |                                                                                         term    |
+     |                                                           Acute coronary syndrome (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                         Acute coronary syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 69. |                                                                                         term    |
+     |                                                                Acute ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                    Acute ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 70. |                                                                                         term    |
+     |                                                         Acute myocardial ischemia (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                       Acute myocardial ischemia |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 72. |                                                                                         term    |
+     |                                                    Other chronic ischaemic heart disease NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                  Chronic ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 73. |                                                                                         term    |
+     |                                                              Chronic ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                  Chronic ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 74. |                                                                                         term    |
+     |                                            [X]Other forms of chronic ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                  Chronic ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 75. |                                                                                         term    |
+     |                                              Other specified chronic ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                  Chronic ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 76. |                                                                                         term    |
+     |                                          Other specified chronic ischaemic heart disease NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                  Chronic ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 77. |                                                                                         term    |
+     |                                                       Chronic myocardial ischemia (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                     Chronic myocardial ischemia |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 79. |                                                                                         term    |
+     |                                                                  [X]Ischaemic heart diseases    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 80. |                                                                                         term    |
+     |                                         Other acute and subacute ischaemic heart disease NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 81. |                                                                                         term    |
+     |                                                                      Ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 82. |                                                                                         term    |
+     |                                                                  Ischaemic heart disease NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 83. |                                                                                         term    |
+     |                                                                IHD - Ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 84. |                                                                                         term    |
+     |                                             Other acute and subacute ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 85. |                                                                                         term    |
+     |                                              [X]Other forms of acute ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 86. |                                                                                         term    |
+     |                                             Other acute and subacute ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 87. |                                                                                         term    |
+     |                                                      Other specified ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 88. |                                                                                         term    |
+     |                                                                 IHD - Ischemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 89. |                                                                                         term    |
+     |                                                               Myocardial ischemia (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                             Myocardial ischemia |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 92. |                                                                                         term    |
+     |                                                                             Worsening angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 94. |                                                                                         term    |
+     |                                                                              Unstable angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 95. |                                                                                         term    |
+     |                                                                              Unstable angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 96. |                                                                                         term    |
+     |                                                                             Crescendo angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 97. |                                                                                         term    |
+     |                                                               Intermediate coronary syndrome    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 98. |                                                                                         term    |
+     |                                                                      Pre-infarction syndrome    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                          Preinfarction syndrome |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+ 99. |                                                                                         term    |
+     |                                                           Subendocardial ischemia (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                         Subendocardial ischemia |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+102. |                                                                                         term    |
+     |                                                                               Angina at rest    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                Angina decubitus |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+104. |                                                                                         term    |
+     |                                                                   Anginal chest pain at rest    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                Angina decubitus |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+105. |                                                                                         term    |
+     |                                                                               Angina at rest    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                Angina decubitus |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+106. |                                                                                         term    |
+     |                                                                         Angina decubitus NOS    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                                Angina decubitus |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+109. |                                                                                         term    |
+     |                                              Microvascular ischemia of myocardium (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                            Microvascular ischemia of myocardium |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+111. |                                                                                         term    |
+     |                                               Silent coronary vasospastic disease (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                             Silent coronary vasospastic disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+113. |                                                                                         term    |
+     |                   Resting ischemia co-occurrent and due to ischemic heart disease (disorder)    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                 Resting ischemia co-occurrent and due to ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+114. |                                                                                         term    |
+     |                                                             Subacute ischaemic heart disease    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                 Subacute ischemic heart disease |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+120. |                                                                                         term    |
+     |                                              Angina associated with type 2 diabetes mellitus    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                          Angina due to type 2 diabetes mellitus |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+130. |                                                                                         term    |
+     |                                                                      Variant angina pectoris    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                               Prinzmetal angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+132. |                                                                                         term    |
+     |                                                                               Variant angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                               Prinzmetal angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+133. |                                                                                         term    |
+     |                                                                          Prinzmetal's angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                               Prinzmetal angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+134. |                                                                                         term    |
+     |                                                                 Coronary artery spasm angina    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                               Prinzmetal angina |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+135. |                                                                                         term    |
+     |                                                                      Variant angina pectoris    |
+     |-------------------------------------------------------------------------------------------------|
+     |                                                                              term_refset_angina |
+     |                                                                               Prinzmetal angina |
+     +-------------------------------------------------------------------------------------------------+
+Terms on pre-existing list only...
+
+     +-------------------------------------------------------------------------------------------------------------+
+     | snomedctconceptid                                                                        term_refset_angina |
+     |-------------------------------------------------------------------------------------------------------------|
+141. | 15960541000119107   Unstable angina due to arteriosclerosis of autologous vein coronary artery bypass graft |
+142. | 16754391000119100                                            Stable angina due to coronary arteriosclerosis |
+143. |         792842004                                 Coronary arteriosclerosis in artery of transplanted heart |
+     +-------------------------------------------------------------------------------------------------------------+
+(3 real changes made)
+(3 real changes made)
+
+. 
+. //Count number of codes that didn't match
+. count if medcodeid == ""
+  18
+
+. list snomedctconceptid term if medcodeid == ""
+
+     +----------------------------------------------------------------------------------------------------------------+
+     | snomedctconceptid                                                                                         term |
+     |----------------------------------------------------------------------------------------------------------------|
+  3. |    10971000087107                                                Myocardial ischemia during surgery (disorder) |
+  9. | 15960381000119109   Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder) |
+ 38. |          21470009                                                                  Syncope anginosa (disorder) |
+ 39. |         225566008                                                                Ischemic chest pain (finding) |
+ 42. |         233823002                                                        Silent myocardial ischemia (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+ 65. |         371811008                               Recurrent angina status post rotational atherectomy (disorder) |
+ 66. |         371812001                     Recurrent angina status post directional coronary atherectomy (disorder) |
+ 67. |         394659003                                                           Acute coronary syndrome (disorder) |
+ 70. |         413444003                                                         Acute myocardial ischemia (disorder) |
+ 77. |         413844008                                                       Chronic myocardial ischemia (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+ 89. |         414795007                                                               Myocardial ischemia (disorder) |
+ 99. |          46109009                                                           Subendocardial ischemia (disorder) |
+109. |         697976003                                              Microvascular ischemia of myocardium (disorder) |
+111. |         703214003                                               Silent coronary vasospastic disease (disorder) |
+113. |         712866001                   Resting ischemia co-occurrent and due to ischemic heart disease (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+141. | 15960541000119107      Unstable angina due to arteriosclerosis of autologous vein coronary artery bypass graft |
+142. | 16754391000119100                                               Stable angina due to coronary arteriosclerosis |
+143. |         792842004                                    Coronary arteriosclerosis in artery of transplanted heart |
+     +----------------------------------------------------------------------------------------------------------------+
+
+. 
+. //Compare newly found Concept IDs against Aurum dictionary
+. preserve
+
+.         //Merge SNOMED CT Concepts with medical dictionary
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(51 observations deleted)
+
+.         merge 1:m snomedctconceptid using `medical'
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,865
+        from master                         7  (_merge==1)
+        from using                    240,858  (_merge==2)
+
+    Matched                               141  (_merge==3)
+    -----------------------------------------
+
+.         generate byte not_in_dictionary = 1 if _merge == 1
+(240,999 missing values generated)
+
+.         list snomedctconceptid if not_in_dictionary == 1
+
+        +-------------------+
+        | snomedctconceptid |
+        |-------------------|
+     3. |    10971000087107 |
+     9. | 15960381000119109 |
+    10. | 15960541000119107 |
+    14. | 16754391000119100 |
+    47. |         371811008 |
+        |-------------------|
+    48. |         371812001 |
+    77. |         792842004 |
+        +-------------------+
+
+.         keep if not_in_dictionary == 1
+(240,999 observations deleted)
+
+.         keep snomedctconceptid not_in_dictionary
+
+.         tempfile notindict
+
+.         save `notindict'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000j.tmp saved as .dta format
+
+. restore
+
+. 
+. //Remove codes not in Aurum dictionary
+. merge m:1 snomedctconceptid using `notindict'
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           136
+        from master                       136  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 7  (_merge==3)
+    -----------------------------------------
+
+. list snomedctconceptid term if not_in_dictionary == 1
+
+     +----------------------------------------------------------------------------------------------------------------+
+     | snomedctconceptid                                                                                         term |
+     |----------------------------------------------------------------------------------------------------------------|
+  3. |    10971000087107                                                Myocardial ischemia during surgery (disorder) |
+  9. | 15960381000119109   Angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft (disorder) |
+ 10. | 15960541000119107      Unstable angina due to arteriosclerosis of autologous vein coronary artery bypass graft |
+ 15. | 16754391000119100                                               Stable angina due to coronary arteriosclerosis |
+ 67. |         371811008                               Recurrent angina status post rotational atherectomy (disorder) |
+     |----------------------------------------------------------------------------------------------------------------|
+ 68. |         371812001                     Recurrent angina status post directional coronary atherectomy (disorder) |
+123. |         792842004                                    Coronary arteriosclerosis in artery of transplanted heart |
+     +----------------------------------------------------------------------------------------------------------------+
+
+. drop if not_in_dictionary == 1
+(7 observations deleted)
+
+. drop not_in_dictionary _merge
+
+. 
+. //Check for any additional new codes that haven't been accounted for
+. list snomedctconceptid term /**/ph* refset_angina/**/ if medcode == ""
+
+     +-------------------------------------------------------------------------------------------------------------------+
+     | snome~tid                                                                         term   ph956   ph986   refset~a |
+     |-------------------------------------------------------------------------------------------------------------------|
+ 36. |  21470009                                                  Syncope anginosa (disorder)       1       .          1 |
+ 37. | 225566008                                                Ischemic chest pain (finding)       1       .          1 |
+ 40. | 233823002                                        Silent myocardial ischemia (disorder)       1       .          1 |
+ 63. | 394659003                                           Acute coronary syndrome (disorder)       1       1          1 |
+ 66. | 413444003                                         Acute myocardial ischemia (disorder)       1       .          1 |
+     |-------------------------------------------------------------------------------------------------------------------|
+ 73. | 413844008                                       Chronic myocardial ischemia (disorder)       1       .          1 |
+ 85. | 414795007                                               Myocardial ischemia (disorder)       1       .          1 |
+ 95. |  46109009                                           Subendocardial ischemia (disorder)       1       .          1 |
+105. | 697976003                              Microvascular ischemia of myocardium (disorder)       1       .          1 |
+107. | 703214003                               Silent coronary vasospastic disease (disorder)       1       .          1 |
+     |-------------------------------------------------------------------------------------------------------------------|
+109. | 712866001   Resting ischemia co-occurrent and due to ischemic heart disease (disorder)       1       1          1 |
+     +-------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //for now just drop them
+. drop if medcodeid == ""
+(11 observations deleted)
+
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str17
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str154
+  (11,000 bytes saved)
+
+. save `filename', replace
+(file ischaemic_heart_disease.dta not found)
+file ischaemic_heart_disease.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file ischaemic_heart_disease_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. /*
+> //Load clinician classifications
+> local clinician "ABC"
+> 
+> import excel `filename'_raw_`clinician', firstrow clear
+> 
+> //Remerge with original in case of any formatting issues with Excel spreadsheet
+> keep medcodeid `clinician'
+> 
+> tempfile `clinician'_classification
+> save ``clinician'_classification'
+> 
+> use `filename', clear
+> 
+> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+> 
+> //Remove codes marked for exclusion by clinician
+> display "Terms excluded by clinician..."
+> list medcodeid snomedctconceptid term if `clinican' == 0
+> drop if `clinician' == 0
+> 
+> //Save clinican approved codelist
+> gsort snomedctconceptid snomedctdescriptionid originalreadcode
+> drop new_snomedct_synonym /*codestatus*/ `clinician'
+> compress
+> save `filename', replace
+> export delimited `filename', replace quote
+> */
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Ischaemic heart disease"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 12)  //year, month
+
+. local clinical_reviewer "Christina Avgerinou"
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str23
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(1 real change made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str23 now str26
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file ischaemic_heart_disease.meta not found)
+file ischaemic_heart_disease.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\ischaemic_heart_disease.log
+  log type:  text
+ closed on:   3 Dec 2024, 21:11:50
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
