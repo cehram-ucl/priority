@@ -264,10 +264,11 @@ tab1 cat1 cat2
 preserve
 	import delimited https://www.example.com/download.csv, stringcols(1) clear
 	
+	keep medcodeid term
 	local name "cl1"
 	
 	rename * *_`name'
-	rename code_`name' snomedctconceptid
+	rename code_`name' medcodeid
 	
 	generate byte `name' = 1
 
@@ -277,10 +278,11 @@ preserve
 restore, preserve
 	import delimited https://www.example.com/download.csv, stringcols(1) clear
 	
+	keep medcodeid term
 	local name "cl2"
 	
 	rename * *_`name'
-	rename code_`name' snomedctconceptid
+	rename code_`name' medcodeid
 	
 	generate byte `name' = 1
 
