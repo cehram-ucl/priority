@@ -17,7 +17,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 	- Low-density lipoprotein cholesterol (LDL-C)
 	- Systolic blood pressure (BP)
 	- Glycated haemoglobin (HbA1c)
-	- weight
+	- Weight
 2. Events following treatment initiation:
 	- Cardiovascular disease (myocardial infarction, stroke, unstable angina, and major cardiovascular surgery, based on definition used in [Bazo-Alvarez et al., 2021](https://doi.org/10.1038/s41598-021-02670-9))
 	- Type-2 diabetes mellitus (T2DM) (first time the patient reports an HbA1c>=6.5% (or >= 48 mmol/mol) or a formal T2DM diagnosis)
