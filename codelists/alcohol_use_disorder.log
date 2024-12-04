@@ -1,0 +1,444 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\alcohol_use_disorder.log
+  log type:  text
+ opened on:   4 Dec 2024, 01:04:44
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. //Use pre-existing codelist
+. use https://github.com/NHLI-Respiratory-Epi/Alcohol_use_disorder_codelist/raw/refs/heads/main/Alcohol%20use%20disorder.dta, clear
+
+. 
+. tab1 original alcohol_variable_sc_2 alcohol_category_second_screen conflict Consensuscode alcohol_variable_final AUD_final Dec_23_codebrowser, missing
+
+-> tabulation of original  
+
+   original |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |        496       32.19       32.19
+          1 |      1,045       67.81      100.00
+------------+-----------------------------------
+      Total |      1,541      100.00
+
+-> tabulation of alcohol_variable_sc_2  
+
+  alcohol category on first screen SC |      Freq.     Percent        Cum.
+--------------------------------------+-----------------------------------
+                        AUD diagnosis |         53        3.44        3.44
+                   alcohol withdrawal |         15        0.97        4.41
+Chronic alcohol-related harm physical |         43        2.79        7.20
+ Chronic alcohol-related harm- mental |         53        3.44       10.64
+         Alcohol management/treatment |         59        3.83       14.47
+                          AUD-related |         12        0.78       15.25
+                       Alcohol status |         95        6.16       21.41
+                 AUDIT, AUDIT-C, FAST |         27        1.75       23.17
+Other screening tool or questionnaire |         14        0.91       24.08
+           Acute alcohol-related harm |         43        2.79       26.87
+               not related to alcohol |        392       25.44       52.30
+                           not usable |        152        9.86       62.17
+         code used less than 10 times |        583       37.83      100.00
+--------------------------------------+-----------------------------------
+                                Total |      1,541      100.00
+
+-> tabulation of alcohol_category_second_screen  
+
+ alcohol category on second screen by |
+                            GP coders |      Freq.     Percent        Cum.
+--------------------------------------+-----------------------------------
+                        AUD diagnosis |         68        4.41        4.41
+                   alcohol withdrawal |         14        0.91        5.32
+Chronic alcohol-related harm physical |         53        3.44        8.76
+ Chronic alcohol-related harm- mental |         62        4.02       12.78
+         Alcohol management/treatment |         68        4.41       17.20
+                          AUD-related |          7        0.45       17.65
+                       Alcohol status |         89        5.78       23.43
+                 AUDIT, AUDIT-C, FAST |         29        1.88       25.31
+Other screening tool or questionnaire |         22        1.43       26.74
+           Acute alcohol-related harm |         47        3.05       29.79
+               not related to alcohol |        110        7.14       36.92
+                           not usable |        129        8.37       45.30
+                                    . |        843       54.70      100.00
+--------------------------------------+-----------------------------------
+                                Total |      1,541      100.00
+
+-> tabulation of conflict  
+
+  conflicts |
+    between |
+     coders |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        233       15.12       15.12
+          . |      1,308       84.88      100.00
+------------+-----------------------------------
+      Total |      1,541      100.00
+
+-> tabulation of Consensuscode  
+
+                       Consensus code |      Freq.     Percent        Cum.
+--------------------------------------+-----------------------------------
+                        AUD diagnosis |         12        0.78        0.78
+                   alcohol withdrawal |          2        0.13        0.91
+Chronic alcohol-related harm physical |          8        0.52        1.43
+ Chronic alcohol-related harm- mental |          5        0.32        1.75
+         Alcohol management/treatment |         15        0.97        2.73
+                       Alcohol status |         28        1.82        4.54
+                 AUDIT, AUDIT-C, FAST |         14        0.91        5.45
+Other screening tool or questionnaire |         14        0.91        6.36
+           Acute alcohol-related harm |         25        1.62        7.98
+               not related to alcohol |         31        2.01        9.99
+                           not usable |         79        5.13       15.12
+                                    . |      1,308       84.88      100.00
+--------------------------------------+-----------------------------------
+                                Total |      1,541      100.00
+
+-> tabulation of alcohol_variable_final  
+
+                           final code |      Freq.     Percent        Cum.
+--------------------------------------+-----------------------------------
+                        AUD diagnosis |         38        2.47        2.47
+                   alcohol withdrawal |         15        0.97        3.44
+Chronic alcohol-related harm physical |         46        2.99        6.42
+ Chronic alcohol-related harm- mental |         49        3.18        9.60
+         Alcohol management/treatment |         60        3.89       13.50
+                       Alcohol status |         93        6.04       19.53
+                 AUDIT, AUDIT-C, FAST |         34        2.21       21.74
+Other screening tool or questionnaire |         20        1.30       23.04
+           Acute alcohol-related harm |         48        3.11       26.15
+               not related to alcohol |        393       25.50       51.65
+                           not usable |        162       10.51       62.17
+         code used less than 10 times |        583       37.83      100.00
+--------------------------------------+-----------------------------------
+                                Total |      1,541      100.00
+
+-> tabulation of AUD_final  
+
+ classified as AUD |      Freq.     Percent        Cum.
+-------------------+-----------------------------------
+categorised as AUD |        148        9.60        9.60
+                 . |      1,393       90.40      100.00
+-------------------+-----------------------------------
+             Total |      1,541      100.00
+
+-> tabulation of Dec_23_codebrowser  
+
+ Additional |
+   AUD code |
+   found in |
+        the |
+   December |
+       2023 |
+codebrowser |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          9        0.58        0.58
+          . |      1,532       99.42      100.00
+------------+-----------------------------------
+      Total |      1,541      100.00
+
+. 
+. generate byte alcohol_use_disorder = AUD_final
+(1,393 missing values generated)
+
+. keep if alcohol_use_disorder == 1
+(1,393 observations deleted)
+
+. 
+. //restrict to necessary variables only
+. keep medcodeid term alcohol_use_disorder
+
+. 
+. //Merge with version of CPRD medical dictionary used for study
+. merge 1:1 medcodeid using `medical', update replace
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,887
+        from master                        18  (_merge==1)
+        from using                    240,869  (_merge==2)
+
+    Matched                               130
+        not updated                       126  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 4  (_merge==5)
+    -----------------------------------------
+
+. drop if _merge == 2
+(240,869 observations deleted)
+
+. 
+. //List terms not in this version of the Aurum medical dictionary
+. list medcodeid term if _merge == 1
+
+     +----------------------------------------------------------------------------+
+     |         medcodeid                                                     term |
+     |----------------------------------------------------------------------------|
+  2. | 11922951000006112                                      alcoholic psychoses |
+  4. | 12721711000006110                       alcoholic liver damage unspecified |
+  5. | 12730491000006117                                other alcoholic psychosis |
+ 15. | 15079111000006113                                       Alcohol withdrawal |
+ 19. |  1894171000006111                              alcohol dependence resolved |
+     |----------------------------------------------------------------------------|
+ 35. |  2612491000006118   alcohol-induced psychotic disorder with hallucinations |
+ 36. |  2612511000006112                             alcohol induced hallucinosis |
+ 40. |  2806371000006116                             alcoholic myopathic syndrome |
+ 41. |  2806381000006118                                       alcoholic myositis |
+ 71. |  3182581000006111                                      alcoholic psychosis |
+     |----------------------------------------------------------------------------|
+ 91. |  3688931000006118             alcohol-induced persisting amnestic disorder |
+111. |  4763141000006111    korsakov alcoholic psychosis with peripheral neuritis |
+116. |  4768901000006117                           alcohol induced encephalopathy |
+123. |  5086741000006114                                 ah - alcoholic hepatitis |
+124. |  5087751000006113   chronic pancreatitis due to acute alcohol intoxication |
+     |----------------------------------------------------------------------------|
+125. |  5111821000006113                  alcohol-induced pseudo-cushing syndrome |
+126. |  5111831000006111                   pseudo-cushing syndrome due to alcohol |
+131. |  5992721000006114   esophageal varices in alcoholic cirrhosis of the liver |
+     +----------------------------------------------------------------------------+
+
+. drop if _merge == 1
+(18 observations deleted)
+
+. drop _merge
+
+. 
+. order term alcohol_use_disorder, last
+
+. 
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. /* DON'T AGREE WITH THESE SYNONYMS
+> //Check for missing SNOMED CT Concepts
+> codebook snomedctconceptid
+> assert !missing(snomedctconceptid)
+> 
+> count
+> 
+> //Make a note of current list
+> preserve
+>         keep medcodeid /**/alcohol_use_disorder/**/
+>         gen byte original = 1
+>         tempfile original
+>         save `original'
+> restore
+> 
+> //Merge SNOMED CT Concepts with medical dictionary
+> keep snomedctconceptid /**/alcohol_use_disorder/**/
+> bysort snomedctconceptid: keep if _n == 1
+> 
+> //Merge with original search results
+> merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+> compress
+> merge 1:1 medcodeid using `original', nogenerate
+> order snomedctconceptid, before(snomedctdescriptionid)
+> order /**/alcohol_use_disorder/**/, last
+> gsort /**/alcohol_use_disorder/**/ originalreadcode
+> 
+> //Label new codes
+> gen new_snomedct_synonym = (original != 1)
+> drop original
+> 
+> //Show new codes
+> foreach category of varlist /**/alcohol_use_disorder/**/ {
+>         
+>         display "New terms found for: `category'"
+>         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1
+> }
+> 
+> //Check new codes in the context of originally included SNOMED CT Concept ID codes
+> preserve
+>         keep if new_snomedct_synonym == 1
+>         keep snomedctconceptid
+>         bysort snomedctconceptid: keep if _n == 1
+> 
+>         count
+>         local obs = r(N)
+> 
+>         forvalues i = 1/`obs' {
+>                 
+>                 if `i' == 1 {
+>                         
+>                         local expanded_ids = snomedctconceptid in `i'
+>                 }
+>                 else {
+>                         
+>                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+>                 }
+>         }
+> restore
+> 
+> foreach expanded_id of local expanded_ids {
+>         
+>         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+>         
+>         list medcodeid originalreadcode term new_snomedct_synonym alcohol_use_disorder ///
+>                 if snomedctconceptid == "`expanded_id'"
+> }
+> */
+. 
+. //save codelist and export as CSV
+. order medcodeid observations
+
+. gsort -alcohol_use_disorder -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. //drop new_snomedct_synonym
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str15
+  variable snomedctconceptid was str18 now str16
+  variable snomedctdescriptionid was str18 now str16
+  term is strL now coalesced
+  (1,578 bytes saved)
+
+. save `filename', replace
+(file alcohol_use_disorder.dta not found)
+file alcohol_use_disorder.dta saved
+
+. export delimited `filename', replace quote
+(file alcohol_use_disorder.csv not found)
+file alcohol_use_disorder.csv saved
+
+. 
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Alcohol use disorder"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 12)  //year, month
+
+. local clinical_reviewer ""
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study. Converted https://github.com/NHLI-Respiratory-Epi/Alcohol_use_disorder_codelist/blob/main/Alcohol%20use%20disorder.csv to September 2
+> 023 compatible version"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str20
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+variable v1 was str20 now str21
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(0 real changes made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str21 now str183
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file alcohol_use_disorder.meta not found)
+file alcohol_use_disorder.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\alcohol_use_disorder.log
+  log type:  text
+ closed on:   4 Dec 2024, 01:04:46
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

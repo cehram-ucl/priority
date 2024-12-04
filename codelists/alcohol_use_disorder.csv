@@ -1,0 +1,131 @@
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,alcohol_use_disorder
+"500478011",1000000,"E23","E23..00","66590003","500478011","Alcohol dependence syndrome",1
+"12878014",200000,"E23-1","E23..11","66590003","110629012","Alcoholism",1
+"294674018",100000,"E01y0","E01y000","191480000","294674018","Alcohol withdrawal syndrome",1
+"303399018",100000,"J613","J613.00","41309000","68906017","Alcoholic liver damage",1
+"476611000006116",100000,"J612","J612.00","420054005","2920441014","Alcoholic cirrhosis of liver",1
+"295136019",100000,"E2310","E231000","66590003","110628016","Alcohol dependence",1
+"295144019",100000,"E23z","E23z.00","66590003","500478011","Alcohol dependence syndrome NOS",1
+"251626014",70000,"1462","1462.00","161466001","251626014","H/O: alcoholism",1
+"110629012",70000,"E231","E231.00","66590003","110629012","Chronic alcoholism",1
+"606991000000117",50000,"136W","136W.00","15167005","606991000000117","Alcohol misuse",1
+"83834016",50000,"J610","J610.00","50325005","83834016","Alcoholic fatty liver",1
+"4525015",40000,"J153","J153.00","2043009","4525015","Alcoholic gastritis",1
+"353587018",30000,"J617","J617.00","235875008","353587018","Alcoholic hepatitis",1
+"315091000000117",30000,"Eu108","Eu10800","308742005","452061016","Alcohol withdrawal-induced seizure",1
+"6947461000006115",20000,"^ESCTAL694746","","420054005","2576981019","Alcoholic cirrhosis",1
+"2614651000006115",20000,"^ESCTAL261465","","7200002","12878014","Alcoholism",1
+"295127018",10000,"E230","E230.00","191802004","295127018","Acute alcoholic intoxication in alcoholism",1
+"295139014",10000,"E2311","E231100","191811004","295139014","Continuous chronic alcoholism",1
+"353698013",10000,"J6710","J671000","235952002","353698013","Alcohol-induced chronic pancreatitis",1
+"295765017",10000,"Eu10","Eu10.00","29212009","48886010","Alcohol-induced organic mental disorder",1
+"397801000006117",10000,"Eu102","Eu10200","66590003","500478011","[X]Mental and behav dis due to use alcohol: dependence syndr",1
+"362921000006118",10000,"Eu102-1","Eu10211","66590003","500478011","[X]Alcohol addiction",1
+"753331000006118",10000,"E0110","E011000","69482004","501296014","Korsakov alcoholic psychosis",1
+"138527014",10000,"G555","G555.00","83521008","138527014","Alcoholic cardiomyopathy",1
+"17390014",10000,"J611","J611.00","9953008","17390014","Acute alcoholic hepatitis",1
+"346929012",7000,"E012-1","E012.11","281004","1225776018","Alcoholic dementia",1
+"295143013",7000,"E231z","E231z00","66590003","110629012","Chronic alcoholism NOS",1
+"370971000006114",7000,"Eu102-2","Eu10212","66590003","110629012","[X]Chronic alcoholism",1
+"394681000006119",7000,"Eu106-1","Eu10611","69482004","115434017","Korsakoff's psychosis",1
+"295142015",6000,"E2313","E231300","191813001","295142015","Chronic alcoholism in remission",1
+"5981291000006110",6000,"^ESCTAL598129","","308742005","452062011","Alcohol withdrawal-induced convulsion",1
+"295141010",5000,"E2312","E231200","191812006","295141010","Episodic chronic alcoholism",1
+"476741000006111",5000,"E01","E01..00","42344001","70655012","Alcohol-induced psychosis",1
+"14103017",5000,"F375","F375.00","7916009","14104011","Alcohol-induced polyneuropathy",1
+"15243013",5000,"E010","E010.00","8635005","15243013","Alcohol withdrawal delirium",1
+"59951000006113",4000,"C251-1","C251.11","21007002","35314011","Wernicke's encephalopathy",1
+"353595019",4000,"J6130","J613000","235881000","353595019","Alcoholic hepatic failure",1
+"460276013",4000,"ZV113","ZV11300","371422002","1196720012","[V]Personal history of alcoholism",1
+"294673012",4000,"E01y","E01y.00","42344001","70655012","Other alcoholic psychosis",1
+"501294012",4000,"E0112","E011200","69482004","501294012","Wernicke-Korsakov syndrome",1
+"297011014",3000,"F11x0-1","F11x011","192811002","297011014","Alcoholic encephalopathy",1
+"35314011",3000,"C253","C253.00","21007002","35314011","Wernicke's encephalopathy",1
+"353594015",3000,"J6120","J612000","235880004","353594015","Alcoholic fibrosis and sclerosis of liver",1
+"353687012",3000,"J6708","J670800","235942001","353687012","Alcohol-induced acute pancreatitis",1
+"362941000006113",3000,"Eu107-1","Eu10711","281004","1225776018","[X]Alcoholic dementia NOS",1
+"6455201000006114",3000,"^ESCTSU645520","","386449006","1480602019","Substance use treatment: alcohol withdrawal",1
+"15244019",3000,"E010-2","E010.12","8635005","15244019","Delirium tremens",1
+"401760017",2000,"E012","E012.00","281004","1225776018","Other alcoholic dementia",1
+"2502971000006115",2000,"^ESCTDE250297","","281004","1557018","Dementia associated with alcoholism",1
+"5886961000006112",2000,"^ESCTAB588696","","300939009","442138014","Abstinent alcoholic",1
+"453265010",2000,"G8523","G852300","309783001","453265010","Oesophageal varices in alcoholic cirrhosis of the liver",1
+"478046010",2000,"F1440","F144000","361272001","478046010","Cerebellar ataxia due to alcoholism",1
+"886501000006115",2000,"J613-99","J613.99","589511000000102","886501000006115","Alcoholic liver damage NOS",1
+"362951000006110",2000,"Eu105-1","Eu10511","7052005","1233279015","Alcoholic hallucinosis",1
+"376451000006113",2000,"Eu104-1","Eu10411","8635005","15243013","[X]Delirium tremens, alcohol induced",1
+"507053019",2000,"E010-1","E010.11","8635005","507053019","DTs - delirium tremens",1
+"294668018",1000,"E0120","E012000","191475009","294668018","Chronic alcoholic brain syndrome",1
+"294669014",1000,"E013","E013.00","191476005","294669014","Alcohol withdrawal hallucinosis",1
+"476701000006114",1000,"F3941","F394100","19303008","32551012","Alcohol myopathy",1
+"451124014",1000,"J6170","J617000","307757001","451124014","Chronic alcoholic hepatitis",1
+"2549849017",1000,"1B1c","1B1c.00","417633001","2549849017","Alcohol induced hallucinations",1
+"397621000006111",1000,"Eu105","Eu10500","42344001","70655012","Alcohol-induced psychosis",1
+"362981000006119",1000,"Eu105-4","Eu10514","42344001","70655012","[X]Alcoholic psychosis NOS",1
+"397431000006111",1000,"Eu10z","Eu10z00","91388009","151411015","[X]Ment & behav dis due use alcohol: unsp ment & behav dis",1
+"940781000006116",1000,"HMPNQEV1","","940781000006100","940781000006116","Evidence of alcohol withdrawal",1
+"295128011",900,"E2300","E230000","191802004","295127018","Acute alcoholic intoxication, unspecified, in alcoholism",1
+"542611000006114",900,"F11x0","F11x000","192811002","297011014","Cerebral degeneration due to alcoholism",1
+"3890681000006118",900,"^ESCTUN389068","","85561006","141818010","Uncomplicated alcohol withdrawal",1
+"1974111000006117",800,"EMISICD10|F1025","","1974111000006101","1974111000006117","Mental and behav dis due to use alcohol: dependence syndr, continuous use",1
+"294676016",800,"E01z","E01z.00","42344001","70655012","Alcoholic psychosis NOS",1
+"397811000006119",700,"Eu103","Eu10300","191480000","294674018","[X]Mental and behav dis due to use alcohol: withdrawal state",1
+"295132017",700,"E230z","E230z00","191802004","295127018","Acute alcoholic intoxication in alcoholism NOS",1
+"2626161000006111",700,"^ESCTAL262616","","7916009","1234320010","Alcoholic peripheral neuropathy",1
+"294672019",600,"E015","E015.00","191478006","294672019","Alcoholic paranoia",1
+"295130013",600,"E2302","E230200","191805002","295130013","Episodic acute alcoholic intoxication in alcoholism",1
+"476361000006114",600,"E011","E011.00","69482004","501300010","Alcohol amnestic syndrome",1
+"397791000006118",600,"Eu106","Eu10600","73097000","121405015","Alcohol amnestic disorder",1
+"295126010",500,"E230-1","E230.11","191802004","295126010","Alcohol dependence with acute alcoholic intoxication",1
+"397241000006119",500,"Eu10y","Eu10y00","29212009","48886010","[X]Men & behav dis due to use alcohol: oth men & behav dis",1
+"3315041000006111",500,"^ESCTAL331504","","50325005","2306821000000116","Alcoholic steatosis",1
+"3859091000006114",500,"^ESCTDI385909","","83521008","138526017","Dilated cardiomyopathy secondary to alcohol",1
+"2358251000000115",500,"2126C","2126C00","918321000000104","2358251000000115","Alcohol dependence resolved",1
+"370961000006119",400,"Eu107-2","Eu10712","191475009","294668018","[X]Chronic alcoholic brain syndrome",1
+"294662017",300,"E0111","E011100","191471000","294662017","Korsakov's alcoholic psychosis with peripheral neuritis",1
+"295131012",300,"E2303","E230300","191806001","295131012","Acute alcoholic intoxication in remission, in alcoholism",1
+"3165681000006118",300,"^ESCTAL316568","","41309000","68909012","Alcoholic liver disease",1
+"397211000006118",300,"Eu104","Eu10400","8635005","15243013","[X]Men & behav dis due alcohl: withdrawl state with delirium",1
+"295129015",200,"E2301","E230100","191804003","295129015","Continuous acute alcoholic intoxication in alcoholism",1
+"1973701000006119",200,"EMISICD10|F1020","","1973701000006103","1973701000006119","Mental and behav dis due to use alcohol: dependence syndr, currently abstinent",1
+"1975461000006114",200,"EMISICD10|F1056","","1975461000006105","1975461000006114","Mental & behav dis due to use alcohol: psychotic disorder, mixed",1
+"356292013",200,"C1505","C150500","237738005","356292013","Alcohol-induced pseudo-Cushing's syndrome",1
+"362971000006117",200,"Eu105-3","Eu10513","42344001","70655012","[X]Alcoholic paranoia",1
+"397201000006116",200,"Eu107","Eu10700","42344001","70655012","[X]Men & behav dis due alcoh: resid & late-onset psychot dis",1
+"882221000006114",200,"E01y-99","E01y.99","623961000000108","882221000006114","Other alcoholic psychoses",1
+"7710581000006113",200,"^ESCTSE771058","","713862009","3297813018","Severe alcohol dependence",1
+"1974191000006110",100,"EMISICD10|F1030","","1974191000006106","1974191000006110","Mental and behav dis due to use alcohol: withdrawal state, uncomplicated",1
+"4978041000006118",100,"^ESCTAL497804","","228281002","342325014","Alcoholic",1
+"6221531000006118",100,"^ESCTAL622153","","361273006","478048011","Alcoholic cerebellar degeneration",1
+"6947471000006110",100,"^ESCTAL694747","","420054005","2912539019","Alcoholic liver cirrhosis",1
+"7725141000006111",100,"^ESCTMO772514","","714829008","3300567016","Moderate alcohol dependence",1
+"294664016",100,"E011z","E011z00","73097000","121405015","Alcohol amnestic syndrome NOS",1
+"2834131000006116",90,"^ESCTWE283413","","21007002","35313017","Wernicke's disease",1
+"1974071000006113",60,"EMISICD10|F1024","","1974071000006109","1974071000006113","Mental and behav dis due to use alcohol: dependence syndr, currently using the substance [active dependence]",1
+"2626141000006112",50,"^ESCTAL262614","","7916009","14103017","Alcoholic polyneuropathy",1
+"14798871000006119",40,"^ESCT1479887","","1234750000","5083871014","Alcoholic cardiomyopathy",1
+"14799151000006112",40,"^ESCT1479915","","1234774002","5083958010","Cognitive impairment caused by ethanol",1
+"1975541000006111",40,"EMISICD10|F1071","","1975541000006107","1975541000006111","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, personality or behaviour disorder",1
+"1976071000006119",40,"EMISICD10|F1074","","1976071000006103","1976071000006119","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, other persisting cognitive impairment",1
+"294675017",40,"E01yz","E01yz00","42344001","70655012","Other alcoholic psychosis NOS",1
+"362961000006112",40,"Eu105-2","Eu10512","42344001","70655012","[X]Alcoholic jealousy",1
+"3630171000006111",40,"^ESCTAL363017","","69482004","501300010","Alcoholic amnestic syndrome",1
+"7706231000006114",40,"^ESCTMI770623","","713583005","3290336015","Mild alcohol dependence",1
+"502016018",40,"E231-1","E231.11","7200002","502016018","Dipsomania",1
+"14799351000006110",30,"^ESCT1479935","","1234783007","5083989014","Organic mental disorder caused by ethanol",1
+"1974021000006112",30,"EMISICD10|F1023","","1974021000006108","1974021000006112","Mental and behav dis due to use alcohol: dependence syndr, currently abstinent, but receiving treatment with aversive or blocking drugs",1
+"1974141000006118",30,"EMISICD10|F1026","","1974141000006102","1974141000006118","Mental and behav dis due to use alcohol: dependence syndr, episodic use [dipsomania]",1
+"8088751000006117",30,"^ESCTAL808875","","288031000119105","3316456018","Alcohol dependence with alcohol induced disorder",1
+"7309201000006114",30,"^ESCTAL730920","","445507008","2951751017","Alcoholic pancreatitis",1
+"3630161000006116",30,"^ESCTAM363016","","69482004","501299019","Amnesic syndrome due to alcohol",1
+"1975291000006117",20,"EMISICD10|F1052","","1975291000006101","1975291000006117","Mental & behav dis due to use alcohol: psychotic disorder, predominantly hallucinatory",1
+"7309181000006113",20,"^ESCTAL730918","","445507008","2870612012","Alcohol-induced pancreatitis",1
+"14798821000006115",10,"^ESCT1479882","","1231846001","5075973019","Psychosis caused by ethanol",1
+"12031691000006112",9,"^ESCT1203169","","765482002","3658938012","Alcoholic steatohepatitis",1
+"14799371000006117",7,"^ESCT1479937","","1234783007","5083991018","Alcohol-induced organic mental disorder",1
+"3630141000006115",4,"^ESCTKO363014","","69482004","501297017","Korsakov syndrome - alcoholic",1
+"14799161000006114",3,"^ESCT1479916","","1234774002","5083956014","Cognitive impairment caused by alcohol",1
+"5887581000006113",2,"^ESCTAL588758","","300992002","442200018","Alcohol-induced cerebellar ataxia",1
+"2911271000006113",1,"^ESCTAC291127","","25702006","43082013","Acute alcoholism",1
+"2502981000006117",1,"^ESCTAL250298","","281004","1558011","Alcohol-induced persisting dementia",1
+"3182591000006114",1,"^ESCTAL318259","","42344001","2951763010","Alcohol induced psychosis",1
