@@ -1,0 +1,295 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\body_mass_index.log
+  log type:  text
+ opened on:   4 Dec 2024, 02:22:13
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. //Import pre-existing codelists
+. import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/33/covariate_bmi_aurum.txt, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(6 vars, 144 obs)
+
+. 
+. //Merge with version of CPRD medical dictionary used for study
+. merge 1:1 medcodeid using `medical', update replace
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+(variable term was str75, now str233 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,855
+        from master                         0  (_merge==1)
+        from using                    240,855  (_merge==2)
+
+    Matched                               144
+        not updated                        54  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                90  (_merge==5)
+    -----------------------------------------
+
+. drop if _merge == 2
+(240,855 observations deleted)
+
+. 
+. //List terms not in this version of the Aurum medical dictionary
+. list medcodeid term height weight bmi bmicat if _merge == 1
+
+. drop if _merge == 1
+(0 observations deleted)
+
+. drop _merge
+
+. 
+. order term height weight bmi bmicat, last
+
+. 
+. rename bmicat bmi_cat
+
+. encode bmi_cat, generate(bmicat)
+
+. drop bmi_cat
+
+. label list bmicat
+bmicat:
+           1 normal 18.5-24.9
+           2 obese 30+
+           3 overweight 25-29
+           4 underweight <18.5
+
+. 
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. /*
+> //Check for missing SNOMED CT Concepts
+> codebook snomedctconceptid
+> assert !missing(snomedctconceptid)
+> 
+> count
+> 
+> //Make a note of current list
+> preserve
+>         keep medcodeid /**/height weight bmi bmicat/**/
+>         gen byte original = 1
+>         tempfile original
+>         save `original'
+> restore
+> 
+> //Merge SNOMED CT Concepts with medical dictionary
+> keep snomedctconceptid /**/height weight bmi bmicat/**/
+> bysort snomedctconceptid: keep if _n == 1
+> 
+> //Merge with original search results
+> merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+> compress
+> merge 1:1 medcodeid using `original', nogenerate
+> order snomedctconceptid, before(snomedctdescriptionid)
+> order /**/height weight bmi bmicat/**/, last
+> gsort /**/height weight bmi bmicat/**/ originalreadcode
+> 
+> //Label new codes
+> gen new_snomedct_synonym = (original != 1)
+> drop original
+> 
+> //Show new codes
+> foreach category of varlist /**/height weight bmi bmicat/**/ {
+>         
+>         display "New terms found for: `category'"
+>         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1
+> }
+> 
+> //Check new codes in the context of originally included SNOMED CT Concept ID codes
+> preserve
+>         keep if new_snomedct_synonym == 1
+>         keep snomedctconceptid
+>         bysort snomedctconceptid: keep if _n == 1
+> 
+>         count
+>         local obs = r(N)
+> 
+>         forvalues i = 1/`obs' {
+>                 
+>                 if `i' == 1 {
+>                         
+>                         local expanded_ids = snomedctconceptid in `i'
+>                 }
+>                 else {
+>                         
+>                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+>                 }
+>         }
+> restore
+> 
+> foreach expanded_id of local expanded_ids {
+>         
+>         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+>         
+>         list medcodeid originalreadcode term new_snomedct_synonym /**/height weight bmi bmicat/**/ ///
+>                 if snomedctconceptid == "`expanded_id'"
+> }
+> */
+. 
+. //save codelist and export as CSV
+. order medcodeid observations
+
+. gsort height weight bmi bmicat -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. //drop new_snomedct_synonym
+. compress
+  variable bmicat was long now byte
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str75
+  (24,624 bytes saved)
+
+. save `filename', replace
+file body_mass_index.dta saved
+
+. export delimited `filename', replace quote
+file body_mass_index.csv saved
+
+. 
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Body mass index"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 12)  //year, month
+
+. local clinical_reviewer ""
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study."
+
+. local keywords "height, weight, bmi"
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str15
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+variable v1 was str15 now str21
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(0 real changes made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str21 now str27
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(1 real change made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+file body_mass_index.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\body_mass_index.log
+  log type:  text
+ closed on:   4 Dec 2024, 02:22:16
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
