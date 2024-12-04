@@ -1,0 +1,499 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\smoking_status.log
+  log type:  text
+ opened on:   4 Dec 2024, 00:42:43
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+
+. 
+. 
+. //Use pre-existing codelist
+. use https://github.com/NHLI-Respiratory-Epi/COPD_prevalence/raw/refs/heads/main/codelists/DTA/smoking_status.dta, clear
+
+. 
+. //Merge with version of CPRD medical dictionary used for study
+. merge 1:1 medcodeid using `medical', update replace
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+(variable originalreadcode was str15, now str19 to accommodate using data's values)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+(variable snomedctdescriptionid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,821
+        from master                        98  (_merge==1)
+        from using                    240,723  (_merge==2)
+
+    Matched                               276
+        not updated                       276  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. drop if _merge == 2
+(240,723 observations deleted)
+
+. 
+. //List terms not in this version of the Aurum medical dictionary
+. list medcodeid term smoking_status if _merge == 1
+
+     +---------------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                                                     term   smoking_status |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+ 15. | 11776621000006116          [X]Mental and behavioral disorders due to use of tobacco: other mental and behavioral disorders   Current smoker |
+ 16. | 11777231000006118                 [X]Mental and behavioral disorders due to use of tobacco: withdrawal state with delirium        Ex-smoker |
+ 17. | 11777241000006111     [X]Mental and behavioral disorders due to use of tobacco: unspecified mental and behavioral disorder   Current smoker |
+ 18. | 11777261000006110                                    [X]Mental and behavioral disorders due to use of tobacco: harmful use   Current smoker |
+ 19. | 11779331000006116     [X]Mental and behavioral disorders due to use of tobacco: residual and late-onset psychotic disorder   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+ 20. | 11779341000006114                             [X]Mental and behavioral disorders due to use of tobacco: psychotic disorder   Current smoker |
+ 21. | 11779351000006111                               [X]Mental and behavioral disorders due to use of tobacco: withdrawal state        Ex-smoker |
+ 24. | 11918391000006111    [X]Mental and behavioural disorders due to use of tobacco: residual and late-onset psychotic disorder   Current smoker |
+ 25. | 11918401000006113        [X]Mental and behavioural disorders due to use of tobacco: other mental and behavioural disorders   Current smoker |
+ 26. | 11918411000006111                [X]Mental and behavioural disorders due to use of tobacco: withdrawal state with delirium        Ex-smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+ 27. | 11918421000006115   [X]Mental and behavioural disorders due to use of tobacco: unspecified mental and behavioural disorder   Current smoker |
+ 28. | 11918471000006119                            [X]Mental and behavioural disorders due to use of tobacco: psychotic disorder   Current smoker |
+ 29. | 11918491000006118                                   [X]Mental and behavioural disorders due to use of tobacco: harmful use   Current smoker |
+ 30. | 11918501000006114                              [X]Mental and behavioural disorders due to use of tobacco: withdrawal state        Ex-smoker |
+ 31. | 11930181000006115                                                                     Smoking cessation programme declined   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+ 32. | 12473171000006110                            [X]Mental and behavioural disorders due to use of tobacco: acute intoxication   Current smoker |
+ 33. | 12482301000006115                                                                           Admitted tobacco cons untrue ?   Current smoker |
+ 34. | 12490251000006112                                                                                   History of tobacco use        Ex-smoker |
+ 36. | 12626201000006116                                                                             Very Brief Advice on Smoking   Current smoker |
+ 58. |  1662541000006111                                                                             Dental recall - tobacco user   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+133. |  2651031000006111                                                                    Extrinsic staining of tooth - tobacco   Current smoker |
+136. |  2670581000006114                                                                            Smoker's respiratory syndrome   Current smoker |
+144. |  2737071000000118                                                          Assessment using smoking pack years calculation        Ex-smoker |
+146. |  2927031000006116                                                                                    Cigar smoking tobacco   Current smoker |
+155. |  2988071000006112                                                                                Nicotine-related disorder   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+156. |  2988081000006110                                                                         Nicotine induced mental disorder   Current smoker |
+157. |  2990991000006111                                                                                        Tobacco amblyopia   Current smoker |
+160. |  3142931000006113                                                                                      Tobacco - substance   Current smoker |
+162. |  3235681000006111                                                                              Nicotiana tabacum poisoning   Current smoker |
+163. |  3235691000006114                                                                                      Cigarette poisoning   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+164. |  3235701000006114                                                                                        Tobacco poisoning   Current smoker |
+166. |  3256651000006113                                                                                          Cigarette cough   Current smoker |
+171. |  3430551000006114                                                                                        Nicotiana tabacum   Current smoker |
+172. |  3430561000006111                                                                                            Tobacco plant   Current smoker |
+174. |  3430581000006118                                                                                 Commercial tobacco plant   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+179. |        3513490010                                                                        Maternal tobacco use in pregnancy   Current smoker |
+183. |  3926051000006118                                                                                      Tolerant non-smoker     Never smoker |
+185. |  3959121000006115                                                                         Compulsive tobacco user syndrome   Current smoker |
+186. |  3959131000006117                                                                                                 Tabagism   Current smoker |
+187. |  3959141000006110                                                                                            Tobacco abuse   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+200. |  4120281000006117                                                                          Non-smoker for personal reasons     Never smoker |
+201. |  4120291000006119                                                                         Non-smoker for religious reasons     Never smoker |
+202. |  4120301000006118                                                                           Non-smoker for medical reasons     Never smoker |
+203. |  4180321000006116                                                                                             Tobacco user   Current smoker |
+206. |  4533531000006119                                                             Admitted tobacco consumption possibly untrue   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+211. |  4640191000006114                                                                           Smoking in pregnancy education   Current smoker |
+212. |  4765711000006110                                                                                  Tobacco use, continuous   Current smoker |
+213. |  4765721000006119                                                                                   Continuous tobacco use   Current smoker |
+214. |  4765751000006111                                                                         Tobacco dependence, in remission        Ex-smoker |
+218. |  4835511000006110                                                     Foetal or neonatal effect of maternal use of tobacco   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+225. |  4948541000006114                                                                          Hides lit cigarettes in pockets   Current smoker |
+237. |  5244061000006115                                                                                 Nicotine stained fingers   Current smoker |
+238. |  5244071000006110                                                                                  Tobacco stained fingers   Current smoker |
+246. |  5553311000006110                                                                          MFS - Motives for smoking scale   Current smoker |
+248. |  5553651000006119                                                                        OFS - Occasions for smoking scale   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+250. |  5555241000006118                                                                          RFS - Reasons for smoking scale   Current smoker |
+251. |  6011421000006115                                                                                     Tobacco and nicotine   Current smoker |
+256. |  6217461000006110                                                                                    Aggressive non-smoker     Never smoker |
+257. |  6217561000006111                                                                                    Intolerant non-smoker     Never smoker |
+259. |  6282381000006110                                                                   Finding of tobacco smoking consumption   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+267. |  6649431000006116                                                                     Smoking cessation program start date   Current smoker |
+268. |  6709501000006114                                                                       Risk control behavior: tobacco use   Current smoker |
+269. |  6709511000006112                                                                                Risk control: tobacco use   Current smoker |
+272. |  6769661000006112                                                                                 Tobacco abuse prevention   Current smoker |
+273. |  6769671000006117                                                                                    Tobacco abuse control   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+274. |  6769681000006119                                                                      Tobacco abuse prevention assessment   Current smoker |
+275. |  6769691000006116                                                                          Assess tobacco abuse prevention   Current smoker |
+276. |  6769701000006116                                                                       Tobacco abuse prevention education   Current smoker |
+277. |  6769711000006118                                                                              Teach tobacco abuse control   Current smoker |
+278. |  6769721000006114                                                                           Teach tobacco abuse prevention   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+279. |  6769731000006112                                                                      Tobacco abuse prevention management   Current smoker |
+280. |  6769741000006119                                                                             Manage tobacco abuse control   Current smoker |
+281. |  6769751000006117                                                                          Manage tobacco abuse prevention   Current smoker |
+283. |  7230801000006118                                                                              Smoking cessation behaviour        Ex-smoker |
+284. |  7230811000006115                                                                               Smoking cessation behavior        Ex-smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+286. |  7368661000006117                                                                  Smoker before confirmation of pregnancy        Ex-smoker |
+291. |  7502421000006113                                                                                  Suspected tobacco abuse   Current smoker |
+294. |  7568991000006119                                                                                          Ex-tobacco user        Ex-smoker |
+297. |  7682161000006118                                                                             Counseling about tobacco use   Current smoker |
+298. |  7682721000006113                                                             Negotiation of date for cessation of smoking   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+304. |  7859791000006118                                                                                        Abuse of nicotine   Current smoker |
+307. |  7968461000006114                                                                            Readiness to stop tobacco use   Current smoker |
+308. |  7979581000006117                                                                     Tobacco cessation education not done   Current smoker |
+309. |  7983221000006111                                                                                       Smoker's melanosis   Current smoker |
+312. |  8025681000006116                                                  History of tobacco use in remission less than 12 months        Ex-smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+317. |  8153381000006119                                                                                        Occasional smoker   Current smoker |
+323. |  8238291000006118                                                                    Tobacco use cessation case management   Current smoker |
+325. |  8244751000006110                                                               Stop smoking invitation first text message   Current smoker |
+326. |  8244771000006117                                                              Stop smoking invitation second text message   Current smoker |
+327. |  8244791000006116                                                               Stop smoking invitation third text message   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+329. |  8294711000006117                                             Provision of written information about tobacco use cessation   Current smoker |
+330. |  8294731000006111                                                       Provision of written information about tobacco use   Current smoker |
+335. |   852991000006114                                                                                          Ex-cigar smoker        Ex-smoker |
+367. |  9317251000006112                                                                                                cigarette   Current smoker |
+368. |  9326621000006111                                                            Tobacco use in mother complicating childbirth   Current smoker |
+     |---------------------------------------------------------------------------------------------------------------------------------------------|
+369. |  9326631000006114                                                                                Tobacco use in childbirth   Current smoker |
+370. |  9351191000006110                                                                                       History of smoking        Ex-smoker |
+373. |  9881001000006114                                                                  Tobacco dependence caused by cigarettes   Current smoker |
+     +---------------------------------------------------------------------------------------------------------------------------------------------+
+
+. drop if _merge == 1
+(98 observations deleted)
+
+. drop _merge
+
+. 
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str18), but longest is str16
+
+         Unique values: 229                       Missing "": 0/276
+
+              Examples: "1974371000006107"
+                        "266918002"
+                        "446172000"
+                        "783441000000103"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  276
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/smoking_status/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/smoking_status/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(47 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               278  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str16
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str15
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str153
+  (24,742 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+(label smoking_status already defined)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             2
+        from master                         2  
+        from using                          0  
+
+    Matched                               276  
+    -----------------------------------------
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/smoking_status/**/, last
+
+. gsort /**/smoking_status/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/smoking_status/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1
+  4. }
+New terms found for: smoking_status
+
+     +-----------------------------------------+
+     | snom~tid   originalre~e            term |
+     |-----------------------------------------|
+ 69. |  8517006   ^ESCT1449402   Former smoker |
+227. | 77176002   ^ESCT1461653         Smoking |
+     +-----------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(276 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(0 observations deleted)
+
+. 
+.         count
+  2
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym smoking_status ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 77176002
+
+     +-------------------------------------------------------------------------------+
+     |         medcodeid   originalre~e             term   new_sn~m   smoking_status |
+     |-------------------------------------------------------------------------------|
+ 99. |         128130017         137P-1           Smoker          0   Current smoker |
+102. |         503483019           137R   Current smoker          0   Current smoker |
+227. | 14616531000006112   ^ESCT1461653          Smoking          1   Current smoker |
+     +-------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 8517006
+
+     +---------------------------------------------------------------------------------------+
+     |         medcodeid   originalrea~e                         term   new_sn~m   smoking~s |
+     |---------------------------------------------------------------------------------------|
+ 15. |         250371017            137F   Ex-smoker - amount unknown          0   Ex-smoker |
+ 23. |   649841000006110            137S                    Ex-smoker          0   Ex-smoker |
+ 60. |   298701000000114           ZV116       History of tobacco use          0   Ex-smoker |
+ 69. | 14494021000006110    ^ESCT1449402                Former smoker          1   Ex-smoker |
+ 73. |  2636041000006110   ^ESCTCE263604         Cessation of smoking          0   Ex-smoker |
+     +---------------------------------------------------------------------------------------+
+
+. 
+. 
+. //save codelist and export as CSV
+. order medcodeid observations
+
+. gsort -smoking_status -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym
+
+. compress
+  variable medcodeid was str18 now str17
+  (278 bytes saved)
+
+. save `filename', replace
+(file smoking_status.dta not found)
+file smoking_status.dta saved
+
+. export delimited `filename', replace quote
+(file smoking_status.csv not found)
+file smoking_status.csv saved
+
+. 
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Smoking status"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2024, 12)  //year, month
+
+. local clinical_reviewer ""
+
+. local date_approved = . //ym(2024, 12)  //year, month
+
+. local notes "Created for PRIORITY study. Converted https://github.com/NHLI-Respiratory-Epi/COPD_prevalence/blob/main/codelists/CSV/smoking_status.dta.csv to September 2023 co
+> mpatible version"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str14
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+variable v1 was str14 now str21
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(0 real changes made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str21 now str177
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+(file smoking_status.meta not found)
+file smoking_status.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton\GitHub\priority\codelists\smoking_status.log
+  log type:  text
+ closed on:   4 Dec 2024, 00:42:47
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
