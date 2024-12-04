@@ -411,9 +411,9 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
         - https://www.opencodelists.org/codelist/opensafely/weight-snomed/5459abc6/
         - https://www.opencodelists.org/codelist/opensafely/height-snomed/3b4a3891/
 3. Codelist creation script:
-    - [bmi.do](codelists/bmi.do)
+    - [body_mass_index.do](codelists/body_mass_index.do)
 4. Finished codelist:
-    - [bmi.csv](codelists/bmi.csv)
+    - [body_mass_index.csv](codelists/body_mass_index.csv)
 
 #### Alcohol consumption (possible? alcohol use disorder codelist may be sufficient)
 1. PubMed validated codelist search:
