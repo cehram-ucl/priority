@@ -37,19 +37,19 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 ## Codelists
 
 ### Medication codes (should all already be inside DSH):
-- Olanzapine
-- Risperidone
-- Quetiapine
-- Other antipsychotic medication
-- Statin medication
-- Antihypertensive medication
+- Olanzapine [No]
+- Risperidone [No]
+- Quetiapine [No]
+- Other antipsychotic medication [?]
+- Statin medication [Yes]
+- Antihypertensive medication [Yes]
 
 ### Descriptive codes:
 
 #### Severe mental illness
-- Definition inside DSH
+- Definition inside DSH [Yes]
 
-#### Type-2 diabetes mellitus (T2DM)
+#### Type-2 diabetes mellitus (T2DM) [Yes]
 1. PubMed validated codelist search:
     - Search: "type 2 diabetes validated (CPRD OR SNOMED CT)"
     - 16 results
@@ -75,7 +75,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - [type_2_diabetes.csv](codelists/type_2_diabetes.csv)
 
 #### Cardiovascular disease (definition from [Bazo-Alvarez et al., 2021](https://doi.org/10.1038/s41598-021-02670-9))
-##### Myocardial infarction
+##### Myocardial infarction [Yes]
 1. PubMed validated codelist search:
     - Search: "myocardial infarction validated (CPRD OR SNOMED CT)"
     - 11 results
@@ -108,7 +108,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [myocardial_infarction.csv](codelists/myocardial_infarction.csv)
 
-##### Stroke
+##### Stroke [Yes]
 1. PubMed validated codelist search:
     - Search: "stroke validated (CPRD OR SNOMED CT)"
     - 18 results
@@ -142,7 +142,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [stroke.csv](codelists/stroke.csv)
 
-##### Ischaemic heart disease (broadened from unstable angina)
+##### Ischaemic heart disease (broadened from unstable angina) [Yes]
 1. PubMed validated codelist search:
     - Search: "ischaemic heart disease validated (CPRD OR SNOMED CT)"
     - 9 results
@@ -174,7 +174,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [ischaemic_heart_disease.csv](codelists/ischaemic_heart_disease.csv)
 
-##### Major cardiovascular surgery
+##### Major cardiovascular surgery [yes]
 1. PubMed validated codelist search:
     - Search: "surgery validated (CPRD OR SNOMED CT)"
     - 16 results
@@ -196,7 +196,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [major_cardiovascular_surgery.csv](codelists/major_cardiovascular_surgery.csv)
 
-#### Smoking status
+#### Smoking status [Yes]
 *Suggest using codelist from [Phil's COPD prevalence paper](https://doi.org/10.2147/COPD.S411739): [smoking_status.dta.csv](https://github.com/NHLI-Respiratory-Epi/COPD_prevalence/blob/main/codelists/CSV/smoking_status.dta.csv).*
 1. PubMed validated codelist search:
     - Search: "smoking validated (CPRD OR SNOMED CT)"
@@ -223,7 +223,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [smoking_status.csv](codelists/smoking_status.csv)
 
-#### Alcohol use disorder
+#### Alcohol use disorder [Yes, but find list with levels]
 *Suggest using the recommended codelist by [Cook et al.](https://doi.org/10.2147/CLEP.S477778): [Alcohol use disorder.csv](https://github.com/NHLI-Respiratory-Epi/Alcohol_use_disorder_codelist/blob/main/Alcohol%20use%20disorder.csv)*
 1. PubMed validated codelist search:
     - Search: "alcohol validated (CPRD OR SNOMED CT)"
@@ -260,7 +260,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [alcohol_use_disorder.csv](codelists/alcohol_use_disorder.csv)
 
-#### Ethnicity
+#### Ethnicity [yes]
 *Use one of Rohini's codelists: https://doi.org/10.1093/pubmed/fdt116 https://doi.org/10.12688%2Fwellcomeopenres.16620.3*
 1. PubMed validated codelist search:
     - Search: "ethnicity validated (CPRD OR SNOMED CT)"
@@ -290,7 +290,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 
 ### Value codes:
 
-#### Cholesterol (broadened from low-density lipoprotein cholesterol (LDL-C))
+#### Cholesterol (broadened from low-density lipoprotein cholesterol (LDL-C)) [yes]
 1. PubMed validated codelist search:
     - Search: "cholesterol validated (CPRD OR SNOMED CT)"
     - 6 results
@@ -326,7 +326,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [cholesterol.csv](codelists/cholesterol.csv)
 
-#### Blood pressure (broadened from systolic blood pressure)
+#### Blood pressure (broadened from systolic blood pressure) [yes]
 1. PubMed validated codelist search:
     - Search: "blood pressure validated (CPRD OR SNOMED CT)"
     - 8 results
@@ -355,7 +355,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [blood_pressure.csv](codelists/blood_pressure.csv)
 
-#### Glycated haemoglobin (HbA1c)
+#### Glycated haemoglobin (HbA1c) [yes]
 1. PubMed validated codelist search:
     - Search: "hba1c validated (CPRD OR SNOMED CT)"
     - 5 results
@@ -385,7 +385,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [HbA1c.csv](codelists/HbA1c.csv)
 
-#### Weight/Body mass index (BMI) (broadened from just weight)
+#### Weight/Body mass index (BMI) (broadened from just weight) [look for IP publication on excluding above 99th centile] [yes]
 1. PubMed validated codelist search:
     - Search: "(weight OR body mass index OR BMI) validated (CPRD OR SNOMED CT)"
     - 31 results
@@ -415,7 +415,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [body_mass_index.csv](codelists/body_mass_index.csv)
 
-#### Alcohol consumption (possible? alcohol use disorder codelist may be sufficient)
+#### Alcohol consumption (possible? alcohol use disorder codelist may be sufficient) [todo]
 1. PubMed validated codelist search:
     - Search: "alcohol validated (CPRD OR SNOMED CT)"
     - 8 results
