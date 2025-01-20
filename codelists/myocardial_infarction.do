@@ -414,6 +414,7 @@ merge 1:1 medcodeid using `medical', update
 drop if _merge == 2
 order term, before(term_old)
 list term_old term if lower(term_old) != lower(term)
+list medcodeid snomedctconceptid term observations persson lshtm_*
 drop term_old _merge
 
 
@@ -534,6 +535,8 @@ drop not_in_dictionary _merge
 
 //Check for any additional new codes that haven't been accounted for
 list snomedctconceptid term /**/refset_mi ph*/**/ if medcode == ""
+
+//none
 
 
 // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
