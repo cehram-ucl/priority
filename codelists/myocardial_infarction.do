@@ -414,7 +414,7 @@ merge 1:1 medcodeid using `medical', update
 drop if _merge == 2
 order term, before(term_old)
 list term_old term if lower(term_old) != lower(term)
-list medcodeid snomedctconceptid term observations persson lshtm_*
+list medcodeid snomedctconceptid term observations persson lshtm_* if _merge == 4
 drop term_old _merge
 
 
