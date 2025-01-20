@@ -391,6 +391,7 @@ merge 1:1 medcodeid using `medical', update
 drop if _merge == 2
 order term, before(term_old)
 list term_old term if lower(term_old) != lower(term)
+list medcodeid term observations lshtm_* if _merge == 4
 drop term_old _merge
 
 
@@ -524,7 +525,7 @@ preserve
 	drop term_old _merge
 	tempfile extra_from_codelists
 	save `extra_from_codelists'
-	list medcodeid snomedctconceptid term /**/ph* refset_angina/**/
+	list medcodeid snomedctconceptid term observations /**/ph* refset_angina/**/
 restore
 drop if medcodeid == ""
 merge 1:1 medcodeid using `extra_from_codelists', update replace
