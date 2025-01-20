@@ -62,7 +62,7 @@ save `medical'
 
 //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
 
-local ihd " "*angina*" "*status*anginosus*" "*isch*emic*heart*disease*" "*impending*infarct*" "*pre*infarct*" "
+local ihd " "*angina*" "*status*anginosus*" "*isch*emic*heart*disease*" "*impending*infarct*" "*pre*infarct*" "*coronary*heart*disease*" "*coronary*artery*disease*" "*arteriosclerotic*heart*disease*" "*atherosclerotic*heart*disease*" "*atherosclerotic*vascular*disease*" "
 
 
 // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
@@ -337,7 +337,7 @@ restore, preserve
 	save ``name''
 restore
 
-foreach codelist in lshtm_2102_angina lshtm_2196_angina lshtm_2815_angina /*lshtm_3265 lshtm_4214*/ {
+foreach codelist in lshtm_2102_angina lshtm_2196_angina lshtm_2815_angina /*lshtm_3265 lshtm_4214*/ {  //3265 & 4214 excluded as include several MI codes
 	
 	//Merge previous codelist
 	merge 1:1 medcodeid using ``codelist''
@@ -463,7 +463,7 @@ restore, preserve
 	save ``name''
 restore
 
-foreach codelist in /*ph27*/ ph956 ph986 refset_angina {
+foreach codelist in /*ph27*/ ph956 ph986 refset_angina {  //PH27 excluded for MI codes
 	
 	//Merge previous codelist
 	merge m:1 snomedctconceptid using ``codelist''
@@ -512,8 +512,23 @@ drop not_in_dictionary _merge
 //Check for any additional new codes that haven't been accounted for
 list snomedctconceptid term /**/ph* refset_angina/**/ if medcode == ""
 
-//for now just drop them
+//Add additional codes to list
+preserve
+	keep if medcodeid == ""
+	rename term term_old
+	merge 1:m snomedctconceptid using `medical', update
+	drop if _merge == 2
+	compress
+	order term, before(term_old)
+	list term_old term if lower(term_old) != lower(term)
+	drop term_old _merge
+	tempfile extra_from_codelists
+	save `extra_from_codelists'
+	list medcodeid snomedctconceptid term /**/ph* refset_angina/**/
+restore
 drop if medcodeid == ""
+merge 1:1 medcodeid using `extra_from_codelists', update replace
+drop _merge
 
 
 // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
