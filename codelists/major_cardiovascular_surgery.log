@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
   log type:  text
- opened on:   3 Dec 2024, 18:12:42
+ opened on:  20 Jan 2025, 20:56:49
 
 . 
 . 
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6478_000001.tmp saved as .dta format
 
 . 
 . 
@@ -48,7 +48,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
 . 
 . local cv_surgery " "*cardi*surgery*" "*cardi*operation*" "*surgery*cardi*" "*operation*cardi*" "*coronary*surgery*" "*coronary*operation*" "*surgery*coronary*" "*operation*co
 > ronary*" "*heart*surgery*" "*heart*operation*" "*surgery*heart*" "*operation*heart*" "*artery*surgery*" "*artery*operation*" "*surgery*artery*" "*operation*artery*" "*coronar
-> y*artery*bypass*" "*cabg*" "*coronary*graft*" "*cardiac*stent*" "*angioplasty*" "*coronary*intervention*" "*endarterectomy*" "
+> y*artery*bypass*" "*cabg*" "*coronary*graft*" "*cardiac*stent*" "*angioplasty*" "*coronary*intervention*" "*endarterectomy*" "*carotid*artery*stent*" "
 
 . 
 . 
@@ -97,10 +97,11 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
 (167 real changes made)
 (14 real changes made)
 (58 real changes made)
+(5 real changes made)
 
 . 
 . keep if /**/cv_surgery/**/ == 1
-(240,455 observations deleted)
+(240,450 observations deleted)
 
 . compress
   variable medcodeid was str18 now str17
@@ -108,7 +109,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
   variable snomedctconceptid was str18 now str17
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str187
-  (30,464 bytes saved)
+  (30,744 bytes saved)
 
 . 
 . gsort /**/cv_surgery/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
@@ -120,9 +121,9 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
 
  cv_surgery |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          1 |        544      100.00      100.00
+          1 |        549      100.00      100.00
 ------------+-----------------------------------
-      Total |        544      100.00
+      Total |        549      100.00
 
 . 
 . 
@@ -167,24 +168,49 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
 . 
 . // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
 . //=============================================================
-. /* EVERYTHING LOOKS OK
-> // **medcodeids to remove**
-> local initial_remove "123"
-> 
-> gen byte remove = 0
-> 
-> foreach medcode of local initial_remove {
->         
->         replace remove = 1 if medcodeid == "`medcode'"
-> }
-> 
-> list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
-> drop if remove == 1
-> drop remove
-> 
-> compress
-> tab1 /**/cv_surgery/**/
-> */
+. 
+. // **medcodeids to remove**
+. local initial_remove "300989017"
+
+. 
+. gen byte remove = 0
+
+. 
+. foreach medcode of local initial_remove {
+  2.         
+.         replace remove = 1 if medcodeid == "`medcode'"
+  3. }
+(1 real change made)
+
+. 
+. list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+
+     +---------------------------------------------------------------------------------------------------------+
+     | medcodeid   snom~nid   snom~tid   origin~e                                                         term |
+     |---------------------------------------------------------------------------------------------------------|
+393. | 300989017   82610017   49601007      Gyu91   [X]Other functional disturbances following cardiac surgery |
+     +---------------------------------------------------------------------------------------------------------+
+
+. drop if remove == 1
+(1 observation deleted)
+
+. drop remove
+
+. 
+. compress
+  (0 bytes saved)
+
+. tab1 /**/cv_surgery/**/
+
+-> tabulation of cv_surgery  
+
+ cv_surgery |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        548      100.00      100.00
+------------+-----------------------------------
+      Total |        548      100.00
+
+. 
 . 
 . // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
 . //==========================================================================
@@ -198,18 +224,18 @@ snomedctconceptid                                                               
 
                   Type: String (str17)
 
-         Unique values: 309                       Missing "": 0/544
+         Unique values: 313                       Missing "": 0/548
 
-              Examples: "175418002"
-                        "233282001"
-                        "308696000"
+              Examples: "175419005"
+                        "233283006"
+                        "30904006"
                         "511000087101"
 
 . assert !missing(snomedctconceptid)
 
 . 
 . count
-  544
+  548
 
 . 
 . //Make a note of current list
@@ -222,7 +248,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6478_000003.tmp saved as .dta format
 
 . restore
 
@@ -241,7 +267,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
     Result                      Number of obs
     -----------------------------------------
     Not matched                             0
-    Matched                               729  
+    Matched                               712  
     -----------------------------------------
 
 . compress
@@ -250,17 +276,17 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
   variable originalreadcode was str19 now str13
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str187
-  (40,824 bytes saved)
+  (39,872 bytes saved)
 
 . merge 1:1 medcodeid using `original', nogenerate
 
     Result                      Number of obs
     -----------------------------------------
-    Not matched                           185
-        from master                       185  
+    Not matched                           164
+        from master                       164  
         from using                          0  
 
-    Matched                               544  
+    Matched                               548  
     -----------------------------------------
 
 . order snomedctconceptid, before(snomedctdescriptionid)
@@ -451,63 +477,38 @@ New terms found for: cv_surgery
      |------------------------------------------------------------------------------------------------------------------------------|
 447. |        63697000           7M360                                                                       Cardiopulmonary bypass |
 448. |        63697000        7M360-99                                                                Artificial heart-lung by-pass |
-457. |        49601007               G                                                                      Cardiovascular disorder |
-458. |        49601007             G-1                                                                                  CVS disease |
-461. |        49601007            G5yX                                                            Disorder of cardiovascular system |
+462. |       105501005            ZV45                                                                 [V]Other postsurgical states |
+464. |       105501005           ZV45D                                           [V]Presence of artificial limb (complete)(partial) |
+468. |       105501005            ZV46                                                     Dependence on enabling machine or device |
      |------------------------------------------------------------------------------------------------------------------------------|
-462. |        49601007              G8                                                 Vein, lymphatic and circulatory diseases NOS |
-463. |        49601007             G8y                                 Other specified vein, lymphatic or other circulatory disease |
-464. |        49601007            G8yy                                                         Other specified circulatory disorder |
-465. |        49601007           G8yy1                                                            Venous collateral circulation NOS |
-466. |        49601007           G8yyz                                                     Other specified circulatory disorder NOS |
+470. |       736968006    ^ESCT1167250                                       Saphenous vein graft bypass of three coronary arteries |
+542. |       392242000   ^ESCTAR653099                                                                              Arterial repair |
+543. |       392242000   ^ESCTAR653100                                                                                Arterioplasty |
+549. |       232980009   ^ESCTBA504413                                                         Balloon dilatation of pulmonary vein |
+551. |       233214006   ^ESCTBA504732                                                       Balloon dilatation of pulmonary artery |
      |------------------------------------------------------------------------------------------------------------------------------|
-467. |        49601007            G8yz                                                               Other circulatory disorder NOS |
-468. |        49601007             G8z                                           Vein, lymphatic and other circulatory diseases NOS |
-469. |        49601007              Gy                                               Other specified diseases of circulatory system |
-470. |        49601007           Gyu5g                                                       [X]Cardiovascular disease, unspecified |
-471. |        49601007            Gyu9            [X]Other and unspecified disorders of the circulatory system classification terms |
+560. |        13662000   ^ESCTBL271665                                                                        Blalock-Taussig shunt |
+561. |        13662000   ^ESCTBT271667                                                                  BTS - Blalock-Taussig shunt |
+563. |        63697000   ^ESCTCA353597                                                                    Cardiopulmonary perfusion |
+575. |       413766009   ^ESCTCA684622                                                                                Carotid stent |
+583. |        29843007   ^ESCTCO298033                                                                Coronary atherectomy by laser |
      |------------------------------------------------------------------------------------------------------------------------------|
-473. |        49601007           Gyu92                                     [X]Other postprocedural disorders/circulatory system,NEC |
-474. |        49601007           Gyu93                                 [X]Cardiovascular disorders/oth infectous+parasitic diseases |
-475. |        49601007           Gyu95                                 [X]Other specifd disorders/circulatory system in diseases CE |
-476. |        49601007           Gyu96                                 [X]Other and unspecified disorders of the circulatory system |
-477. |        49601007              Gz                                                            Disorder of cardiovascular system |
+594. |       233022006   ^ESCTCO504475                                    Construction of conduit - right atrium to pulmonary trunk |
+607. |        63697000   ^ESCTCP353598                                                                 CPB - Cardiopulmonary bypass |
+631. |       265488007   ^ESCTGR548650                                                  Great vessel and pulmonary artery procedure |
+632. |       118797008   ^ESCTHE431225                                                                              Heart procedure |
+646. |        31413008   ^ESCTOP300626                                                       Operative procedure on coronary artery |
      |------------------------------------------------------------------------------------------------------------------------------|
-481. |       105501005            ZV45                                                                 [V]Other postsurgical states |
-483. |       105501005           ZV45D                                           [V]Presence of artificial limb (complete)(partial) |
-487. |       105501005            ZV46                                                     Dependence on enabling machine or device |
-489. |       736968006    ^ESCT1167250                                       Saphenous vein graft bypass of three coronary arteries |
-560. |       392242000   ^ESCTAR653099                                                                              Arterial repair |
+647. |        31413008   ^ESCTOP300627                                                     Operative procedure on coronary arteries |
+659. |        58380004   ^ESCTPE344846                                                                              Pericardiostomy |
+679. |       386727004   ^ESCTPE646043                                                  Percutaneous transluminal cardiac valvotomy |
+693. |       118797008   ^ESCTPR431224                                                                           Procedure on heart |
+694. |       118805000   ^ESCTPR431233                                                                          Procedure on artery |
      |------------------------------------------------------------------------------------------------------------------------------|
-561. |       392242000   ^ESCTAR653100                                                                                Arterioplasty |
-567. |       232980009   ^ESCTBA504413                                                         Balloon dilatation of pulmonary vein |
-569. |       233214006   ^ESCTBA504732                                                       Balloon dilatation of pulmonary artery |
-578. |        13662000   ^ESCTBL271665                                                                        Blalock-Taussig shunt |
-579. |        13662000   ^ESCTBT271667                                                                  BTS - Blalock-Taussig shunt |
-     |------------------------------------------------------------------------------------------------------------------------------|
-580. |        49601007   ^ESCTCA330269                                                                       Cardiovascular disease |
-582. |        63697000   ^ESCTCA353597                                                                    Cardiopulmonary perfusion |
-601. |        29843007   ^ESCTCO298033                                                                Coronary atherectomy by laser |
-612. |       233022006   ^ESCTCO504475                                    Construction of conduit - right atrium to pulmonary trunk |
-625. |        63697000   ^ESCTCP353598                                                                 CPB - Cardiopulmonary bypass |
-     |------------------------------------------------------------------------------------------------------------------------------|
-626. |        49601007   ^ESCTCV330273                                                                 CVD - cardiovascular disease |
-627. |        49601007   ^ESCTDI330268                                                               Disorder of circulatory system |
-628. |        49601007   ^ESCTDI330271                                                           Disorder of the circulatory system |
-649. |       265488007   ^ESCTGR548650                                                  Great vessel and pulmonary artery procedure |
-650. |       118797008   ^ESCTHE431225                                                                              Heart procedure |
-     |------------------------------------------------------------------------------------------------------------------------------|
-663. |        31413008   ^ESCTOP300626                                                       Operative procedure on coronary artery |
-664. |        31413008   ^ESCTOP300627                                                     Operative procedure on coronary arteries |
-676. |        58380004   ^ESCTPE344846                                                                              Pericardiostomy |
-696. |       386727004   ^ESCTPE646043                                                  Percutaneous transluminal cardiac valvotomy |
-710. |       118797008   ^ESCTPR431224                                                                           Procedure on heart |
-     |------------------------------------------------------------------------------------------------------------------------------|
-711. |       118805000   ^ESCTPR431233                                                                          Procedure on artery |
-714. |       432952005   ^ESCTPT717112                                                                      PTA of dialysis fistula |
-716. |        68466008   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel |
-727. |       232721002   ^ESCTTR504019                                                                       Triple coronary bypass |
-728. |       233050006   ^ESCTVE504515                                                                        Ventricular operation |
+697. |       432952005   ^ESCTPT717112                                                                      PTA of dialysis fistula |
+699. |        68466008   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel |
+710. |       232721002   ^ESCTTR504019                                                                       Triple coronary bypass |
+711. |       233050006   ^ESCTVE504515                                                                        Ventricular operation |
      +------------------------------------------------------------------------------------------------------------------------------+
 
 . 
@@ -515,12 +516,12 @@ New terms found for: cv_surgery
 . preserve
 
 .         keep if new_snomedct_synonym == 1
-(544 observations deleted)
+(548 observations deleted)
 
 .         keep snomedctconceptid
 
 .         bysort snomedctconceptid: keep if _n == 1
-(138 observations deleted)
+(117 observations deleted)
 
 . 
 .         count
@@ -556,10 +557,10 @@ SNOMED CT Concept ID for which additional terms where found: 105501005
      +--------------------------------------------------------------------------------------------+
      |       medcodeid   origin~e                                                 term   new_sn~m |
      |--------------------------------------------------------------------------------------------|
-481. | 343561000006119       ZV45                         [V]Other postsurgical states          1 |
-483. |       460692012      ZV45D   [V]Presence of artificial limb (complete)(partial)          1 |
-486. |       453269016      ZV45L         [V]Status following coronary angioplasty NOS          0 |
-487. |       460702010       ZV46             Dependence on enabling machine or device          1 |
+462. | 343561000006119       ZV45                         [V]Other postsurgical states          1 |
+464. |       460692012      ZV45D   [V]Presence of artificial limb (complete)(partial)          1 |
+467. |       453269016      ZV45L         [V]Status following coronary angioplasty NOS          0 |
+468. |       460702010       ZV46             Dependence on enabling machine or device          1 |
      +--------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 118797008
 
@@ -569,8 +570,8 @@ SNOMED CT Concept ID for which additional terms where found: 118797008
   6. |  864941000006116           79-99                                      Cardiovascular operations          0 |
 184. |  484131000000113            793M                   Therapeutic transluminal operations on heart          0 |
 185. |  484151000000118           793My   Other specified therapeutic transluminal operations on heart          0 |
-650. | 4312251000006111   ^ESCTHE431225                                                Heart procedure          1 |
-710. | 4312241000006114   ^ESCTPR431224                                             Procedure on heart          1 |
+632. | 4312251000006111   ^ESCTHE431225                                                Heart procedure          1 |
+693. | 4312241000006114   ^ESCTPR431224                                             Procedure on heart          1 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 118805000
 
@@ -613,7 +614,7 @@ SNOMED CT Concept ID for which additional terms where found: 118805000
 433. |        272130012            7A5z                                    Other artery operations NOS          0 |
 437. |        272297017           7A6G3                                        Operation on artery NEC          0 |
      |------------------------------------------------------------------------------------------------------------|
-711. | 4312331000006112   ^ESCTPR431233                                            Procedure on artery          1 |
+694. | 4312331000006112   ^ESCTPR431233                                            Procedure on artery          1 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 13662000
 
@@ -622,9 +623,9 @@ SNOMED CT Concept ID for which additional terms where found: 13662000
      |-----------------------------------------------------------------------------------------------------------------------|
 216. |  515241000006111         7A062-1              Blalock anastomosis of subclavian artery to pulmonary artery          1 |
 217. |  107511000006111         7A062-2              Taussig anastomosis of subclavian artery to pulmonary artery          1 |
-523. | 2716611000006117   ^ESCTAN271661   Anastomosis of pulmonary-subclavian artery by Blalock-Taussig operation          0 |
-578. | 2716651000006116   ^ESCTBL271665                                                     Blalock-Taussig shunt          1 |
-579. | 2716671000006114   ^ESCTBT271667                                               BTS - Blalock-Taussig shunt          1 |
+505. | 2716611000006117   ^ESCTAN271661   Anastomosis of pulmonary-subclavian artery by Blalock-Taussig operation          0 |
+560. | 2716651000006116   ^ESCTBL271665                                                     Blalock-Taussig shunt          1 |
+561. | 2716671000006114   ^ESCTBT271667                                               BTS - Blalock-Taussig shunt          1 |
      +-----------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 175112006
 
@@ -707,10 +708,10 @@ SNOMED CT Concept ID for which additional terms where found: 232717009
 129. |        271169016            792D                                 Coronary artery bypass graft          0 |
 130. |        271170015           792Dy              Other specified other bypass of coronary artery          1 |
 131. |        271171016           792Dz                          Other bypass of coronary artery NOS          1 |
-584. | 5040091000006112   ^ESCTCA504009                          CABG - Coronary artery bypass graft          0 |
-595. | 5040101000006118   ^ESCTCB504010                                  CBG - Coronary bypass graft          0 |
+565. | 5040091000006112   ^ESCTCA504009                          CABG - Coronary artery bypass graft          0 |
+577. | 5040101000006118   ^ESCTCB504010                                  CBG - Coronary bypass graft          0 |
      |----------------------------------------------------------------------------------------------------------|
-605. | 5040111000006115   ^ESCTCO504011                              Coronary artery bypass grafting          0 |
+587. | 5040111000006115   ^ESCTCO504011                              Coronary artery bypass grafting          0 |
      +----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232719007
 
@@ -721,9 +722,9 @@ SNOMED CT Concept ID for which additional terms where found: 232719007
  90. |        405092018           79253    Single anastomosis of mammary artery to coronary artery NEC          1 |
  94. |        271132019           79262   Single anastomosis of thoracic artery to coronary artery NEC          1 |
  95. |  142431000006114           79263   Single implantation thoracic artery into coronary artery NEC          1 |
-585. | 5040151000006119   ^ESCTCA504015                    CABG x 1 - Coronary artery bypass graft x 1          0 |
+566. | 5040151000006119   ^ESCTCA504015                    CABG x 1 - Coronary artery bypass graft x 1          0 |
      |------------------------------------------------------------------------------------------------------------|
-606. | 5040141000006116   ^ESCTCO504014                               Coronary artery bypass graft x 1          0 |
+588. | 5040141000006116   ^ESCTCO504014                               Coronary artery bypass graft x 1          0 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232720001
 
@@ -733,8 +734,8 @@ SNOMED CT Concept ID for which additional terms where found: 232720001
  85. |        271082014           79211            Autograft replacement of two coronary arteries NEC          1 |
  92. |  627951000006112           79260     Double anastom thoracic arteries to coronary arteries NEC          1 |
  93. |  628031000006115           79261   Double implant thoracic arteries into coronary arteries NEC          1 |
-586. | 5040171000006112   ^ESCTCA504017                  CABG x 2 - Coronary artery bypass grafts x 2          0 |
-607. | 5040161000006117   ^ESCTCO504016                             Coronary artery bypass grafts x 2          0 |
+567. | 5040171000006112   ^ESCTCA504017                  CABG x 2 - Coronary artery bypass grafts x 2          0 |
+589. | 5040161000006117   ^ESCTCO504016                             Coronary artery bypass grafts x 2          0 |
      +-----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232721002
 
@@ -742,9 +743,9 @@ SNOMED CT Concept ID for which additional terms where found: 232721002
      |        medcodeid   originalrea~e                                                   term   new_sn~m |
      |----------------------------------------------------------------------------------------------------|
  86. |        271083016           79212   Autograft replacement of three coronary arteries NEC          1 |
-587. | 5040201000006111   ^ESCTCA504020           CABG x 3 - Coronary artery bypass grafts x 3          0 |
-608. | 5040181000006110   ^ESCTCO504018                      Coronary artery bypass grafts x 3          0 |
-727. | 5040191000006113   ^ESCTTR504019                                 Triple coronary bypass          1 |
+568. | 5040201000006111   ^ESCTCA504020           CABG x 3 - Coronary artery bypass grafts x 3          0 |
+590. | 5040181000006110   ^ESCTCO504018                      Coronary artery bypass grafts x 3          0 |
+710. | 5040191000006113   ^ESCTTR504019                                 Triple coronary bypass          1 |
      +----------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232722009
 
@@ -752,8 +753,8 @@ SNOMED CT Concept ID for which additional terms where found: 232722009
      |        medcodeid   originalrea~e                                                          term   new_sn~m |
      |-----------------------------------------------------------------------------------------------------------|
  87. |        271084010           79213   Autograft replacement of four of more coronary arteries NEC          1 |
-588. | 5040221000006118   ^ESCTCA504022                  CABG x 4 - Coronary artery bypass grafts x 4          0 |
-609. | 5040211000006114   ^ESCTCO504021                             Coronary artery bypass grafts x 4          0 |
+569. | 5040221000006118   ^ESCTCA504022                  CABG x 4 - Coronary artery bypass grafts x 4          0 |
+591. | 5040211000006114   ^ESCTCO504021                             Coronary artery bypass grafts x 4          0 |
      +-----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232726007
 
@@ -761,15 +762,15 @@ SNOMED CT Concept ID for which additional terms where found: 232726007
      |        medcodeid   originalrea~e                                                       term   new_sn~m |
      |--------------------------------------------------------------------------------------------------------|
 115. |  354901000000117           79296   Percutaneous transluminal atherectomy of coronary artery          1 |
-684. | 5040281000006119   ^ESCTPE504028             Percutaneous endarterectomy of coronary artery          0 |
+667. | 5040281000006119   ^ESCTPE504028             Percutaneous endarterectomy of coronary artery          0 |
      +--------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 232980009
 
      +-------------------------------------------------------------------------------------+
      |        medcodeid   originalrea~e                                    term   new_sn~m |
      |-------------------------------------------------------------------------------------|
-566. | 5044121000006115   ^ESCTBA504412   Balloon angioplasty of pulmonary vein          0 |
-567. | 5044131000006117   ^ESCTBA504413    Balloon dilatation of pulmonary vein          1 |
+548. | 5044121000006115   ^ESCTBA504412   Balloon angioplasty of pulmonary vein          0 |
+549. | 5044131000006117   ^ESCTBA504413    Balloon dilatation of pulmonary vein          1 |
      +-------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 233022006
 
@@ -778,8 +779,8 @@ SNOMED CT Concept ID for which additional terms where found: 233022006
      |-------------------------------------------------------------------------------------------------------------------|
  36. |  600171000006110           790E1          Creation of conduit between right atrium and pulm artery NEC          1 |
  37. |  600271000006115         790E1-1          Creation of Fontan conduit between right atrium & pulmon art          1 |
-612. | 5044751000006111   ^ESCTCO504475             Construction of conduit - right atrium to pulmonary trunk          1 |
-648. | 5044761000006113   ^ESCTFO504476   Fontan operation with conduit from right atrium to pulmonary artery          0 |
+594. | 5044751000006111   ^ESCTCO504475             Construction of conduit - right atrium to pulmonary trunk          1 |
+630. | 5044761000006113   ^ESCTFO504476   Fontan operation with conduit from right atrium to pulmonary artery          0 |
      +-------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 233050006
 
@@ -789,7 +790,7 @@ SNOMED CT Concept ID for which additional terms where found: 233050006
  44. |  356921000000119            790N                   Other operations on ventricles of heart          0 |
  45. |  376641000000118           790Ny   Other specified other operations on ventricles of heart          0 |
  46. |  384141000000114           790Nz               Other operations on ventricles of heart NOS          0 |
-728. | 5045151000006113   ^ESCTVE504515                                     Ventricular operation          1 |
+711. | 5045151000006113   ^ESCTVE504515                                     Ventricular operation          1 |
      +-------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 233114002
 
@@ -798,15 +799,15 @@ SNOMED CT Concept ID for which additional terms where found: 233114002
      |-----------------------------------------------------------------------------------------------------------|
 231. | 1548021000006110            7A0C        Operation for major aortopulmonary collateral arteries          1 |
 233. | 1548091000006112           7A0Cz   Operations major systemic pulmonary collateral arteries NOS          1 |
-658. | 5046031000006111   ^ESCTMA504603      MAPCA - Major aortopulmonary collateral artery operation          0 |
+641. | 5046031000006111   ^ESCTMA504603      MAPCA - Major aortopulmonary collateral artery operation          0 |
      +-----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 233214006
 
      +--------------------------------------------------------------------------------------+
      |        medcodeid   originalrea~e                                     term   new_sn~m |
      |--------------------------------------------------------------------------------------|
-524. | 5047311000006118   ^ESCTAN504731          Angioplasty of pulmonary artery          0 |
-569. | 5047321000006114   ^ESCTBA504732   Balloon dilatation of pulmonary artery          1 |
+506. | 5047311000006118   ^ESCTAN504731          Angioplasty of pulmonary artery          0 |
+551. | 5047321000006114   ^ESCTBA504732   Balloon dilatation of pulmonary artery          1 |
      +--------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 233226001
 
@@ -819,7 +820,7 @@ SNOMED CT Concept ID for which additional terms where found: 233226001
 215. |  599991000006112           7A062    Creation anastomosis subclavian artery to pulmonary art NEC          1 |
 219. |   33541000006117           7A06z      Other connection from subclavian art to pulmonary art NOS          1 |
      |------------------------------------------------------------------------------------------------------------|
-726. | 5047511000006112   ^ESCTSU504751                 Subclavian to pulmonary artery shunt operation          0 |
+709. | 5047511000006112   ^ESCTSU504751                 Subclavian to pulmonary artery shunt operation          0 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 265488007
 
@@ -830,7 +831,7 @@ SNOMED CT Concept ID for which additional terms where found: 265488007
 211. |  807051000006113           7A0-1                            Great vessel operations          1 |
 234. |  807061000006110            7A0y     Great vessel or pulmonary artery operations OS          0 |
 235. |        271408019            7A0z   Great vessel and pulmonary artery operations NOS          0 |
-649. | 5486501000006111   ^ESCTGR548650        Great vessel and pulmonary artery procedure          1 |
+631. | 5486501000006111   ^ESCTGR548650        Great vessel and pulmonary artery procedure          1 |
      +------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 265500000
 
@@ -890,8 +891,8 @@ SNOMED CT Concept ID for which additional terms where found: 29843007
      |        medcodeid   originalrea~e                                                   term   new_sn~m |
      |----------------------------------------------------------------------------------------------------|
 113. |        484402013           79290   Percutaneous transluminal laser coronary angioplasty          0 |
-601. | 2980331000006110   ^ESCTCO298033                          Coronary atherectomy by laser          1 |
-657. | 2980341000006117   ^ESCTLA298034                             Laser coronary angioplasty          0 |
+583. | 2980331000006110   ^ESCTCO298033                          Coronary atherectomy by laser          1 |
+640. | 2980341000006117   ^ESCTLA298034                             Laser coronary angioplasty          0 |
      +----------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 307823003
 
@@ -959,10 +960,10 @@ SNOMED CT Concept ID for which additional terms where found: 31413008
 125. |        271164014           792Bz                                  Repair of coronary artery NOS          1 |
 134. |        271172011            792y                  Other specified operations on coronary artery          0 |
 136. |        271173018            792z                                 Coronary artery operations NOS          0 |
-602. | 3006281000006117   ^ESCTCO300628                                        Coronary artery surgery          0 |
-663. | 3006261000006110   ^ESCTOP300626                         Operative procedure on coronary artery          1 |
+584. | 3006281000006117   ^ESCTCO300628                                        Coronary artery surgery          0 |
+646. | 3006261000006110   ^ESCTOP300626                         Operative procedure on coronary artery          1 |
      |------------------------------------------------------------------------------------------------------------|
-664. | 3006271000006115   ^ESCTOP300627                       Operative procedure on coronary arteries          1 |
+647. | 3006271000006115   ^ESCTOP300627                       Operative procedure on coronary arteries          1 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 3546002
 
@@ -975,7 +976,7 @@ SNOMED CT Concept ID for which additional terms where found: 3546002
  80. |   161481000006112          7920y   Aortocoronary artery bypass graft with saphenous vein graft          0 |
  81. |         271079016          7920z          Saphenous vein graft replacement coronary artery NOS          1 |
      |-----------------------------------------------------------------------------------------------------------|
-513. | 14055221000006116   ^ESCT1405522        Coronary artery bypass graft with saphenous vein graft          0 |
+494. | 14055221000006116   ^ESCT1405522        Coronary artery bypass graft with saphenous vein graft          0 |
      +-----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 38629001
 
@@ -992,7 +993,7 @@ SNOMED CT Concept ID for which additional terms where found: 386727004
      |-----------------------------------------------------------------------------------------------------|
  61. |  105381000006119            7919   Therapeutic transluminal operations on valve of heart          0 |
  62. |  233261000006114          7919-1                     Percutaneous transluminal valvotomy          1 |
-696. | 6460431000006117   ^ESCTPE646043             Percutaneous transluminal cardiac valvotomy          1 |
+679. | 6460431000006117   ^ESCTPE646043             Percutaneous transluminal cardiac valvotomy          1 |
      +-----------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 392031002
 
@@ -1030,9 +1031,17 @@ SNOMED CT Concept ID for which additional terms where found: 392242000
 409. |        272093013           7A52y                         Other specified repair of other artery          1 |
 410. |        272094019           7A52z                                     Repair of other artery NOS          1 |
      |------------------------------------------------------------------------------------------------------------|
-560. | 6530991000006112   ^ESCTAR653099                                                Arterial repair          1 |
-561. | 6531001000006113   ^ESCTAR653100                                                  Arterioplasty          1 |
+542. | 6530991000006112   ^ESCTAR653099                                                Arterial repair          1 |
+543. | 6531001000006113   ^ESCTAR653100                                                  Arterioplasty          1 |
      +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 413766009
+
+     +---------------------------------------------------------------------+
+     |         medcodeid   originalrea~e                   term   new_sn~m |
+     |---------------------------------------------------------------------|
+497. | 14082621000006118    ^ESCT1408262   Carotid artery stent          0 |
+575. |  6846221000006115   ^ESCTCA684622          Carotid stent          1 |
+     +---------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 429639007
 
      +-------------------------------------------------------------------------------------------------------------------------------------+
@@ -1049,42 +1058,9 @@ SNOMED CT Concept ID for which additional terms where found: 432952005
      +-------------------------------------------------------------------------------------------------------------------------------------+
      |        medcodeid   originalrea~e                                                                                    term   new_sn~m |
      |-------------------------------------------------------------------------------------------------------------------------------------|
-701. | 7171111000006119   ^ESCTPE717111   Percutaneous transluminal angioplasty of dialysis fistula using fluoroscopic guidance          0 |
-714. | 7171121000006110   ^ESCTPT717112                                                                 PTA of dialysis fistula          1 |
+684. | 7171111000006119   ^ESCTPE717111   Percutaneous transluminal angioplasty of dialysis fistula using fluoroscopic guidance          0 |
+697. | 7171121000006110   ^ESCTPT717112                                                                 PTA of dialysis fistula          1 |
      +-------------------------------------------------------------------------------------------------------------------------------------+
-SNOMED CT Concept ID for which additional terms where found: 49601007
-
-     +---------------------------------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                                                                term   new_sn~m |
-     |---------------------------------------------------------------------------------------------------------------------------------|
-457. |  557611000006113               G                                                             Cardiovascular disorder          1 |
-458. |  223931000000117             G-1                                                                         CVS disease          1 |
-461. |  538131000006110            G5yX                                                   Disorder of cardiovascular system          1 |
-462. |        300648017              G8                                        Vein, lymphatic and circulatory diseases NOS          1 |
-463. |        300839012             G8y                        Other specified vein, lymphatic or other circulatory disease          1 |
-     |---------------------------------------------------------------------------------------------------------------------------------|
-464. |        300847012            G8yy                                                Other specified circulatory disorder          1 |
-465. |        300849010           G8yy1                                                   Venous collateral circulation NOS          1 |
-466. |        300854018           G8yyz                                            Other specified circulatory disorder NOS          1 |
-467. |        300855017            G8yz                                                      Other circulatory disorder NOS          1 |
-468. |        300856016             G8z                                  Vein, lymphatic and other circulatory diseases NOS          1 |
-     |---------------------------------------------------------------------------------------------------------------------------------|
-469. |        300857013              Gy                                      Other specified diseases of circulatory system          1 |
-470. |        300932016           Gyu5g                                              [X]Cardiovascular disease, unspecified          1 |
-471. |       1222329015            Gyu9   [X]Other and unspecified disorders of the circulatory system classification terms          1 |
-472. |        300989017           Gyu91                          [X]Other functional disturbances following cardiac surgery          0 |
-473. |  412801000006112           Gyu92                            [X]Other postprocedural disorders/circulatory system,NEC          1 |
-     |---------------------------------------------------------------------------------------------------------------------------------|
-474. |  370351000006115           Gyu93                        [X]Cardiovascular disorders/oth infectous+parasitic diseases          1 |
-475. |  413841000006119           Gyu95                        [X]Other specifd disorders/circulatory system in diseases CE          1 |
-476. |  417441000006113           Gyu96                        [X]Other and unspecified disorders of the circulatory system          1 |
-477. |        300996015              Gz                                                   Disorder of cardiovascular system          1 |
-580. | 3302691000006119   ^ESCTCA330269                                                              Cardiovascular disease          1 |
-     |---------------------------------------------------------------------------------------------------------------------------------|
-626. | 3302731000006110   ^ESCTCV330273                                                        CVD - cardiovascular disease          1 |
-627. | 3302681000006117   ^ESCTDI330268                                                      Disorder of circulatory system          1 |
-628. | 3302711000006116   ^ESCTDI330271                                                  Disorder of the circulatory system          1 |
-     +---------------------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 58380004
 
      +----------------------------------------------------------------------------+
@@ -1092,7 +1068,7 @@ SNOMED CT Concept ID for which additional terms where found: 58380004
      |----------------------------------------------------------------------------|
 160. |         97023017           793C1    Fenestration of pericardium          1 |
 161. |        498154019        793C1-99   Pericardial window operation          0 |
-676. | 3448461000006111   ^ESCTPE344846                Pericardiostomy          1 |
+659. | 3448461000006111   ^ESCTPE344846                Pericardiostomy          1 |
      +----------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 597571000000100
 
@@ -1109,9 +1085,9 @@ SNOMED CT Concept ID for which additional terms where found: 63697000
      |--------------------------------------------------------------------------------|
 447. |        499653015           7M360             Cardiopulmonary bypass          1 |
 448. |  878761000006116        7M360-99      Artificial heart-lung by-pass          1 |
-581. | 3535951000006117   ^ESCTCA353595   Cardiopulmonary bypass operation          0 |
-582. | 3535971000006110   ^ESCTCA353597          Cardiopulmonary perfusion          1 |
-625. | 3535981000006113   ^ESCTCP353598       CPB - Cardiopulmonary bypass          1 |
+562. | 3535951000006117   ^ESCTCA353595   Cardiopulmonary bypass operation          0 |
+563. | 3535971000006110   ^ESCTCA353597          Cardiopulmonary perfusion          1 |
+607. | 3535981000006113   ^ESCTCP353598       CPB - Cardiopulmonary bypass          1 |
      +--------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 68466008
 
@@ -1120,7 +1096,7 @@ SNOMED CT Concept ID for which additional terms where found: 68466008
      |------------------------------------------------------------------------------------------------------------------------------------------|
 105. |  238641000006117           79280                         Percutaneous transluminal balloon angioplasty of one coronary artery          0 |
 106. |  865301000006116        79280-99                                                               Percut angiopl coronary artery          1 |
-716. | 3614141000006115   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel          1 |
+699. | 3614141000006115   ^ESCTRE361414   Removal of coronary artery obstruction by percutaneous transluminal balloon, single vessel          1 |
      +------------------------------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 709019007
 
@@ -1128,7 +1104,7 @@ SNOMED CT Concept ID for which additional terms where found: 709019007
      |        medcodeid   originalrea~e                                                                     term   new_sn~m |
      |----------------------------------------------------------------------------------------------------------------------|
 428. |  359451000000111           7A561                 Percutaneous transluminal stent reconstruction of artery          1 |
-707. | 7643011000006117   ^ESCTPE764301   Percutaneous transluminal arterial angioplasty with insertion of stent          0 |
+690. | 7643011000006117   ^ESCTPE764301   Percutaneous transluminal arterial angioplasty with insertion of stent          0 |
      +----------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 73544002
 
@@ -1155,7 +1131,7 @@ SNOMED CT Concept ID for which additional terms where found: 73544002
      |------------------------------------------------------------------------------------------------------------|
  68. |  818851000006118            791y               Heart valve or adjacent structures operations OS          0 |
  69. |        271066013            791z             Heart valve and adjacent structures operations NOS          0 |
-665. | 3695691000006118   ^ESCTOP369569                                       Operation on heart valve          0 |
+648. | 3695691000006118   ^ESCTOP369569                                       Operation on heart valve          0 |
      +------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 736967001
 
@@ -1163,7 +1139,7 @@ SNOMED CT Concept ID for which additional terms where found: 736967001
      |  medcodeid   originalre~e                                                                           term   new_sn~m |
      |---------------------------------------------------------------------------------------------------------------------|
  76. |  271073015          79200                        Saphenous vein graft replacement of one coronary artery          1 |
-488. | 3525968019   ^ESCT1167247   Aortocoronary artery bypass of one coronary artery with saphenous vein graft          0 |
+469. | 3525968019   ^ESCT1167247   Aortocoronary artery bypass of one coronary artery with saphenous vein graft          0 |
      +---------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 736968006
 
@@ -1171,7 +1147,7 @@ SNOMED CT Concept ID for which additional terms where found: 736968006
      |  medcodeid   originalre~e                                                                               term   new_sn~m |
      |-------------------------------------------------------------------------------------------------------------------------|
  78. |  271075010          79202   Aortocoronary artery bypass of three coronary arteries with saphenous vein graft          0 |
-489. | 3525970011   ^ESCT1167250                             Saphenous vein graft bypass of three coronary arteries          1 |
+470. | 3525970011   ^ESCT1167250                             Saphenous vein graft bypass of three coronary arteries          1 |
      +-------------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 77371000
 
@@ -1249,10 +1225,11 @@ SNOMED CT Concept ID for which additional terms where found: 936451000000108
 > preserve
 >         import delimited https://www.example.com/download.csv, stringcols(1) clear
 >         
+>         keep medcodeid term
 >         local name "cl1"
 >         
 >         rename * *_`name'
->         rename code_`name' snomedctconceptid
+>         rename medcodeid_`name' medcodeid
 >         
 >         generate byte `name' = 1
 > 
@@ -1262,10 +1239,11 @@ SNOMED CT Concept ID for which additional terms where found: 936451000000108
 > restore, preserve
 >         import delimited https://www.example.com/download.csv, stringcols(1) clear
 >         
+>         keep medcodeid term
 >         local name "cl2"
 >         
 >         rename * *_`name'
->         rename code_`name' snomedctconceptid
+>         rename medcodeid_`name' medcodeid
 >         
 >         generate byte `name' = 1
 > 
@@ -1420,10 +1398,9 @@ SNOMED CT Concept ID for which additional terms where found: 936451000000108
 
 . compress
   variable new_snomedct_synonym was float now byte
-  (2,187 bytes saved)
+  (2,136 bytes saved)
 
 . save `filename', replace
-(file major_cardiovascular_surgery.dta not found)
 file major_cardiovascular_surgery.dta saved
 
 . export excel `filename'_raw.xlsx, firstrow(variables) replace
@@ -1588,7 +1565,6 @@ v2 was forced to string; some loss of information
 
 . 
 . export delimited "`filename'.meta", replace novarnames delimiter(tab)
-(file major_cardiovascular_surgery.meta not found)
 file major_cardiovascular_surgery.meta saved
 
 . 
@@ -1601,5 +1577,5 @@ file major_cardiovascular_surgery.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
   log type:  text
- closed on:   3 Dec 2024, 18:12:45
+ closed on:  20 Jan 2025, 20:56:52
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

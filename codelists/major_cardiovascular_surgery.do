@@ -62,7 +62,7 @@ save `medical'
 
 //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
 
-local cv_surgery " "*cardi*surgery*" "*cardi*operation*" "*surgery*cardi*" "*operation*cardi*" "*coronary*surgery*" "*coronary*operation*" "*surgery*coronary*" "*operation*coronary*" "*heart*surgery*" "*heart*operation*" "*surgery*heart*" "*operation*heart*" "*artery*surgery*" "*artery*operation*" "*surgery*artery*" "*operation*artery*" "*coronary*artery*bypass*" "*cabg*" "*coronary*graft*" "*cardiac*stent*" "*angioplasty*" "*coronary*intervention*" "*endarterectomy*" "
+local cv_surgery " "*cardi*surgery*" "*cardi*operation*" "*surgery*cardi*" "*operation*cardi*" "*coronary*surgery*" "*coronary*operation*" "*surgery*coronary*" "*operation*coronary*" "*heart*surgery*" "*heart*operation*" "*surgery*heart*" "*operation*heart*" "*artery*surgery*" "*artery*operation*" "*surgery*artery*" "*operation*artery*" "*coronary*artery*bypass*" "*cabg*" "*coronary*graft*" "*cardiac*stent*" "*angioplasty*" "*coronary*intervention*" "*endarterectomy*" "*carotid*artery*stent*" "
 
 
 // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
@@ -136,9 +136,9 @@ compress
 
 // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
 //=============================================================
-/* EVERYTHING LOOKS OK
+
 // **medcodeids to remove**
-local initial_remove "123"
+local initial_remove "300989017"
 
 gen byte remove = 0
 
@@ -153,7 +153,7 @@ drop remove
 
 compress
 tab1 /**/cv_surgery/**/
-*/
+
 
 // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
 //==========================================================================
