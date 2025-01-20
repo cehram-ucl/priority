@@ -218,9 +218,13 @@ foreach expanded_id of local expanded_ids {
 	
 	display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
 	
-	list medcodeid originalreadcode term new_snomedct_synonym ///
+	list medcodeid originalreadcode term new_snomedct_synonym observations ///
 		if snomedctconceptid == "`expanded_id'"
 }
+
+//This code doesn't look quite right
+list if snomedctconceptid == "302049001"
+drop if snomedctconceptid == "302049001"
 
 
 // (OPTIONAL) STEP 6. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
