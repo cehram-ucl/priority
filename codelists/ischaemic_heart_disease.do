@@ -62,7 +62,7 @@ save `medical'
 
 //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
 
-local ihd " "*angina*" "*status*anginosus*" "*isch*emic*heart*disease*" "*impending*infarct*" "*pre*infarct*" "*coronary*heart*disease*" "*coronary*artery*disease*" "*arteriosclerotic*heart*disease*" "*atherosclerotic*heart*disease*" "*atherosclerotic*vascular*disease*" "
+local ihd " "*angina*" "*status*anginosus*" "*isch*emic*heart*disease*" "*impending*infarct*" "*pre*infarct*" "*coronary*heart*disease*" "*coronary*artery*disease*" "*arteriosclerotic*heart*disease*" "*atherosclerotic*heart*disease*" "*atherosclerotic*vascular*disease*" "*myocardial*isch*emia*" "*coronary*insufficiency*" "
 
 
 // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
@@ -104,8 +104,10 @@ tab1 /**/ihd/**/
 
 local exclude " "*family*history*" "*fh:*" "*fh *" "*score*" "*risk*" "*herpangina*" "*vincent*" "*bullosa*haemorrhagica*" "*streptoc*" "
 
+local mi " "*myocardial*infarct*" "  //not needed as in a separate codelist
+
 //Search for codes to exclude
-foreach excludeterm in exclude /**/stable/**/ {
+foreach excludeterm in exclude /**/mi/**/ {
 
 	gen byte `excludeterm' = .
 
@@ -120,12 +122,12 @@ foreach excludeterm in exclude /**/stable/**/ {
 
 //Check that nothing important is highlighted for exclusion before dropping
 list term if exclude == 1
-/**//**/
+/**/list term if mi == 1/**/
 
 drop if exclude == 1 ///
-/**//**/
+/**/| mi == 1/**/
 
-drop exclude /**//**/
+drop exclude /**/mi/**/
 count
 compress
 
@@ -383,17 +385,17 @@ drop if not_in_dictionary == 1
 drop not_in_dictionary _merge
 
 //Check for any additional new codes that haven't been accounted for
-list medcodeid term lshtm_* if snomedctconceptid == ""
+list medcodeid term lshtm_* if snomedctconceptid == ""  //none
 
 //Add additional codes to list
-rename term term_old
+/*rename term term_old
 merge 1:1 medcodeid using `medical', update
 drop if _merge == 2
 order term, before(term_old)
 list term_old term if lower(term_old) != lower(term)
 list medcodeid term observations lshtm_* if _merge == 4
 drop term_old _merge
-
+*/
 
 //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
 
@@ -517,7 +519,7 @@ list snomedctconceptid term /**/ph* refset_angina/**/ if medcode == ""
 preserve
 	keep if medcodeid == ""
 	rename term term_old
-	merge 1:m snomedctconceptid using `medical', update
+	merge 1:m snomedctconceptid using `medical', update replace
 	drop if _merge == 2
 	compress
 	order term, before(term_old)
@@ -528,7 +530,7 @@ preserve
 	list medcodeid snomedctconceptid term observations /**/ph* refset_angina/**/
 restore
 drop if medcodeid == ""
-merge 1:1 medcodeid using `extra_from_codelists', update replace
+merge 1:1 medcodeid using `extra_from_codelists', update replace  //should be no matches
 drop _merge
 
 
