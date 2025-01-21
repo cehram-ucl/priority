@@ -62,7 +62,7 @@ save `medical'
 
 //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
 
-local stroke " "*stroke*" "*cerebrovascular*accident*" "*cerebral*infarct*" "*infarct*cerebral*" "cva" "* cva *" "cva *" "* cva" "*/cva" "*/cva *" "*/cva" "*transient*ischaemic*attack*" "*transient*ischemic*attack*" "tia" "* tia *" "tia *" "* tia" "*/tia" "*/tia *" "*/tia" "*cerebral*emorrhage*" "*emorrhage*cerebral*" "*cerebral*ischaemia*" "*cerebral*ischemia*" "*occlusion*cerebral*artery*" "*lacunar*infarct*" "*lacunar*emorrhage*" "*thalamic*emorrhage*" "*basal*ganglia*emorrhage*" "*capsule*emorrhage*" "*cerebral*artery*syndrome*" "*ataxic*hemiparesis*" "*cerebral*arter*thrombosis*" "*thrombosis*cerebral*arter*" "*cerebellar*emorrhage*" "*cerebellar*infarct*" "*brain*stem*emorrhage*" "*cerebral*embolism*" "*cerebellar*arter*syndrome*" "*emorrhage*medulla*oblongata*" "*dysarthria*clumsy*hand*syndrome*" "*cortical*emorrhage*" "*intrapontine*emorrhage*" "*carotid*artery*stenosis*" "
+local stroke " "*stroke*" "*cerebrovascular*accident*" "*cerebral*infarct*" "*infarct*cerebral*" "cva" "* cva *" "cva *" "* cva" "*/cva" "*/cva *" "*/cva" "*transient*ischaemic*attack*" "*transient*ischemic*attack*" "tia" "* tia *" "tia *" "* tia" "*/tia" "*/tia *" "*/tia" "*cerebral*emorrhage*" "*emorrhage*cerebral*" "*cerebral*ischaemia*" "*cerebral*ischemia*" "*occlusion*cerebral*artery*" "*lacunar*infarct*" "*lacunar*emorrhage*" "*thalamic*emorrhage*" "*basal*ganglia*emorrhage*" "*capsule*emorrhage*" "*cerebral*artery*syndrome*" "*ataxic*hemiparesis*" "*cerebral*arter*thrombosis*" "*thrombosis*cerebral*arter*" "*cerebellar*emorrhage*" "*cerebellar*infarct*" "*brain*stem*emorrhage*" "*cerebral*embolism*" "*cerebellar*arter*syndrome*" "*emorrhage*medulla*oblongata*" "*dysarthria*clumsy*hand*syndrome*" "*cortical*emorrhage*" "*intrapontine*emorrhage*" "*carotid*artery*stenosis*" "*embolus*cerebral*artery*" "*infarct*medulla*oblongata*" "*cerebral*arterial*occlusion*" "
 
 
 // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
@@ -403,10 +403,14 @@ list medcodeid term lshtm_* if snomedctconceptid == ""
 
 //Add additional codes to list
 rename term term_old
-merge 1:1 medcodeid using `medical', update
+merge 1:1 medcodeid using `medical', update replace
 drop if _merge == 2
+compress
 order term, before(term_old)
 list term_old term if lower(term_old) != lower(term)
+list /*medcodeid*/ term observations lshtm_* if _merge == 4
+generate byte maybe = 1 if _merge == 4  //label these with a maybe variable
+order maybe, after(stroke)
 drop term_old _merge
 
 
@@ -557,8 +561,24 @@ drop not_in_dictionary _merge
 //Check for any additional new codes that haven't been accounted for
 list snomedctconceptid term /**/refset_strk qcovid_stroke_tia ph*/**/ if medcode == ""
 
-//for now just drop them
+//Add additional codes to list
+preserve
+	keep if medcodeid == ""
+	rename term term_old
+	merge 1:m snomedctconceptid using `medical', update replace
+	drop if _merge == 2
+	compress
+	order term, before(term_old)
+	list term_old term if lower(term_old) != lower(term)
+	drop term_old _merge
+	tempfile extra_from_codelists
+	save `extra_from_codelists'
+	list medcodeid snomedctconceptid term observations /**/refset_strk qcovid_stroke_tia ph*/**/
+restore
 drop if medcodeid == ""
+merge 1:1 medcodeid using `extra_from_codelists', update replace  //should be no matches
+replace maybe = 1 if _merge == 2
+drop _merge
 
 
 // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
