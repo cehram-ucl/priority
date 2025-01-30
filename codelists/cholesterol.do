@@ -533,34 +533,59 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
 //=======================================================================================
-/*
-//Load clinician classifications
-local clinician "ABC"
 
-import excel `filename'_raw_`clinician', firstrow clear
+//Load clinician classifications
+local clinician "CA"  //Christina Avgerinou
+
+//Total cholesterol Excel worksheet
+import excel `filename'_raw_`clinician', firstrow clear sheet("Total cholesterol")
+keep medcodeid
+//generate missing variables
+generate byte `clinician' = 1
+generate byte total = 1
+tempfile clin_total
+save `clin_total'
+
+//HDL cholesterol Excel worksheet
+import excel `filename'_raw_`clinician', firstrow clear sheet("HDL")
+keep medcodeid
+//generate missing variables
+generate byte `clinician' = 1
+generate byte hdl = 1
+tempfile clin_hdl
+save `clin_hdl'
+
+//LDL cholesterol Excel worksheet
+import excel `filename'_raw_`clinician', firstrow clear sheet("LDL")
+keep medcodeid
+//generate missing variables
+generate byte `clinician' = 1
+generate byte ldl = 1
+tempfile clin_ldl
+save `clin_ldl'
+
 
 //Remerge with original in case of any formatting issues with Excel spreadsheet
-keep medcodeid `clinician'
-
-tempfile `clinician'_classification
-save ``clinician'_classification'
-
 use `filename', clear
+drop total hdl ldl non_hdl ratio vldl
 
-merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+merge 1:1 medcodeid using `clin_total', nogenerate update replace
+merge 1:1 medcodeid using `clin_hdl', nogenerate update replace
+merge 1:1 medcodeid using `clin_ldl', nogenerate update replace
+recode `clinician' (. = 0)
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
-list medcodeid snomedctconceptid term if `clinican' == 0
+list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
-//Save clinican approved codelist
-gsort snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ `clinician'
+//Save clinician approved codelist
+gsort total hdl ldl observations snomedctconceptid snomedctdescriptionid originalreadcode
+drop new_snomedct_synonym /*codestatus*/ `clinician' oc_* refset_*
 compress
 save `filename', replace
 export delimited `filename', replace quote
-*/
+
 
 // STEP 10. GENERATE METADATA FILE
 //=================================

@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\cholesterol.log
   log type:  text
- opened on:   2 Dec 2024, 11:16:23
+ opened on:  30 Jan 2025, 21:15:32
 
 . 
 . 
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000001.tmp saved as .dta format
 
 . 
 . 
@@ -392,7 +392,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000003.tmp saved as .dta format
 
 . restore
 
@@ -742,7 +742,7 @@ SNOMED CT Concept ID for which additional terms where found: 9422000
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000006.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000006.tmp saved as .dta format
 
 . restore, preserve
 
@@ -768,7 +768,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000006.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000007.tmp saved as .dta format
 
 . restore, preserve
 
@@ -794,7 +794,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000008.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000008.tmp saved as .dta format
 
 . restore, preserve
 
@@ -820,7 +820,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000008.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000009.tmp saved as .dta format
 
 . restore, preserve
 
@@ -846,7 +846,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000a.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000a.tmp saved as .dta format
 
 . restore, preserve
 
@@ -872,7 +872,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000a.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000b.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000b.tmp saved as .dta format
 
 . restore, preserve
 
@@ -898,7 +898,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000b.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000c.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000c.tmp saved as .dta format
 
 . restore, preserve
 
@@ -924,7 +924,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000c.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000d.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000d.tmp saved as .dta format
 
 . restore, preserve
 
@@ -950,7 +950,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000d.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000e.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000e.tmp saved as .dta format
 
 . restore, preserve
 
@@ -976,7 +976,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000e.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000f.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1002,7 +1002,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000g.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000g.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1028,7 +1028,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000g.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000h.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1054,7 +1054,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000i.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000i.tmp saved as .dta format
 
 . restore
 
@@ -1094,7 +1094,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000i.tmp saved as .dta format
      +-------------------------------------------------------------------+
      |                      term                      term_oc_chol_total |
      |-------------------------------------------------------------------|
-  4. |     Serum cholesterol NOS                 Serum cholesterol level |
+  5. |     Serum cholesterol NOS                 Serum cholesterol level |
 161. | Fasting serum cholesterol   Fasting serum cholesterol (EMIS code) |
      +-------------------------------------------------------------------+
 Terms on pre-existing list only...
@@ -1113,13 +1113,13 @@ Terms on pre-existing list only...
      +-------------------------------------------------------------------------+
      |                              term                     term_oc_chol_test |
      |-------------------------------------------------------------------------|
-  4. |             Serum cholesterol NOS               Serum cholesterol level |
+  5. |             Serum cholesterol NOS               Serum cholesterol level |
 137. |                 Cholesterol level          Finding of cholesterol level |
 138. |       Cholesterol level - finding          Finding of cholesterol level |
 139. |           Serum cholesterol level    Finding of serum cholesterol level |
 140. | Serum cholesterol level - finding    Finding of serum cholesterol level |
      |-------------------------------------------------------------------------|
-148. |     Serum total cholesterol level   Serum total cholesterol measurement |
+147. |     Serum total cholesterol level   Serum total cholesterol measurement |
      +-------------------------------------------------------------------------+
 Terms on pre-existing list only...
 
@@ -1151,7 +1151,7 @@ Terms on pre-existing list only...
      +-------------------------------------------------+
      |                  term        term_oc_chol_value |
      |-------------------------------------------------|
-  4. | Serum cholesterol NOS   Serum cholesterol level |
+  5. | Serum cholesterol NOS   Serum cholesterol level |
      +-------------------------------------------------+
 Terms on pre-existing list only...
 (0 real changes made)
@@ -1169,7 +1169,7 @@ Terms on pre-existing list only...
      +-------------------------------------------------------------------------------------------------------------+
      |                                                    term                                        term_oc_hdlc |
      |-------------------------------------------------------------------------------------------------------------|
-  7. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
+  6. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
  11. | Plasma HDL (high density lipoprotein) cholesterol level   Plasma high density lipoprotein cholesterol level |
 185. |                                   HDL cholesterol level                   HDL cholesterol level (EMIS code) |
      +-------------------------------------------------------------------------------------------------------------+
@@ -1189,7 +1189,7 @@ Terms on pre-existing list only...
      +-------------------------------------------------------------------------------------------------------------+
      |                                                    term                                      term_oc_hdlc_2 |
      |-------------------------------------------------------------------------------------------------------------|
-  7. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
+  6. |  Serum HDL (high density lipoprotein) cholesterol level    Serum high density lipoprotein cholesterol level |
  11. | Plasma HDL (high density lipoprotein) cholesterol level   Plasma high density lipoprotein cholesterol level |
      +-------------------------------------------------------------------------------------------------------------+
 Terms on pre-existing list only...
@@ -1208,7 +1208,7 @@ Terms on pre-existing list only...
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |                                                                         term                                                        term_refset_hdlcchol |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  7. |                       Serum HDL (high density lipoprotein) cholesterol level                            Serum high density lipoprotein cholesterol level |
+  6. |                       Serum HDL (high density lipoprotein) cholesterol level                            Serum high density lipoprotein cholesterol level |
  11. |                      Plasma HDL (high density lipoprotein) cholesterol level                           Plasma high density lipoprotein cholesterol level |
  38. |               Serum fasting HDL (high density lipoprotein) cholesterol level                    Serum fasting high density lipoprotein cholesterol level |
  39. |                Serum random HDL (high density lipoprotein) cholesterol level                     Serum random high density lipoprotein cholesterol level |
@@ -1260,16 +1260,16 @@ Terms on pre-existing list only...
      +------------------------------------------------------------------------------------------------------------------------+
      |                                                    term                                         term_refset_ndacholest |
      |------------------------------------------------------------------------------------------------------------------------|
-  4. |                                   Serum cholesterol NOS                                        Serum cholesterol level |
-  7. |  Serum HDL (high density lipoprotein) cholesterol level               Serum high density lipoprotein cholesterol level |
+  5. |                                   Serum cholesterol NOS                                        Serum cholesterol level |
+  6. |  Serum HDL (high density lipoprotein) cholesterol level               Serum high density lipoprotein cholesterol level |
  18. |  Serum cholesterol/HDL (high density lipoprotein) ratio               Serum cholesterol/high density lipoprotein ratio |
  19. | Plasma cholesterol/HDL (high density lipoprotein) ratio              Plasma cholesterol/high density lipoprotein ratio |
  50. |  Total cholesterol:HDL (high density lipoprotein) ratio               Total cholesterol:high density lipoprotein ratio |
      |------------------------------------------------------------------------------------------------------------------------|
- 62. |                           HDL : total cholesterol ratio   High density lipoprotein/total cholesterol ratio measurement |
- 63. |                 HDL/total cholesterol ratio measurement   High density lipoprotein/total cholesterol ratio measurement |
-133. |                                   Cholesterol/HDL ratio         Cholesterol/High density lipoprotein ratio measurement |
-134. |                       Cholesterol/HDL ratio measurement         Cholesterol/High density lipoprotein ratio measurement |
+ 62. |                 HDL/total cholesterol ratio measurement   High density lipoprotein/total cholesterol ratio measurement |
+ 63. |                           HDL : total cholesterol ratio   High density lipoprotein/total cholesterol ratio measurement |
+133. |                       Cholesterol/HDL ratio measurement         Cholesterol/High density lipoprotein ratio measurement |
+134. |                                   Cholesterol/HDL ratio         Cholesterol/High density lipoprotein ratio measurement |
      +------------------------------------------------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 
@@ -1293,7 +1293,7 @@ Terms on pre-existing list only...
      +----------------------------------------------------------------------------+
      |                      term                                  term_oc_nonhdlc |
      |----------------------------------------------------------------------------|
- 59. | Non HDL cholesterol level   Non high density lipoprotein cholesterol level |
+ 58. | Non HDL cholesterol level   Non high density lipoprotein cholesterol level |
      +----------------------------------------------------------------------------+
 Terms on pre-existing list only...
 (0 real changes made)
@@ -1312,7 +1312,7 @@ Terms on pre-existing list only...
      |                                                       term                                term_refset_nonhdlcchol |
      |-------------------------------------------------------------------------------------------------------------------|
  10. | Serum non HDL (high density lipoprotein) cholesterol level   Serum non high density lipoprotein cholesterol level |
- 59. |                                  Non HDL cholesterol level         Non high density lipoprotein cholesterol level |
+ 58. |                                  Non HDL cholesterol level         Non high density lipoprotein cholesterol level |
      +-------------------------------------------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 (0 real changes made)
@@ -1458,7 +1458,7 @@ Terms on pre-existing list only...
 .         tempfile notindict
 
 .         save `notindict'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000k.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000k.tmp saved as .dta format
 
 . restore
 
@@ -1563,34 +1563,286 @@ file cholesterol_raw.xlsx saved
 . 
 . // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
 . //=======================================================================================
-. /*
-> //Load clinician classifications
-> local clinician "ABC"
-> 
-> import excel `filename'_raw_`clinician', firstrow clear
-> 
-> //Remerge with original in case of any formatting issues with Excel spreadsheet
-> keep medcodeid `clinician'
-> 
-> tempfile `clinician'_classification
-> save ``clinician'_classification'
-> 
-> use `filename', clear
-> 
-> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
-> 
-> //Remove codes marked for exclusion by clinician
-> display "Terms excluded by clinician..."
-> list medcodeid snomedctconceptid term if `clinican' == 0
-> drop if `clinician' == 0
-> 
-> //Save clinican approved codelist
-> gsort snomedctconceptid snomedctdescriptionid originalreadcode
-> drop new_snomedct_synonym /*codestatus*/ `clinician'
-> compress
-> save `filename', replace
-> export delimited `filename', replace quote
-> */
+. 
+. //Load clinician classifications
+. local clinician "CA"  //Christina Avgerinou
+
+. 
+. //Total cholesterol Excel worksheet
+. import excel `filename'_raw_`clinician', firstrow clear sheet("Total cholesterol")
+(7 vars, 24 obs)
+
+. keep medcodeid
+
+. //generate missing variables
+. generate byte `clinician' = 1
+
+. generate byte total = 1
+
+. tempfile clin_total
+
+. save `clin_total'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000l.tmp saved as .dta format
+
+. 
+. //HDL cholesterol Excel worksheet
+. import excel `filename'_raw_`clinician', firstrow clear sheet("HDL")
+(7 vars, 30 obs)
+
+. keep medcodeid
+
+. //generate missing variables
+. generate byte `clinician' = 1
+
+. generate byte hdl = 1
+
+. tempfile clin_hdl
+
+. save `clin_hdl'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000m.tmp saved as .dta format
+
+. 
+. //LDL cholesterol Excel worksheet
+. import excel `filename'_raw_`clinician', firstrow clear sheet("LDL")
+(7 vars, 22 obs)
+
+. keep medcodeid
+
+. //generate missing variables
+. generate byte `clinician' = 1
+
+. generate byte ldl = 1
+
+. tempfile clin_ldl
+
+. save `clin_ldl'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000n.tmp saved as .dta format
+
+. 
+. 
+. //Remerge with original in case of any formatting issues with Excel spreadsheet
+. use `filename', clear
+
+. drop total hdl ldl non_hdl ratio vldl
+
+. 
+. merge 1:1 medcodeid using `clin_total', nogenerate update replace
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           168
+        from master                       168  
+        from using                          0  
+
+    Matched                                24
+        not updated                        24  
+        missing updated                     0  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+. merge 1:1 medcodeid using `clin_hdl', nogenerate update replace
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           162
+        from master                       162  
+        from using                          0  
+
+    Matched                                30
+        not updated                         0  
+        missing updated                    30  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+. merge 1:1 medcodeid using `clin_ldl', nogenerate update replace
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           170
+        from master                       170  
+        from using                          0  
+
+    Matched                                22
+        not updated                         0  
+        missing updated                    22  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+. recode `clinician' (. = 0)
+(116 changes made to CA)
+
+. 
+. //Remove codes marked for exclusion by clinician
+. display "Terms excluded by clinician..."
+Terms excluded by clinician...
+
+. list medcodeid snomedctconceptid term if `clinician' == 0
+
+     +----------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid   snomedctconcep~d                                                                                              term |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+  1. |   107301000006115    107301000006104                                                                          Target serum cholesterol |
+  2. | 12120081000006117   1102851000000101                                    Estimated serum non high density lipoprotein cholesterol level |
+  6. | 12622411000006116   1107731000000104                      HDL (high density lipoprotein) cholesterol/total cholesterol ratio in plasma |
+  7. | 12622421000006112   1107741000000108                       HDL (high density lipoprotein) cholesterol/total cholesterol ratio in serum |
+ 10. | 12624981000006112   1109831000000104                                                     Triglyceride substance concentration in serum |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 11. | 12716491000006111          166829003                                                                      Serum cholesterol borderline |
+ 12. | 12716501000006115          166847009                                                                    Serum triglycerides borderline |
+ 14. | 13602641000006117          780838006                                       Target serum non high density lipoprotein cholesterol level |
+ 15. |   144141000006119   1015271000000109                     Serum high density lipoprotein:non-high density lipoprotein cholesterol ratio |
+ 16. |   145471000006115   1005691000000109                                                                         Serum triglycerides level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 17. |        1484928011          390896004                                                                          Target cholesterol level |
+ 19. |        1485303017   1024231000000104                                                                    Fluid sample cholesterol level |
+ 23. |  1735501000000114    776871000000108                                       Target serum non high density lipoprotein cholesterol level |
+ 24. |  1739211000000111          448955002                                                                 Low density lipoprotein apheresis |
+ 27. |  1864161000006119   1864161000006103                                                                Test request : Serum triglycerides |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 29. |  1916571000006117   1916571000006101                                                          Serum triglyceride/HDL cholesterol ratio |
+ 30. |  1924001000006115    920471000000100                                    Estimated serum non-high density lipoprotein cholesterol level |
+ 31. |  1942631000006110   1083861000000102                                     Serum high density lipoprotein cholesterol/triglyceride ratio |
+ 32. |   219121000000113   1015881000000105                                                                            Hyperlipidaemia screen |
+ 33. |   219141000000118   1015881000000105                                                                                      Lipid screen |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 34. |  2344491000000115   1006191000000106                                              Serum non high density lipoprotein cholesterol level |
+ 36. |        2478457017   1016381000000109                                                                   Fluid sample triglyceride level |
+ 37. |        2533224018   1020721000000100                                                                        7-Dehydrocholesterol level |
+ 38. |         259227014          166828006                                                                          Serum cholesterol normal |
+ 39. |         259228016          166829003                                                                      Serum cholesterol borderline |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 41. |         259230019          166831007                                                                       Serum cholesterol very high |
+ 44. |         259236013   1003441000000101                                       Serum VLDL (very low density lipoprotein) cholesterol level |
+ 50. |         259250015   1028551000000102                                            Total cholesterol:HDL (high density lipoprotein) ratio |
+ 52. |         259256014          166846000                                                                        Serum triglycerides normal |
+ 53. |         259257017          166847009                                                                    Serum triglycerides borderline |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 54. |         259258010          166848004                                                                        Serum triglycerides raised |
+ 55. |         259260012   1026491000000105                                                                  Serum fasting triglyceride level |
+ 56. |         259261011   1026501000000104                                                                   Serum random triglyceride level |
+ 57. |         259263014          365796000                                                               Serum triglyceride levels - finding |
+ 63. |         259579011   1010601000000105                                                                         Plasma triglyceride level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 64. |         259580014   1028871000000108                                                                  Plasma random triglyceride level |
+ 65. |         259583011   1031321000000109                                                                 Plasma fasting triglyceride level |
+ 66. |         261064010          168077005                                                                            Calculus = cholesterol |
+ 69. |  2733541000006119           14740000                                                                         Triglycerides measurement |
+ 70. |  2733561000006115           14740000                                                                           TG - Triglyceride level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 73. |         279462018   1031421000000101                                                  High density lipoprotein/total cholesterol ratio |
+ 76. |         293303011          448834003                                                                    High density lipoid deficiency |
+ 81. |  3418121000006115           56516007                                                                      Very low density lipoprotein |
+ 82. |  3418141000006110           56516007                                                                                              VLDL |
+ 85. |  3891501000006117           85600001                                                                                     Triglycerides |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 86. |  3891511000006119           85600001                                                                                   Triacylglycerol |
+ 87. |  3891531000006113           85600001                                                                                      Triglyceride |
+ 88. |  3891541000006115           85600001                                                                                 TG - Triglyceride |
+ 95. |  4079671000006119          102740005                                                                                  VLDL cholesterol |
+ 96. |  4108441000006119          104583003                                                           HDL/total cholesterol ratio measurement |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+ 97. |  4108451000006117          104583003                                                                     HDL : total cholesterol ratio |
+102. |         457502013   1003411000000102                                      Serum VLDL (very low density lipoprotein) triglyceride level |
+103. |         457911015          313811003                                                                             Cholesterol/HDL ratio |
+104. |         457942013   1003381000000104                                     Plasma VLDL (very low density lipoprotein) triglyceride level |
+105. |         458249011   1015681000000109                                                  Serum cholesterol/high density lipoprotein ratio |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+106. |         458252015   1015691000000106                                           Plasma cholesterol/HDL (high density lipoprotein) ratio |
+107. |         458253013   1015701000000106                                                   Serum cholesterol/low density lipoprotein ratio |
+108. |         458256017   1015711000000108                                            Plasma cholesterol/LDL (low density lipoprotein) ratio |
+109. |         458257014   1015721000000102                                              Serum cholesterol/very low density lipoprotein ratio |
+110. |         458260019   1015731000000100                                      Plasma cholesterol/VLDL (very low density lipoprotein) ratio |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+111. |         458283016   1015741000000109                                      Serum low density lipoprotein/high density lipoprotein ratio |
+112. |         458284010   1015751000000107                           Plasma LDL/HDL (low density lipoprotein/high density lipoprotein) ratio |
+115. |         458344016    992521000000109                                                                      Calculus cholesterol content |
+116. |         458370015   1015881000000105                                                                    Hyperlipidaemia screening test |
+121. |  4600271000006114          166834004                                                                      Serum VLDL cholesterol level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+122. |  4600421000006112          166842003                                                           Total cholesterol:HDL ratio measurement |
+123. |  4600431000006110          166842003                                                                       Total cholesterol:HDL ratio |
+124. |  4600481000006111          166849007                                                                  Serum fasting triglyceride level |
+126. |   516351000000116   1030411000000101                                                    Non high density lipoprotein cholesterol level |
+127. |  5289531000006114          250742000                                           High density lipoprotein/triglyceride ratio measurement |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+128. |  5289551000006119          250743005                                            High density/low density lipoprotein ratio measurement |
+129. |  5289571000006112          250743005                                                                                     HDL/LDL ratio |
+131. |   551861000006118   1015881000000105                                                                                Cholesterol screen |
+132. |  5519781000006110          271059008                                                   Serum HDL/non-HDL cholesterol ratio measurement |
+133. |  5519791000006113          271059008                                                               Serum HDL/non-HDL cholesterol ratio |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+134. |  5522421000006118          271245006                                                                         Serum triglyceride levels |
+135. |  5579571000006112          275972003                                                                             Cholesterol screening |
+136. |  6014411000006114          312260007                                                                               Non-HDL cholesterol |
+137. |  6014421000006118          312260007                                                          Non-high density lipoprotein cholesterol |
+138. |  6036221000006115          313811003                                                                 Cholesterol/HDL ratio measurement |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+139. |  6040921000006112          313988001                                                         Lipoprotein cholesterol ratio measurement |
+140. |  6040951000006115          313989009                                                                       Serum cholesterol/HDL ratio |
+141. |  6041011000006113          313991001                                                                       Serum cholesterol/LDL ratio |
+148. |  6279061000006115          365795001                                                                      Triglyceride level - finding |
+149. |  6279071000006110          365795001                                                                                Triglyceride level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+154. |  7230021000006118          439953004                                               Elevated cholesterol/high density lipoprotein ratio |
+155. |  7261041000006112          442193004                                                               Serum triglycerides borderline high |
+156. |  7261561000006118          442234001                                                                 Serum cholesterol borderline high |
+157. |  7263101000006113          442350007                                                                  Serum cholesterol borderline low |
+158. |  7264941000006110          442480001                                                                Serum triglycerides borderline low |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+159. |  7285241000006119          443915001                                                Measurement of total cholesterol and triglycerides |
+160. |  7308261000006119          445445006                                                        Raised low density lipoprotein cholesterol |
+161. |  7360751000006114          448834003                                                               High density lipoprotein deficiency |
+162. |  7612381000006110          707093002                                                                         LDL cholesterol pattern A |
+163. |  8055041000006115    194801000000108   HDL (high density lipoprotein)/non-HDL (high density lipoprotein) cholesterol ratio measurement |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+164. |  8090441000006110    293821000000103                                                    Non high density lipoprotein cholesterol level |
+165. |  8090451000006112    293821000000103                                              Non HDL (high density lipoprotein) cholesterol level |
+167. |   817601000006119   1029071000000109                                                        High density/low density lipoprotein ratio |
+168. |  8241111000006113    773271000000103                                                              Target serum total cholesterol level |
+169. |  8241871000006112    774821000000101                                           Target serum high density lipoprotein cholesterol level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+170. |  8241901000006112    774851000000106                                            Target serum low density lipoprotein cholesterol level |
+171. |  8241911000006110    774851000000106                                      Target serum LDL (low density lipoprotein) cholesterol level |
+172. |  8242461000006111    776621000000108                                                                   Target serum triglyceride level |
+175. |  8326261000006117    912151000000109                                  Serum non HDL (high density lipoprotein) cholesterol measurement |
+176. |  8326271000006112    912151000000109                                              Serum non high density lipoprotein cholesterol level |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+177. |  8330391000006119    920471000000100                           Estimated measurement of non-high density lipoprotein in serum specimen |
+178. |  8341141000006117    939391000000100                         Serum high density lipoprotein cholesterol:triglyceride ratio measurement |
+180. |  8386311000006116   1006191000000106                                        Serum non HDL (high density lipoprotein) cholesterol level |
+181. |  8396091000006112   1015271000000109         Serum HDL (high density lipoprotein):non-HDL (high density lipoprotein) cholesterol ratio |
+182. |  8396611000006112   1015681000000109                                            Serum cholesterol/HDL (high density lipoprotein) ratio |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+183. |  8396711000006116   1015741000000109                          Serum LDL (low density lipoprotein)/HDL (high density lipoprotein) ratio |
+185. |  8410031000006119   1029071000000109                                                                                     HDL/LDL ratio |
+186. |  8411411000006113   1030411000000101                                                                         Non HDL cholesterol level |
+187. |  8460611000006119   1083861000000102                               Serum HDL (high density lipoprotein) cholesterol/triglyceride ratio |
+188. |   854481000006110    854481000006106                                                                             Fasting triglycerides |
+     |----------------------------------------------------------------------------------------------------------------------------------------|
+191. |   977481000006112    850991000000104                                                                                Triglyceride level |
+     +----------------------------------------------------------------------------------------------------------------------------------------+
+
+. drop if `clinician' == 0
+(116 observations deleted)
+
+. 
+. //Save clinician approved codelist
+. gsort total hdl ldl observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym /*codestatus*/ `clinician' oc_* refset_*
+
+. compress
+  variable snomedctdescriptionid was str17 now str16
+  variable term was str95 now str77
+  (1,444 bytes saved)
+
+. save `filename', replace
+file cholesterol.dta saved
+
+. export delimited `filename', replace quote
+file cholesterol.csv saved
+
+. 
 . 
 . // STEP 10. GENERATE METADATA FILE
 . //=================================
@@ -1693,5 +1945,5 @@ file cholesterol.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\cholesterol.log
   log type:  text
- closed on:   2 Dec 2024, 11:16:28
+ closed on:  30 Jan 2025, 21:15:36
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
