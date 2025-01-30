@@ -113,7 +113,7 @@ save _master_codelist, replace
 // CHOLESTEROL
 use cholesterol, clear
 
-keep medcodeid cholesterol triglycerides ldl non_hdl hdl total ratio vldl
+keep medcodeid cholesterol triglycerides ldl /*non_hdl*/ hdl total /*ratio vldl*/
 
 //Compact version
 save compact/cholesterol, replace
