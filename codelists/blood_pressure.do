@@ -17,7 +17,7 @@ set more off
 //** UPDATE THESE VARIABLES **==================================================
 
 //**Working directory - where you will open/save files**
-cd "C:\Users\Phil\Documents\GitHub\priority\codelists"
+cd "C:\Users\rmjlton\GitHub\priority\codelists"
 
 //**Enter name of do file here. This ensures all files have the same name.**
 local filename "blood_pressure"
@@ -35,10 +35,10 @@ log using `filename', text replace
 //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 
 //*Directory of medical dictionary*
-local browser_dir "C:/Users/Phil/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local browser_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //*Directory of label lookups*
-local lookup_dir "C:/Users/Phil/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local lookup_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //==============================================================================
 
@@ -492,11 +492,11 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
 //=======================================================================================
-/*
-//Load clinician classifications
-local clinician "ABC"
 
-import excel `filename'_raw_`clinician', firstrow clear
+//Load clinician classifications
+local clinician "CA"  //Christina Avgerinou
+
+import excel `filename'_raw_`clinician', firstrow clear sheet("BP (value)")
 
 //Remerge with original in case of any formatting issues with Excel spreadsheet
 keep medcodeid `clinician'
@@ -507,25 +507,26 @@ save ``clinician'_classification'
 use `filename', clear
 
 merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+recode `clinician' (. = 0)
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
-list medcodeid snomedctconceptid term if `clinican' == 0
+list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
 //Save clinican approved codelist
-gsort snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ `clinician'
+gsort systolic diastolic -observations snomedctconceptid snomedctdescriptionid originalreadcode
+drop new_snomedct_synonym /*codestatus*/ lshtm* refset* qof* `clinician'
 compress
 save `filename', replace
 export delimited `filename', replace quote
-*/
+
 
 // STEP 10. GENERATE METADATA FILE
 //=================================
 
 //=**Update details here, everything else is automated**========================
-local description "Blood pressure measurement"
+local description "Blood pressure value"
 local code_type "medcodeid (SNOMED CT)"
 local database "CPRD Aurum"
 local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
@@ -533,7 +534,7 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 local author "Philip Stone"
 local date = ym(2024, 10)  //year, month
 local clinical_reviewer "Christina Avgerinou"
-local date_approved = . //ym(2024, 11)  //year, month
+local date_approved = ym(2025, 1)  //year, month
 local notes "Created for PRIORITY study. This codelist identifies values/measurements of blood pressure only and is not intended to included diagnosis codes"
 local keywords ""
 //==============================================================================
