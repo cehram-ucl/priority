@@ -599,7 +599,7 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 local author "Philip Stone"
 local date = ym(2024, 11)  //year, month
 local clinical_reviewer "Christina Avgerinou"
-local date_approved = . //ym(2024, 12)  //year, month
+local date_approved = ym(2025, 1)  //year, month
 local notes "Created for PRIORITY study. This codelist identifies values/measurements of cholesterol only and excludes codes that indicate a diagnosis of high cholesterol"
 local keywords "ldl, hdl, triglycerides, total, ratio"
 //==============================================================================
