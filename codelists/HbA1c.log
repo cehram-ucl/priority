@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\HbA1c.log
   log type:  text
- opened on:  29 Nov 2024, 20:36:58
+ opened on:  10 Feb 2025, 20:49:45
 
 . 
 . 
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000001.tmp saved as .dta format
 
 . 
 . 
@@ -218,7 +218,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000003.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000003.tmp saved as .dta format
 
 . restore
 
@@ -344,27 +344,39 @@ SNOMED CT Concept ID for which additional terms where found: 269823000
 . //===============================================================================
 . 
 . //Comment out this section if not required.
-. /*
-> // **Search terms for each categorisation desired**
-> local cat1 " "*cat1*" "
-> local cat2 " "*cat2*" "
-> 
-> //Search for codes
-> foreach categoryterm in /**/cat1 cat2/**/ {
->         
->         gen byte `categoryterm' = .
->         
->         foreach codeterm in lower(term) {
->                 
->                 foreach searchterm in ``categoryterm'' {                
->                         
->                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
->                 }
->         }
-> }
-> 
-> tab1 cat1 cat2
-> */
+. 
+. // **Search terms for each categorisation desired**
+. local target " "*target*" "
+
+. 
+. //Search for codes
+. foreach categoryterm in /**/target/**/ {
+  2.         
+.         gen byte `categoryterm' = .
+  3.         
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``categoryterm'' {                
+  5.                         
+.                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(50 missing values generated)
+(9 real changes made)
+
+. 
+. tab1 target
+
+-> tabulation of target  
+
+     target |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |          9      100.00      100.00
+------------+-----------------------------------
+      Total |          9      100.00
+
+. 
 . 
 . // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
 . //====================================================
@@ -453,7 +465,7 @@ SNOMED CT Concept ID for which additional terms where found: 269823000
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000007.tmp saved as .dta format
 
 . restore
 
@@ -482,7 +494,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000007.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000009.tmp saved as .dta format
 
 . restore
 
@@ -511,7 +523,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000009.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000b.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000b.tmp saved as .dta format
 
 . restore
 
@@ -540,7 +552,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000b.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000d.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000d.tmp saved as .dta format
 
 . restore
 
@@ -569,7 +581,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000d.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000f.tmp saved as .dta format
 
 . restore
 
@@ -598,7 +610,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000f.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000h.tmp saved as .dta format
 
 . restore
 
@@ -637,7 +649,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
 
      +-----------------------------------------------------------------------------------------------------------------------------------+
  23. |                                                                                                                              term |
-     |                                                                                                  HbA1c measurement (DCCT aligned) |
+     |                                                                                                        HbA1c level (DCCT aligned) |
      |-----------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                          term_hba1c_tests         |
      |                                        Hemoglobin A1c measurement aligned to the Diabetes Control and Complications Trial         |
@@ -645,7 +657,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
 
      +-----------------------------------------------------------------------------------------------------------------------------------+
  24. |                                                                                                                              term |
-     |                                                                                                        HbA1c level (DCCT aligned) |
+     |                                                                                                  HbA1c measurement (DCCT aligned) |
      |-----------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                          term_hba1c_tests         |
      |                                        Hemoglobin A1c measurement aligned to the Diabetes Control and Complications Trial         |
@@ -660,15 +672,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
      +-----------------------------------------------------------------------------------------------------------------------------------+
 
      +-----------------------------------------------------------------------------------------------------------------------------------+
- 26. |                                                                                                                              term |
-     |       Hb A1c (Haemoglobin A1c) level - IFCC (International Federation of Clinical Chemistry and Laboratory Medicine) standardised |
-     |-----------------------------------------------------------------------------------------------------------------------------------|
-     |                                                                                                          term_hba1c_tests         |
-     |         Haemoglobin A1c measurement - International Federation of Clinical Chemistry and Laboratory Medicine standardised         |
-     +-----------------------------------------------------------------------------------------------------------------------------------+
-
-     +-----------------------------------------------------------------------------------------------------------------------------------+
- 28. |                                                                                                                              term |
+ 27. |                                                                                                                              term |
      | Hb A1c (Haemoglobin A1c) measurement - IFCC (International Federation of Clinical Chemistry and Laboratory Medicine) standardised |
      |-----------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                          term_hba1c_tests         |
@@ -676,8 +680,16 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
      +-----------------------------------------------------------------------------------------------------------------------------------+
 
      +-----------------------------------------------------------------------------------------------------------------------------------+
+ 28. |                                                                                                                              term |
+     |       Hb A1c (Haemoglobin A1c) level - IFCC (International Federation of Clinical Chemistry and Laboratory Medicine) standardised |
+     |-----------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                                                          term_hba1c_tests         |
+     |         Haemoglobin A1c measurement - International Federation of Clinical Chemistry and Laboratory Medicine standardised         |
+     +-----------------------------------------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------------------------------------+
  34. |                                                                                                                              term |
-     |                                                                                                     HbA1c - Haemoglobin A1c level |
+     |                                                                                                      HbA1c - Hemoglobin A1c level |
      |-----------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                          term_hba1c_tests         |
      |                                                                                                Hemoglobin A1c measurement         |
@@ -693,7 +705,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000h.tmp saved as .dta format
 
      +-----------------------------------------------------------------------------------------------------------------------------------+
  36. |                                                                                                                              term |
-     |                                                                                                      HbA1c - Hemoglobin A1c level |
+     |                                                                                                     HbA1c - Haemoglobin A1c level |
      |-----------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                          term_hba1c_tests         |
      |                                                                                                Hemoglobin A1c measurement         |
@@ -972,7 +984,7 @@ file HbA1c_raw.xlsx saved
 . tempfile `clinician'_classification
 
 . save ``clinician'_classification'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_00000j.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000j.tmp saved as .dta format
 
 . 
 . use `filename', clear
@@ -1113,5 +1125,5 @@ file HbA1c.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\HbA1c.log
   log type:  text
- closed on:  29 Nov 2024, 20:37:02
+ closed on:  10 Feb 2025, 20:49:57
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

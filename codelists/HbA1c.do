@@ -226,13 +226,12 @@ foreach expanded_id of local expanded_ids {
 //===============================================================================
 
 //Comment out this section if not required.
-/*
+
 // **Search terms for each categorisation desired**
-local cat1 " "*cat1*" "
-local cat2 " "*cat2*" "
+local target " "*target*" "
 
 //Search for codes
-foreach categoryterm in /**/cat1 cat2/**/ {
+foreach categoryterm in /**/target/**/ {
 	
 	gen byte `categoryterm' = .
 	
@@ -245,8 +244,8 @@ foreach categoryterm in /**/cat1 cat2/**/ {
 	}
 }
 
-tab1 cat1 cat2
-*/
+tab1 target
+
 
 // STEP 7. COMPARE LIST WITH PRE-EXISTING CODELIST(S)
 //====================================================
