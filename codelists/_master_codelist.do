@@ -139,7 +139,7 @@ save _master_codelist, replace
 // HbA1c
 use HbA1c, clear
 
-keep medcodeid hba1c
+keep medcodeid hba1c target
 
 //Compact version
 save compact/HbA1c, replace
@@ -152,9 +152,7 @@ save _master_codelist, replace
 // BMI
 use body_mass_index, clear
 
-keep medcodeid height weight bmi bmicat
-
-recode height weight bmi (9=1)
+keep medcodeid height weight bmi //bmicat
 
 //Compact version
 save compact/body_mass_index, replace
