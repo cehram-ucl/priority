@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\body_mass_index.log
   log type:  text
- opened on:   4 Dec 2024, 02:22:13
+ opened on:  10 Feb 2025, 20:20:35
 
 . 
 . 
@@ -37,149 +37,2106 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3c84_000001.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000001.tmp saved as .dta format
 
 . 
 . 
-. //Import pre-existing codelists
-. import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/33/covariate_bmi_aurum.txt, stringcols(1) clear
+. // STEP 0. COMBINE EXTERNAL CODELIST(S) TO USE AS A GUIDE
+. //========================================================
+. 
+. //Comment this section out if no pre-existing codelists
+. 
+. //MedCodeID codelists (LSHTM Data Compass)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/2413/1/cr_codelist_bmi_aurum.txt, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(5 vars, 58 obs)
+
+.         
+.         recode bmi weight height (9 = 1)
+(15 changes made to bmi)
+(33 changes made to weight)
+(11 changes made to height)
+
+.         keep medcodeid bmi weight height
+
+.         
+.         local name "lshtm_2413"
+
+.         
+.         rename * *_ext
+
+.         rename medcodeid_ex medcodeid
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  58
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000003.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/3323/7/m_heightweightbmi_aurum.txt, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(4 vars, 334 obs)
+
+.         
+.         keep medcodeid weight bmi
+
+.         
+.         local name "lshtm_3323"
+
+.         
+.         rename * *_ext
+
+.         rename medcodeid_ex medcodeid
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  334
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000004.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/33/covariate_bmi_aurum.txt, stringcols(1) favorstrfixed clear
 (encoding automatically selected: ISO-8859-1)
 (6 vars, 144 obs)
 
+.         
+.         recode bmi weight height (9 = 1)
+(33 changes made to bmi)
+(84 changes made to weight)
+(26 changes made to height)
+
+.         
+.         tab bmicat
+
+           bmicat |      Freq.     Percent        Cum.
+------------------+-----------------------------------
+ normal 18.5-24.9 |          3       11.11       11.11
+        obese 30+ |         13       48.15       59.26
+ overweight 25-29 |          7       25.93       85.19
+underweight <18.5 |          4       14.81      100.00
+------------------+-----------------------------------
+            Total |         27      100.00
+
+.         label define bmicat 1 "Underweight (<18.5)" 2 "Normal (18.5-24.9)" ///
+>                 3 "Overweight (25-29)" 4 "Obese (30+)"
+
+.         replace bmicat = "1" if bmicat == "underweight <18.5"
+(4 real changes made)
+
+.         replace bmicat = "2" if bmicat == "normal 18.5-24.9"
+(3 real changes made)
+
+.         replace bmicat = "3" if bmicat == "overweight 25-29"
+(7 real changes made)
+
+.         replace bmicat = "4" if bmicat == "obese 30+"
+(13 real changes made)
+
+.         destring bmicat, replace
+bmicat: all characters numeric; replaced as byte
+(117 missing values generated)
+
+.         label values bmicat bmicat
+
+.         tab bmicat bmi, missing
+
+                    |          bmi
+             bmicat |         1          . |     Total
+--------------------+----------------------+----------
+Underweight (<18.5) |         4          0 |         4 
+ Normal (18.5-24.9) |         3          0 |         3 
+ Overweight (25-29) |         5          2 |         7 
+        Obese (30+) |         8          5 |        13 
+                  . |        13        104 |       117 
+--------------------+----------------------+----------
+              Total |        33        111 |       144 
+
+.         
+.         keep medcodeid weight bmi bmicat
+
+.         
+.         local name "lshtm_4214"
+
+.         
+.         rename * *_ext
+
+.         rename medcodeid_ex medcodeid
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  144
+
 . 
-. //Merge with version of CPRD medical dictionary used for study
-. merge 1:1 medcodeid using `medical', update replace
-(variable medcodeid was str17, now str18 to accommodate using data's values)
-(variable term was str75, now str233 to accommodate using data's values)
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000005.tmp saved as .dta format
+
+. restore
+
+. 
+. //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
+. 
+. //Format pre-existing codelist(s) ready for merging
+. preserve
+
+.         import delimited https://www.opencodelists.org/codelist/primis-covid19-vacc-uptake/bmi/v2.5/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 2 obs)
+
+.         
+.         keep code
+
+.         rename code snomedctconceptid
+
+.         
+.         local name "oc_primis_bmi"
+
+.         
+.         generate byte bmi_ext = 1
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  2
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000007.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/bmival_cod/20201016/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 3 obs)
+
+.         
+.         local name "oc_nhspcdr_bmival"
+
+.         
+.         keep code
+
+.         rename code snomedctconceptid
+
+.         
+.         generate byte bmi_ext = 1
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  3
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000008.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/opensafely/weight-snomed/5459abc6/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 12 obs)
+
+.         
+.         local name "oc_opensafely_weight"
+
+.         
+.         keep code
+
+.         rename code snomedctconceptid
+
+.         
+.         generate byte weight_ext = 1
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  12
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_000009.tmp saved as .dta format
+
+. restore, preserve
+
+.         import delimited https://www.opencodelists.org/codelist/opensafely/height-snomed/3b4a3891/download.csv, stringcols(1) clear
+(encoding automatically selected: ISO-8859-1)
+(2 vars, 6 obs)
+
+.         
+.         local name "oc_opensafely_height"
+
+.         
+.         keep code
+
+.         rename code snomedctconceptid
+
+.         
+.         generate byte height_ext = 1
+
+.         generate byte external_codelist = 1
+
+.         generate byte `name' = 1
+
+.         
+.         count
+  6
+
+. 
+.         tempfile `name'
+
+.         save ``name''
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000a.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge into medical browser
+. use `medical', clear
+
+. count
+  240,999
+
+. 
+. //Medcode lists
+. foreach external_med in lshtm_2413 lshtm_3323 lshtm_4214 {
+  2.         
+.         merge 1:1 medcodeid using ``external_med'', update replace
+  3.         drop if _merge == 2
+  4.         drop _merge
+  5. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,941
+        from master                   240,941  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                58
+        not updated                        58  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,975
+        from master                   240,820  (_merge==1)
+        from using                        155  (_merge==2)
+
+    Matched                               179
+        not updated                        34  (_merge==3)
+        missing updated                   145  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(155 observations deleted)
 
     Result                      Number of obs
     -----------------------------------------
     Not matched                       240,855
-        from master                         0  (_merge==1)
-        from using                    240,855  (_merge==2)
+        from master                   240,855  (_merge==1)
+        from using                          0  (_merge==2)
 
     Matched                               144
-        not updated                        54  (_merge==3)
-        missing updated                     0  (_merge==4)
-        nonmissing conflict                90  (_merge==5)
+        not updated                        76  (_merge==3)
+        missing updated                    68  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
     -----------------------------------------
-
-. drop if _merge == 2
-(240,855 observations deleted)
-
-. 
-. //List terms not in this version of the Aurum medical dictionary
-. list medcodeid term height weight bmi bmicat if _merge == 1
-
-. drop if _merge == 1
 (0 observations deleted)
 
-. drop _merge
+. 
+. //SNOMED CT lists
+. foreach external_sct in oc_primis_bmi oc_nhspcdr_bmival oc_opensafely_weight oc_opensafely_height {
+  2.         
+.         merge m:1 snomedctconceptid using ``external_sct'', update replace
+  3.         drop if _merge == 2
+  4.         drop _merge
+  5. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,993
+        from master                   240,993  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 6
+        not updated                         4  (_merge==3)
+        missing updated                     2  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,991
+        from master                   240,991  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 8
+        not updated                         8  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,996
+        from master                   240,990  (_merge==1)
+        from using                          6  (_merge==2)
+
+    Matched                                 9
+        not updated                         8  (_merge==3)
+        missing updated                     1  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(6 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,992
+        from master                   240,991  (_merge==1)
+        from using                          1  (_merge==2)
+
+    Matched                                 8
+        not updated                         2  (_merge==3)
+        missing updated                     6  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(1 observation deleted)
 
 . 
-. order term height weight bmi bmicat, last
+. order external_codelist, after(term)
 
-. 
-. rename bmicat bmi_cat
+. order lshtm_* oc_*, last
 
-. encode bmi_cat, generate(bmicat)
-
-. drop bmi_cat
-
-. label list bmicat
-bmicat:
-           1 normal 18.5-24.9
-           2 obese 30+
-           3 overweight 25-29
-           4 underweight <18.5
+. count
+  240,999
 
 . 
 . 
-. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. // STEP 1. IDENTIFY SEARCH TERMS
+. //===============================
+. 
+. //**Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
+. 
+. local bmi " "*body*mass*index*" "bmi *" "* bmi" "* bmi *" "*obese*" "*overweight*" "*underweight*" "
+
+. local height " "*height*" "
+
+. local weight " "*weight*" "
+
+. 
+. 
+. // STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
 . //==========================================================================
-. /*
-> //Check for missing SNOMED CT Concepts
-> codebook snomedctconceptid
-> assert !missing(snomedctconceptid)
-> 
-> count
-> 
-> //Make a note of current list
-> preserve
->         keep medcodeid /**/height weight bmi bmicat/**/
->         gen byte original = 1
->         tempfile original
->         save `original'
-> restore
-> 
-> //Merge SNOMED CT Concepts with medical dictionary
-> keep snomedctconceptid /**/height weight bmi bmicat/**/
-> bysort snomedctconceptid: keep if _n == 1
-> 
-> //Merge with original search results
-> merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
-> compress
-> merge 1:1 medcodeid using `original', nogenerate
-> order snomedctconceptid, before(snomedctdescriptionid)
-> order /**/height weight bmi bmicat/**/, last
-> gsort /**/height weight bmi bmicat/**/ originalreadcode
-> 
-> //Label new codes
-> gen new_snomedct_synonym = (original != 1)
-> drop original
-> 
-> //Show new codes
-> foreach category of varlist /**/height weight bmi bmicat/**/ {
->         
->         display "New terms found for: `category'"
->         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1
-> }
-> 
-> //Check new codes in the context of originally included SNOMED CT Concept ID codes
-> preserve
->         keep if new_snomedct_synonym == 1
->         keep snomedctconceptid
->         bysort snomedctconceptid: keep if _n == 1
-> 
->         count
->         local obs = r(N)
-> 
->         forvalues i = 1/`obs' {
->                 
->                 if `i' == 1 {
->                         
->                         local expanded_ids = snomedctconceptid in `i'
->                 }
->                 else {
->                         
->                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
->                 }
->         }
-> restore
-> 
-> foreach expanded_id of local expanded_ids {
->         
->         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
->         
->         list medcodeid originalreadcode term new_snomedct_synonym /**/height weight bmi bmicat/**/ ///
->                 if snomedctconceptid == "`expanded_id'"
-> }
-> */
 . 
-. //save codelist and export as CSV
-. order medcodeid observations
+. //**Add any additional local macros if you have used more than 1**
+. //For each specified local macro...
+. foreach termgroup in /**/bmi height weight/**/ {
+  2.         
+.         //Generate an empty binary indicator variable taking the name of the local macro
+.         gen byte `termgroup' = .
+  3.         
+.         //For each SNOMED CT term description (converted to lower case)...
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 //For each individual search term in the local macro
+.                 foreach searchterm in ``termgroup'' {
+  5.                         
+.                         //Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+.                         replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(240,999 missing values generated)
+(67 real changes made)
+(4 real changes made)
+(0 real changes made)
+(5 real changes made)
+(13 real changes made)
+(16 real changes made)
+(7 real changes made)
+(240,999 missing values generated)
+(129 real changes made)
+(240,999 missing values generated)
+(471 real changes made)
 
-. gsort height weight bmi bmicat -observations snomedctconceptid snomedctdescriptionid originalreadcode
+. 
+. keep if /**/bmi == 1 | height == 1 | weight == 1/**/ | external_codelist == 1
+(240,320 observations deleted)
 
-. //drop new_snomedct_synonym
 . compress
-  variable bmicat was long now byte
   variable medcodeid was str18 now str17
   variable originalreadcode was str19 now str13
   variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str17
+  variable term was str233 now str145
+  (65,863 bytes saved)
+
+. 
+. order /**/bmi height weight/**/, after(term)
+
+. gsort /**/bmi height weight/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. 
+. tab1 /**/bmi height weight/**/
+
+-> tabulation of bmi  
+
+        bmi |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        112      100.00      100.00
+------------+-----------------------------------
+      Total |        112      100.00
+
+-> tabulation of height  
+
+     height |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        129      100.00      100.00
+------------+-----------------------------------
+      Total |        129      100.00
+
+-> tabulation of weight  
+
+     weight |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        471      100.00      100.00
+------------+-----------------------------------
+      Total |        471      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*glucose*" "*abdomen*" "*gestation*" "*foetal*" "*fetal*" "*disorder*" "*tool*" "*questionnaire*" "*score*" "*risk*" "*advice*" "*weight*bear*" "*fundal*" "*
+> fundus*" "*uterine*" "*uterus*" "*predict*" "*fall*" "*injury*" "*unfit*" "*unsuitable*" "*knee*" "*modification*" "*step*" "*fear*" "*jump*" "*footwear*" "*heightened*" "*si
+> tting*" "*demispan*" "*pubis*" "*heights*" "*gait*" "*ratio*" "*estimate*" "*monitor*" "*diet*" "*regimen*" "*7pcl*" "*checklist*" "*molecular*" "*counterweight*" "*problem*"
+>  "*concern*" "*placenta*" "*weightless*" "*weighted*" "*wave*" "*education*" "*symptom*" "*screen*" "*calculus*" "*appraisal*" "*trend*" "*eyelid*" "*not*" "*lifter*" "*weigh
+> ts*" "*decline*" "*fixation*" "*preoccup*" "*dry*" "*sweat*" "*sample*" "*heavy*" "*transfer*" "*chart*" "*date*" "*velocity*" "*previous*" "*consult*" "*kcal/kg*" "*g/kg*" "
+
+. local change " "*change*" "*reduc*" "*decreasing*" "*los*" "*increasing*" "*gain*" "*fluctuate*" "
+
+. local target " "*target*" "*ideal*" "
+
+. local child " "*child*" "*centile*" "*age*" "*grow*" "*parent*" "
+
+. local baby " "*baby*" "*birth*" "*infant*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/change target child baby/**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(679 missing values generated)
+(2 real changes made)
+(1 real change made)
+(5 real changes made)
+(1 real change made)
+(4 real changes made)
+(3 real changes made)
+(4 real changes made)
+(0 real changes made)
+(8 real changes made)
+(8 real changes made)
+(8 real changes made)
+(31 real changes made)
+(6 real changes made)
+(1 real change made)
+(0 real changes made)
+(2 real changes made)
+(1 real change made)
+(3 real changes made)
+(2 real changes made)
+(7 real changes made)
+(3 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(2 real changes made)
+(7 real changes made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(0 real changes made)
+(0 real changes made)
+(3 real changes made)
+(7 real changes made)
+(3 real changes made)
+(12 real changes made)
+(4 real changes made)
+(7 real changes made)
+(1 real change made)
+(4 real changes made)
+(2 real changes made)
+(2 real changes made)
+(1 real change made)
+(3 real changes made)
+(13 real changes made)
+(7 real changes made)
+(1 real change made)
+(2 real changes made)
+(3 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(3 real changes made)
+(6 real changes made)
+(8 real changes made)
+(1 real change made)
+(1 real change made)
+(4 real changes made)
+(1 real change made)
+(1 real change made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(3 real changes made)
+(1 real change made)
+(2 real changes made)
+(2 real changes made)
+(1 real change made)
+(2 real changes made)
+(1 real change made)
+(1 real change made)
+(679 missing values generated)
+(4 real changes made)
+(12 real changes made)
+(1 real change made)
+(45 real changes made)
+(1 real change made)
+(36 real changes made)
+(1 real change made)
+(679 missing values generated)
+(15 real changes made)
+(13 real changes made)
+(679 missing values generated)
+(120 real changes made)
+(18 real changes made)
+(73 real changes made)
+(9 real changes made)
+(1 real change made)
+(679 missing values generated)
+(27 real changes made)
+(23 real changes made)
+(3 real changes made)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list medcodeid term if exclude == 1
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                                                                                                term |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  2. |  1753311000006112                              Intervention for risk to health associated with overweight and obesity, general advice on healthy weight and lifestyle |
+  8. |  1753321000006116                                     Intervention for risk to health associated with overweight and obesity, advice about diet and physical activity |
+ 13. |  1753331000006118                     Intervention for risk to health associated with overweight and obesity, advice about diet and physical activity, consider drugs |
+ 15. |  1753281000006110                                                                            Risk to health associated with overweight and obesity, at increased risk |
+ 16. |  1753341000006111   Intervention for risk to health associated with overweight and obesity, advice about diet and physical activity, consider drugs, consider surgery |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 18. |  1753301000006114                                                                            Risk to health associated with overweight and obesity, at very high risk |
+ 21. |  1753291000006113                                                                                 Risk to health associated with overweight and obesity, at high risk |
+ 22. |  1753271000006112                                                                         Risk to health associated with overweight and obesity, at no increased risk |
+ 40. |  1865611000006113                                    Ten year osteoporotic fracture probability score using FRAX (Fracture Risk Assessment Tool) with body mass index |
+ 41. |  1865591000006119                                             Ten year hip fracture probability score using FRAX (Fracture Risk Assessment Tool) with body mass index |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 51. |  1995621000006110                                                                                                   Malnutrition universal screening tool - BMI score |
+ 87. |  2865221000006115                                                                                                                 Impaired glucose tolerance in obese |
+ 88. |  5273061000006119                                                                                                                                       Obese abdomen |
+ 93. |  2733261000000112                                               Framingham Cardiovascular Disease 10 year risk calculator score using BMI (Body Mass Index) or lipids |
+ 94. |  3020131000006118                                                                                                              Impaired glucose tolerance in nonobese |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 97. |  8233851000006119                                                                          Body mass, airflow obstruction, dyspnoea and exercise capacity index score |
+ 99. | 14452481000006119                                                                                                                     Body mass index for age z-score |
+116. |   316781000000113                                                                                                              Waterlow build/weight for height score |
+122. |        1224190019                                                                                                                                       Fundal height |
+123. |         371606013                                                                                                                            Height of uterine fundus |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+141. |  2193181000000110                                                                                                                               Waist to height ratio |
+150. |  1910921000006114                                                                                                                                    Estimated height |
+153. |  1804271000006118                                                                                                                             Height of gravid uterus |
+165. |  2618501000000117                                                                                                                    Body height measurement declined |
+167. |  5529851000006116                                                                                                                             Has not grown in height |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+169. |  2374191000000113                                                                                                                              Predicted adult height |
+172. |  5750391000006110                                                                                                                  Finding of height of gravid uterus |
+173. |  1832821000006119                                                                                                                                    Fall from height |
+176. |  2636611000000113                                                                                                              Unsuitable for body height measurement |
+177. |  5428931000006117                                                                                                                                          Heightened |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+182. |  5749671000006113                                                                                                                  Finding of fundal height of uterus |
+183. |  5750421000006119                                                                                                                        Fundal height equal to dates |
+187. |  6705411000006114                                                                                                                                         Knee height |
+190. |  5566551000006118                                                                                                                 Evaluation of uterine fundal height |
+192. |  5256221000006112                                                                                                                             Trend in height centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+195. |  4982301000006112                                                                                                                       Furniture height modification |
+196. |  5279431000006117                                                                                                                                         Step height |
+197. |  5582551000006115                                                                                                                                     Fear of heights |
+202. |  4913351000006117                                                                                                    Injury of unknown intent due to fall from height |
+203. |  4935671000006110                                                                                                                                 Jumping from height |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+204. |  5750411000006110                                                                                                                        Fundal height high for dates |
+205. |  5750441000006114                                                                                                                         Fundal height low for dates |
+206. |  2405041000000118                                                                                                                             Heel height of footwear |
+210. |  8075671000006118                                                                                                          Fall through height of less than one metre |
+211. |  5247741000006112                                                                                                                      Heightened auditory perception |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+215. |  5247831000006110                                                                                                                     Heightened olfactory perception |
+220. |  5256171000006118                                                                                                                                      Sitting height |
+222. |  5256191000006117                                                                                                                                Height from demispan |
+224. |  5256181000006115                                                                                                                              Pubis to ground height |
+227. |  1577321000006111                                                                                                             G4 [203] Unfit for work at heights > 2m |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+229. |  1720481000006117                                                                                                        Limitation status: Unfit work at height > 2m |
+230. |  1720501000006110                                                                                                                Rescinded: Unfit work at height > 2m |
+231. |  1723931000006118                                                                                                 Limitation status: Unfit for work at heights (>2 m) |
+232. |  1723951000006113                                                                                                         Rescinded: Unfit for work at heights (>2 m) |
+233. |  1833381000006119                                                                                                                     Injury from jumping from height |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+234. |  1979881000006116                                                                                                         Tinetti gait score - step length and height |
+235. |  5247731000006119                                                                                                                               Heightened perception |
+236. |  5247851000006115                                                                                                                     Heightened perception of smells |
+237. |  5247871000006113                                                                                                                       Heightened tactile perception |
+238. |  5247891000006114                                                                                                                      Heightened perception of taste |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+239. |  5297081000006112                                                                                                                             R wave height decreased |
+241. |   950251000006115                                                                                                                                      Sitting height |
+244. |         451201014                                                                                                                                   Weight monitoring |
+246. |   839191000006115                                                                                                                            Weight control education |
+247. |  1662431000000112                                                                                                                Advice given about weight management |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+248. |   200241000006114                                                                                                          Patient advised about weight-reducing diet |
+251. |   977951000006110                                                                                                                Health education - weight management |
+252. |  1124961000000110                                                                                                      Referral to weight management service declined |
+254. |    59261000006118                                                                                                                           WR - Weight reducing diet |
+259. |    59311000006113                                                                                                                                      Weight symptom |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+261. |   437661000006118                                                                                                                      Abnormal weight loss - symptom |
+283. |   854681000006113                                                                                                                        Weight reducing diet advised |
+293. |         459695017                                                                                                                       Diabetic weight reducing diet |
+306. |    59271000006113                                                                                                                                Weight reducing diet |
+308. |  1662471000000114                                                                                                                   Weight management advice declined |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+316. |  1059081000000114                                                                                                                    Body weight measurement declined |
+322. |  1747301000000110                                                                                                          Unsuitable for weight management programme |
+323. |         252198015                                                                                                                                  Weight symptom NOS |
+325. |  1750501000006114                                                                                                                          Checking weight monitoring |
+326. |  1971171000006111                                                                                         Weighted 7-point checklist for pigmented skin lesions score |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+327. |         372875012                                                                                                                                      Weight-bearing |
+332. |    59281000006111                                                                                                                                    Weight screening |
+337. |  1910901000006116                                                                                                                                    Estimated weight |
+339. |  5494311000006110                                                                                                                      Weight-reducing diet education |
+340. |   628891000000118                                                                                                           Counterweight weight management programme |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+348. |  1971181000006114                                                                                                            Weighted 7PCL - change in size of lesion |
+349. |         316106013                                                                                           Premature - weight 1000g-2499g or gestation of 28-37weeks |
+352. |   406131000000117                                                                                                             Did not attend weight monitoring clinic |
+355. |   140281000006110                                                                                            Short gestation and unspecified low birthweight problems |
+360. |  1971191000006112                                                                                                              Weighted 7PCL - irregular pigmentation |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+362. |         389896014                                                                                                                                  Non-weight-bearing |
+367. |  1971201000006110                                                                                                                    Weighted 7PCL - irregular border |
+368. |  1971221000006117                                                                                                           Weighted 7PCL - itch or altered sensation |
+369. |  1971231000006119                                                                                    Weighted 7PCL - larger than other lesions (diameter 7mm or more) |
+370. |  6204841000006117                                                                                                                               Weight reduction diet |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+378. |  1971211000006113                                                                                                                        Weighted 7PCL - inflammation |
+379. |  1971241000006112                                                                                                           Weighted 7PCL - oozing/crusting of lesion |
+380. |  1995641000006115                                                                                           Malnutrition universal screening tool - weight loss score |
+382. |   567001000000116                                                                                                                             Counterweight programme |
+384. |        1780188013                                                                                                                                O/E - weight-bearing |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+385. |  1119501000000114                                                                                                                Low molecular weight heparin therapy |
+386. |   266981000006111                                                                                        Oedema or excessive weight gain in pregnancy - not delivered |
+389. |  2326491000000114                                                                                                      Intensive weight management programme declined |
+391. |         457849017                                                                                                                                  Weight of calculus |
+393. | 14919021000006113                                                          Estimated creatinine clearance calculated using actual body weight Cockcroft-Gault formula |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+394. |  1773731000006116                                                                                                               Weight advice - verbal [MOSAIC trial] |
+395. |  6702411000006117                                                                                                                 General appraisal of patient weight |
+396. |   558771000000115                                                                                                                                    Weight gain diet |
+397. |  1753641000006118                                                                                    Bridging anticoagulant therapy with low molecular weight heparin |
+398. |   909921000006118                                                                                                                                [RFC] Weight problem |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+399. |  2636651000000112                                                                                                              Unsuitable for body weight measurement |
+401. |  2325381000000114                                                                                                                        Weight loss confidence score |
+402. |  2325341000000118                                                                                                                        Weight loss importance score |
+404. |         347004010                                                                                                                                     Weight fixation |
+405. |  5494331000006116                                                                                                                 Dietary advice for weight reduction |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+407. |  5704501000006110                                                                                                                                 Able to weight-bear |
+412. |         282224012                                                                                                                      Below knee weight-bearing cast |
+416. |  1770141000006119                                                                       Did not attend weight management special interest general practitioner clinic |
+419. |  1911991000006118                                                                                                                  Concern expressed by carer: weight |
+424. | 14176401000006113                                                                                                             Weight management service not available |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+425. |  1773761000006113                                                                                                      Weight advice - not appropriate [MOSAIC trial] |
+426. |   504621000006118                                                                                                                  Below knee non weight-bearing cast |
+427. |  1971161000006116                                                                                                    Weighted 7-point checklist for pigmented lesions |
+429. |  5851631000006114                                                                                                                           Finding of weight-bearing |
+430. |  6509591000006118                                                                                                                          Weight maintenance regimen |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+436. |   773301000006111                                                                                                            Insertion of gold weight to upper eyelid |
+437. |  1951141000006117                                                                                                                    Body weight measurement not done |
+439. |  5256261000006118                                                                                                                                        Weight trend |
+441. |  7309791000006112                                                                                                                                     Dry body weight |
+444. | 14919041000006118                                                           Estimated creatinine clearance calculated using ideal body weight Cockcroft-Gault formula |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+448. |  1773741000006114                                                                                                     Weight advice - verbal & written [MOSAIC trial] |
+450. |   624791000006113                                                                                          Disorders relating to long gestation and high birth weight |
+453. |         457437014                                                                                                                                        Sweat weight |
+454. |        1219023012                                                                                                                                       Sample weight |
+455. | 14919061000006119                                                        Estimated creatinine clearance calculated using adjusted body weight Cockcroft-Gault formula |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+461. |  1773751000006111                                                                                                        Weight advice - not this time [MOSAIC trial] |
+464. |  5704481000006117                                                                                                                              Ability to weight-bear |
+465. |  5704631000006115                                                                                                                           Difficulty weight-bearing |
+466. |  5892251000006115                                                                                                                                 Body weight problem |
+467. |  7098251000006115                                                                                                                   Dietary education for weight gain |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+472. |  3976301000006116                                                                                                                                      Heavy (weight) |
+481. |  4835581000006115                                                                                    Disorder due to slow foetal growth, low and/or high birth weight |
+482. |   624261000006111                                                                                       Disorders due to slow fetal growth, low and high birth weight |
+488. |  5704521000006117                                                                                                                               Unable to weight-bear |
+496. |   228691000006112                                                                                                                                    Placental weight |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+497. |  6611061000006111                                                                                                      Referral to weight maintenance regimen service |
+501. |  1572911000006119                                                                                                               Non-weight-bearing due to knee injury |
+505. |  3087291000006118                                                                                                                                  Not gaining weight |
+506. |  7150901000006114                                                                                              Diffusion weighted magnetic resonance imaging of brain |
+507. |  7297941000006116                                                                                                                                 Weight/weight ratio |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+508. |  7486891000006117                                                                             Eating disorder examination questionnaire weight concern subscale score |
+511. |  4715861000006119                                                                                                                  Below knee non-weight-bearing cast |
+513. |  1572881000006119                                                                                                              Non-weight-bearing due to ankle injury |
+515. |  4648481000006118                                                                                                          Insertion of gold weight into upper eyelid |
+518. | 12735281000006113                                                                                              Estimated fetal weight using antenatal ultrasound scan |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+521. |  2000621000006111                                                                                          Date for weight management intervention offered to patient |
+529. |  5256381000006118                                                                                                                             Trend in weight centile |
+533. |  7150891000006110                                                                                        Diffusion weighted magnetic resonance imaging (MRI) of brain |
+534. |         362283011                                                                                                                           History of weightlessness |
+535. |  2298481000000111                                                                                                               Insertion of weight into upper eyelid |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+536. |   187041000000111                                                                                                               High molecular weight kininogen level |
+537. |  4996601000006118                                                                                                                   Full weight-bearing gait training |
+538. |  5533851000006117                                                                                                                                             Weights |
+540. |  5667501000006110                                                                                                                                Does transfer weight |
+543. |  1752361000006119                                                                     EDE-Q (eating disorder examination questionnaire) weight concern subscale score |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+547. |  4996681000006110                                                                                                                        Weight-bearing gait training |
+548. |  5247501000006116                                                                                                                       Overestimates own body weight |
+552. |  7236701000006111                                                                                                       Diffusion weighted magnetic resonance imaging |
+553. |  7309801000006113                                                                                                                                          Dry weight |
+556. |  2298831000000110                                                                                                                 Removal of weight from upper eyelid |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+560. | 14393841000006116                                                                           Referred to Nutrition and Dietetics Service (Excluding Weight Management) |
+562. |   624801000006114                                                                                           Disorders slow fetal growth, low and high birthweight NOS |
+563. |         334536018                                                                                                         [X]Prolonged stay in weightless environment |
+564. |  4996621000006111                                                                                                                Partial weight-bearing gait training |
+566. |  5584101000006118                                                                                                                      Preoccupation with body weight |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+567. |  5704671000006117                                                                                                                    Able to weight-bear on right leg |
+568. |  5704691000006116                                                                                                                  Unable to weight-bear on right leg |
+572. |  8268241000006115                                                                                                                                        Weight chart |
+575. |  3044831000006118                                                                                                                          Weight maintenance regimen |
+577. |  7247301000006113                                                                                                            Easy care weighted disability assessment |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+578. |  8440771000006113                                                                                                                         Injury whilst weightlifting |
+579. |  5247511000006118                                                                                                                      Underestimates own body weight |
+580. |  3087281000006116                                                                                                                               Not putting on weight |
+584. |   624811000006112                                                                                            Disorders slow fetal growth, low and high birthweight OS |
+585. |  4996701000006113                                                                                                                  Touch weight-bearing gait training |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+589. |  5507411000006116                                                                                        Disorder relating to long gestation and/or high birth weight |
+592. |  8351481000006119                                                Eating Disorder Examination Questionnaire - Adolescents, 14-16 years - weight concern subscale score |
+593. |         330537015                                                                                                            Prolonged stay in weightless environment |
+594. |  5704541000006112                                                                                                                                    Does weight-bear |
+595. |  5704891000006117                                                                                                               Difficulty weight-bearing on left leg |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+596. | 14413281000006116                                                                                                                          Date of weight measurement |
+600. |  1934431000006116                                                                                     Child 27-30 mth exam. - Child Healthy Weight input not required |
+601. |  4986041000006113                                                                                                                                 kcal/kg body weight |
+602. |  5704771000006110                                                                                                              Difficulty weight-bearing on right leg |
+603. |  5704791000006111                                                                                                                     Able to weight-bear on left leg |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+604. |  5704811000006110                                                                                                                   Unable to weight-bear on left leg |
+606. |  2298811000000119                                                                                                                 Renewal of weight into upper eyelid |
+607. |  8324611000006113                                                                                                                     Diffusion weighted MRI of liver |
+609. |  1572891000006116                                                                                                          Non-weight-bearing at time of ankle injury |
+610. |  1572901000006117                                                                                                           Non-weight-bearing at time of knee injury |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+613. |  2817081000006115                                                                                         Disorder relating to long gestation AND/OR high birthweight |
+614. |   423641000006110                                                                                     [X]Prolonged stay in weightless environment, occurrence on farm |
+615. |  5281441000006116                                                                                                                                  Weight of footwear |
+616. |  5470331000006119                                                                                                                                       Weight lifter |
+617. |  5584001000006117                                                                                                                                     Weight velocity |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+620. |  6379151000006112                                                                                                                        Low molecular weight heparin |
+621. |  6509771000006113                                                                                                                       Weight reduction consultation |
+626. |  4628871000006117                                                                                                                                  Weight of placenta |
+627. |  1773481000006111                                                                                                                        MOSAIC trial - weight advice |
+629. |   423601000006113                                                                       [X]Prolonged stay in weightless environment, occurrence on street and highway |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+630. |   423571000006118                                                                    [X]Prolonged stay in weightless environment, occurrence at other specified place |
+631. |  4981061000006118                                                                                                                Weight-bearing through affected side |
+632. |  4986261000006116                                                                                                                                    g/kg body weight |
+633. |  5138151000006111                                                                        Conversion of non-weight-bearing plaster cast to weight-bearing plaster cast |
+635. |  5704841000006114                                                                                                                        Does weight-bear on left leg |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+639. |  8224961000006113                                                                                                                             Dieting for weight loss |
+641. |  8325911000006118                                                                                                  Diffusion weighted MRI of internal auditory meatus |
+642. | 14357971000006115                                                                                                             Duration of weight management programme |
+643. |  4628861000006112                                                                                                                                     Placenta weight |
+644. |  1723691000006111                                                                                                            Limitation status: Unfit to lift weights |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+645. |  1723711000006114                                                                                                                    Rescinded: Unfit to lift weights |
+650. |   423631000006117                                                                                     [X]Prolonged stay in weightless environment, occurrence at home |
+651. |   423591000006117                                                                  [X]Prolonged stay in weightless environment, occurrence in residential institution |
+652. |   423561000006113                                 [X]Prolonged stay in weightless environment, occurrence at school, other institution and public administrative area |
+653. |   423541000006114                                                                [X]Prolonged stay in weightless environment, occurrence at sports and athletics area |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+654. |   423551000006111                                                                   [X]Prolonged stay in weightless environment, occurrence at trade and service area |
+655. |   423531000006116                                                         [X]Prolonged stay in weightless environment, occurrence at industrial and construction area |
+656. |   423581000006115                                                                        [X]Prolonged stay in weightless environment, occurrence at unspecified place |
+657. |  4990951000006113                                                                                                                       Weight-bearing - neurological |
+658. |  5025411000006115                                                                                                            Removal of gold weight from upper eyelid |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+660. |  5256321000006117                                                                                                                                Previous well-weight |
+662. |  5584011000006119                                                                                                                             Weight centile velocity |
+664. |  5667471000006115                                                                                                                          Ability to transfer weight |
+665. |  5667481000006117                                                                                                                             Able to transfer weight |
+666. |  5704751000006117                                                                                                                   Does not weight-bear on right leg |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+668. |  3044841000006111                                                                                                                             Weight maintenance diet |
+671. |  6509681000006117                                                                                                                     Weight maintenance consultation |
+673. |  6509811000006113                                                                                                                                 Weight gain regimen |
+676. |  8324591000006119                                                                                                                  Diffusion weighted MRI of prostate |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. /**/list medcodeid term observations if change == 1
+
+     +---------------------------------------------------------------------------------------------+
+     |         medcodeid                                                           term   observ~s |
+     |---------------------------------------------------------------------------------------------|
+155. |         253675018                                           O/E - loss of height       8000 |
+228. |  4551791000006114                                On examination - loss of height          1 |
+248. |   200241000006114                     Patient advised about weight-reducing diet     800000 |
+249. |         264766018                                           Wants to lose weight     700000 |
+250. |         397867018                                           Abnormal weight loss     700000 |
+     |---------------------------------------------------------------------------------------------|
+253. |         411892019                                            Weight loss advised     600000 |
+254. |    59261000006118                                      WR - Weight reducing diet     500000 |
+257. |         252192019                                              Weight decreasing     400000 |
+260. |         252191014                                              Weight increasing     300000 |
+261. |   437661000006118                                 Abnormal weight loss - symptom     300000 |
+     |---------------------------------------------------------------------------------------------|
+262. |   240911000006113                                 Patient advised to lose weight     300000 |
+266. |         317237014                                     [D]Abnormal loss of weight     200000 |
+279. |   299281000000119                                     Complaining of weight loss     100000 |
+283. |   854681000006113                                   Weight reducing diet advised     100000 |
+284. |  3952531000006117                                                    Weight loss     100000 |
+     |---------------------------------------------------------------------------------------------|
+288. |   857681000006117                                        Weight reduction clinic      90000 |
+289. |         252194018                                           Abnormal weight gain      80000 |
+290. |         317236017                                        [D]Abnormal weight gain      80000 |
+293. |         459695017                                  Diabetic weight reducing diet      80000 |
+296. |         317244017                                         Failure to gain weight      70000 |
+     |---------------------------------------------------------------------------------------------|
+298. |        1780210016                               Weight loss from baseline weight      70000 |
+306. |    59271000006113                                           Weight reducing diet      60000 |
+307. |  1715211000000118                                      Unintentional weight loss      60000 |
+310. |         370746016                                         Percentage weight loss      50000 |
+314. |        2549043017                                        Intentional weight loss      40000 |
+     |---------------------------------------------------------------------------------------------|
+318. |   903061000006114                                                    Weight Loss      30000 |
+339. |  5494311000006110                                 Weight-reducing diet education      10000 |
+348. |  1971181000006114                       Weighted 7PCL - change in size of lesion       8000 |
+351. |  2316211000000111                                      Unintentional weight gain       8000 |
+356. |  1737991000000117                                         Pattern of weight gain       7000 |
+     |---------------------------------------------------------------------------------------------|
+357. |   960561000006110                            Unexplained/progressive weight loss       7000 |
+361. |  1809441000006111                                                  Weight change       6000 |
+363. |  1764811000006112                               History of attempted weight loss       6000 |
+370. |  6204841000006117                                          Weight reduction diet       5000 |
+371. |  2369981000000115              Target weight to achieve five percent weight loss       5000 |
+     |---------------------------------------------------------------------------------------------|
+372. |         264767010                             Difficulty maintaining weight loss       4000 |
+374. |  6251131000006111                                           Weight gain (amount)       4000 |
+375. |   267011000006115      Oedema or excessive weight gain in pregnancy, unspecified       4000 |
+380. |  1995641000006115      Malnutrition universal screening tool - weight loss score       3000 |
+386. |   266981000006111   Oedema or excessive weight gain in pregnancy - not delivered       3000 |
+     |---------------------------------------------------------------------------------------------|
+387. |         305936016               Oedema or excessive weight gain in pregnancy NOS       3000 |
+396. |   558771000000115                                               Weight gain diet       2000 |
+401. |  2325381000000114                                   Weight loss confidence score       1000 |
+402. |  2325341000000118                                   Weight loss importance score       1000 |
+403. |  2010161000006112                       Weight reduction drug therapy - orlistat       1000 |
+     |---------------------------------------------------------------------------------------------|
+405. |  5494331000006116                            Dietary advice for weight reduction       1000 |
+408. |  1739561000000111                                      H/O attempted weight loss       1000 |
+410. |  2642891000006110                                                    Weight gain       1000 |
+413. |  3087271000006119                                               Poor weight gain        800 |
+414. |  2370021000000115               Target weight to achieve ten percent weight loss        800 |
+     |---------------------------------------------------------------------------------------------|
+415. |  6997371000006111                                        Unexplained weight loss        700 |
+445. |  1566371000006117                           Successfully lost weight in the past        300 |
+446. |  4544701000006119                                                  Losing weight        300 |
+449. |         370745017                                         Percentage weight gain        300 |
+451. |         494017018                             Excessive weight gain in pregnancy        300 |
+     |---------------------------------------------------------------------------------------------|
+456. |  1566361000006112                           Attempted to lose weight in the past        200 |
+463. |   125571000006118                                   Static weight gain pregnancy        200 |
+467. |  7098251000006115                              Dietary education for weight gain        200 |
+468. |   650891000006111                             Excessive weight gain in pregnancy        200 |
+469. |  1714571000000114                                 Reason for initial weight gain        200 |
+     |---------------------------------------------------------------------------------------------|
+470. |  1793211000000118                       Cycle of change stage, weight management        200 |
+480. |  1979531000006115                            Lost to weight management follow-up        100 |
+483. |  4935051000006112                                          Excessive weight gain        100 |
+484. |  5253111000006115                                         Actions to lose weight        100 |
+485. |  5253151000006119                            Excessive exercising to lose weight        100 |
+     |---------------------------------------------------------------------------------------------|
+489. |  5986631000006118                                          Excessive weight loss        100 |
+490. |  7067191000006116                                             Recent weight loss        100 |
+502. |  1708211000006118                                         Percentage weight loss         80 |
+504. |   734181000006116                                       Low maternal weight gain         80 |
+505. |  3087291000006118                                             Not gaining weight         80 |
+     |---------------------------------------------------------------------------------------------|
+528. |  5256141000006114                                              Weight fluctuates         40 |
+531. |  7965341000006113                               Childhood failure to gain weight         40 |
+545. |  9423891000006114                                               Slow weight gain         20 |
+549. |  5253131000006114                            Self-induced purging to lose weight         20 |
+551. |  5742301000006117                                      Exercising to lose weight         20 |
+     |---------------------------------------------------------------------------------------------|
+554. |   267021000006111   Oedema/excess weight gain preg - delivered + postnatal compl         20 |
+557. | 14166701000006113                                            Weight loss process         10 |
+561. |  1749511000006118                                         Pattern of weight gain         10 |
+565. |  5256281000006111                                    Percentage change in weight         10 |
+571. |  7597101000006110                           Self-induced vomiting to lose weight         10 |
+     |---------------------------------------------------------------------------------------------|
+576. |  6251141000006118                                           Weight loss (amount)          9 |
+581. |  7075901000006114                                             Recent weight gain          8 |
+582. |  8189651000006113                             [D]Weight, failure to gain, infant          8 |
+587. |   267001000006118        Oedema or excessive weight gain in pregnancy, delivered          7 |
+588. | 13923631000006111                                                    Weight loss          7 |
+     |---------------------------------------------------------------------------------------------|
+605. |   932251000006117                               Weight, fail to gain, infant [D]          4 |
+611. |  4544711000006116                                        Progressive weight loss          3 |
+621. |  6509771000006113                                  Weight reduction consultation          3 |
+623. | 13923611000006117                                                    Weight gain          3 |
+624. | 14447061000006115                         Excessive weight gain during pregnancy          2 |
+     |---------------------------------------------------------------------------------------------|
+637. |   267031000006114    Oedema/excessive weight gain in preg+postnatal complication          2 |
+639. |  8224961000006113                                        Dieting for weight loss          2 |
+640. |  3857651000006118                                         Failure to lose weight          2 |
+646. |  1757781000006113                                 Reason for initial weight gain          1 |
+659. |  5061121000006113                               Excess interdialytic weight gain          1 |
+     |---------------------------------------------------------------------------------------------|
+669. |  3087261000006114                                          Unable to gain weight          1 |
+672. |  6509791000006114                                    Weight reduction assistance          1 |
+673. |  6509811000006113                                            Weight gain regimen          1 |
+674. |  7116681000006115                               Abnormal intentional weight loss          1 |
+675. |  7359841000006118                                        Involuntary weight loss          1 |
+     +---------------------------------------------------------------------------------------------+
+
+. list medcodeid term observations if target == 1
+
+     +--------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                                        term   observ~s |
+     |--------------------------------------------------------------------------------------------------------------------------|
+ 39. |  2176161000000116                                                                      Target body mass index      70000 |
+ 92. |  8279981000006115                                                                Target BMI (body mass index)         10 |
+ 95. | 14770371000006116                                                                      Target body mass index          5 |
+243. |   787121000006116                                                                           Ideal body weight   40000000 |
+264. |        1484769012                                                                               Target weight     300000 |
+     |--------------------------------------------------------------------------------------------------------------------------|
+267. |         401535015                                                                     Target weight discussed     200000 |
+278. |         264764015                                                                      Ideal weight discussed     100000 |
+285. |         253680010                                                               O/E - weight within 10% ideal      90000 |
+292. |         402435016                                                              O/E - weight 10-20% over ideal      80000 |
+303. |   217781000000116                                                    O/E - weight greater than 20% over ideal      60000 |
+     |--------------------------------------------------------------------------------------------------------------------------|
+345. |   297891000000114                                                                       Target weight reached       9000 |
+358. |         253679012                                                              O/E -weight 10-20% below ideal       6000 |
+365. | 14167431000006113                                                                          Target body weight       5000 |
+371. |  2369981000000115                                           Target weight to achieve five percent weight loss       5000 |
+377. |   272551000006116                                                              O/E - weight > 20% below ideal       3000 |
+     |--------------------------------------------------------------------------------------------------------------------------|
+390. |  2358981000000118                                                                       3 month target weight       3000 |
+411. |  2359021000000113                                                                       6 month target weight       1000 |
+414. |  2370021000000115                                            Target weight to achieve ten percent weight loss        800 |
+444. | 14919041000006118   Estimated creatinine clearance calculated using ideal body weight Cockcroft-Gault formula        300 |
+473. |  2359061000000117                                                                      12 month target weight        200 |
+     |--------------------------------------------------------------------------------------------------------------------------|
+514. |  4551821000006117                                                   O/E - weight greater than 20% below ideal         60 |
+558. | 14167441000006115                                                                               Target weight         10 |
+574. |  1929461000006112                                                  Difference between actual and ideal weight          9 |
+597. |  4636941000006119                                                                     IBW - Ideal body weight          4 |
+628. |  1894041000006119                                                                       3 month target weight          2 |
+     |--------------------------------------------------------------------------------------------------------------------------|
+634. |  5507901000006110                                                    O/E - weight greater than 20% over ideal          2 |
+649. |  1894051000006117                                                                       6 month target weight          1 |
+677. |   923871000006117                                                                                Ideal weight          1 |
+     +--------------------------------------------------------------------------------------------------------------------------+
+
+. list medcodeid term if child == 1
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                                                                                          term |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  9. |  1849891000006112                                                                                                                              Overweight child |
+ 12. |   981741000006110                                                                                Underweight: adult BMI 18.5; child BMI 5th percentile; or less |
+ 17. |   981731000006117                                                                                Overweight: adult BMI 25.0; child BMI 95th percentile; or more |
+ 25. |  5256351000006114                                                                                                                         Percentage overweight |
+ 26. |  5256361000006111                                                                                                                        Percentage underweight |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 27. |  7378901000006115                                                                                                                       Overweight in childhood |
+ 28. |  7764411000006112                                                                                        Severe underweight in infants children and adolescents |
+ 29. |        3636756019                                                                                                                      Underweight in childhood |
+ 50. |  1728141000006115                                                                                                                                   BMI centile |
+ 52. |  1551651000000111                                                                                                                       Body mass index centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 53. |  2307191000000112                                                                                                                 Child body mass index centile |
+ 58. |  2362381000000111                                                                                                       Child body mass index 26th-49th centile |
+ 59. |  2363511000000115                                                                                                       Child body mass index 51st-74th centile |
+ 60. |  2363771000000117                                                                                                       Child body mass index 76th-90th centile |
+ 61. |  2362261000000111                                                                                                       Child body mass index 10th-24th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 62. |  2363891000000114                                                                                                       Child body mass index 92nd-97th centile |
+ 65. |  8315801000006115                                                                                                           Child BMI (body mass index) centile |
+ 66. |  2364011000000110                                                                                                   Child body mass index 98.1st-99.6th centile |
+ 68. |  2362121000000112                                                                                                         Child body mass index 3rd-8th centile |
+ 69. |  2363951000000111                                                                                                         Child body mass index on 98th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 72. |  2362441000000114                                                                                                         Child body mass index on 50th centile |
+ 73. |  2363711000000110                                                                                                         Child body mass index on 75th centile |
+ 74. |  2363831000000113                                                                                                         Child body mass index on 91st centile |
+ 75. |  2364071000000117                                                                                             Child body mass index greater than 99.6th centile |
+ 77. | 14510231000006118                                                                                                                 BMI (body mass index) centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 78. |  2362001000000116                                                                                                     Child body mass index 0.4th-1.9th centile |
+ 79. |  2362201000000112                                                                                                          Child body mass index on 9th centile |
+ 80. |  2362321000000110                                                                                                         Child body mass index on 25th centile |
+ 82. |  2362061000000117                                                                                                          Child body mass index on 2nd centile |
+ 83. |  2196031000000118                                                                                                              Baseline body mass index centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 84. |  2361941000000112                                                                                                 Child body mass index less than 0.4th centile |
+ 91. |  7732441000006111                                                                                             Percentage median body mass index for age and sex |
+ 98. |  7332961000006118                                                                                                                 BMI (body mass index) centile |
+ 99. | 14452481000006119                                                                                                               Body mass index for age z-score |
+100. |  8286961000006110                                                                                                        Baseline BMI (body mass index) centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+102. |  1922491000006113                                                                                                         Down syndrome body mass index centile |
+103. | 14452531000006116                                                                                                            Body mass index for age percentile |
+109. |  7299071000006115                                                                                                       Childhood obesity BMI 95-100 percentile |
+112. |  8330691000006110                                                                                                   Child BMI (body mass index) on 91st centile |
+114. |  1996951000006119                                                                        Height and weight measurement for National Child Measurement Programme |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+117. |   960191000006114                                                                              Abn. weight/height/head circum. relation to growth/age standards |
+124. |         401484014                                                                                                                         Child height centiles |
+125. |         459084012                                                                                                                   Child height = 50th centile |
+126. |         263711011                                                                                                                Child height=50th-74th centile |
+127. |         459082011                                                                                                                   Child height = 25th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+128. |         459085013                                                                                                              Child height 51st - 74th centile |
+129. |         459086014                                                                                                                   Child height = 75th centile |
+130. |         459076013                                                                                                                  Child height < 0.4th centile |
+131. |         459081016                                                                                                              Child height 10th - 24th centile |
+132. |         459083018                                                                                                              Child height 26th - 49th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+133. |         263710012                                                                                                                Child height=25th-49th centile |
+134. |         459080015                                                                                                                    Child height = 9th centile |
+135. |         459087017                                                                                                              Child height 76th - 90th centile |
+136. |         459088010                                                                                                                   Child height = 91st centile |
+137. |         253672015                                                                                                                O/E -height within 10% average |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+138. |         263712016                                                                                                                Child height=75th-89th centile |
+139. |         459077016                                                                                                            Child height 0.5th - 1.9th centile |
+140. |         459079018                                                                                                                Child height 3rd - 8th centile |
+142. |         263713014                                                                                                                Child height=90th-96th centile |
+143. |  5256201000006119                                                                                                                                Height centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+144. |         459078014                                                                                                                    Child height = 2nd centile |
+145. |         459089019                                                                                                              Child height 92nd - 97th centile |
+146. |         459090011                                                                                                                   Child height = 98th centile |
+147. |         459092015                                                                                                                 Child height > 99.6th centile |
+148. |         263708010                                                                                                                  Child height=3rd-9th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+149. |   549051000006110                                                                                                        Child height greater than 97th centile |
+151. |  5505331000006111                                                                                                                          Child height centile |
+152. |        2476501019                                                                                                                Child height=10th-24th centile |
+156. |         459091010                                                                                                          Child height 98.1st - 99.6th centile |
+158. |   548961000006115                                                                                                          Child height less than third centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+159. |         263735018                                                                                                                     Child height centiles NOS |
+160. |         459144018                                                                                                                  Child height = 0.4th centile |
+161. |  5892171000006118                                                                                                 Finding of measures of body height and growth |
+163. |  1965151000006114                                                                                                                 Child height = 99.6th centile |
+164. |   549151000006114                                                                                                                    Child Height Centile Value |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+166. |   284561000006119                                                                                                                 O/E - height 10-20% < average |
+167. |  5529851000006116                                                                                                                       Has not grown in height |
+170. |   271181000006113                                                                                                                O/E-height > 20% below average |
+171. |         253673013                                                                                                                O/E-height 10-20% over average |
+174. |  5526601000006112                                                                                                                       Height / growth measure |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+175. |   272151000006114                                                                                                                O/E -height > 20% over average |
+178. |   921511000006111                                                                                                                         Child height centiles |
+179. |  2374151000000117                                                                                                                           Mid-parental height |
+191. |   921591000006118                                                                                                                   Child height > 97th centile |
+192. |  5256221000006112                                                                                                                       Trend in height centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+193. |   921531000006117                                                                                                                  Child height=3rd-9th centile |
+194. |   921541000006110                                                                                                                Child height=10th-24th centile |
+198. |   921521000006115                                                                                                                    Child height < 3rd centile |
+199. |  2376321000000116                                                                                                                Down's syndrome height centile |
+201. |  4551681000006117                                                                                                   O/E - height greater than 20% below average |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+207. |   921551000006112                                                                                                                Child height=50th-74th centile |
+208. |   921581000006116                                                                                                                Child height=90th-96th centile |
+209. |  4551701000006119                                                                                                             O/E - height 10-20% below average |
+212. |   921561000006114                                                                                                                Child height=25th-49th centile |
+213. |  4551761000006118                                                                                                    O/E - height greater than 20% over average |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+214. |  5256131000006116                                                                                                                           Has grown in height |
+216. |   921571000006119                                                                                                                Child height=75th=89th centile |
+217. |  6280891000006119                                                                                                                  Child height centile finding |
+221. |  1928491000006110                                                                                Child 27-30 month exam.- height and wt check refused by parent |
+225. |  6922511000006116                                                                                                                          Height below average |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+226. |  8433591000006111                                                                                                                       Body height growth rate |
+247. |  1662431000000112                                                                                                          Advice given about weight management |
+251. |   977951000006110                                                                                                          Health education - weight management |
+252. |  1124961000000110                                                                                                Referral to weight management service declined |
+255. |        2154209017                                                                                                          Refer to weight management programme |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+256. | 14176391000006111                                                                                                         Referral to weight management service |
+263. |         459067018                                                                                                                   Child weight = 50th centile |
+265. |   297811000000117                                                                                                           Weight management programme offered |
+269. |         459064013                                                                                                              Child weight 10th - 24th centile |
+270. |         459065014                                                                                                                   Child weight = 25th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+271. |         459066010                                                                                                              Child weight 26th - 49th centile |
+272. |         459068011                                                                                                              Child weight 51st - 74th centile |
+273. |         459069015                                                                                                                   Child weight = 75th centile |
+275. |  1709681000000111                                                                                                 Referral to weight management service offered |
+276. |  1750991000000117                                                                                              Weight management service opportunity signposted |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+280. |         459058018                                                                                                                  Child weight < 0.4th centile |
+281. |         459063019                                                                                                                      Child weight 9th centile |
+282. |         459070019                                                                                                              Child weight 76th - 90th centile |
+286. |         459062012                                                                                                                Child weight 3rd - 8th centile |
+287. |         459071015                                                                                                                   Child weight = 91st centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+291. |         263677012                                                                                                                Child weight=50th-74th centile |
+294. |         263672018                                                                                                                         Child weight centiles |
+295. |         263676015                                                                                                                Child weight=25th-49th centile |
+300. |  1721501000000113                                                                                       Referral to local authority weight management programme |
+301. |   297841000000116                                                                                                                Weight management plan started |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+302. |  5256371000006116                                                                                                                                Weight centile |
+304. |         459061017                                                                                                                    Child weight = 2nd centile |
+305. |         459072010                                                                                                              Child weight 92nd - 97th centile |
+308. |  1662471000000114                                                                                                             Weight management advice declined |
+309. |         263679010                                                                                                                Child weight=75th-89th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+310. |         370746016                                                                                                                        Percentage weight loss |
+312. |         459060016                                                                                                            Child weight 0.5th - 1.9th centile |
+313. |         459075012                                                                                                                 Child weight > 99.6th centile |
+315. |  7508801000006119                                                                                                       Patient advised about weight management |
+317. |  2714971000000116                                                                                                      Signposting to weight management service |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+319. |         263680013                                                                                                                Child weight=90th-96th centile |
+320. |         459073017                                                                                                                   Child weight = 98th centile |
+321. |  2265731000000113                                                                                                              Seen in weight management clinic |
+322. |  1747301000000110                                                                                                    Unsuitable for weight management programme |
+324. |         263674017                                                                                                                  Child weight=3rd-9th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+329. |         459059014                                                                                                                  Child weight = 0.4th centile |
+330. |   550041000006115                                                                                                                Child weight=10th-24th centile |
+331. |         459074011                                                                                                          Child weight 98.1st - 99.6th centile |
+334. |  4629351000006113                                                                                                                          Child weight centile |
+335. |   549821000006111                                                                                                          Child weight less than third centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+336. |   549901000006112                                                                                                        Child weight greater than 97th centile |
+338. |  1979501000006111                                                                                                                   Weight management follow-up |
+340. |   628891000000118                                                                                                     Counterweight weight management programme |
+343. |  1735631000000119                                                                                                  Discussion about weight management programme |
+346. |   297861000000115                                                                                                              Weight management plan completed |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+347. | 14811551000006116                                                                                           Referral to NHS Digital Weight Management Programme |
+353. |  5892241000006117                                                                                                                          Birth weight centile |
+359. |         263702011                                                                                                                     Child weight centiles NOS |
+364. |   550011000006119                                                                                                                    Child weight centile value |
+366. |  1965141000006112                                                                                                                 Child weight = 99.6th centile |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+376. | 14811711000006112                                                                                   Referral to NHS Tier 3 specialist weight management service |
+389. |  2326491000000114                                                                                                Intensive weight management programme declined |
+392. | 14393821000006111                                                                                                 Referred to Adult's Weight Management Service |
+409. |  1844501000006115                                                                           Referral to weight management special interest general practitioner |
+416. |  1770141000006119                                                                 Did not attend weight management special interest general practitioner clinic |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+418. |  2173321000000116                                                                                           Referral to residential weight management programme |
+420. |  1979961000006118                                                                                                           Weight management 3 month follow-up |
+422. |  5892221000006112                                                                                                               Finding of birth weight centile |
+423. |   921421000006119                                                                                                                         Child weight centiles |
+424. | 14176401000006113                                                                                                       Weight management service not available |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+438. |  1979511000006114                                                                                                           Weight management 6 month follow-up |
+442. |  1738991000000118                                                                                                    Expectation of weight management programme |
+449. |         370745017                                                                                                                        Percentage weight gain |
+452. |  2326311000000114                                                                                               Intensive weight management programme commenced |
+462. |  1778201000006111                                                                                                              Group session: Weight management |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+470. |  1793211000000118                                                                                                      Cycle of change stage, weight management |
+471. |  2326451000000118                                                                                                   Intensive weight management programme ended |
+474. |   921471000006118                                                                                                                Child weight=50th-74th centile |
+475. | 14811701000006114                                                                                   Referral to NHS Tier 4 specialist weight management service |
+479. |         292971010                                                                         Mild protein-calorie malnutrition (weight for age 75-89% of standard) |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+480. |  1979531000006115                                                                                                           Lost to weight management follow-up |
+481. |  4835581000006115                                                                              Disorder due to slow foetal growth, low and/or high birth weight |
+482. |   624261000006111                                                                                 Disorders due to slow fetal growth, low and high birth weight |
+491. |  7771301000006110                                                                                                                     Weight management program |
+492. |  1901161000006114   National Obesity Observatory Standard Evaluation Framework for weight management interventions - participant satisfaction with intervention |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+493. |   921451000006111                                                                                                                Child weight=10th-24th centile |
+494. |   921461000006113                                                                                                                Child weight=25th-49th centile |
+498. |  7771291000006114                                                                                                                   Weight management programme |
+499. |   921481000006115                                                                                                                Child weight=75th-89th centile |
+500. | 14393811000006115                                                                                              Referred to Children's Weight Management Service |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+502. |  1708211000006118                                                                                                                        Percentage weight loss |
+509. |   921431000006116                                                                                                                    Child weight < 3rd centile |
+510. |   921491000006117                                                                                                                Child weight=90th-96th centile |
+512. |   921441000006114                                                                                                                  Child weight=3rd-9th centile |
+521. |  2000621000006111                                                                                    Date for weight management intervention offered to patient |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+524. |   921501000006113                                                                                                                   Child weight > 97th centile |
+527. |  1979521000006118                                                                                                          Weight management 12 month follow-up |
+529. |  5256381000006118                                                                                                                       Trend in weight centile |
+531. |  7965341000006113                                                                                                              Childhood failure to gain weight |
+532. |  6759901000006112                                                                                                            Refer to weight management program |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+544. |  2376331000000119                                                                                                                Down's syndrome weight centile |
+546. |   700101000006111                                                                     Moderate protein-calorie malnutrition (weight for age 60-74% of standard) |
+559. | 14393831000006114                                                                 Referred to Public Health and Lifestyle Service (Excluding Weight Management) |
+560. | 14393841000006116                                                                     Referred to Nutrition and Dietetics Service (Excluding Weight Management) |
+562. |   624801000006114                                                                                     Disorders slow fetal growth, low and high birthweight NOS |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+565. |  5256281000006111                                                                                                                   Percentage change in weight |
+570. |  7493191000006115                                                                                                              Educated about weight management |
+573. |  8278851000006114                                                              Referral to weight management GPwSI (general practitioner with special interest) |
+583. | 14413211000006111                                                                                     Number of weeks attendance of weight management programme |
+584. |   624811000006112                                                                                      Disorders slow fetal growth, low and high birthweight OS |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+586. |  6281511000006117                                                                                                               Child weight centiles - finding |
+591. | 11929721000006110                                                                                                    Expectation of weight management programme |
+598. |  1889761000006119                                                                               Child 27-30 mth exam. - requ. assist. from Child Healthy Weight |
+599. | 14500801000006110                                                                  Mild protein-calorie malnutrition (weight for age 75-89 percent of standard) |
+600. |  1934431000006116                                                                               Child 27-30 mth exam. - Child Healthy Weight input not required |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+608. | 14415851000006112                                                                             Planned number of weeks attendance at weight management programme |
+612. |  1889771000006114                                                                                  Child 27-30 mth exam. - refused Child Healthy Weight service |
+625. | 14357981000006117                                                                                       Extended brief intervention for child weight management |
+636. |  6792031000006117                                                                                                                         Manage weight control |
+642. | 14357971000006115                                                                                                       Duration of weight management programme |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+647. |  1889721000006113                                                                                       Child 27-30 mth exam.- signpost to Child Healthy Weight |
+648. |  1889751000006116                                                                              Child 27-30 mth exam.- discuss with Child Healthy Weight service |
+661. |  5256341000006112                                                                                                                Percentage of reference weight |
+662. |  5584011000006119                                                                                                                       Weight centile velocity |
+670. |  6281521000006113                                                                                                              Finding of child weight centiles |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+678. |         418957017                                                                                                                          Baby length centiles |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. list medcodeid term observations if baby == 1/**/
+
+     +---------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                 term   observ~s |
+     |---------------------------------------------------------------------------------------------------|
+ 28. |  7764411000006112               Severe underweight in infants children and adolescents          2 |
+245. |   514381000006111                                                         Birth weight    1000000 |
+274. |   514371000006113                                                          Birthweight     200000 |
+311. |   514391000006114                                                 Birth weight finding      50000 |
+333. |         263488013                             Baby birth weight under 3% (under 2500g)      10000 |
+     |---------------------------------------------------------------------------------------------------|
+341. |        1230448017                                                        Weight - baby      10000 |
+350. |   734781000006115                                                     Low birth weight       8000 |
+353. |  5892241000006117                                                 Birth weight centile       7000 |
+354. |   501701000006118                                        Baby birth weight above 2.5kg       7000 |
+355. |   140281000006110             Short gestation and unspecified low birthweight problems       7000 |
+     |---------------------------------------------------------------------------------------------------|
+373. |         454271014                                             Birth weight 1000-2499 g       4000 |
+381. |         316883017                                              Low birth weight infant       3000 |
+388. |  3265381000006111                                                 Birth weight of baby       3000 |
+421. |         412836016                                    Extremely low birth weight infant        600 |
+422. |  5892221000006112                                      Finding of birth weight centile        600 |
+     |---------------------------------------------------------------------------------------------------|
+431. |  3265391000006114                                                    BW - Birth weight        500 |
+433. |  4627661000006110                      Baby birth weight equal to 25%-49% (3150-3449g)        400 |
+434. | 14500631000006118     Baby birth weight equal to 25 percent to 49 percent (3150-3449g)        400 |
+435. |  4627691000006119                      Baby birth weight equal to 50%-74% (3450-3749g)        400 |
+440. |         454272019                                           Birth weight 999 g or less        400 |
+     |---------------------------------------------------------------------------------------------------|
+447. | 14500641000006111     Baby birth weight equal to 50 percent to 74 percent (3450-3749g)        300 |
+450. |   624791000006113           Disorders relating to long gestation and high birth weight        300 |
+458. | 14500621000006116     Baby birth weight equal to 10 percent to 24 percent (2850-3149g)        200 |
+459. |  4627721000006112                      Baby birth weight equal to 75%-89% (3750-4049g)        200 |
+460. | 14500651000006113     Baby birth weight equal to 75 percent to 89 percent (3750-4049g)        200 |
+     |---------------------------------------------------------------------------------------------------|
+476. |  4627601000006114                      Baby birth weight equal to 3% - 9% (2500-2849g)        100 |
+477. | 14500611000006112       Baby birth weight equal to 3 percent to 9 percent (2500-2849g)        100 |
+478. | 14500661000006110     Baby birth weight equal to 90 percent to 96 percent (4050-4399g)        100 |
+481. |  4835581000006115     Disorder due to slow foetal growth, low and/or high birth weight        100 |
+482. |   624261000006111        Disorders due to slow fetal growth, low and high birth weight        100 |
+     |---------------------------------------------------------------------------------------------------|
+487. |  5587821000006113                                                    High birth weight        100 |
+516. |  6001201000006110                                          Baby birth weight 2.0-2.5kg         60 |
+517. |  3265371000006113                                                        Weight - baby         60 |
+519. | 14500601000006114                      Baby birth weight under 3 percent (under 2500g)         50 |
+520. |  4627811000006113                                         Baby birth weight 4400-4499g         50 |
+     |---------------------------------------------------------------------------------------------------|
+525. |  4627781000006111          Baby birth weight equal to or greater than 96% (over 4499g)         40 |
+526. | 14500671000006115   Baby birth weight equal to or greater than 96 percent (over 4499g)         40 |
+539. |  5587781000006119                                         Very low birth weight infant         30 |
+541. | 14504901000006110                                  Baby birth weight 2 to 2.5 kilogram         30 |
+550. |  5589521000006116                                                  Normal birth weight         20 |
+     |---------------------------------------------------------------------------------------------------|
+562. |   624801000006114            Disorders slow fetal growth, low and high birthweight NOS         10 |
+569. | 14504891000006111                                  Baby birth weight 1.5 to 2 kilogram         10 |
+582. |  8189651000006113                                   [D]Weight, failure to gain, infant          8 |
+584. |   624811000006112             Disorders slow fetal growth, low and high birthweight OS          7 |
+589. |  5507411000006116         Disorder relating to long gestation and/or high birth weight          6 |
+     |---------------------------------------------------------------------------------------------------|
+590. | 14504881000006113                                  Baby birth weight 1 to 1.5 kilogram          6 |
+605. |   932251000006117                                     Weight, fail to gain, infant [D]          4 |
+613. |  2817081000006115          Disorder relating to long gestation AND/OR high birthweight          3 |
+618. |  5687891000006119                                           Low birth weight baby milk          3 |
+619. |  6000621000006112                                  Baby birth weight equal to 751g-1kg          3 |
+     |---------------------------------------------------------------------------------------------------|
+663. |  5587741000006113                                             Birth weight abnormality          1 |
+667. |  6000591000006110                                    Baby birth weight less than 751gm          1 |
+678. |         418957017                                                 Baby length centiles       8000 |
+     +---------------------------------------------------------------------------------------------------+
+
+. 
+. //Make any corrections
+. local corrections "981741000006110 981731000006117"
+
+. 
+. foreach correction of local corrections {
+  2.         
+.         list medcodeid term if medcodeid == "`correction'"
+  3.         
+.         foreach var of varlist exclude /**/change target child baby/**/ {
+  4.         
+.                 replace `var' = . if medcodeid == "`correction'"
+  5.         }
+  6. }
+
+     +----------------------------------------------------------------------------------+
+     |       medcodeid                                                             term |
+     |----------------------------------------------------------------------------------|
+ 12. | 981741000006110   Underweight: adult BMI 18.5; child BMI 5th percentile; or less |
+     +----------------------------------------------------------------------------------+
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(1 real change made, 1 to missing)
+(0 real changes made)
+
+     +----------------------------------------------------------------------------------+
+     |       medcodeid                                                             term |
+     |----------------------------------------------------------------------------------|
+ 17. | 981731000006117   Overweight: adult BMI 25.0; child BMI 95th percentile; or more |
+     +----------------------------------------------------------------------------------+
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(1 real change made, 1 to missing)
+(0 real changes made)
+
+. 
+. replace exclude = 1 if /**/change == 1 | target == 1 | child == 1 | baby == 1/**/
+(334 real changes made)
+
+. drop if exclude == 1 & external_codelist != 1
+(396 observations deleted)
+
+. //drop exclude /**/change target child baby/**/
+. count
+  283
+
+. compress
+  variable snomedctdescriptionid was str17 now str16
+  variable term was str145 now str75
+  (20,093 bytes saved)
+
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. 
+. // **medcodeids to remove**
+. local initial_remove "908721000006111 5256391000006115 957731000006119 982601000006111 982611000006114 4935071000006119 3667431000006112 5529871000006114"
+
+. 
+. gen byte remove = 0
+
+. 
+. foreach medcode of local initial_remove {
+  2.         
+.         replace remove = 1 if medcodeid == "`medcode'"
+  3. }
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+
+. 
+. list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term  ///
+>         observations external_codelist if remove == 1
+
+     +----------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   snomedctdescr~d   snomedctconce~d   originalrea~e                            term   observ~s   extern~t |
+     |----------------------------------------------------------------------------------------------------------------------------|
+  8. |  908721000006111   908721000006111   908721000006107         HNG0530   [RFC] Overweight/ underweight       1000          1 |
+ 67. | 5256391000006115         370755018         248358009   ^ESCTWE525639               Weight for height       8000          1 |
+ 68. |  957731000006119   957731000006119   957731000006103         TRISHE1              Height weight & BP          6          . |
+118. |  982601000006111   982601000006111   982601000006107        EMISCHE7                   Height (Over)        100          1 |
+119. |  982611000006114   982611000006114   982611000006105        EMISCHE8                  Height (Under)        100          1 |
+     |----------------------------------------------------------------------------------------------------------------------------|
+132. | 4935071000006119         338165011         224997009   ^ESCTHE493507                Height increased          5          . |
+133. | 3667431000006112         501960018          71781005   ^ESCTDE366743              Decrease in height          5          1 |
+136. | 5529871000006114         406788012         271817008   ^ESCTHE552987                   Height static          1          . |
+     +----------------------------------------------------------------------------------------------------------------------------+
+
+. drop if remove == 1 & external_codelist != 1
+(3 observations deleted)
+
+. 
+. //List disagreements between my list and external lists
+. replace exclude = 1 if remove == 1
+(5 real changes made)
+
+. list term lshtm_* oc_* if exclude == 1 & external_codelist == 1
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |                                                                        term   lsh~2413   lsh~3323   lsh~4214   oc_pri~i   oc_nhs~l   o~weight   o~height |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+  8. |                                               [RFC] Overweight/ underweight          1          1          1          .          .          .          . |
+ 11. |    Risk to health associated with overweight and obesity, at increased risk          .          1          1          .          .          .          . |
+ 13. |    Risk to health associated with overweight and obesity, at very high risk          .          .          1          .          .          .          . |
+ 16. |         Risk to health associated with overweight and obesity, at high risk          .          .          1          .          .          .          . |
+ 17. | Risk to health associated with overweight and obesity, at no increased risk          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 37. |                           Malnutrition universal screening tool - BMI score          .          1          .          .          .          .          . |
+ 44. |                                 Child body mass index 98.1st-99.6th centile          .          1          .          .          .          .          . |
+ 48. |                                       Child body mass index on 75th centile          .          1          .          .          .          .          . |
+ 50. |                                       Child body mass index on 25th centile          .          1          .          .          .          .          . |
+ 57. |                                      Baseline BMI (body mass index) centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 67. |                                                           Weight for height          .          .          1          .          .          .          . |
+ 71. |                                                       Child height centiles          .          1          .          .          .          .          . |
+ 72. |                                                 Child height = 50th centile          .          1          .          .          .          .          . |
+ 73. |                                              Child height=50th-74th centile          .          1          .          .          .          .          . |
+ 74. |                                                 Child height = 25th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 75. |                                            Child height 51st - 74th centile          .          1          .          .          .          .          . |
+ 76. |                                                 Child height = 75th centile          .          1          .          .          .          .          . |
+ 77. |                                                Child height < 0.4th centile          .          1          .          .          .          .          . |
+ 78. |                                            Child height 10th - 24th centile          .          1          .          .          .          .          . |
+ 79. |                                            Child height 26th - 49th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 80. |                                              Child height=25th-49th centile          .          1          .          .          .          .          . |
+ 81. |                                                  Child height = 9th centile          .          1          .          .          .          .          . |
+ 82. |                                            Child height 76th - 90th centile          .          1          .          .          .          .          . |
+ 83. |                                                 Child height = 91st centile          .          1          .          .          .          .          . |
+ 84. |                                              O/E -height within 10% average          1          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 85. |                                              Child height=75th-89th centile          .          1          .          .          .          .          . |
+ 86. |                                          Child height 0.5th - 1.9th centile          .          1          .          .          .          .          . |
+ 87. |                                              Child height 3rd - 8th centile          .          1          .          .          .          .          . |
+ 88. |                                              Child height=90th-96th centile          .          1          .          .          .          .          . |
+ 89. |                                                  Child height = 2nd centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 90. |                                            Child height 92nd - 97th centile          .          1          .          .          .          .          . |
+ 91. |                                                 Child height = 98th centile          .          1          .          .          .          .          . |
+ 92. |                                               Child height > 99.6th centile          .          1          .          .          .          .          . |
+ 93. |                                                Child height=3rd-9th centile          .          1          .          .          .          .          . |
+ 94. |                                      Child height greater than 97th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 95. |                                                            Estimated height          .          .          1          .          .          .          . |
+ 96. |                                              Child height=10th-24th centile          .          1          .          .          .          .          . |
+ 98. |                                                        O/E - loss of height          .          1          .          .          .          .          . |
+ 99. |                                        Child height 98.1st - 99.6th centile          .          1          .          .          .          .          . |
+101. |                                        Child height less than third centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+102. |                                                   Child height centiles NOS          .          1          .          .          .          .          . |
+103. |                                                Child height = 0.4th centile          .          1          .          .          .          .          . |
+105. |                                                  Child Height Centile Value          .          1          .          .          .          .          . |
+106. |                                               O/E - height 10-20% < average          1          1          1          .          .          .          . |
+108. |                                              O/E-height > 20% below average          1          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+109. |                                              O/E-height 10-20% over average          1          1          1          .          .          .          . |
+110. |                                              O/E -height > 20% over average          1          1          1          .          .          .          . |
+111. |                                                       Child height centiles          .          1          .          .          .          .          . |
+117. |                                                               Height (Over)          1          1          1          .          .          .          . |
+118. |                                                              Height (Under)          1          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+119. |                                                 Child height > 97th centile          .          1          .          .          .          .          . |
+120. |                                                Child height=3rd-9th centile          .          1          .          .          .          .          . |
+121. |                                              Child height=10th-24th centile          .          1          .          .          .          .          . |
+122. |                                                  Child height < 3rd centile          .          1          .          .          .          .          . |
+124. |                                 O/E - height greater than 20% below average          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+125. |                                              Child height=50th-74th centile          .          1          .          .          .          .          . |
+126. |                                              Child height=90th-96th centile          .          1          .          .          .          .          . |
+127. |                                           O/E - height 10-20% below average          .          .          1          .          .          .          . |
+128. |                                              Child height=25th-49th centile          .          1          .          .          .          .          . |
+129. |                                  O/E - height greater than 20% over average          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+130. |                                              Child height=75th=89th centile          .          1          .          .          .          .          . |
+131. |                                                          Decrease in height          .          .          1          .          .          .          . |
+133. |                                                        Height below average          .          .          1          .          .          .          . |
+134. |                                                              Sitting height          .          1          .          .          .          .          . |
+136. |                                                           Weight monitoring          1          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+137. |                                                                Birth weight          .          1          .          .          .          .          . |
+138. |                                                        Abnormal weight loss          .          1          .          .          .          .          . |
+139. |                                                           Weight decreasing          1          1          1          .          .          .          . |
+141. |                                                              Weight symptom          .          1          .          .          .          .          . |
+142. |                                                           Weight increasing          1          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+143. |                                              Abnormal weight loss - symptom          .          1          .          .          .          .          . |
+144. |                                                 Child weight = 50th centile          .          1          .          .          .          .          . |
+145. |                                                  [D]Abnormal loss of weight          .          1          .          .          .          .          . |
+147. |                                            Child weight 10th - 24th centile          .          1          .          .          .          .          . |
+148. |                                                 Child weight = 25th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+149. |                                            Child weight 26th - 49th centile          .          1          .          .          .          .          . |
+150. |                                            Child weight 51st - 74th centile          .          1          .          .          .          .          . |
+151. |                                                 Child weight = 75th centile          .          1          .          .          .          .          . |
+152. |                                                                 Birthweight          .          1          .          .          .          .          . |
+154. |                                                Child weight < 0.4th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+155. |                                                    Child weight 9th centile          .          1          .          .          .          .          . |
+156. |                                            Child weight 76th - 90th centile          .          1          .          .          .          .          . |
+157. |                                               O/E - weight within 10% ideal          1          .          1          .          .          .          . |
+158. |                                              Child weight 3rd - 8th centile          .          1          .          .          .          .          . |
+159. |                                                 Child weight = 91st centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+160. |                                                     Weight reduction clinic          1          .          1          .          .          .          . |
+161. |                                                        Abnormal weight gain          .          1          1          .          .          .          . |
+162. |                                                     [D]Abnormal weight gain          .          1          1          .          .          .          . |
+163. |                                              Child weight=50th-74th centile          .          1          .          .          .          .          . |
+164. |                                              O/E - weight 10-20% over ideal          1          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+165. |                                                       Child weight centiles          .          1          .          .          .          .          . |
+166. |                                              Child weight=25th-49th centile          .          1          .          .          .          .          . |
+167. |                                                      Failure to gain weight          1          1          1          .          .          .          . |
+169. |                                            Weight loss from baseline weight          .          1          .          .          .          .          . |
+171. |                                    O/E - weight greater than 20% over ideal          1          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+172. |                                                  Child weight = 2nd centile          .          1          .          .          .          .          . |
+173. |                                            Child weight 92nd - 97th centile          .          1          .          .          .          .          . |
+174. |                                              Child weight=75th-89th centile          .          1          .          .          .          .          . |
+175. |                                                      Percentage weight loss          .          1          .          .          .          .          . |
+176. |                                                        Birth weight finding          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+177. |                                          Child weight 0.5th - 1.9th centile          .          1          .          .          .          .          . |
+178. |                                               Child weight > 99.6th centile          .          1          .          .          .          .          . |
+179. |                                                     Intentional weight loss          .          1          .          .          .          .          . |
+180. |                                                                 Weight Loss          .          1          .          .          .          .          . |
+181. |                                              Child weight=90th-96th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+182. |                                                 Child weight = 98th centile          .          1          .          .          .          .          . |
+183. |                                                          Weight symptom NOS          .          1          .          .          .          .          . |
+184. |                                                Child weight=3rd-9th centile          .          1          .          .          .          .          . |
+185. |                                                  Checking weight monitoring          1          .          1          .          .          .          . |
+187. |                                                Child weight = 0.4th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+188. |                                              Child weight=10th-24th centile          .          1          .          .          .          .          . |
+189. |                                        Child weight 98.1st - 99.6th centile          .          1          .          .          .          .          . |
+190. |                                                            Weight screening          1          1          1          .          .          .          . |
+191. |                                    Baby birth weight under 3% (under 2500g)          .          1          .          .          .          .          . |
+192. |                                        Child weight less than third centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+193. |                                      Child weight greater than 97th centile          .          1          .          .          .          .          . |
+194. |                                                            Estimated weight          .          .          1          .          .          .          . |
+195. |                                                               Weight - baby          .          1          .          .          .          .          . |
+198. |                   Premature - weight 1000g-2499g or gestation of 28-37weeks          .          1          .          .          .          .          . |
+199. |                                                            Low birth weight          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+200. |                                                   Unintentional weight gain          1          .          1          .          .          .          . |
+201. |                                               Baby birth weight above 2.5kg          .          1          .          .          .          .          . |
+202. |                    Short gestation and unspecified low birthweight problems          .          1          .          .          .          .          . |
+203. |                                                      Pattern of weight gain          .          .          1          .          .          .          . |
+204. |                                         Unexplained/progressive weight loss          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+205. |                                              O/E -weight 10-20% below ideal          1          .          1          .          .          .          . |
+206. |                                                   Child weight centiles NOS          .          1          .          .          .          .          . |
+207. |                                                               Weight change          1          .          1          .          .          .          . |
+208. |                                                  Child weight centile value          .          1          .          .          .          .          . |
+209. |                                          Difficulty maintaining weight loss          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+210. |                                                    Birth weight 1000-2499 g          .          1          .          .          .          .          . |
+211. |                                                        Weight gain (amount)          .          .          1          .          .          .          . |
+212. |                   Oedema or excessive weight gain in pregnancy, unspecified          .          1          1          .          .          .          . |
+213. |                                              O/E - weight > 20% below ideal          1          .          1          .          .          .          . |
+214. |                                                     Low birth weight infant          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+215. |                                                     Counterweight programme          1          .          1          .          .          .          . |
+217. |                Oedema or excessive weight gain in pregnancy - not delivered          .          1          .          .          .          .          . |
+218. |                            Oedema or excessive weight gain in pregnancy NOS          .          1          1          .          .          .          . |
+219. |                                                        [RFC] Weight problem          1          1          1          .          .          .          . |
+221. |                                    Weight reduction drug therapy - orlistat          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+223. |                                                                 Weight gain          .          1          1          .          .          .          . |
+224. |                                                            Poor weight gain          .          .          1          .          .          .          . |
+226. |                                           Extremely low birth weight infant          .          1          .          .          .          .          . |
+227. |                                                       Child weight centiles          .          1          .          .          .          .          . |
+230. |                             Baby birth weight equal to 25%-49% (3150-3449g)          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+231. |                                                  Birth weight 999 g or less          .          1          .          .          .          .          . |
+233. |                                                      Percentage weight gain          .          1          .          .          .          .          . |
+234. |                  Disorders relating to long gestation and high birth weight          .          1          .          .          .          .          . |
+235. |                                          Excessive weight gain in pregnancy          .          1          1          .          .          .          . |
+237. |                                                Static weight gain pregnancy          .          1          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+238. |                                                         Body weight problem          .          .          1          .          .          .          . |
+239. |                                          Excessive weight gain in pregnancy          .          1          1          .          .          .          . |
+240. |                                                              Heavy (weight)          .          .          1          .          .          .          . |
+241. |                                              Child weight=50th-74th centile          .          1          .          .          .          .          . |
+242. |       Mild protein-calorie malnutrition (weight for age 75-89% of standard)          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+243. |               Disorders due to slow fetal growth, low and high birth weight          .          1          .          .          .          .          . |
+244. |                                                       Excessive weight gain          .          .          1          .          .          .          . |
+246. |                                              Child weight=10th-24th centile          .          1          .          .          .          .          . |
+247. |                                              Child weight=25th-49th centile          .          1          .          .          .          .          . |
+249. |                                                            Placental weight          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+250. |                                              Child weight=75th-89th centile          .          1          .          .          .          .          . |
+252. |                                                    Low maternal weight gain          .          1          1          .          .          .          . |
+253. |                                                  Child weight < 3rd centile          .          1          .          .          .          .          . |
+254. |                                              Child weight=90th-96th centile          .          1          .          .          .          .          . |
+255. |                                                Child weight=3rd-9th centile          .          1          .          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+256. |                                   O/E - weight greater than 20% below ideal          .          .          1          .          .          .          . |
+257. |                                                 Baby birth weight 2.0-2.5kg          .          1          .          .          .          .          . |
+260. |                                                 Child weight > 97th centile          .          1          .          .          .          .          . |
+261. |                                                           Weight fluctuates          .          .          1          .          .          .          . |
+263. |                                                                     Weights          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+265. |                                                            Slow weight gain          .          .          1          .          .          .          . |
+266. |                Oedema/excess weight gain preg - delivered + postnatal compl          .          1          1          .          .          .          . |
+268. |                                                      Pattern of weight gain          .          .          1          .          .          .          . |
+269. |                   Disorders slow fetal growth, low and high birthweight NOS          .          1          .          .          .          .          . |
+270. |                                                          Recent weight gain          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+271. |                    Disorders slow fetal growth, low and high birthweight OS          .          1          .          .          .          .          . |
+272. |                     Oedema or excessive weight gain in pregnancy, delivered          .          1          1          .          .          .          . |
+273. |                                            Weight, fail to gain, infant [D]          .          1          .          .          .          .          . |
+275. |                                                            g/kg body weight          .          .          1          .          .          .          . |
+276. |                                    O/E - weight greater than 20% over ideal          .          .          1          .          .          .          . |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+277. |                 Oedema/excessive weight gain in preg+postnatal complication          .          1          1          .          .          .          . |
+279. |                                                        Baby length centiles          .          1          .          .          .          .          . |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //OpenCodelists codelists appear to be of higher quaity (no disagreement)
+. //Nothing important in disagreements with LSHTM, so I will exclude
+. 
+. drop if exclude == 1
+(182 observations deleted)
+
+. drop exclude /**/change target child baby/**/ remove
+
+. 
+. //External codes that I didn't find
+. list medcodeid term *_ext lshtm_* oc_* ///
+>         if bmi != 1 & height != 1 & weight != 1 & external_codelist == 1
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid             term   bmi_ext   weight~t   height~t   bmicat~t   lsh~2413   lsh~3323   lsh~4214   oc_pri~i   oc_nhs~l   o~weight   o~height |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 98. | 3484811000006112   Quetelet index         1          .          .          .          .          .          .          1          1          .          . |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //extra BMI code from OpenCodelists
+. //I will add it as it is based on SNOMED CT concept ID
+. replace bmi = 1 if medcodeid == "3484811000006112"
+(1 real change made)
+
+. 
+. compress
+  variable snomedctconceptid was str17 now str16
+  (98 bytes saved)
+
+. tab1 /**/bmi height weight/**/
+
+-> tabulation of bmi  
+
+        bmi |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         56      100.00      100.00
+------------+-----------------------------------
+      Total |         56      100.00
+
+-> tabulation of height  
+
+     height |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         15      100.00      100.00
+------------+-----------------------------------
+      Total |         15      100.00
+
+-> tabulation of weight  
+
+     weight |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         42      100.00      100.00
+------------+-----------------------------------
+      Total |         42      100.00
+
+. 
+. 
+. // (OPTIONAL) STEP 5. USE ANOTHER SEARCH TO AUTOMATE THE CATEGORISATION OF CODES
+. //===============================================================================
+. 
+. //Comment out this section if not required.
+. /*
+> // **Search terms for each categorisation desired**
+> local cat1 " "*cat1*" "
+> local cat2 " "*cat2*" "
+> 
+> //Search for codes
+> foreach categoryterm in /**/cat1 cat2/**/ {
+>         
+>         gen byte `categoryterm' = .
+>         
+>         foreach codeterm in lower(term) {
+>                 
+>                 foreach searchterm in ``categoryterm'' {                
+>                         
+>                         replace `categoryterm' = 1 if strmatch(`codeterm', "`searchterm'")
+>                 }
+>         }
+> }
+> 
+> tab1 cat1 cat2
+> gsort cat1 cat2
+> */
+. //Already categorised, but requires fixing
+. replace weight = . if bmi == 1
+(14 real changes made, 14 to missing)
+
+. 
+. 
+. // STEP 6. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str16)
+
+         Unique values: 71                        Missing "": 0/98
+
+              Examples: "162879003"
+                        "271398006"
+                        "414915002"
+                        "819948005"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  98
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/bmi height weight *_ext lshtm_* oc_*/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton\AppData\Local\Temp\ST_8c5c_00000c.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/bmi height weight/**/
+
+. bysort snomedctconceptid: keep if _n == 1
+(27 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str16, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                98  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str16
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str13
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str75
-  (24,624 bytes saved)
+  (16,562 bytes saved)
+
+. merge 1:1 medcodeid using `original', nogenerate
+(label bmicat already defined)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                                98  
+    -----------------------------------------
+
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. gsort /**/bmi height weight/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/bmi height weight/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid originalreadcode term if new_snomedct_synonym == 1 & `category' == 1
+  4. }
+New terms found for: bmi
+New terms found for: height
+New terms found for: weight
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(98 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+
+. 
+.         count
+  0
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid originalreadcode term new_snomedct_synonym ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+
+. 
+. 
+. // STEP 7. COMPARE LIST WITH PREVIOUS CODELIST
+. //=============================================
+. 
+. //None - this is the first version of the codelist
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
+. //================================================================
+. 
+. gsort /**/bmi height weight/**/ -observations snomedctconceptid snomedctdescriptionid
+
+. compress
+  variable new_snomedct_synonym was float now byte
+  (294 bytes saved)
+
+. save `filename', replace
+file body_mass_index.dta saved
+
+. export excel `filename'_raw.xlsx, firstrow(variables) replace
+file body_mass_index_raw.xlsx saved
+
+. 
+. //Format Excel file using Python
+. python:
+----------------------------------------------- python (type end to exit) ------------------------------------------------------------------------------------------------------
+>>> from openpyxl import load_workbook, Workbook
+>>> 
+>>> excel_file = "`filename'_raw.xlsx"
+>>> 
+>>> wb = load_workbook(excel_file)
+>>> ws = wb.active
+>>> 
+>>> # Freeze top row
+... ws.freeze_panes = 'A2'
+>>> 
+>>> # Auto-size column widths
+... for column in ws.columns:
+...         max_length = 0
+...         column_letter = column[0].column_letter
+... 
+...         for cell in column:
+...                 try:
+...                         if len(str(cell.value)) > max_length:
+...                                 max_length = len(cell.value)
+...                 except:
+...                         pass
+... 
+...         adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+...         ws.column_dimensions[column_letter].width = adjusted_width
+... 
+>>> wb.save(excel_file)
+>>> end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+. /*
+> Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+> 
+> e.g. codelist_raw_ABC.xlsx
+> */
+. 
+. 
+. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
+. //=======================================================================================
+. 
+. //Load clinician classifications
+. local clinician "ABC"
+
+. /* NOT CLINICALLY REVIEWED
+> import excel `filename'_raw_`clinician', firstrow clear sheet("BP (value)")
+> 
+> //Remerge with original in case of any formatting issues with Excel spreadsheet
+> keep medcodeid `clinician'
+> 
+> tempfile `clinician'_classification
+> save ``clinician'_classification'
+> 
+> use `filename', clear
+> 
+> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+> recode `clinician' (. = 0)
+> 
+> //Remove codes marked for exclusion by clinician
+> display "Terms excluded by clinician..."
+> list medcodeid snomedctconceptid term if `clinician' == 0
+> drop if `clinician' == 0
+> */
+. //Save clinican approved codelist
+. gsort /**/bmi height weight/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym /*codestatus*/ *_ext lshtm_* oc_* /*`clinician'*/
+
+. compress
+  (0 bytes saved)
 
 . save `filename', replace
 file body_mass_index.dta saved
@@ -210,7 +2167,7 @@ file body_mass_index.csv saved
 
 . local date_approved = . //ym(2024, 12)  //year, month
 
-. local notes "Created for PRIORITY study."
+. local notes "Created for PRIORITY study. Child and birth measures are excluded. Target weight/BMI is also excluded."
 
 . local keywords "height, weight, bmi"
 
@@ -255,7 +2212,7 @@ variable v1 was str15 now str21
 (0 real changes made)
 
 . replace v1 = "`notes'" in 9
-variable v1 was str21 now str27
+variable v1 was str21 now str102
 (1 real change made)
 
 . replace v1 = "`keywords'" in 10
@@ -291,5 +2248,5 @@ file body_mass_index.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\body_mass_index.log
   log type:  text
- closed on:   4 Dec 2024, 02:22:16
+ closed on:  10 Feb 2025, 20:20:45
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
