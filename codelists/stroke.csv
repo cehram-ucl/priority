@@ -1,0 +1,462 @@
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,stroke,lshtm_2102,lshtm_2196,lshtm_2815,lshtm_3265,lshtm_3590,lshtm_4214,refset_strk,qcovid_stroke_tia,ph983,ph948,ph1018,prevalent,incident
+"8453031000006117",2000,"^ESCTHA845303","","1078001000000105","2702821000000119","Haemorrhagic stroke",1,,,,,,,1,,1,1,1,1,1
+"2729551000000111",50,"^ESCT1171762","","1089411000000104","2729551000000111","Cerebral infarction due to occlusion of cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"2729571000000119",60,"^ESCT1171763","","1089421000000105","2729571000000119","Cerebral infarction due to stenosis of cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"12626401000006115",10000,"^ESCT1262640","","1110981000000104","2779941000000115","QOF (Quality and Outcomes Framework) stroke and transient ischaemic attack quality indicator-related care invitation",1,,,,,1,1,,,,,,1,0
+"4193641000006111",20,"^ESCTNO419364","","111297002","178528011","Nonparalytic stroke",1,,,,,,,1,,,,,1,1
+"14451981000006116",1,"^ESCT1445198","","1153544008","4564995013","Occlusion of right anterior cerebral artery",1,,,,,,,,,,,,1,1
+"14457701000006115",8,"^ESCT1445770","","1156016006","4572073014","Left posterior cerebral artery thrombosis",1,,,,,,,,,,,,1,1
+"14457721000006113",6,"^ESCT1445772","","1156017002","4572077010","Right posterior cerebral artery thrombosis",1,,,,,,,,,,,,1,1
+"4270361000006116",4,"^ESCTPA427036","","116288000","178738015","Paralytic stroke",1,,,,,,,1,,,,,1,1
+"14492111000006112",1,"^ESCT1449211","","117776611000119102","4577076012","Cerebrovascular accident due to occlusion of left posterior communicating artery",1,,,,,,,,,,,,1,1
+"14790901000006117",1,"^ESCT1479090","","1231168008","5071735019","Malignant middle cerebral artery syndrome",1,,,,,,,,,,,,1,1
+"542261000006114",1000,"G6W","G6W..00","125081000119106","3042974014","Cerebral infarction due to occlusion of precerebral artery",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"370661000006114",200,"Gyu6G","Gyu6G00","125081000119106","3042974014","[X]Cereb infarct due unsp occlus/stenos precerebr arteries",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"14194281000006115",3,"^ESCT1419428","","137592291000119101","3993169016","Acute cerebrovascular accident due to occlusion of right posterior cerebral artery",1,,,,,,,,,,,,1,1
+"8043371000006110",2,"^ESCTSE804337","","137991000119103","2967506011","Seizure disorder as sequela of stroke",1,,,,,,,,,,,,1,1
+"2520541000006112",4,"^ESCTIN252054","","1386000","3421016","Intracranial hemorrhage",1,1,1,,,1,1,,,,,,1,1
+"300298011",20000,"G62z","G62z.00","1386000","475553012","Intracranial haemorrhage",1,1,1,,1,1,1,,,,,,1,1
+"8044481000006118",2000,"^ESCTIS804448","","140921000119102","2967538018","Ischaemic stroke without coma",1,,,,,,,1,1,1,1,1,1,1
+"3510551014",1,"^ESCT1170616","","141811000119106","3510551014","History of hemorrhagic stroke with residual deficit",1,,,,,,,,,,,,1,0
+"2726591000006119",7,"^ESCTAN272659","","14309005","24333016","Anterior choroidal artery syndrome",1,,,,,,,1,,,,,1,1
+"12734411000006116",400,"^ESCT1273441","","143471000000105","1628421000000119","QOF (Quality and Outcomes Framework) stroke and transient ischaemic attack quality indicator-related care invitation using preferred method of communication",1,,,,,,,,,,,,1,0
+"8046951000006114",1,"^ESCTCE804695","","149821000119103","2967501018","Cerebral infarction due to carotid artery occlusion",1,,,,,,,,,,,,1,1
+"1573101000006112",600,"EMISNQCE4","","1573101000006108","1573101000006112","Cerebral infarction with haemorrhagic transformation",1,1,1,1,1,1,1,,,,,,1,1
+"1576261000006112",200,"EGTON2EGTON275","","1576261000006108","1576261000006112","Cause of Death- Cerebral Infarct",1,,,,,,,,,,,,1,1
+"3511086012",20,"^ESCT1172869","","15978431000119106","3511086012","Thrombosis of right vertebral artery",1,,,,,,,1,,,,,1,1
+"3509799010",20,"^ESCT1172897","","16000351000119109","3509799010","Cerebrovascular accident due to occlusion of left posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3509790014",20,"^ESCT1172898","","16000391000119104","3509790014","Cerebrovascular accident due to occlusion of right posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3509810017",70,"^ESCT1172899","","16000431000119109","3509810017","Cerebrovascular accident due to occlusion of right middle cerebral artery",1,,,,,,,1,,,,,1,1
+"3509794017",80,"^ESCT1172900","","16000511000119103","3509794017","Cerebrovascular accident due to occlusion of left middle cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"3508961018",100,"^ESCT1172901","","16002031000119102","3508961018","Cerebrovascular accident due to thrombus of right middle cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"3508962013",30,"^ESCT1172902","","16002031000119102","3508962013","Stroke due to thrombus of right middle cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"3508964014",200,"^ESCT1172903","","16002111000119106","3508964014","Cerebrovascular accident due to thrombus of left middle cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"3508965010",20,"^ESCT1172904","","16002111000119106","3508965010","Stroke due to thrombus of left middle cerebral artery",1,,,,,,,1,,1,1,1,1,1
+"9875641000006111",2,"^ESCTCE987564","","16023911000119108","3308761018","Cerebrovascular accident due to right carotid artery occlusion",1,,,,,,,,,,,,1,1
+"3509777019",2,"^ESCT1172971","","16023991000119104","3509777019","Cerebrovascular accident due to occlusion of left pontine artery",1,,,,,,,,,,,,1,1
+"3509792018",5,"^ESCT1172973","","16024111000119109","3509792018","Cerebrovascular accident due to occlusion of left carotid artery",1,,,,,,,,,,,,1,1
+"3509769018",2,"^ESCT1172974","","16024151000119105","3509769018","Cerebrovascular accident due to occlusion of left cerebellar artery",1,,,,,,,,,,,,1,1
+"3509781019",1,"^ESCT1172975","","16024271000119107","3509781019","Cerebrovascular accident due to occlusion of right cerebellar artery",1,,,,,,,,,,,,1,1
+"9875951000006117",10,"^ESCTCE987595","","16026951000119102","3308759010","Cerebrovascular accident due to right carotid artery stenosis",1,,,,,,,,,,,,1,1
+"9875961000006115",5,"^ESCTCE987596","","16026991000119107","3308763015","Cerebrovascular accident due to left carotid artery stenosis",1,,,,,,,,,,,,1,1
+"251692018",80000,"14AB","14AB.00","161511000","251692018","H/O: TIA",1,,,,,1,1,,,,,,1,0
+"4540591000006113",7,"^ESCTHI454059","","161511000","2986735018","History of transient ischemic attack",1,,,,,1,1,,,,,,1,0
+"14068071000006114",600,"^ESCT1406807","","161511000","3789194012","History of transient ischaemic attack",1,,,,,,,,,,,,1,0
+"3510818013",1,"^ESCT1173137","","16218291000119100","3510818013","Acute cerebral ischemia",1,,,,,,,1,,,,,1,1
+"3515794015",300,"^ESCT1173136","","16218291000119100","3515794015","Acute cerebral ischaemia",1,,,,,,,1,,,,,1,1
+"9912271000006112",1000,"^ESCTCE991227","","16371781000119100","3320493016","Cerebellar stroke",1,,,,,,,1,1,1,1,1,1,1
+"14014251000006116",80,"^ESCT1401425","","16644681000119102","3780817010","Cerebrovascular accident due to occlusion of bilateral pontine arteries",1,,,,,,,1,,,,,1,1
+"14014281000006112",3,"^ESCT1401428","","16661931000119102","3780821015","Cerebrovascular accident due to stenosis of bilateral vertebral arteries",1,,,,,,,1,,,,,1,1
+"13717171000006112",10,"^ESCT1371717","","16661971000119104","3773590013","Cerebrovascular accident due to stenosis of bilateral carotid arteries",1,,,,,,,1,,,,,1,1
+"14182621000006113",50,"^ESCT1418262","","16891111000119104","4009580018","Cryptogenic stroke",1,,,,,,,,,,,,1,1
+"13718611000006113",1,"^ESCT1371861","","16896851000119101","3774529011","History of embolic stroke",1,,,,,,,1,,,,,1,0
+"13718621000006117",40,"^ESCT1371862","","16896891000119106","3774524018","History of cerebrovascular accident due to ischaemia",1,,,,,,,1,,,,,1,0
+"13718641000006112",1,"^ESCT1371864","","16896891000119106","3774555012","History of ischaemic stroke",1,,,,,,,1,,,,,1,0
+"264499015",500000,"662M","662M.00","170600009","264499015","Stroke monitoring",1,,,,1,1,1,,,,,,1,0
+"1726581000006116",20,"EMISNQCE10","","1726581000006100","1726581000006116","Central post-stroke pain",1,,,,,1,1,,,,,,1,0
+"1773371000006117",1000,"EMISNQCE16","","1773371000006101","1773371000006117","Cerebrovascular accident care plan",1,,,,,1,1,,,,,,1,0
+"1787251000006117",200,"EMISNQTR28","","1787251000006101","1787251000006117","Transient ischaemic attack monitoring",1,,,,,,,,,,,,1,0
+"14492191000006119",4,"^ESCT1449219","","182960891000119101","4577065013","Cerebrovascular accident due to occlusion of left anterior cerebral artery",1,,,,,,,,,,,,1,1
+"1877451000006113",80,"EMISNQTI19","","1877451000006109","1877451000006113","TIA clinical management plan no longer in place",1,,,,,,,,,,,,1,0
+"4768491000006118",2,"^ESCTTH476849","","192759008","1784812010","Thrombosis of intracranial venous sinus",1,,,,,1,1,,,,,,1,1
+"100721000006111",5000,"F051","F051.00","192759008","296937016","Cerebral venous sinus thrombosis",1,,,,1,1,1,,,,,,1,1
+"296940016",2000,"F051z","F051z00","192759008","296937016","Thrombosis of central nervous system venous sinus NOS",1,,,,,1,1,,,,,,1,1
+"296938014",80,"F0511","F051100","192760003","296938014","Thrombosis of superior longitudinal sinus",1,,,,,1,1,,,,,,1,1
+"296939018",1000,"F0513","F051300","192761004","296939018","Thrombosis transverse sinus",1,,,,,1,1,,,,,,1,1
+"300244012",50,"G601","G601.00","195155004","300244012","Subarachnoid haemorrhage from carotid siphon and bifurcation",1,1,1,,1,1,1,,,,,,1,1
+"300253017",70,"G606","G606.00","195160000","300253017","Subarachnoid haemorrhage from vertebral artery",1,1,1,,,1,1,,,,,,1,1
+"4777811000006117",8,"^ESCTBA477781","","195165005","300271012","Basal ganglia hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"503791000006114",3000,"G612","G612.00","195165005","300272017","Basal ganglia haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"300276019",100,"G616","G616.00","195167002","300276019","External capsule haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"4777861000006119",6,"^ESCTIN477786","","195168007","2915438018","Intracerebral haemorrhage with intraventricular haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"4777871000006114",1,"^ESCTIN477787","","195168007","2916313015","Intracerebral hemorrhage with intraventricular hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"300277011",4000,"G617","G617.00","195168007","300277011","Intracerebral haemorrhage, intraventricular",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"163261000006119",1000,"G61X1","G61X100","195168007","300277011","Right sided intracerebral haemorrhage, unspecified",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"746571000006116",200,"G618","G618.00","195169004","300280012","Intracerebral haemorrhage, multiple localized",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"4777881000006112",100,"^ESCTIN477788","","195169004","300280012","Intracerebral haemorrhage, multiple localised",1,1,1,,,1,1,1,1,1,1,1,1,1
+"2475119012",20000,"G622","G622.00","195176009","2469010019","Non-traumatic subdural haemorrhage",1,,,,1,,,,,,,,1,1
+"300294013",8000,"G621","G621.00","195176009","300294013","Subdural haemorrhage - nontraumatic",1,,,,1,,,,,,,,1,1
+"884441000006114",1000,"G621-99","G621.99","195176009","884441000006114","Subdural haemorrhage",1,,,,1,,,,,,,,1,1
+"4777981000006117",1,"^ESCTOC477798","","195180004","2966578019","Occlusion of basilar artery",1,1,1,1,,1,1,,,,,,1,1
+"300303013",900,"G630","G630.00","195180004","300303013","Basilar artery occlusion",1,1,1,1,1,1,1,,,,,,1,1
+"884461000006113",50,"G630-99","G630.99","195180004","884461000006113","Basilar artery occluded",1,1,1,1,,1,1,,,,,,1,1
+"300309012",2000,"G632","G632.00","195182007","300309012","Vertebral artery occlusion",1,1,1,1,1,1,1,,,,,,1,1
+"884481000006115",80,"G632-99","G632.99","195182007","884481000006115","Vertebral artery occluded",1,1,1,1,,1,1,,,,,,1,1
+"300310019",10,"G633","G633.00","195183002","300310019","Multiple and bilateral precerebral arterial occlusion",1,1,1,1,,1,1,,,,,,1,1
+"300312010",3000,"G63y0","G63y000","195185009","300312010","Cerebral infarct due to thrombosis of precerebral arteries",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300313017",1000,"G63y1","G63y100","195186005","300313017","Cerebral infarction due to embolism of precerebral arteries",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300321011",4000,"G6400","G640000","195189003","300321011","Cerebral infarction due to thrombosis of cerebral arteries",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300322016",2000,"G6410","G641000","195190007","300322016","Cerebral infarction due to embolism of cerebral arteries",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300352012",100,"G65z0","G65z000","195205001","300352012","Impending cerebral ischaemia",1,,,,,1,1,,1,,1,1,1,1
+"300362017",7000,"G660","G660.00","195209007","300362017","Middle cerebral artery syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300363010",2000,"G661","G661.00","195210002","300363010","Anterior cerebral artery syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"524511000006116",9000,"G663","G663.00","195212005","300365015","Brainstem stroke syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300366019",9000,"G664","G664.00","195213000","300366019","Cerebellar stroke syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"4778181000006119",7000,"^ESCTLE477818","","195216008","300369014","Left sided cerebral hemisphere cerebrovascular accident",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"300370010",80000,"G667","G667.00","195216008","300370010","Left sided CVA",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"300371014",70000,"G668","G668.00","195217004","300371014","Right sided CVA",1,1,1,,,1,1,1,1,1,1,1,1,1
+"4778201000006118",6000,"^ESCTRI477820","","195217004","300372019","Right sided cerebral hemisphere cerebrovascular accident",1,1,1,,,1,1,1,1,1,1,1,1,1
+"586241000006116",3000,"G676","G676.00","195229008","300392014","Non-pyogenic venous sinus thrombosis",1,,,,,1,1,,,,,,1,1
+"542251000006112",900,"G6760","G676000","195230003","300393016","Cerebral infarction due to cerebral venous thrombosis, non-pyogenic",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300395011",600,"G6770","G677000","195232006","300395011","Occlusion and stenosis of middle cerebral artery",1,1,1,1,,1,1,,,,,,1,1
+"300396012",70,"G6771","G677100","195233001","300396012","Occlusion and stenosis of anterior cerebral artery",1,1,1,1,,1,1,,,,,,1,1
+"300398013",100,"G6772","G677200","195234007","300398013","Occlusion and stenosis of posterior cerebral artery",1,1,1,1,,1,1,,,,,,1,1
+"300399017",200,"G6773","G677300","195235008","300399017","Occlusion and stenosis of cerebellar arteries",1,1,1,1,,1,1,,,,,,1,1
+"267311000006118",40,"G6774","G677400","195236009","300400012","Occlusion and stenosis of multiple and bilateral cerebral arteries",1,1,1,1,,1,1,,,,,,1,1
+"149571000006118",500,"G68X","G68X.00","195239002","300403014","Sequelae of stroke,not specfd as h'morrhage or infarction",1,,,,,,,,,,,,1,1
+"426321000006116",90,"Gyu6C","Gyu6C00","195239002","300403014","[X]Sequelae of stroke,not specfd as h'morrhage or infarction",1,,,,,,,,,,,,1,1
+"300406018",300,"G680","G680.00","195240000","300406018","Sequelae of subarachnoid haemorrhage",1,,,,,1,1,,,,,,1,1
+"300407010",100,"G681","G681.00","195241001","300407010","Sequelae of intracerebral haemorrhage",1,,,,,1,1,,,,,,1,1
+"300411016",600,"G683","G683.00","195243003","300411016","Sequelae of cerebral infarction",1,,,,1,1,1,,,,,,1,1
+"300557017",2000,"G74y5","G74y500","195339004","300557017","Embolism and thrombosis of the subclavian artery",1,,,,,1,1,,,,,,1,1
+"307780013",80,"L417","L417.00","200258006","307780013","Obstetric cerebral venous thrombosis",1,,,,,1,1,,,,,,1,1
+"307781012",100,"L4170","L417000","200259003","307781012","Cerebral venous thrombosis in pregnancy",1,,,,,1,1,,,,,,1,1
+"307782017",70,"L4171","L417100","200260008","307782017","Cerebral venous thrombosis in the puerperium",1,,,,,1,1,,,,,,1,1
+"1222398015",100000,"G64","G64..00","20059004","1222398015","Cerebral arterial occlusion",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"543141000006110",5000,"G6X","G6X..00","20059004","33759015","Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"370701000006118",400,"Gyu63","Gyu6300","20059004","33759015","[X]Cerebrl infarctn due/unspcf occlusn or sten/cerebrl artrs",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"300943012",2000,"Gyu66","Gyu6600","20059004","33759015","Cerebral artery occlusion",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"2008601000006116",1000,"EMISNQDI251","","2008601000006100","2008601000006116","Discharge from community stroke service",1,,,,1,1,1,,,,,,1,0
+"2832661000006113",2,"^ESCTSU283266","","20908003","35158017","Subcortical hemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"2832651000006111",30,"^ESCTSU283265","","20908003","480871019","Subcortical haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"100701000006118",400,"F0512","F051200","21258007","1222620011","Thrombosis lateral sinus",1,,,,,1,1,,,,,,1,1
+"2838001000006118",30,"^ESCTCE283800","","21258007","1222620011","Cerebral venous thrombosis of lateral sinus",1,,,,,1,1,,,,,,1,1
+"2837981000006113",6,"^ESCTTH283798","","21258007","35718011","Thrombosis of lateral venous sinus",1,,,,,1,1,,,,,,1,1
+"2841141000006111",20,"^ESCTSA284114","","21454007","1216125018","SAH - Subarachnoid haemorrhage",1,1,1,,,1,1,,,,,,1,1
+"2841151000006113",4,"^ESCTSA284115","","21454007","1217630014","SAH - Subarachnoid hemorrhage",1,1,1,,,1,1,,,,,,1,1
+"2841171000006115",1,"^ESCTSU284117","","21454007","2916568015","Subarachnoid intracranial hemorrhage",1,1,1,,,1,1,,,,,,1,1
+"123511000006114",2000,"G602","G602.00","21454007","36011016","Subarachnoid haemorrhage from middle cerebral artery",1,1,1,,1,1,1,,,,,,1,1
+"123481000006118",1000,"G603","G603.00","21454007","36011016","Subarachnoid haemorrhage from anterior communicating artery",1,1,1,,1,1,1,,,,,,1,1
+"123521000006118",700,"G604","G604.00","21454007","36011016","Subarachnoid haemorrhage from posterior communicating artery",1,1,1,,1,1,1,,,,,,1,1
+"300935019",100,"Gyu60","Gyu6000","21454007","36011016","[X]Subarachnoid haemorrhage from other intracranial arteries",1,1,1,,1,1,1,,,,,,1,1
+"12761901000006117",100,"^ESCT1276190","","21454007","36011016","Subarachnoid hemorrhage",1,,,,,,,,,,,,1,1
+"481028017",200000,"G60","G60..00","21454007","481028017","Subarachnoid haemorrhage",1,1,1,,1,1,1,,,,,,1,1
+"123441000006112",600,"G60X","G60X.00","21454007","481028017","Subarachnoid haemorrh from intracranial artery, unspecif",1,1,1,,,1,1,,,,,,1,1
+"300257016",3000,"G60z","G60z.00","21454007","481028017","Subarachnoid haemorrhage NOS",1,1,1,,1,1,1,,,,,,1,1
+"300936018",300,"Gyu61","Gyu6100","21454007","481028017","[X]Other subarachnoid haemorrhage",1,1,1,,1,1,1,,,,,,1,1
+"428181000006115",200,"Gyu6E","Gyu6E00","21454007","481028017","Subarachnoid hemorrhage",1,1,1,,,1,1,,,,,,1,1
+"605491000006113",200000,"G66-3","G66..13","230690007","345635016","CVA - Cerebrovascular accident",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"5010981000006119",80000,"^ESCTST501098","","230690007","345636015","Stroke",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"405339016",1000000,"G66","G66..00","230690007","345637012","Cerebrovascular accident",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"605501000006117",500000,"G66-1","G66..11","230690007","345637012","CVA unspecified",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"122401000006115",100000,"G66-2","G66..12","230690007","345637012","Stroke unspecified",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"605461000006117",100000,"G64-1","G64..11","230691006","345638019","CVA - cerebrovascular accident due to cerebral artery occlusion",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"122361000006113",30000,"G64-3","G64..13","230691006","345638019","Stroke due to cerebral arterial occlusion",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"345639010",100,"G63-1","G63..11","230692004","345639010","Infarction - precerebral",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"5011041000006118",500,"^ESCTAN501104","","230693009","345640012","Anterior cerebral circulation infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011061000006119",10,"^ESCTTA501106","","230694003","345641011","TACI - Total anterior cerebral circulation infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011071000006114",40,"^ESCTTO501107","","230694003","345642016","Total anterior cerebral circulation stroke",1,,,,,,,1,1,1,1,1,1,1
+"5011081000006112",30,"^ESCTTA501108","","230694003","345643014","TACS - Total anterior cerebral circulation stroke",1,,,,,,,1,1,1,1,1,1,1
+"5011051000006116",1000,"^ESCTTO501105","","230694003","345644015","Total anterior cerebral circulation infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011091000006110",3000,"^ESCTPA501109","","230695002","345645019","Partial anterior cerebral circulation infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011101000006116",20,"^ESCTPA501110","","230695002","345646018","PACI - Partial anterior cerebral circulation infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011111000006118",80,"^ESCTPA501111","","230695002","345647010","Partial anterior cerebral circulation stroke",1,,,,,,,1,1,1,1,1,1,1
+"5011121000006114",70,"^ESCTPA501112","","230695002","345648017","PACS - Partial anterior cerebral circulation stroke",1,,,,,,,1,1,1,1,1,1,1
+"5011141000006119",90,"^ESCTPO501114","","230696001","2966565019","Posterior cerebral circulation stroke",1,,,,,,,1,,1,1,1,1,1
+"5011131000006112",2000,"^ESCTPO501113","","230696001","345649013","Posterior cerebral circulation infarction",1,,,,,,,1,,1,1,1,1,1
+"299342019",20000,"Fyu56","Fyu5600","230698000","345651012","Lacunar infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"5011161000006115",200,"^ESCTLA501116","","230698000","345652017","Lacunar stroke",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"5011171000006110",20,"^ESCTLA501117","","230698000","345653010","LACI - Lacunar infarction",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"345655015",2000,"G665","G665.00","230699008","345655015","Pure motor lacunar syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"5011191000006111",200,"^ESCTPU501119","","230699008","345656019","Pure motor lacunar infarction",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"5011211000006112",80,"^ESCTPU501121","","230700009","345657011","Pure sensory lacunar infarction",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"345658018",700,"G666","G666.00","230700009","345658018","Pure sensory lacunar syndrome",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"5011231000006118",6,"^ESCTPU501123","","230701008","345659014","Pure sensorimotor lacunar infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011241000006111",40,"^ESCTLA501124","","230702001","345660016","Lacunar ataxic hemiparesis",1,,,,,,,1,1,1,1,1,1,1
+"5011251000006113",4,"^ESCTDY501125","","230703006","345661017","Dysarthria-clumsy hand syndrome",1,,,,,,,1,1,1,1,1,1,1
+"5011301000006118",1,"^ESCTHE501130","","230706003","345666010","Hemorrhagic cerebral infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011291000006119",300,"^ESCTHA501129","","230706003","345667018","Haemorrhagic cerebral infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011331000006114",6,"^ESCTAN501133","","230707007","345668011","Anterior cerebral circulation haemorrhagic infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011351000006119",30,"^ESCTPO501135","","230708002","345671015","Posterior cerebral circulation haemorrhagic infarction",1,,,,,,,1,1,1,1,1,1,1
+"5011371000006112",1,"^ESCTMA501137","","230709005","345672010","Massive supratentorial cerebral haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"345675012",1000,"G619","G619.00","230710000","345675012","Lobar cerebral haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"5011411000006113",500,"^ESCTTH501141","","230711001","345676013","Thalamic haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"5011421000006117",4,"^ESCTTH501142","","230711001","345677016","Thalamic hemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"5011431000006119",20,"^ESCTLA501143","","230712008","345679018","Lacunar haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"5011451000006114",100,"^ESCTST501145","","230713003","345680015","Stroke of uncertain pathology",1,,,,,,,1,1,1,1,1,1,1
+"5011461000006111",300,"^ESCTAN501146","","230714009","345681016","Anterior circulation stroke of uncertain pathology",1,,,,,,,1,1,1,1,1,1,1
+"5011471000006116",600,"^ESCTPO501147","","230715005","345682011","Posterior circulation stroke of uncertain pathology",1,,,,,,,1,1,1,1,1,1,1
+"5011491000006115",300,"^ESCTAN501149","","230716006","345683018","Anterior circulation transient ischaemic attack",1,1,1,,,1,1,,1,1,1,1,1,1
+"345684012",1000,"G657","G657.00","230716006","345684012","Carotid territory transient ischaemic attack",1,1,1,,1,1,1,,1,1,1,1,1,1
+"5011501000006111",20,"^ESCTAN501150","","230716006","345685013","Anterior circulation transient ischemic attack",1,1,1,,,1,1,,1,1,1,1,1,1
+"5011531000006115",2,"^ESCTVE501153","","230717002","345687017","Vertebrobasilar territory transient ischemic attack",1,,,,,,,,1,1,1,1,1,1
+"5011541000006113",10,"^ESCTPO501154","","230717002","345688010","Posterior circulation transient ischemic attack",1,,,,,,,,1,1,1,1,1,1
+"5011521000006118",50,"^ESCTVE501152","","230717002","345689019","Vertebrobasilar territory transient ischaemic attack",1,,,,,,,,1,1,1,1,1,1
+"5011551000006110",20,"^ESCTPO501155","","230717002","345690011","Posterior circulation transient ischaemic attack",1,,,,,,,,1,1,1,1,1,1
+"371641000000112",2000,"7P242","7P24200","231231000000107","371641000000112","Delivery of rehabilitation for stroke",1,,,,1,1,1,,,,,,1,0
+"8011371000006117",2,"^ESCTSE801137","","23671000119107","2967516015","Sequela of ischaemic cerebral infarction",1,,,,,,,,,,,,1,1
+"14492231000006112",2,"^ESCT1449223","","239965291000119107","4577282019","Cerebrovascular accident due to occlusion of basilar artery",1,,,,,,,,,,,,1,1
+"2893551000006110",1,"^ESCTWE289355","","24654003","1223895018","Weber syndrome",1,,,,,,,1,1,1,1,1,1,1
+"2893541000006113",2,"^ESCTWE289354","","24654003","41324013","Weber-Gubler syndrome",1,,,,,,,1,1,1,1,1,1,1
+"2901571000006113",70,"^ESCTCO290157","","25133001","42129011","Completed stroke",1,,,,,,,1,,1,1,1,1,1
+"2539131000006116",200,"^ESCTST253913","","2517002","5296016","Stroke rehabilitation",1,,,,,,,,,,,,1,1
+"14492331000006116",1,"^ESCT1449233","","251770561000119107","4577021017","Stroke due to embolism of left anterior cerebral artery",1,,,,,,,,,,,,1,1
+"14492321000006119",5,"^ESCT1449232","","251770561000119107","4577022012","Cerebrovascular accident due to embolism of left anterior cerebral artery",1,,,,,,,,,,,,1,1
+"395777014",2000,"G63","G63..00","266253001","395777014","Precerebral arterial occlusion",1,1,1,1,,1,1,,,,,,1,1
+"300311015",200,"G63y","G63y.00","266253001","395777014","Other precerebral artery occlusion",1,1,1,1,,1,1,,,,,,1,1
+"300314011",600,"G63z","G63z.00","266253001","395777014","Precerebral artery occlusion NOS",1,1,1,1,,1,1,,,,,,1,1
+"300942019",30,"Gyu65","Gyu6500","266253001","395777014","[X]Occlusion and stenosis of other precerebral arteries",1,1,1,1,,1,1,,,,,,1,1
+"11823201000006116",3,"^ESCT1182320","","266254007","3636115010","Occlusion of carotid artery",1,1,1,1,,1,1,,,,,,1,1
+"395778016",20000,"G631","G631.00","266254007","395778016","Carotid artery occlusion",1,1,1,1,1,1,1,,,,,,1,1
+"884471000006118",700,"G631-99","G631.99","266254007","884471000006118","Carotid artery occluded",1,1,1,1,1,1,1,,,,,,1,1
+"5492171000006112",700,"^ESCTTI549217","","266257000","395781014","TIA",1,1,1,,1,1,1,,1,1,1,1,1,1
+"5492181000006110",1,"^ESCTTE549218","","266257000","395782019","Temporary cerebral vascular dysfunction",1,,,,,1,1,,1,1,1,1,1,1
+"395783012",1000000,"G65-2","G65..12","266257000","395783012","Transient ischaemic attack",1,1,1,,1,1,1,,1,1,1,1,1,1
+"5492201000006111",100,"^ESCTTI549220","","266257000","395784018","TIA - Transient ischaemic attack",1,1,1,,,1,1,,1,1,1,1,1,1
+"11920121000006117",30,"^ESCT1192012","","266257000","395785017","Transient cerebral ischemia",1,,,,1,1,1,,1,1,1,1,1,1
+"5492221000006118",300,"^ESCTTR549222","","266257000","395787013","Transient ischemic attack",1,1,1,,,1,1,,1,1,1,1,1,1
+"416991000006112",1000,"Fyu55","Fyu5500","266257000","395788015","Transient cerebral ischemia",1,,,,1,1,1,,1,1,1,1,1,1
+"395788015",800000,"G65","G65..00","266257000","395788015","Transient cerebral ischaemia",1,,,,1,1,1,,1,1,1,1,1,1
+"300348012",1000,"G65y","G65y.00","266257000","395788015","Other transient cerebral ischaemia",1,,,,1,1,1,,1,1,1,1,1,1
+"95931000006111",20000,"G65z","G65z.00","266257000","395788015","Transient cerebral ischaemia NOS",1,,,,1,1,1,,1,1,1,1,1,1
+"300349016",7000,"G65zz","G65zz00","266257000","395788015","Transient cerebral ischaemia NOS",1,,,,1,1,1,,1,1,1,1,1,1
+"988951000006117",10,"G65-99","G65..99","266257000","988951000006117","Transient Ischaemic Attacks",1,1,1,,,1,1,,1,1,1,1,1,1
+"5496991000006110",2,"^ESCTHI549699","","266995000","2986568011","History of cardiovascular disease",1,,,,,,,,,,,,1,0
+"460286014",1000,"ZV125","ZV12500","266995000","397829016","[V]Personal history of circulatory system disease",1,,,,,,,,,,,,1,0
+"1227592012",1000,"ZV125-2","ZV12512","266995000","397829016","[V]Personal history of cerebrovascular accident (CVA)",1,,,,1,1,1,,,,,,1,0
+"14194331000006112",3,"^ESCT1419433","","272202251000119109","3993162013","Acute cerebrovascular accident due to occlusion of right middle cerebral artery",1,,,,,,,,,,,,1,1
+"744901000006114",90000,"G61","G61..00","274100004","2819959010","Intracerebral haemorrhage (ICH)",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"300287010",4000,"G61z","G61z.00","274100004","2819959010","Intracerebral haemorrhage NOS",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"12223101000006118",600,"^ESCT1222310","","274100004","3673215016","Intracerebral haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"12223111000006115",30,"^ESCT1222311","","274100004","3673216015","Intracerebral hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"12223121000006111",70,"^ESCT1222312","","274100004","3673217012","ICH - intracerebral haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"12223131000006114",6,"^ESCT1222313","","274100004","3673218019","ICH - intracerebral hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"605471000006112",50000,"G61-1","G61..11","274100004","409859018","Cerebral hemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"748941000006115",1000,"G61X0","G61X000","274100004","409859018","Left sided intracerebral haemorrhage, unspecified",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"122371000006118",30000,"G61-2","G61..12","274100004","409860011","Cerebral haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"744921000006116",600,"G61X","G61X.00","274100004","409860011","Intracerebral haemorrhage in hemisphere, unspecified",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"300939013",1000,"Gyu62","Gyu6200","274100004","409860011","Cerebral haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"300956017",400,"Gyu6F","Gyu6F00","274100004","409860011","[X]Intracerebral haemorrhage in hemisphere, unspecified",1,1,1,,,1,1,1,1,1,1,1,1,1
+"884421000006119",1000,"G6-99","G6...99","274100004","884421000006119","Cerebral haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"989201000006117",1,"G61-99","G61..99","274100004","989201000006117","Cerebral haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"989211000006119",1,"G61-98","G61..98","274100004","989211000006119","Cerebral haemorrhage NOS",1,1,1,,,1,1,1,1,1,1,1,1,1
+"605481000006110",200,"L440-1","L440.11","275434003","411416011","CVA - cerebrovascular accident in the puerperium",1,1,1,,,1,1,1,1,1,1,1,1,1
+"411416011",6,"L440-2","L440.12","275434003","411416011","Stroke in the puerperium",1,1,1,,,1,1,1,1,1,1,1,1,1
+"2476091017",40000,"14A7-2","14A7.12","275526006","2476091017","H/O: stroke",1,,,,1,1,1,,,,,,1,0
+"1227591017",20000,"ZV125-1","ZV12511","275526006","2476091017","[V]Personal history of stroke",1,,,,1,1,1,,,,,,1,0
+"809421000006116",200000,"14A7","14A7.00","275526006","2986886017","History of cerebrovascular accident",1,,,,1,1,1,,,,,,1,0
+"411518010",50000,"14A7-1","14A7.11","275526006","411518010","H/O: CVA",1,,,,1,1,1,,,,,,1,0
+"5582311000006110",2000,"^ESCTOC558231","","276219001","412270012","Occipital cerebral infarction",1,,,,,,,1,1,1,1,1,1,1
+"5582321000006119",2,"^ESCTFO558232","","276220007","412271011","Foville syndrome",1,,,,,,,1,1,1,1,1,1,1
+"5582351000006111",4,"^ESCTTO558235","","276222004","412273014","Top of basilar syndrome",1,,,,,,,1,1,1,1,1,1,1
+"5583021000006113",200,"^ESCTSU558302","","276280009","412353018","Subarachnoid haemorrhage from middle cerebral artery aneurysm",1,,,,,,,,,,,,1,1
+"5583041000006118",2,"^ESCTSU558304","","276281008","412356014","Subarachnoid haemorrhage from posterior cerebral artery aneurysm",1,,,,,,,,,,,,1,1
+"123491000006115",400,"G605","G605.00","276284000","412361011","Subarachnoid haemorrhage from basilar artery",1,1,1,,1,1,1,,,,,,1,1
+"5583101000006116",4,"^ESCTSU558310","","276284000","412361011","Subarachnoid haemorrhage from basilar artery aneurysm",1,1,1,,,1,1,,,,,,1,1
+"5589651000006114",1,"^ESCTIN558965","","276722003","412997011","Intracerebellar and posterior fossa hemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"5589641000006112",50,"^ESCTIN558964","","276722003","412998018","Intracerebellar and posterior fossa haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"413750011",1000,"1M4","1M4..00","277286006","413750011","Central post-stroke pain",1,,,,,1,1,,,,,,1,0
+"5649201000006113",5,"^ESCTEX564920","","281240008","419214014","Extension of cerebrovascular accident",1,,,,,,,1,1,1,1,1,1,1
+"5726841000006111",1,"^ESCTCE572684","","287731003","427283015","Cerebral ischemia",1,,,,,,,,,,,,1,1
+"5726831000006118",10,"^ESCTCE572683","","287731003","427284014","Cerebral ischaemia",1,,,,,,,,,,,,1,1
+"3506623013",1,"^ESCT1170669","","290641000119107","3506623013","Dysphagia due to and following non-traumatic intracerebral haemorrhage",1,,,,,,,,,,,,1,1
+"3507363011",2,"^ESCT1170706","","291511000119103","3507363011","Spontaneous haemorrhage of deep cerebral hemisphere",1,,,,,,,1,,,,,1,1
+"3507383012",50,"^ESCT1170710","","291521000119105","3507383012","Spontaneous haemorrhage of cortical intracerebral hemisphere",1,,,,,,,1,,,,,1,1
+"3507370011",20,"^ESCT1170714","","291531000119108","3507370011","Spontaneous haemorrhage of cerebral hemisphere",1,,,,,,,1,,,,,1,1
+"3507359016",3,"^ESCT1170718","","291541000119104","3507359016","Spontaneous haemorrhage of brain stem",1,,,,,,,1,,,,,1,1
+"8089851000006116",1,"^ESCTNO808985","","291571000119106","3331108011","Nontraumatic intracerebral haemorrhage",1,,,,,,,,,,,,1,1
+"3508908014",1,"^ESCT1170740","","291711000119109","3508908014","Cognitive deficit due to and following nontraumatic intracerebral haemorrhage",1,,,,,,,,,,,,1,1
+"3510961010",10,"^ESCT1170821","","292851000119109","3510961010","Lacunar ataxic hemiparesis of right dominant side",1,,,,,,,1,,,,,1,1
+"3510963013",20,"^ESCT1170822","","292861000119106","3510963013","Lacunar ataxic hemiparesis of left dominant side",1,,,,,,,1,,,,,1,1
+"300380014",200,"G6710","G671000","29322000","49074018","Acute cerebrovascular insufficiency",1,1,1,,,1,1,,,,,,1,1
+"5866391000006119",30,"^ESCTST586639","","299403002","440315013","Stroke test positive",1,,,,,,,,,,,,1,1
+"8014271000006111",1,"^ESCTAT801427","","29951000119107","2967519010","Ataxic hemiparesis",1,,,,,,,,,,,,1,1
+"449935012",2000,"8Hd6","8Hd6.00","306803007","449935012","Admission to stroke unit",1,1,1,,1,1,1,,,,,,1,1
+"5967391000006111",400,"^ESCTMU596739","","307363008","450609012","Multiple lacunar infarcts",1,,,,,,,1,1,1,1,1,1,1
+"451133011",40000,"G64z2","G64z200","307766002","451133011","Left sided cerebral infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"451134017",30000,"G64z3","G64z300","307767006","451134017","Right sided cerebral infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"451368019",6000,"1477","1477.00","308064009","451368019","H/O: cerebrovascular disease",1,,,,1,,,,,,,,1,0
+"451371010",1000,"14AK","14AK.00","308067002","451371010","H/O: Stroke in last year",1,,,,1,1,1,,,,,,1,0
+"3636133016",3,"^ESCT1170849","","329361000119107","3636133016","Cerebrovascular accident due to occlusion of right middle cerebral artery by embolus",1,,,,,,,1,,,,,1,1
+"3636136012",2,"^ESCT1170850","","329371000119101","3636136012","Cerebrovascular accident due to occlusion of left middle cerebral artery by embolus",1,,,,,,,1,,,,,1,1
+"3636139017",1,"^ESCT1170852","","329431000119105","3636139017","Cerebrovascular accident due to occlusion of left posterior cerebral artery by embolus",1,,,,,,,1,,,,,1,1
+"3636141016",3,"^ESCT1170853","","329451000119104","3636141016","Cerebrovascular accident due to occlusion of right cerebellar artery by embolus",1,,,,,,,,,,,,1,1
+"3509817019",5,"^ESCT1170855","","329461000119102","3509817019","Left hemispheric cerebellar artery embolism with stroke",1,,,,,,,1,,,,,1,1
+"3636143018",3,"^ESCT1170854","","329461000119102","3636143018","Cerebrovascular accident due to occlusion of left cerebellar artery by embolus",1,,,,,,,1,,,,,1,1
+"3505639012",60,"^ESCT1170856","","329481000119106","3505639012","Occlusion of right middle cerebral artery",1,,,,,,,1,1,,,,1,1
+"3505637014",100,"^ESCT1170857","","329491000119109","3505637014","Occlusion of left middle cerebral artery",1,,,,,,,1,,,,,1,1
+"3505653012",8,"^ESCT1170858","","329561000119101","3505653012","Occlusion of right posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3505651014",20,"^ESCT1170859","","329571000119107","3505651014","Occlusion of left posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3508955016",70,"^ESCT1170860","","329641000119104","3508955016","Cerebrovascular accident due to thrombus of basilar artery",1,,,,,,,1,1,1,1,1,1,1
+"3508956015",5,"^ESCT1170861","","329641000119104","3508956015","Stroke due to basilar artery thrombus",1,,,,,,,1,1,1,1,1,1,1
+"3508958019",8,"^ESCT1170862","","329651000119102","3508958019","Cerebrovascular accident due to thrombus of right carotid artery",1,,,,,,,1,,,,,1,1
+"3510959018",1,"^ESCT1170881","","330411000119109","3510959018","Lacunar ataxic hemiparesis of left nondominant side",1,,,,,,,1,,,,,1,1
+"3508952018",10,"^ESCT1170889","","330791000119108","3508952018","Cerebrovascular accident due to thrombus of left carotid artery",1,,,,,,,1,,,,,1,1
+"8014911000006110",3,"^ESCTSE801491","","33301000119105","2967607012","Sequela of cardioembolic stroke",1,,,,,,,,,,,,1,1
+"2534198011",30000,"G623","G623.00","35486000","486181011","Subdural haemorrhage",1,,,,1,,,,,,,,1,1
+"6348291000006115",80,"^ESCTTH634829","","371040005","1209750017","Thrombotic stroke",1,,,,,,,1,,,,,1,1
+"6348301000006119",500,"^ESCTEM634830","","371041009","1209751018","Embolic stroke",1,,,,,,,1,1,1,1,1,1,1
+"1212072018",500,"ESCTOC3","","373606000","1212072018","Occlusive stroke",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"14492421000006113",1,"^ESCT1449242","","384430101000119103","4577036019","Cerebrovascular accident due to embolism of right carotid artery",1,,,,,,,,,,,,1,1
+"14489491000006119",5,"^ESCT1448949","","38595071000119104","4577054015","Cerebrovascular accident due to thrombosis of right posterior cerebral artery",1,,,,,,,,,,,,1,1
+"14194151000006115",2,"^ESCT1419415","","40076141000119107","3993165010","Acute cerebrovascular accident due to occlusion of left posterior cerebral artery",1,,,,,,,,,,,,1,1
+"14194161000006118",2,"^ESCT1419416","","40076141000119107","3993167019","Acute stroke due to occlusion of left posterior cerebral artery",1,,,,,,,,,,,,1,1
+"14194491000006118",10,"^ESCT1419449","","407573811000119100","4011845015","Acute cerebrovascular accident due to occlusion of right carotid artery",1,,,,,,,,,,,,1,1
+"2474651019",10000,"G64z4","G64z400","413102000","2474651019","Infarction of basal ganglia",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"6837051000006119",9,"^ESCTBA683705","","413102000","2966612019","Basal ganglion stroke",1,1,1,,,1,1,1,1,1,1,1,1,1
+"6837061000006117",4,"^ESCTBA683706","","413102000","2966650013","Basal ganglion infarct",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"6846141000006118",200,"^ESCTCA684614","","413758000","2535208016","Cardioembolic stroke",1,,,,,,,1,1,1,1,1,1,1
+"2534253014",500000,"9Om0","9Om0.00","415628004","2534253014","Stroke/transient ischaemic attack monitoring first letter",1,,,,1,1,1,,,,,,1,0
+"2534212018",100000,"9Om1","9Om1.00","415629007","2534212018","Stroke/transient ischaemic attack monitoring second letter",1,,,,1,1,1,,,,,,1,0
+"6880471000006110",5,"^ESCTST688047","","415630002","2532943018","Stroke/transient ischaemic attack monitoring status",1,,,,,,,,,,,,1,0
+"2534196010",50000,"9Om2","9Om2.00","415631003","2534196010","Stroke/transient ischaemic attack monitoring third letter",1,,,,1,1,1,,,,,,1,0
+"986831000006115",7000,"9Om3","9Om3.00","417059002","2549607012","Stroke/transient ischaemic attack monitoring verbal invitation",1,,,,,1,1,,,,,,1,0
+"2548554013",1000,"662o","662o.00","417506008","2548554013","Haemorrhagic stroke monitoring",1,,,,1,1,1,,,,,,1,0
+"6908391000006111",8000,"^ESCTST690839","","417540008","2548591019","Stroke/transient ischaemic attack monitoring invitation",1,,,,,,,,,,,,1,0
+"6990991000006112",90,"^ESCTIS699099","","422504002","2644233012","Ischemic stroke",1,,,,,,,,,,,,1,1
+"6990981000006114",3000,"^ESCTIS699098","","422504002","2644234018","Ischaemic stroke",1,,,,,,,,,,,,1,1
+"7054171000006115",600,"^ESCTAC705417","","426107000","2674093010","Acute lacunar infarction",1,,,,,,,1,1,1,1,1,1,1
+"7064691000006118",6,"^ESCTTR706469","","426814001","2675245017","Transient cerebral ischaemia due to atrial fibrillation",1,,,,,,,,,,,,1,1
+"7067291000006113",60,"^ESCTIN706729","","426983002","2675250011","Infarction of medulla oblongata",1,,,,,,,1,,,,,1,1
+"7071901000006111",100,"^ESCTTH707190","","427296003","2674127019","Thalamic infarction",1,,,,,,,,,,,,1,1
+"7071911000006114",40,"^ESCTTH707191","","427296003","2966596011","Thalamic stroke",1,,,,,,,,,,,,1,1
+"218511000000117",20000,"G64-2","G64..12","432504007","2770034014","Infarction - cerebral",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"395780010",200000,"G64z","G64z.00","432504007","2770034014","Cerebral infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"300941014",3000,"Gyu64","Gyu6400","432504007","2770034014","[X]Other cerebral infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"7289121000006119",100,"^ESCTRE728912","","444172003","2840804011","Recurrent transient cerebral ischaemic attack",1,,,,,,,,,1,1,1,1,1
+"7289131000006116",4,"^ESCTRE728913","","444172003","2840805012","Recurrent transient cerebral ischemic attack",1,,,,,,,,,1,1,1,1,1
+"7295961000006113",4,"^ESCTSU729596","","444657001","2872687017","Superior cerebellar artery syndrome",1,,,,,,,1,,,,,1,1
+"14194191000006114",20,"^ESCT1419419","","46583221000119102","3993137013","Acute cerebrovascular accident due to stenosis of left carotid artery",1,,,,,,,,,,,,1,1
+"495394013",800,"G610","G610.00","49422009","495394013","Cortical haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"14492471000006114",3,"^ESCT1449247","","496369931000119104","4577292010","Cerebrovascular accident due to thrombosis of right cerebellar artery",1,,,,,,,,,,,,1,1
+"14194571000006115",5,"^ESCT1419457","","502836591000119106","4011843010","Acute cerebrovascular accident due to occlusion of left carotid artery",1,,,,,,,,,,,,1,1
+"1160471000000111",6000,"662M1","662M100","519751000000106","1160471000000111","Stroke 6 month review",1,,,,1,1,1,,,,,,1,0
+"8195431000006118",7,"^ESCTST819543","","519751000000106","1550221000000113","Stroke/cerebrovascular accident 6 month review",1,,,,,1,1,,,,,,1,0
+"496232015",1000,"G611","G611.00","52201006","496232015","Internal capsule haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"3346051000006110",1,"^ESCTIN334605","","52201006","86879010","Internal capsule hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"8196661000006116",2,"^ESCTTR819666","","523651000000107","1169181000000113","Transient ischaemic attack monthly review",1,,,,,,,,,,,,1,0
+"14802151000006119",1,"^ESCT1480215","","5571000124103","4964984018","Cerebrovascular accident with intracranial haemorrhage",1,,,,,,,,,,,,1,1
+"3441831000006111",4,"^ESCTPR344183","","57981008","96390010","Progressing stroke",1,,,,,,,1,,,,,1,1
+"884511000006111",3000,"G65z-99","G65z.99","584181000000100","884511000006111","Transient Ischaemic Attacks",1,1,1,,1,1,1,,,,,,1,1
+"14194621000006117",3,"^ESCT1419462","","595899961000119100","4015875015","Acute stroke of basal ganglia",1,,,,,,,,,,,,1,1
+"14194611000006113",30,"^ESCT1419461","","595899961000119100","4015877011","Acute cerebrovascular accident of basal ganglia",1,,,,,,,,,,,,1,1
+"14518481000006115",30,"^ESCT1451848","","595899961000119100","4577269010","Cerebrovascular accident of basal ganglia",1,,,,,,,,,,,,1,1
+"104563015",700000,"G6","G6...00","62914000","104563015","Cerebrovascular disease",1,,,,1,,,,,,,,1,1
+"300290016",1000,"G62","G62..00","62914000","104563015","Other and unspecified intracranial haemorrhage",1,1,1,,1,1,1,,,,,,1,1
+"14194211000006110",20,"^ESCT1419421","","63230211000119103","3993157012","Acute cerebrovascular accident due to occlusion of left middle cerebral artery",1,,,,,,,,,,,,1,1
+"14194641000006112",20,"^ESCT1419464","","652287331000119104","4016003015","Acute cerebrovascular accident of brainstem",1,,,,,,,,,,,,1,1
+"14194651000006114",2,"^ESCT1419465","","652287331000119104","4016004014","Acute stroke of brainstem",1,,,,,,,,,,,,1,1
+"14518501000006113",30,"^ESCT1451850","","652287331000119104","4577270011","Cerebrovascular accident of brainstem",1,,,,,,,,,,,,1,1
+"14492571000006113",10,"^ESCT1449257","","655081461000119101","4577069019","Cerebrovascular accident due to occlusion of right anterior cerebral artery",1,,,,,,,,,,,,1,1
+"884501000006113",30,"G64z-99","G64z.99","682621000000105","884501000006113","Cerebral A. occlusion NOS",1,,,,,1,1,,,,,,1,1
+"884521000006115",20000,"G66-98","G66..98","685631000000102","884521000006115","Stroke/CVA - undefined",1,1,1,,1,1,1,,,,,,1,1
+"884531000006117",10000,"G66-99","G66..99","685631000000102","884531000006117","Stroke",1,1,1,,1,1,1,,,,,,1,1
+"8211961000006117",1,"^ESCTHI821196","","690051000119100","3037871010","History of cerebellar stroke",1,,,,,,,,,,,,1,0
+"14194661000006111",6,"^ESCT1419466","","693158221000119105","3993384019","Acute cerebrovascular accident due to stenosis of right carotid artery",1,,,,,,,,,,,,1,1
+"3634871000006114",2,"^ESCTCA363487","","69798007","115934010","Carotid artery obstruction",1,,,,1,,,,,,,,1,1
+"7512581000006113",2,"^ESCTPO751258","","698767004","2981171013","Post-cerebrovascular accident epilepsy",1,,,,,,,,,,,,1,1
+"7515281000006115",40,"^ESCTMU751528","","698970007","2981993016","Multiple lacunar infarcts",1,,,,,,,,,,,,1,1
+"2126181000000114",9000,"662e-1","662e.11","699270006","2983500010","Stroke annual review",1,,,,1,1,1,,,,,,1,0
+"1780304018",400000,"662e","662e.00","699270006","2983515011","CVA annual review",1,,,,,1,1,,,,,,1,0
+"7519441000006112",20000,"^ESCTCE751944","","699270006","2983532010","Cerebrovascular accident annual review",1,,,,1,1,1,,,,,,1,0
+"884451000006111",200,"G62z-99","G62z.99","700251000000105","884451000006111","Cerebral haemorrhage NOS",1,1,1,,1,,,,,,,,1,1
+"7586751000006112",1,"^ESCTCE758675","","704125007","3011722012","Cerebrovascular accident six month review",1,,,,,,,,,,,,1,0
+"7598981000006119",50,"^ESCTCE759898","","705128004","3023367013","Cerebral infarction due to embolism of middle cerebral artery",1,,,,,,,,,,,,1,1
+"7598991000006116",4,"^ESCTTH759899","","705129007","3023377010","Thrombosis of middle cerebral artery",1,,,,,,,,,,,,1,1
+"7599001000006116",10,"^ESCTCE759900","","705130002","3023374015","Cerebral infarction due to thrombosis of middle cerebral artery",1,,,,,,,,,,,,1,1
+"7703591000006117",1,"^ESCTPA770359","","713410003","3289227010","Pain following cerebrovascular accident",1,,,,,,,,,,,,1,0
+"7703601000006113",6,"^ESCTPO770360","","713410003","3289241018","Post stroke pain",1,,,,,,,,,,,,1,0
+"236331000000111",20000,"9Om","9Om..00","713771000000100","1565011000000111","Stroke/transient ischaemic attack monitoring administration",1,,,,1,1,1,,,,,,1,0
+"118689010",30000,"G640","G640.00","71444005","118689010","Cerebral thrombosis",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"139091000000115",80000,"9h22","9h22.00","716021000000109","1568581000000116","Excepted from stroke quality indicators - informed dissent",1,,,,,1,1,,,,,,1,0
+"138981000000113",10000,"9h2","9h2..00","716331000000108","1568881000000119","Exception reporting - stroke quality indicators",1,,,,,1,1,,,,,,1,0
+"139081000000117",200000,"9h21","9h21.00","716581000000101","1569131000000118","Excepted from stroke quality indicators - patient unsuitable",1,,,,,1,1,,,,,,1,0
+"1562581000006114",20000,"9Om4","9Om4.00","717241000000108","1569781000000115","Stroke/transient ischaemic attack monitoring telephone invitation",1,,,,,1,1,,,,,,1,0
+"8221321000006118",60,"^ESCTST822132","","720191000000104","1574361000000119","Stroke and TIA",1,,,,,,,,,,,,1,1
+"7838271000006115",1,"^ESCTPE783827","","722929005","3333965019","Perinatal arterial ischaemic stroke",1,,,,,,,,,,,,1,1
+"7839991000006115",80,"^ESCTSI783999","","723082006","3334556014","Silent cerebral infarct",1,,,,,,,1,,,,,1,1
+"7855641000006118",1,"^ESCTCE785564","","724424009","3438035012","Cerebral ischemic stroke due to small artery occlusion",1,,,,,,,1,,1,1,1,1,1
+"7855631000006111",100,"^ESCTCE785563","","724424009","3438036013","Cerebral ischaemic stroke due to small artery occlusion",1,,,,,,,1,,1,1,1,1,1
+"7855711000006113",9,"^ESCTST785571","","724429004","3498186019","Stroke co-occurrent with migraine",1,,,,,,,1,,,,,1,1
+"7855721000006117",1,"^ESCTST785572","","724429004","3498187011","Stroke and migraine",1,,,,,,,1,,,,,1,1
+"7861341000006115",8,"^ESCTEP786134","","724787004","3481697010","Epilepsy due to stroke",1,,,,,,,,,,,,1,1
+"7863741000006115",1,"^ESCTCE786374","","724994008","3436999014","Cerebral ischemic stroke due to stenosis of extracranial large artery",1,,,,,,,,,,,,1,1
+"3687811000006118",1,"^ESCTCE368781","","73020009","502318010","Cerebral hemisphere haemorrhage",1,,,,,,,,,,,,1,1
+"483988011",50,"G615","G615.00","732923001","3467313018","Bulbar haemorrhage",1,,,,,1,1,1,1,1,1,1,1,1
+"7951271000006116",2,"^ESCTHA795127","","732923001","3467314012","Haemorrhage of medulla oblongata",1,,,,,1,1,1,1,1,1,1,1,1
+"3511959014",80,"^ESCT1164367","","734383005","3511959014","Thrombosis of left middle cerebral artery",1,,,,,,,1,1,1,1,1,1,1
+"3505881015",3,"^ESCT1164370","","734384004","3505881015","Right middle cerebral artery thrombosis",1,,,,,,,1,1,1,1,1,1,1
+"3511955015",70,"^ESCT1164369","","734384004","3511955015","Thrombosis of right middle cerebral artery",1,,,,,,,1,1,1,1,1,1,1
+"3512170017",2,"^ESCT1164935","","734961002","3512170017","Embolus of left posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3512174014",7,"^ESCT1164936","","734963004","3512174014","Embolus of right posterior cerebral artery",1,,,,,,,1,,,,,1,1
+"3512176011",30,"^ESCT1164937","","734964005","3512176011","Embolus of left middle cerebral artery",1,,,,,,,1,,,,,1,1
+"3512178012",20,"^ESCT1164938","","734965006","3512178012","Embolus of right middle cerebral artery",1,,,,,,,1,,,,,1,1
+"3516948016",4,"^ESCT1166502","","736251000","3516948016","Stroke care plan",1,,,,,,,,,,,,1,1
+"1148331000000111",1000,"8CRB","8CRB.00","736288002","3517033016","Transient ischaemic attack clinical management plan",1,,,,1,1,1,,,,,,1,0
+"3517034010",2,"^ESCT1166521","","736288002","3517034010","Transient ischemic attack clinical management plan",1,,,,,1,1,,,,,,1,0
+"14194721000006113",4,"^ESCT1419472","","738211801000119107","3993388016","Acute cerebrovascular accident due to thrombosis of right middle cerebral artery",1,,,,,,,,,,,,1,1
+"14194741000006118",10,"^ESCT1419474","","738478141000119101","3993407012","Acute cerebrovascular accident due to occlusion of right cerebellar artery",1,,,,,,,,,,,,1,1
+"3719851000006116",2,"^ESCTCE371985","","75038005","124627016","Cerebellar hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"3719861000006119",1,"^ESCTHA371986","","75038005","124628014","Haemorrhagic cerebellum",1,1,1,,,1,1,1,1,1,1,1,1,1
+"502878012",10000,"G613","G613.00","75038005","502878012","Cerebellar haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"8231151000006110",600,"^ESCTPE823115","","751371000000107","1653121000000119","Personal history of transient ischaemic attack",1,,,,,1,1,,1,,1,1,1,0
+"1667741000000110",800,"ZV12D","ZV12D00","751371000000107","1667741000000110","[V]Personal history of transient ischaemic attack",1,,,,1,1,1,,1,,1,1,1,0
+"125470015",7000,"G641","G641.00","75543006","125470015","Cerebral embolism",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"542831000006116",400,"G641-1","G641.11","75543006","125470015","Cerebral embolus",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"3728451000006116",1,"^ESCTCE372845","","75543006","125471016","Cerebral arterial embolism",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"14492701000006113",2,"^ESCT1449270","","759950981000119101","4577295012","Cerebrovascular accident due to thrombosis of left vertebral artery",1,,,,,,,,,,,,1,1
+"14194811000006114",40,"^ESCT1419481","","762005171000119101","4011863015","Acute ischaemic stroke",1,,,,,,,,,,,,1,1
+"14194801000006111",90,"^ESCT1419480","","762005171000119101","4011866011","Acute cerebrovascular accident due to ischaemia",1,,,,,,,,,,,,1,1
+"3636969013",5,"^ESCT1169370","","762629007","3636969013","Occlusion of right middle cerebral artery by embolus",1,,,,,,,1,,,,,1,1
+"14492741000006110",7,"^ESCT1449274","","769023031000119104","4577286016","Stroke of thalamus",1,,,,,,,,,,,,1,1
+"14492731000006117",70,"^ESCT1449273","","769023031000119104","4577288015","Cerebrovascular accident of thalamus",1,,,,,,,,,,,,1,1
+"14492751000006112",10,"^ESCT1449275","","769023031000119104","4578629016","Thalamic stroke",1,,,,,,,,,,,,1,1
+"2622651000006119",1,"^ESCTPO262265","","7713009","13756016","Pontine hemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"2622631000006114",30,"^ESCTIN262263","","7713009","503468012","Intrapontine haemorrhage",1,1,1,,,1,1,1,1,1,1,1,1,1
+"503469016",3000,"G614","G614.00","7713009","503469016","Pontine haemorrhage",1,1,1,,1,1,1,1,1,1,1,1,1,1
+"1784651000006110",30,"8IEC","8IEC.00","781731000000103","1747751000000110","Referral for multidisciplinary stroke function improvement declined",1,,,,,1,1,,,,,,1,0
+"3778021000006116",30,"^ESCTLM377802","","78569004","1234269010","LMS - Lateral medullary syndrome",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"3777981000006119",20,"^ESCTPO377798","","78569004","130373013","Posterior inferior cerebellar artery syndrome",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"57341000006119",300,"G64z1","G64z100","78569004","130374019","Wallenberg's syndrome",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"14194841000006113",3,"^ESCT1419484","","788310011000119109","3993410017","Acute cerebrovascular accident due to occlusion of left cerebellar artery",1,,,,,,,,,,,,1,1
+"13905301000006116",3,"^ESCT1390530","","788455001","3780986012","Bilateral occlusion of pontine arteries",1,,,,,,,1,,,,,1,1
+"13909871000006119",1,"^ESCT1390987","","788881005","3786063014","Cerebral ischaemic stroke due to aortic arch embolism",1,,,,,,,1,,,,,1,1
+"13909881000006116",70,"^ESCT1390988","","788882003","3786067010","Cerebral ischaemic stroke due to global hypoperfusion with watershed infarct",1,,,,,,,1,,,,,1,1
+"13909891000006118",2,"^ESCT1390989","","788883008","3786069013","Cerebral ischaemic stroke due to hypercoagulable state",1,,,,,,,1,,,,,1,1
+"13909901000006119",100,"^ESCT1390990","","788884002","3786072018","Cerebral ischaemic stroke co-occurrent with subarachnoid haemorrhage",1,,,,,,,1,,,,,1,1
+"3818181000006114",200,"^ESCTLA381818","","81037000","134436018","Lacunar infarct",1,,,,,,,,,,,,1,1
+"2115821000000118",2000,"661N7","661N700","810991000000109","2115821000000118","Stroke self-management plan review",1,,,,1,1,1,,,,,,1,0
+"2118011000000114",2000,"661M7","661M700","812041000000104","2118011000000114","Stroke self-management plan agreed",1,,,,1,1,1,,,,,,1,0
+"8264201000006110",2,"^ESCTMA826420","","816241000000109","2127101000000118","Management of stroke rehabilitation",1,,,,,,,,,,,,1,0
+"2127781000000110",1000,"662M2","662M200","816561000000108","2127781000000110","Stroke initial post discharge review",1,,,,1,1,1,,,,,,1,0
+"8265471000006116",4,"^ESCTAC826547","","817701000000103","2130091000000112","Acute stroke care",1,,,,,,,,,,,,1,1
+"14492821000006110",1,"^ESCT1449282","","849488701000119104","4577023019","Cerebrovascular accident due to embolism of right anterior cerebral artery",1,,,,,,,,,,,,1,1
+"14492841000006115",3,"^ESCT1449284","","849579281000119106","4577080019","Cerebrovascular accident due to occlusion of right posterior communicating artery",1,,,,,,,,,,,,1,1
+"14492871000006111",4,"^ESCT1449287","","851365731000119106","4577050012","Stroke due to thrombosis of left posterior cerebral artery",1,,,,,,,,,,,,1,1
+"14492861000006116",3,"^ESCT1449286","","851365731000119106","4577051011","Cerebrovascular accident due to thrombosis of left posterior cerebral artery",1,,,,,,,,,,,,1,1
+"14492921000006118",1,"^ESCT1449292","","859422751000119101","4577034016","Stroke due to embolism of left carotid artery",1,,,,,,,,,,,,1,1
+"100771000006112",400,"G631-2","G631.12","86003009","142588012","Carotid artery thrombosis",1,1,1,1,1,1,1,,,,,,1,1
+"13966821000006114",5,"^ESCT1396682","","870544005","3970077012","Occlusion of distal basilar artery",1,,,,,,,1,,,,,1,1
+"13967201000006117",10,"^ESCT1396720","","870579007","3970236017","Occlusion of branch of basilar artery",1,,,,,,,1,,,,,1,1
+"14492941000006113",1,"^ESCT1449294","","898941951000119108","4577279012","Cerebrovascular accident due to occlusion of bilateral vertebral arteries",1,,,,,,,,,,,,1,1
+"100691000006118",1000,"F0510","F051000","89980009","1235519010","Cerebral venous thrombosis of cavernous sinus",1,,,,1,1,1,,,,,,1,1
+"3962581000006110",7,"^ESCTTH396258","","89980009","149150017","Thrombosis of cavernous venous sinus",1,,,,,1,1,,,,,,1,1
+"907581000006119",2000,"HNG0234","","907581000006103","907581000006119","[RFC] Stroke/CVA",1,1,1,,1,1,1,,,,,,1,1
+"907591000006116",2000,"HNG0235","","907591000006100","907591000006116","[RFC] Stroke",1,1,1,,1,1,1,,,,,,1,1
+"908801000006114",30000,"HNG0602","","908801000006105","908801000006114","[RFC] Stroke",1,1,1,,1,1,1,,,,,,1,1
+"909171000006115",4000,"HNGP003","","909171000006104","909171000006115","[RFC] CVA",1,1,1,,,1,1,,,,,,1,1
+"14518541000006110",2,"^ESCT1451854","","915141931000119109","4577259016","Cerebrovascular accident due to embolism of basilar artery",1,,,,,,,,,,,,1,1
+"14194941000006115",8,"^ESCT1419494","","931164671000119105","4011851013","Acute cerebrovascular accident due to embolism of right middle cerebral artery",1,,,,,,,,,,,,1,1
+"14194971000006111",8,"^ESCT1419497","","936648941000119105","4011849014","Acute cerebrovascular accident due to embolism of left middle cerebral artery",1,,,,,,,,,,,,1,1
+"14493231000006118",10,"^ESCT1449323","","939885431000119109","4577045018","Cerebrovascular accident due to embolism of bilateral middle cerebral arteries",1,,,,,,,,,,,,1,1
+"940061000006111",700,"EMISNQST2","","940061000006107","940061000006111","Stroke monitoring invite 1",1,,,,,,,,,,,,1,0
+"940071000006116",200,"EMISNQST3","","940071000006100","940071000006116","Stroke monitoring invite 2",1,,,,1,,,,,,,,1,0
+"940081000006118",100,"EMISNQST4","","940081000006102","940081000006118","Stroke monitoring invite 3",1,,,,1,,,,,,,,1,0
+"4056951000006111",3,"^ESCTBR405695","","95454007","1217312010","Brainstem haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"4056941000006114",1,"^ESCTBR405694","","95454007","158109012","Brain stem hemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"4056931000006116",70,"^ESCTBR405693","","95454007","512138014","Brain stem haemorrhage",1,,,,,,,1,1,1,1,1,1,1
+"1235913017",800,"G67A","G67A.00","95455008","1235913017","Cerebral vein thrombosis",1,,,,1,1,1,,,,,,1,1
+"4056971000006118",80,"^ESCTTH405697","","95455008","158110019","Thrombosis of cerebral veins",1,,,,,1,1,,,,,,1,1
+"4056981000006115",900,"^ESCTCE405698","","95455008","158111015","Cerebral venous thrombosis",1,,,,1,1,1,,,,,,1,1
+"345650013",900,"G64z-1","G64z.11","95457000","158113017","Brainstem infarction NOS",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"524541000006117",4000,"G64z0","G64z000","95457000","158113017","Brain stem infarction",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"4057031000006117",3,"^ESCTBR405703","","95457000","158114011","Brain stem infarct",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"4057041000006110",2,"^ESCTBR405704","","95457000","2966556014","Brain stem stroke",1,1,1,,,1,1,1,1,1,1,1,1,1
+"4057051000006112",2,"^ESCTIN405705","","95457000","2966602014","Infarction of brain stem",1,1,1,1,,1,1,1,1,1,1,1,1,1
+"158118014",40000,"G64z-2","G64z.12","95460007","158118014","Cerebellar infarction",1,1,1,1,1,1,1,1,1,1,1,1,1,1
+"2436731000000112",2000,"5C13","5C13.00","955491000000106","2436731000000112","Old cerebral infarction on imaging",1,,,,1,1,1,,,,,,1,0
+"14493261000006110",3,"^ESCT1449326","","957319791000119104","4577289011","Cerebrovascular accident due to thrombosis of left cerebellar artery",1,,,,,,,,,,,,1,1
+"14493271000006115",1,"^ESCT1449327","","957319791000119104","4577290019","Stroke due to thrombosis of left cerebellar artery",1,,,,,,,,,,,,1,1
+"968341000006116",1000,"EMISNQAN3","","968341000006100","968341000006116","Annual Stroke/CVA blood test",1,,,,,,,,,,,,1,0
+"7991141000006110",1,"^ESCTOC799114","","9901000119100","2967598015","Occlusion of cerebral artery with stroke",1,,,,,,,,,,,,1,1
+"8031281000006118",1,"^ESCTCE803128","","99451000119105","2967601013","Cerebral infarction due to stenosis of carotid artery",1,,,,,,,,,,,,1,1
