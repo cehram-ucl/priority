@@ -1,0 +1,181 @@
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,ihd,lshtm_2102_angina,lshtm_2196_angina,lshtm_2815_angina,ph956,ph986,refset_angina,prevalent,incident
+"8459551000006115",20000,"^ESCTCO845955","","1083121000000102","2714171000000118","Coronary heart disease monitoring invitation",1,,,,,,,1,0
+"8459561000006118",300,"^ESCTCO845956","","1083131000000100","2714191000000119","Coronary heart disease monitoring invitation email",1,,,,,,,1,0
+"12626301000006112",10000,"^ESCT1262630","","1110881000000106","2779741000000117","QOF (Quality and Outcomes Framework) secondary prevention of coronary heart disease quality indicator-related care invitation",1,,,,,,,1,0
+"11927021000006117",7,"^ESCT1192702","","134438001","216244010","Canadian Cardiovascular Society classification of angina",1,,,,,,,1,1
+"12734391000006116",500,"^ESCT1273439","","143451000000101","1628371000000114","QOF (Quality and Outcomes Framework) secondary prevention of coronary heart disease quality indicator-related care invitation using preferred method of communication",1,,,,,,,1,0
+"1539331000006118",5000,"EMISNOQFH3","","1539331000006102","1539331000006118","H/O: coronary heart disease",1,,,,,,,1,0
+"1576311000006117",3,"EGTON2G44","","1576311000006101","1576311000006117","Cause of Death- Angina Pectoris",1,,,,,,,1,1
+"9868461000006110",30,"^ESCTUN986846","","15960061000119102","3323416014","Unstable angina co-occurrent and due to coronary arteriosclerosis",1,,,,1,1,1,1,1
+"9868481000006117",1,"^ESCTAN986848","","15960141000119102","3323422017","Angina co-occurrent and due to coronary arteriosclerosis",1,,,,1,,1,1,1
+"14179491000006111",2,"^ESCT1417949","","15960341000119104","3991458017","Unstable angina due to arteriosclerosis of coronary artery bypass graft of transplanted heart",1,,,,,,,1,1
+"12125951000006116",1,"^ESCT1212595","","15960581000119102","3645095017","Arteriosclerosis of autologous vein coronary artery bypass graft with angina",1,,,,1,,1,1,1
+"12125971000006114",2,"^ESCT1212597","","15960661000119107","3645129018","Unstable angina co-occurrent and due to arteriosclerosis of coronary artery bypass graft",1,,,,1,1,1,1,1
+"251679016",100000,"14A5","14A5.00","161504004","251679016","H/O: angina pectoris",1,,,,,,,1,0
+"4540501000006118",4,"^ESCTHI454050","","161504004","2986318019","History of angina pectoris",1,,,,,,,1,0
+"634751000006116",8000,"322","322..00","164861001","1205556017","ECG myocardial ischaemia",1,,,,,,,1,1
+"635641000006111",7000,"3222","3222.00","164861001","1205556017","ECG:shows myocardial ischaemia",1,,,,,,,1,1
+"256451015",1000,"322Z","322Z.00","164861001","1205556017","ECG: myocardial ischaemia NOS",1,,,,,,,1,1
+"14015311000006110",2,"^ESCT1401531","","16891151000119103","3778765010","Coronary artery disease due to type 2 diabetes mellitus",1,,,,,,,1,1
+"264492012",100000,"662K","662K.00","170593007","264492012","Angina control",1,,,,,,,1,1
+"264497018",7000,"662Kz","662Kz00","170593007","264492012","Angina control NOS",1,,,,,,,1,1
+"264493019",500000,"662K0","662K000","170594001","264493019","Angina control - good",1,,,,,,,1,1
+"264494013",20000,"662K1","662K100","170595000","264494013","Angina control - poor",1,,,,,,,1,1
+"264495014",10000,"662K2","662K200","170596004","264495014","Angina control - improving",1,,,,,,,1,1
+"264496010",20000,"662K3","662K300","170597008","264496010","Angina control - worsening",1,,,,,,,1,1
+"1823891000006113",400,"EMISNQCO148","","1823891000006109","1823891000006113","Coronary heart disease confirmed",1,,,,,,,1,1
+"1856391000006112",1000,"EMISNQCO168","","1856391000006108","1856391000006112","Coronary heart disease monitoring in primary care",1,,,,,,,1,0
+"1856401000006114",50,"EMISNQCO169","","1856401000006105","1856401000006114","Coronary heart disease monitoring in secondary care",1,,,,,,,1,0
+"1895641000006114",1000,"EMISNQON8","","1895641000006105","1895641000006114","On coronary heart disease register",1,,,,,,,1,1
+"32122016",50,"G33z0","G33z000","19057007","32122016","Status anginosus",1,,,,1,1,1,1,1
+"299745015",10000,"G31y0","G31y000","194823009","299745015","Acute coronary insufficiency",1,1,1,1,1,,1,1,1
+"4775971000006114",1000,"^ESCTAN477597","","194828000","299755016","Angina",1,,,,1,,1,1,1
+"4775981000006112",2,"^ESCTCA477598","","194828000","299756015","Cardiac angina",1,,,,1,,1,1,1
+"299757012",3000000,"G33","G33..00","194828000","299757012","Angina pectoris",1,,,,1,,1,1,1
+"482941000006119",60000,"G33z","G33z.00","194828000","299757012","Angina pectoris NOS",1,,,,1,,1,1,1
+"299765010",50000,"G33zz","G33zz00","194828000","299757012","Angina pectoris NOS",1,,,,1,,1,1,1
+"300874013",300,"Gyu30","Gyu3000","194828000","299757012","[X]Other forms of angina pectoris",1,,,,1,,1,1,1
+"299758019",40,"G33z1","G33z100","194828000","299758019","Stenocardia",1,,,,1,,1,1,1
+"4776001000006111",7,"^ESCTAN477600","","194828000","299759010","Anginal syndrome",1,,,,1,,1,1,1
+"4776021000006118",2,"^ESCTIS477602","","194828000","299761018","Ischemic heart disease - angina",1,,,,1,,1,1,1
+"4776031000006115",40,"^ESCTIS477603","","194828000","299762013","Ischaemic heart disease - angina",1,,,,1,,1,1,1
+"4776051000006110",20,"^ESCTSI477605","","194842008","2535853014","Single vessel coronary artery disease",1,,,,,,,1,1
+"299782012",30000,"G3400","G340000","194842008","299782012","Single coronary vessel disease",1,,,,,,,1,1
+"4776081000006119",10,"^ESCTDO477608","","194843003","2535854015","Double vessel coronary artery disease",1,,,,,,,1,1
+"299783019",20000,"G3401","G340100","194843003","299783019","Double coronary vessel disease",1,,,,,,,1,1
+"4776071000006117",90,"^ESCTTW477607","","194843003","299784013","Two coronary vessel disease",1,,,,,,,1,1
+"338974012",7000,"G33z4","G33z400","225566008","338974012","Ischaemic chest pain",1,,,,1,,1,1,1
+"5056201000006111",100,"^ESCTTR505620","","233817007","2535923015","Triple vessel coronary artery disease",1,,,,,,,1,1
+"350346019",50000,"G340-1","G340.11","233817007","350346019","Triple vessel disease of the heart",1,,,,,,,1,1
+"350348018",80000,"G33z7","G33z700","233819005","350348018","Stable angina",1,,,,1,,1,1,1
+"350350014",4000,"G33z6","G33z600","233821000","350350014","New onset angina",1,,,,1,,1,1,1
+"350354017",2000,"G344","G344.00","233823002","350354017","Silent myocardial ischaemia",1,,,,1,,1,1,1
+"5056261000006112",2,"^ESCTAS505626","","233823002","350356015","Asymptomatic ischaemia",1,,,,1,,1,1,1
+"5056471000006118",3,"^ESCTAC505647","","233844002","350378010","Accelerated coronary artery disease in transplanted heart",1,,,,,,,1,1
+"5149551000006110",1,"^ESCTSY514955","","240567009","360348016","Syphilitic coronary artery disease",1,,,,,,,1,1
+"8079871000006116",10000,"^ESCTCO807987","","248461000000107","1153801000000119","Coronary heart disease monitoring telephone invitation",1,,,,,,,1,0
+"406961000000113",30000,"9Ob9","9Ob9.00","248461000000107","406961000000113","Coronary heart disease monitoring telephone invite",1,,,,,,,1,0
+"5887611000006117",1000,"^ESCTEX588761","","300995000","442203016","Exercise-induced angina",1,,,,1,,1,1,1
+"442204010",20000,"G33z3","G33z300","300995000","442204010","Angina on effort",1,,,,1,,1,1,1
+"5887631000006111",200,"^ESCTEX588763","","300995000","442205011","Exertional angina",1,,,,1,,1,1,1
+"5887641000006118",5,"^ESCTAN588764","","300995000","442206012","Angina of effort",1,,,,1,,1,1,1
+"451370011",5000,"14AJ","14AJ.00","308066006","451370011","H/O: Angina in last year",1,,,,,,,1,0
+"5974561000006110",1,"^ESCTHI597456","","308068007","2986970011","History of treatment for ischaemic heart disease",1,,,,,,,1,0
+"451372015",6000,"14AL","14AL.00","308068007","451372015","H/O: Treatment for ischaemic heart disease",1,,,,,,,1,0
+"451425016",4000,"8B27","8B27.00","308117007","451425016","Antianginal therapy",1,,,,,,,1,1
+"458410010",1000,"G33z5","G33z500","314116003","458410010","Post infarct angina",1,,,,1,,1,1,1
+"6053011000006114",5,"^ESCTRE605301","","315021005","1785182012","Refuses CHD monitoring",1,,,,,,,1,0
+"90731000000111",3000,"9Ob1","9Ob1.00","315021005","1785183019","Refuses coronary heart disease monitoring",1,,,,,,,1,0
+"14658371000006113",10,"^ESCT1465837","","315021005","4590635013","Coronary heart disease monitoring declined",1,,,,,,,1,0
+"459483011",3000,"8I37","8I37.00","315021005","459483011","Coronary heart disease monitoring refused",1,,,,,,,1,0
+"459487012",1000,"G3113","G311300","315025001","459487012","Refractory angina",1,,,,1,1,1,1,1
+"459488019",1000,"G31y3","G31y300","315026000","459488019","Transient myocardial ischaemia",1,,,,,,,1,1
+"459859010",7000,"G34z0","G34z000","315348000","459859010","Asymptomatic coronary heart disease",1,,,,,,,1,1
+"460133017",2000000,"6A2","6A2..00","315614006","460133017","Coronary heart disease annual review",1,,,,,,,1,0
+"59952018",800,"G3300","G330000","35928006","59952018","Nocturnal angina",1,,,,1,1,1,1,1
+"6360351000006112",600,"^ESCTMU636035","","371803003","1210398011","Multi vessel coronary artery disease",1,,,,,,,1,1
+"6360361000006114",100,"^ESCTLE636036","","371804009","1210399015","Left main coronary artery disease",1,,,,,,,1,1
+"12276271000006112",8,"^ESCT1227627","","371806006","3673888019","Progressive angina",1,,,,1,,1,1,1
+"6360391000006118",900,"^ESCTAT636039","","371807002","1210402019","Atypical angina",1,,,,1,1,1,1,1
+"6360401000006116",8,"^ESCTRE636040","","371808007","2470265017","Recurrent angina after percutaneous transluminal coronary angioplasty",1,,,,1,,1,1,1
+"6360421000006114",10,"^ESCTRE636042","","371809004","2470266016","Recurrent angina after coronary stent placement",1,,,,1,,1,1,1
+"6360441000006119",5,"^ESCTRE636044","","371810009","2470267013","Recurrent angina after coronary artery bypass graft",1,,,,1,,1,1,1
+"1484833014",100000,"6A4","6A4..00","390799004","1484833014","Coronary heart disease review",1,,,,,,,1,0
+"1484939014",90000,"9Ob","9Ob..00","390907003","1484939014","Coronary heart disease monitoring administration",1,,,,,,,1,0
+"1488440011",200000,"8B3k","8B3k.00","394724007","1488440011","Coronary heart disease medication review",1,,,,,,,1,0
+"6650571000006114",9,"^ESCTCO665057","","401247006","1780441018","Coronary heart disease monitoring status",1,,,,,,,1,0
+"1780442013",20000,"9Ob0","9Ob0.00","401248001","1780442013","Attends coronary heart disease monitoring",1,,,,,,,1,0
+"1780444014",2000000,"9Ob3","9Ob3.00","401250009","1780444014","Coronary heart disease monitoring 1st letter",1,,,,,,,1,0
+"13823711000006118",20000,"^ESCT1382371","","401250009","3767916014","Coronary heart disease monitoring first letter",1,,,,,,,1,0
+"1780445010",400000,"9Ob4","9Ob4.00","401251008","1780445010","Coronary heart disease monitoring 2nd letter",1,,,,,,,1,0
+"1780446011",200000,"9Ob5","9Ob5.00","401252001","1780446011","Coronary heart disease monitoring 3rd letter",1,,,,,,,1,0
+"1780447019",40000,"9Ob6","9Ob6.00","401253006","1780447019","Coronary heart disease monitoring verbal invitation",1,,,,,,,1,0
+"1780517019",10000,"9Ob2","9Ob2.00","401331007","1780517019","Coronary heart disease monitoring default",1,,,,,,,1,0
+"1780518012",60000,"9Ob8","9Ob8.00","401332000","1780518012","Coronary heart disease monitoring check done",1,,,,,,,1,0
+"3166141000006114",80,"^ESCTAN316614","","41334000","68946011","Angina, class II",1,,,,1,,1,1,1
+"6841231000006113",50,"^ESCTAC684123","","413439005","2534668015","Acute ischaemic heart disease",1,,,,1,,1,1,1
+"299800012",300,"G34y","G34y.00","413838009","2534671011","Other specified chronic ischaemic heart disease",1,,,,1,,1,1,1
+"299804015",300,"G34yz","G34yz00","413838009","2534671011","Other specified chronic ischaemic heart disease NOS",1,,,,1,,1,1,1
+"300879015",70,"Gyu33","Gyu3300","413838009","2534671011","[X]Other forms of chronic ischaemic heart disease",1,,,,1,,1,1,1
+"6847761000006118",5,"^ESCTCH684776","","413838009","2534671011","Chronic ischemic heart disease",1,,,,1,,1,1,1
+"299776014",20000,"G34","G34..00","413838009","2534672016","Chronic ischaemic heart disease",1,,,,1,,1,1,1
+"299805019",2000,"G34z","G34z.00","413838009","2534672016","Other chronic ischaemic heart disease NOS",1,,,,1,,1,1,1
+"2534674015",3000,"G34y1","G34y100","413844008","2534674015","Chronic myocardial ischaemia",1,,,,1,,1,1,1
+"2537483013",800,"G34y0","G34y000","413844008","2537483013","Chronic coronary insufficiency",1,,,,1,,1,1,1
+"39111000006114",3000,"G31","G31..00","414545008","2534663012","Other acute and subacute ischaemic heart disease",1,,,,1,,1,1,1
+"299723016",500,"G31y","G31y.00","414545008","2534663012","Other acute and subacute ischaemic heart disease",1,,,,1,,1,1,1
+"299750014",200,"G31yz","G31yz00","414545008","2534663012","Other acute and subacute ischaemic heart disease NOS",1,,,,1,,1,1,1
+"300876010",60,"Gyu32","Gyu3200","414545008","2534663012","[X]Other forms of acute ischaemic heart disease",1,,,,1,,1,1,1
+"6860251000006115",200,"^ESCTIS686025","","414545008","2534663012","Ischemic heart disease",1,,,,1,,1,1,1
+"2534664018",6000000,"G3","G3...00","414545008","2534664018","Ischaemic heart disease",1,,,,1,,1,1,1
+"299834013",5000,"G3y","G3y..00","414545008","2534664018","Other specified ischaemic heart disease",1,,,,1,,1,1,1
+"299835014",200000,"G3z","G3z..00","414545008","2534664018","Ischaemic heart disease NOS",1,,,,1,,1,1,1
+"394541000006112",2000,"Gyu3","Gyu3.00","414545008","2534664018","[X]Ischaemic heart diseases",1,,,,1,,1,1,1
+"6860261000006118",90,"^ESCTIH686026","","414545008","2537479013","IHD - Ischemic heart disease",1,,,,1,,1,1,1
+"2537480011",1000000,"G3-3","G3...13","414545008","2537480011","IHD - Ischaemic heart disease",1,,,,1,,1,1,1
+"6864791000006113",2,"^ESCTMY686479","","414795007","2534665017","Myocardial ischemia",1,,,,1,,1,1,1
+"6864781000006110",400,"^ESCTMY686478","","414795007","2534666016","Myocardial ischaemia",1,,,,1,,1,1,1
+"6946631000006113",4,"^ESCTOB694663","","420006002","2578015012","Obliterative coronary artery disease",1,,,,,,,1,1
+"460687010",1000,"ZV458","ZV45800","428375006","2692299011","History of placement of stent for coronary artery disease",1,,,,,,,1,0
+"7087601000006118",2,"^ESCTHI708760","","428375006","2695581010","History of coronary artery disease with stent placement",1,,,,,,,1,0
+"7105241000006116",400,"^ESCTTY710524","","429559004","2692821011","Typical angina",1,,,,1,,1,1,1
+"2536393012",1000,"G3-1","G3...11","443502000","2842265012","Arteriosclerotic heart disease",1,,,,,,,1,1
+"89332015",2000,"G3-2","G3...12","443502000","2842265012","Atherosclerotic heart disease",1,,,,,,,1,1
+"595731000006114",50000,"G340","G340.00","443502000","2842265012","Coronary atherosclerosis",1,,,,,,,1,1
+"7278491000006111",5,"^ESCTAT727849","","443502000","2842574013","Atherosclerosis of coronary artery",1,,,,,,,1,1
+"494261017",8000,"G3114","G311400","4557003","494261017","Worsening angina",1,,,,1,1,1,1,1
+"7844010",6000,"G311","G311.00","4557003","494262012","Preinfarction syndrome",1,1,1,1,1,1,1,1,1
+"2571561000006118",10,"^ESCTPR257156","","4557003","494262012","Pre-infarction syndrome",1,1,1,1,1,1,1,1,1
+"299741012",10000,"G311z","G311z00","4557003","7844010","Preinfarction syndrome",1,1,1,1,1,1,1,1,1
+"72571000006115",70000,"G311-3","G311.13","4557003","7845011","Unstable angina",1,1,1,1,1,1,1,1,1
+"7845011",100000,"G3111","G311100","4557003","7845011","Unstable angina",1,1,1,1,1,1,1,1,1
+"2571531000006110",1,"^ESCTIN257153","","4557003","7846012","Intermediate coronary syndrome",1,1,1,1,1,1,1,1,1
+"7847015",9000,"G311-1","G311.11","4557003","7847015","Crescendo angina",1,1,1,1,1,1,1,1,1
+"494438016",400,"G31y2","G31y200","46109009","494438016","Subendocardial ischaemia",1,,,,1,,1,1,1
+"7475751000006117",80,"^ESCTIS747575","","472100003","2951007019","Ischaemic dilated cardiomyopathy due to coronary artery disease",1,,,,,,,1,1
+"482911000006118",3000,"EMISAN1","","482911000006102","482911000006118","Angina grading (canadian cardiovascular society)",1,,,,,,,1,1
+"482961000006115",100000,"EMISHGT65","","482961000006104","482961000006115","Anginal Control: No attacks",1,,,,,,,1,1
+"3371381000006110",200,"^ESCTCA337138","","53741008","2536394018","CAD - Coronary artery disease",1,,,,,,,1,1
+"2536395017",300000,"G340-2","G340.12","53741008","2536395017","Coronary artery disease",1,,,,,,,1,1
+"3371411000006113",3000,"^ESCTCH337141","","53741008","2536397013","CHD - Coronary heart disease",1,,,,,,,1,1
+"3371421000006117",3000,"^ESCTCO337142","","53741008","2536398015","Coronary heart disease",1,,,,,,,1,1
+"3371361000006117",60,"^ESCTCO337136","","53741008","89331010","Coronary arteriosclerosis",1,,,,,,,1,1
+"482811000006113",1000,"G311-4","G311.14","59021001","498328016","Angina at rest",1,1,1,1,1,,1,1,1
+"498328016",5000,"G3112","G311200","59021001","498328016","Angina at rest",1,1,1,1,1,,1,1,1
+"98087016",2000,"G330","G330.00","59021001","98087016","Angina decubitus",1,,,,1,,1,1,1
+"299763015",200,"G330z","G330z00","59021001","98087016","Angina decubitus NOS",1,,,,1,,1,1,1
+"3458791000006114",3,"^ESCTAN345879","","59021001","98088014","Anginal chest pain at rest",1,,,,1,,1,1,1
+"3499001000006116",30,"^ESCTAN349900","","61490001","102153019","Angina, class I",1,,,,1,,1,1,1
+"7502661000006117",40,"^ESCTMI750266","","697976003","2968395019","Microvascular ischaemia of myocardium",1,,,,1,,1,1,1
+"585631000000113",100,"8H2V","8H2V.00","699245006","3082941013","Emergency hospital admission for ischaemic heart disease",1,,,,,,,1,1
+"7572351000006115",30,"^ESCTSI757235","","703214003","3007338016","Silent coronary vasospastic disease",1,,,,1,,1,1,1
+"7573181000006118",100,"^ESCTHE757318","","703273002","3008136010","Heart failure with reduced ejection fraction due to coronary artery disease",1,,,,,,,1,1
+"1752201000000116",4000,"187","187..00","704207005","3010438013","Frequency of angina",1,,,,,,,1,1
+"7696501000006114",5,"^ESCTRE769650","","712866001","3286157013","Resting ischaemia",1,,,,1,1,1,1,1
+"7703511000006110",5,"^ESCTSU770351","","713405002","3289285016","Subacute ischaemic heart disease",1,,,,1,,1,1,1
+"300200014",500,"G5y2","G5y2.00","72092001","119795011","Cardiovascular arteriosclerosis unspecified",1,,,,,,,1,1
+"496981000006113",20000,"G70","G70..00","72092001","119795011","Arteriosclerotic vascular disease",1,,,,,,,1,1
+"3516223013",20,"^ESCT1166277","","736059007","3516223013","Angina self management plan",1,,,,,,,1,0
+"1774801000000114",10000,"8CMP","8CMP.00","736368003","3517259010","Coronary heart disease care plan",1,,,,,,,1,1
+"216244010",100000,"388E","388E.00","763262001","3638316014","Canadian Cardiovascular Society grading of angina pectoris grade",1,,,,,,,1,1
+"8240941000006118",7,"^ESCTAN824094","","772471000000106","1724231000000118","Angina self management plan declined",1,,,,,,,1,0
+"1731551000000112",100,"662K4","662K400","775161000000102","1731551000000112","Angina self management plan commenced",1,,,,,,,1,0
+"1731571000000115",70,"662K5","662K500","775171000000109","1731571000000115","Angina self management plan completed",1,,,,,,,1,0
+"7966931000006114",8,"^ESCTAN796693","","791000119109","2967773018","Angina associated with type 2 diabetes mellitus",1,,,,1,,1,1,1
+"2117311000000111",200,"661N0","661N000","811701000000105","2117311000000111","Angina self-management plan review",1,,,,,,,1,0
+"2117731000000119",3000,"661M0","661M000","811901000000107","2117731000000119","Angina self-management plan agreed",1,,,,,,,1,0
+"3886751000006118",20,"^ESCTAN388675","","85284003","141382014","Angina, class III",1,,,,1,,1,1,1
+"2210251000000115",10,"8IEY","8IEY.00","853591000000103","2210251000000115","Referral to Angina Plan self-management programme declined",1,,,,,,,1,0
+"854491000006113",200,"EGTON458","","854491000006109","854491000006113","Unstable angina",1,1,1,1,,,,1,1
+"855991000006115",40000,"EMISAC1","","855991000006104","855991000006115","Angina control - stable",1,,,,,,,1,1
+"856011000006116",2000,"EMISAC3","","856011000006100","856011000006116","Angina control - unsatisfactory",1,,,,,,,1,1
+"3920011000006116",40,"^ESCTVA392001","","87343002","1235223015","Variant angina",1,,,,1,,1,1,1
+"3920021000006112",200,"^ESCTCO392002","","87343002","1235224014","Coronary artery spasm angina",1,,,,1,,1,1,1
+"1235225010",6000,"G331","G331.00","87343002","1235225010","Prinzmetal's angina",1,,,,1,,1,1,1
+"144819018",500,"G331-1","G331.11","87343002","1235225010","Variant angina pectoris",1,,,,1,,1,1,1
+"3919991000006112",60,"^ESCTPR391999","","87343002","144818014","Prinzmetal angina",1,,,,1,,1,1,1
+"3920001000006119",1,"^ESCTVA392000","","87343002","144819018","Variant angina pectoris",1,,,,1,,1,1,1
+"3951991000006119",1,"^ESCTAN395199","","89323001","148118017","Angina, class IV",1,,,,1,,1,1,1
+"905381000006117",4000,"HNG0012","","905381000006101","905381000006117","[RFC] Angina",1,,,,,,,1,1
+"908791000006113",20000,"HNG0601","","908791000006109","908791000006113","[RFC] Coronary heart disease",1,,,,,,,1,1
+"960181000006111",1000,"EMISCAN2","","960181000006107","960181000006111","Anginal pain",1,,,,,,,1,1

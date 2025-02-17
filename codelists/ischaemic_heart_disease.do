@@ -580,26 +580,44 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
 //=======================================================================================
-/*
+
 //Load clinician classifications
-local clinician "ABC"
+local clinician "CA"  //Christina Avgerinou
 
-import excel `filename'_raw_`clinician', firstrow clear
+import excel `filename'_raw_`clinician', describe
 
-//Remerge with original in case of any formatting issues with Excel spreadsheet
-keep medcodeid `clinician'
+foreach sheet in `"IHD (incident and prevalent)"' `"IHD (prevalent only)"' {
+	
+	import excel `filename'_raw_`clinician', firstrow clear sheet(`sheet')
+	
+	generate byte `clinician' = 1
+	generate byte prevalent = 1
+	generate byte incident = 0
+	local tmpname "prevalent"
+	
+	if "`sheet'" == `"IHD (incident and prevalent)"' {
+		
+		replace incident = 1
+		local tmpname "incident"
+	}
+	
+	//Remerge with original in case of any formatting issues with Excel spreadsheet
+	keep medcodeid `clinician' prevalent incident
 
-tempfile `clinician'_classification
-save ``clinician'_classification'
+	tempfile `tmpname'_tmp
+	save ``tmpname'_tmp'
+	display "`tmpname'"
+}
 
 use `filename', clear
 
-merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+merge 1:1 medcodeid using `incident_tmp', nogenerate update replace
+merge 1:1 medcodeid using `prevalent_tmp', nogenerate update replace
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
-list medcodeid snomedctconceptid term if `clinican' == 0
-drop if `clinician' == 0
+list medcodeid snomedctconceptid term if `clinician' != 1
+drop if `clinician' != 1
 
 //Save clinican approved codelist
 gsort snomedctconceptid snomedctdescriptionid originalreadcode
@@ -607,7 +625,7 @@ drop new_snomedct_synonym /*codestatus*/ `clinician'
 compress
 save `filename', replace
 export delimited `filename', replace quote
-*/
+
 
 // STEP 10. GENERATE METADATA FILE
 //=================================
@@ -621,7 +639,7 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 local author "Philip Stone"
 local date = ym(2024, 12)  //year, month
 local clinical_reviewer "Christina Avgerinou"
-local date_approved = . //ym(2024, 12)  //year, month
+local date_approved = ym(2025, 2)  //year, month
 local notes "Created for PRIORITY study"
 local keywords ""
 //==============================================================================
