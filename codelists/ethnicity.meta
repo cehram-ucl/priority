@@ -6,5 +6,5 @@ Philip Stone
 Dec 2024
 
 .
-An amalgamation of codelists created by Rohini Mathur and colleagues. I removed 'Not Stated' codes. Created for PRIORITY study.
+The ethnicity categories defined in the 2001 Census: https://www.ethnicity-facts-figures.service.gov.uk/style-guide/ethnic-groups/#2001-census. Rationale being that NHS Data Model and Dictionary still uses 2001 Census categories. See: https://github.com/opensafely/codelist-development/issues/126. An amalgamation of codelists created by Rohini Mathur and colleagues with some corrections I felt were necessary. 'Not Stated' codes were removed. Created for PRIORITY study.
 

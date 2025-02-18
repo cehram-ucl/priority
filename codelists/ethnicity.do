@@ -297,7 +297,7 @@ list medcodeid term eth5 eth5_oc_opensafely_ethnicity ///
 	if eth5 != eth5_oc_opensafely_ethnicity & eth5_oc_opensafely_ethnicity != .
 
 display "Changing..."
-local changes "250243013 141511000000116 158371000000111 1968121000006114 285925010 285930014 285976013 405064011 405067016 411578016 411579012 411580010 453109012 453110019 196601000006113 6846371000006111 196641000006110 141521000000110 141591000000113 141601000000119"
+local changes "250243013 141511000000116 158371000000111 1968121000006114 285925010 285930014 285976013 405064011 405067016 411578016 411579012 411580010 453109012 453110019 196601000006113 6846371000006111 196641000006110 141521000000110 141591000000113 141601000000119 285951012 4740361000006111"
 foreach change of local changes {
 	
 	list observations term eth5* if medcodeid == "`change'"
@@ -317,10 +317,59 @@ list medcodeid term eth16 eth16_oc_opensafely_ethnicity ///
 drop eth5_oc_opensafely_ethnicity eth16_oc_opensafely_ethnicity
 
 
+//Making some (what I think are) corrections
+local asianother "157351000000115 250268010 1745831000006112 490271012 2694381019 2692541014 2692313014 3493721000006113 3605071000006112 142891000000115"
+foreach code of local asianother {
+	
+	replace eth5 = 2 if medcodeid == "`code'"
+	replace eth16 = 11 if medcodeid == "`code'"
+	list term eth5 eth16 if medcodeid == "`code'"
+}
+
+local whiteother "250227018 286008019 713761000000111 714141000000111 2691976017"
+foreach code of local whiteother {
+	
+	replace eth5 = 1 if medcodeid == "`code'"
+	replace eth16 = 3 if medcodeid == "`code'"
+	list term eth5 eth16 if medcodeid == "`code'"
+}
+
+local blackcarribean "250231012"
+foreach code of local blackcarribean {
+	
+	replace eth5 = 3 if medcodeid == "`code'"
+	replace eth16 = 12 if medcodeid == "`code'"
+	list term eth5 eth16 if medcodeid == "`code'"
+}
+
+local otherchinese "713491000000110"
+foreach code of local otherchinese {
+	
+	replace eth5 = 4 if medcodeid == "`code'"
+	replace eth16 = 15 if medcodeid == "`code'"
+	list term eth5 eth16 if medcodeid == "`code'"
+}
+
+local otherother "1573191000006117 250225014 250226010 2849971000006118 196661000006114 196701000006118 3748491000006113"
+foreach code of local otherother {
+	
+	replace eth5 = 4 if medcodeid == "`code'"
+	replace eth16 = 16 if medcodeid == "`code'"
+	list term eth5 eth16 if medcodeid == "`code'"
+}
+
+local remove "6260901000006118 459785017"
+foreach code of local remove {
+	
+	list term eth5 eth16 if medcodeid == "`code'"
+	drop if medcodeid == "`code'"
+}
+
+
 // STEP 1. IDENTIFY SEARCH TERMS
 //===============================
 
-// WE AREN'T DOING OUR OWN SEARCH, JUST USING PRE-EXISTING LISTS
+// JUST AMALGAMATING/MODIFIYING EXISTING LISTS; NO SEARCH REQUIRED
 keep if external_codelist == 1
 drop if eth5 == .
 compress
@@ -403,7 +452,7 @@ foreach correction of local corrections {
 
 replace exclude = 1 if /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/
 drop if exclude == 1 & external_codelist != 1
-//drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*//**/
+//drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/
 count
 compress
 
@@ -544,6 +593,10 @@ foreach expanded_id of local expanded_ids {
 		if snomedctconceptid == "`expanded_id'"
 }
 
+//Any corrections
+list if medcodeid == "459785017"
+drop if medcodeid == "459785017"
+
 
 // STEP 7. COMPARE LIST WITH PREVIOUS CODELIST
 //=============================================
@@ -621,7 +674,7 @@ drop if `clinician' == 0
 */
 //Save clinican approved codelist
 gsort /**/eth5 eth16/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
-//drop new_snomedct_synonym /*codestatus*/ /*`clinician'*/
+drop new_snomedct_synonym /*codestatus*/ /*`clinician'*/
 compress
 save `filename', replace
 export delimited `filename', replace quote
@@ -640,7 +693,7 @@ local author "Philip Stone"
 local date = ym(2024, 12)  //year, month
 local clinical_reviewer ""
 local date_approved = . //year, month
-local notes "An amalgamation of codelists created by Rohini Mathur and colleagues. I removed 'Not Stated' codes. Created for PRIORITY study."
+local notes "The ethnicity categories defined in the 2001 Census: https://www.ethnicity-facts-figures.service.gov.uk/style-guide/ethnic-groups/#2001-census. Rationale being that NHS Data Model and Dictionary still uses 2001 Census categories. See: https://github.com/opensafely/codelist-development/issues/126. An amalgamation of codelists created by Rohini Mathur and colleagues with some corrections I felt were necessary. 'Not Stated' codes were removed. Created for PRIORITY study."
 local keywords ""
 //==============================================================================
 

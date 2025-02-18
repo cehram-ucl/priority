@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\ethnicity.log
   log type:  text
- opened on:  18 Feb 2025, 04:17:03
+ opened on:  18 Feb 2025, 21:48:17
 
 . 
 . 
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000003.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000001.tmp saved as .dta format
 
 . 
 . 
@@ -214,7 +214,7 @@ White and Black Afric |         0          0          0          0          5   
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000005.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000003.tmp saved as .dta format
 
 . restore, preserve
 
@@ -242,7 +242,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000005.tmp saved as .dta format
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000006.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000004.tmp saved as .dta format
 
 . restore, preserve
 
@@ -320,7 +320,7 @@ South Asian |         44       15.17       40.69
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000007.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000005.tmp saved as .dta format
 
 . restore
 
@@ -408,7 +408,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000007.tmp saved as .dta format
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_000009.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000007.tmp saved as .dta format
 
 . restore
 
@@ -1630,7 +1630,7 @@ Conflicts...
 Changing...
 
 . local changes "250243013 141511000000116 158371000000111 1968121000006114 285925010 285930014 285976013 405064011 405067016 411578016 411579012 411580010 453109012 453110019 
-> 196601000006113 6846371000006111 196641000006110 141521000000110 141591000000113 141601000000119"
+> 196601000006113 6846371000006111 196641000006110 141521000000110 141591000000113 141601000000119 285951012 4740361000006111"
 
 . foreach change of local changes {
   2.         
@@ -1700,14 +1700,14 @@ Changing...
         +-------------------------------------+
         | observ~s    term    eth5   eth5_o~y |
         |-------------------------------------|
- 63193. |  2000000   White   White      White |
+ 63194. |  2000000   White   White      White |
         +-------------------------------------+
 (0 real changes made)
 
         +------------------------------------------+
         | observ~s    term     eth16   eth16_oc_~y |
         |------------------------------------------|
- 63193. |  2000000   White   British   Other White |
+ 63194. |  2000000   White   British   Other White |
         +------------------------------------------+
 (1 real change made)
 
@@ -1854,28 +1854,28 @@ Changing...
         +-----------------------------------------+
         | observ~s        term    eth5   eth5_o~y |
         |-----------------------------------------|
-170210. |     1000   Caucasian   White      White |
+170211. |     1000   Caucasian   White      White |
         +-----------------------------------------+
 (0 real changes made)
 
         +----------------------------------------------+
         | observ~s        term     eth16   eth16_oc_~y |
         |----------------------------------------------|
-170210. |     1000   Caucasian   British   Other White |
+170211. |     1000   Caucasian   British   Other White |
         +----------------------------------------------+
 (1 real change made)
 
         +----------------------------------------------+
         | observ~s             term    eth5   eth5_o~y |
         |----------------------------------------------|
-170211. |    80000   Caucasian race   White      White |
+170209. |    80000   Caucasian race   White      White |
         +----------------------------------------------+
 (0 real changes made)
 
         +---------------------------------------------------+
         | observ~s             term     eth16   eth16_oc_~y |
         |---------------------------------------------------|
-170211. |    80000   Caucasian race   British   Other White |
+170209. |    80000   Caucasian race   British   Other White |
         +---------------------------------------------------+
 (1 real change made)
 
@@ -1921,6 +1921,34 @@ Changing...
         +----------------------------------------------------------------------------+
 (1 real change made)
 
+        +----------------------------------------------------+
+        | observ~s                   term    eth5   eth5_o~y |
+        |----------------------------------------------------|
+ 63211. |    20000   Black - other, mixed   Black      Mixed |
+        +----------------------------------------------------+
+(1 real change made)
+
+        +-------------------------------------------------------------+
+        | observ~s                   term         eth16   eth16_oc_~y |
+        |-------------------------------------------------------------|
+ 63211. |    20000   Black - other, mixed   Other Black   Other Mixed |
+        +-------------------------------------------------------------+
+(1 real change made)
+
+        +----------------------------------------------------------------+
+        | observ~s                               term    eth5   eth5_o~y |
+        |----------------------------------------------------------------|
+ 63255. |      800   Other ethnic, Asian/White origin   Mixed      Mixed |
+        +----------------------------------------------------------------+
+(0 real changes made)
+
+        +-----------------------------------------------------------------------------+
+        | observ~s                               term         eth16   eth16_oc_open~y |
+        |-----------------------------------------------------------------------------|
+ 63255. |      800   Other ethnic, Asian/White origin   Other Mixed   White and Asian |
+        +-----------------------------------------------------------------------------+
+(1 real change made)
+
 . 
 . display "Leaving as is..."
 Leaving as is...
@@ -1931,13 +1959,12 @@ Leaving as is...
         +-------------------------------------------------------------------+
         |                                        term    eth5   eth5_oc_o~y |
         |-------------------------------------------------------------------|
- 63211. |                        Black - other, mixed   Black         Mixed |
  63296. |                            South East Asian   Other   South Asian |
 170590. |                                    Japanese   Other   South Asian |
 233219. |    Vietnamese - ethnic category 2001 census   Other   South Asian |
 233226. |      Japanese - ethnic category 2001 census   Other   South Asian |
-        |-------------------------------------------------------------------|
 233233. |      Filipino - ethnic category 2001 census   Other   South Asian |
+        |-------------------------------------------------------------------|
 233243. |     Malaysian - ethnic category 2001 census   Other   South Asian |
 234354. | North African - ethnic category 2001 census   Other         Black |
         +-------------------------------------------------------------------+
@@ -1947,23 +1974,7 @@ Leaving as is...
 >         if eth16 != eth16_oc_opensafely_ethnicity & eth16_oc_opensafely_ethnicity != .
 
         +-------------------------------------------------------------------------------------------------------------------------------------------------------+
- 63211. |        medcodeid |                                                                                                          term |              eth16 |
-        |        285951012 |                                                                                          Black - other, mixed |        Other Black |
-        |-------------------------------------------------------------------------------------------------------------------------------------------------------|
-        |                                                               eth16_oc_opensafely_eth~y                                                               |
-        |                                                                             Other Mixed                                                               |
-        +-------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-        +-------------------------------------------------------------------------------------------------------------------------------------------------------+
  63252. |        medcodeid |                                                                                                          term |              eth16 |
-        | 4740341000006112 |                                                                              Other ethnic, Black/White origin |        Other Mixed |
-        |-------------------------------------------------------------------------------------------------------------------------------------------------------|
-        |                                                               eth16_oc_opensafely_eth~y                                                               |
-        |                                                               White and Black Caribbean                                                               |
-        +-------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-        +-------------------------------------------------------------------------------------------------------------------------------------------------------+
- 63253. |        medcodeid |                                                                                                          term |              eth16 |
         |        285990011 |                                                                                Other ethnic, Black/White orig |        Other Mixed |
         |-------------------------------------------------------------------------------------------------------------------------------------------------------|
         |                                                               eth16_oc_opensafely_eth~y                                                               |
@@ -1971,11 +1982,11 @@ Leaving as is...
         +-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
         +-------------------------------------------------------------------------------------------------------------------------------------------------------+
- 63256. |        medcodeid |                                                                                                          term |              eth16 |
-        | 4740361000006111 |                                                                              Other ethnic, Asian/White origin |        Other Mixed |
+ 63253. |        medcodeid |                                                                                                          term |              eth16 |
+        | 4740341000006112 |                                                                              Other ethnic, Black/White origin |        Other Mixed |
         |-------------------------------------------------------------------------------------------------------------------------------------------------------|
         |                                                               eth16_oc_opensafely_eth~y                                                               |
-        |                                                                         White and Asian                                                               |
+        |                                                               White and Black Caribbean                                                               |
         +-------------------------------------------------------------------------------------------------------------------------------------------------------+
 
         +-------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -2063,10 +2074,277 @@ Leaving as is...
 
 . 
 . 
+. //Making some (what I think are) corrections
+. local asianother "157351000000115 250268010 1745831000006112 490271012 2694381019 2692541014 2692313014 3493721000006113 3605071000006112 142891000000115"
+
+. foreach code of local asianother {
+  2.         
+.         replace eth5 = 2 if medcodeid == "`code'"
+  3.         replace eth16 = 11 if medcodeid == "`code'"
+  4.         list term eth5 eth16 if medcodeid == "`code'"
+  5. }
+(1 real change made)
+(1 real change made)
+
+        +-----------------------------------------------------------------+
+        |                                term          eth5         eth16 |
+        |-----------------------------------------------------------------|
+ 16005. | Hindu - ethnic category 2001 census   South Asian   Other Asian |
+        +-----------------------------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +-----------------------------------+
+        |  term          eth5         eth16 |
+        |-----------------------------------|
+ 33729. | Hindu   South Asian   Other Asian |
+        +-----------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +--------------------------------------+
+        |     term          eth5         eth16 |
+        |--------------------------------------|
+ 49436. | Nepalese   South Asian   Other Asian |
+        +--------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +----------------------------------+
+        | term          eth5         eth16 |
+        |----------------------------------|
+156898. | Sikh   South Asian   Other Asian |
+        +----------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +--------------------------------------------+
+        |           term          eth5         eth16 |
+        |--------------------------------------------|
+176230. | Advaitin Hindu   South Asian   Other Asian |
+        +--------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +----------------------------------------------+
+        |             term          eth5         eth16 |
+        |----------------------------------------------|
+176477. | Arya Samaj Hindu   South Asian   Other Asian |
+        +----------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +---------------------------------------------+
+        |            term          eth5         eth16 |
+        |---------------------------------------------|
+177189. | Vaishnava Hindu   South Asian   Other Asian |
+        +---------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +--------------------------------------+
+        |     term          eth5         eth16 |
+        |--------------------------------------|
+196303. | Hinduism   South Asian   Other Asian |
+        +--------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +-------------------------------------+
+        |    term          eth5         eth16 |
+        |-------------------------------------|
+201131. | Sikhism   South Asian   Other Asian |
+        +-------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +----------------------------------------------------------------+
+        |                               term          eth5         eth16 |
+        |----------------------------------------------------------------|
+234482. | Sikh - ethnic category 2001 census   South Asian   Other Asian |
+        +----------------------------------------------------------------+
+
+. 
+. local whiteother "250227018 286008019 713761000000111 714141000000111 2691976017"
+
+. foreach code of local whiteother {
+  2.         
+.         replace eth5 = 1 if medcodeid == "`code'"
+  3.         replace eth16 = 3 if medcodeid == "`code'"
+  4.         list term eth5 eth16 if medcodeid == "`code'"
+  5. }
+(0 real changes made)
+(1 real change made)
+
+        +-----------------------------------------+
+        |              term    eth5         eth16 |
+        |-----------------------------------------|
+ 33696. | Australian origin   White   Other White |
+        +-----------------------------------------+
+(0 real changes made)
+(0 real changes made)
+
+        +------------------------------+
+        |   term    eth5         eth16 |
+        |------------------------------|
+ 63278. | Pakeha   White   Other White |
+        +------------------------------+
+(0 real changes made)
+(1 real change made)
+
+        +--------------------------------------+
+        |           term    eth5         eth16 |
+        |--------------------------------------|
+157242. | Greek Catholic   White   Other White |
+        +--------------------------------------+
+(0 real changes made)
+(1 real change made)
+
+        +------------------------------------------+
+        |               term    eth5         eth16 |
+        |------------------------------------------|
+157272. | Ukrainian Catholic   White   Other White |
+        +------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +-----------------------------------------+
+        |              term    eth5         eth16 |
+        |-----------------------------------------|
+176768. | Armenian Catholic   White   Other White |
+        +-----------------------------------------+
+
+. 
+. local blackcarribean "250231012"
+
+. foreach code of local blackcarribean {
+  2.         
+.         replace eth5 = 3 if medcodeid == "`code'"
+  3.         replace eth16 = 12 if medcodeid == "`code'"
+  4.         list term eth5 eth16 if medcodeid == "`code'"
+  5. }
+(1 real change made)
+(1 real change made)
+
+        +----------------------------------------+
+        |               term    eth5       eth16 |
+        |----------------------------------------|
+ 33702. | West Indian origin   Black   Caribbean |
+        +----------------------------------------+
+
+. 
+. local otherchinese "713491000000110"
+
+. foreach code of local otherchinese {
+  2.         
+.         replace eth5 = 4 if medcodeid == "`code'"
+  3.         replace eth16 = 15 if medcodeid == "`code'"
+  4.         list term eth5 eth16 if medcodeid == "`code'"
+  5. }
+(0 real changes made)
+(1 real change made)
+
+        +-------------------------------------------------+
+        |                          term    eth5     eth16 |
+        |-------------------------------------------------|
+157209. | Chinese Evangelical Christian   Other   Chinese |
+        +-------------------------------------------------+
+
+. 
+. local otherother "1573191000006117 250225014 250226010 2849971000006118 196661000006114 196701000006118 3748491000006113"
+
+. foreach code of local otherother {
+  2.         
+.         replace eth5 = 4 if medcodeid == "`code'"
+  3.         replace eth16 = 16 if medcodeid == "`code'"
+  4.         list term eth5 eth16 if medcodeid == "`code'"
+  5. }
+(0 real changes made)
+(1 real change made)
+
+        +----------------------------------------+
+        |      term    eth5                eth16 |
+        |----------------------------------------|
+ 30268. | Brazilian   Other   Other ethnic group |
+        +----------------------------------------+
+(0 real changes made)
+(1 real change made)
+
+        +----------------------------------------------------+
+        |                  term    eth5                eth16 |
+        |----------------------------------------------------|
+ 33694. | North American origin   Other   Other ethnic group |
+        +----------------------------------------------------+
+(0 real changes made)
+(1 real change made)
+
+        +----------------------------------------------------+
+        |                  term    eth5                eth16 |
+        |----------------------------------------------------|
+ 33695. | South American origin   Other   Other ethnic group |
+        +----------------------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +------------------------------------------+
+        |        term    eth5                eth16 |
+        |------------------------------------------|
+ 89920. | Indonesians   Other   Other ethnic group |
+        +------------------------------------------+
+(0 real changes made)
+(1 real change made)
+
+        +---------------------------------------+
+        |     term    eth5                eth16 |
+        |---------------------------------------|
+170590. | Japanese   Other   Other ethnic group |
+        +---------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +---------------------------------------+
+        |     term    eth5                eth16 |
+        |---------------------------------------|
+170786. | Oriental   Other   Other ethnic group |
+        +---------------------------------------+
+(1 real change made)
+(1 real change made)
+
+        +----------------------------------------+
+        |      term    eth5                eth16 |
+        |----------------------------------------|
+215423. | Filipinos   Other   Other ethnic group |
+        +----------------------------------------+
+
+. 
+. local remove "6260901000006118 459785017"
+
+. foreach code of local remove {
+  2.         
+.         list term eth5 eth16 if medcodeid == "`code'"
+  3.         drop if medcodeid == "`code'"
+  4. }
+
+        +------------------------------+
+        |         term    eth5   eth16 |
+        |------------------------------|
+156399. | Ethnic group   Other       . |
+        +------------------------------+
+(1 observation deleted)
+
+        +-------------------------------------------+
+        |         term    eth5                eth16 |
+        |-------------------------------------------|
+158424. | Ethnic group   Other   Other ethnic group |
+        +-------------------------------------------+
+(1 observation deleted)
+
+. 
+. 
 . // STEP 1. IDENTIFY SEARCH TERMS
 . //===============================
 . 
-. // WE AREN'T DOING OUR OWN SEARCH, JUST USING PRE-EXISTING LISTS
+. // JUST AMALGAMATING/MODIFIYING EXISTING LISTS; NO SEARCH REQUIRED
 . keep if external_codelist == 1
 (240,657 observations deleted)
 
@@ -2079,7 +2357,7 @@ Leaving as is...
   variable snomedctconceptid was str18 now str16
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str142
-  (32,946 bytes saved)
+  (32,742 bytes saved)
 
 . 
 . // **Define search terms below. Use multiple local macros if categorising desired codes in to multiple categories make more sense**
@@ -2160,7 +2438,7 @@ Leaving as is...
 > 
 > replace exclude = 1 if /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/
 > drop if exclude == 1 & external_codelist != 1
-> //drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*//**/
+> //drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/
 > count
 > compress
 > 
@@ -2243,18 +2521,18 @@ snomedctconceptid                                                               
 
                   Type: String (str16)
 
-         Unique values: 298                       Missing "": 0/323
+         Unique values: 297                       Missing "": 0/321
 
               Examples: "186022004"
-                        "31637002"
-                        "86461000000107"
+                        "315635008"
+                        "88911000000101"
                         "94031000000102"
 
 . assert !missing(snomedctconceptid)
 
 . 
 . count
-  323
+  321
 
 . 
 . //Make a note of current list
@@ -2267,7 +2545,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_00000b.tmp saved as .dta format
+file C:\Users\rmjlton\AppData\Local\Temp\ST_6a40_000009.tmp saved as .dta format
 
 . restore
 
@@ -2276,7 +2554,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_00000b.tmp saved as .dta format
 . keep snomedctconceptid /**/eth5 eth16/**/
 
 . bysort snomedctconceptid: keep if _n == 1
-(25 observations deleted)
+(24 observations deleted)
 
 . 
 . //Merge with original search results
@@ -2286,7 +2564,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_00000b.tmp saved as .dta format
     Result                      Number of obs
     -----------------------------------------
     Not matched                             0
-    Matched                               334  
+    Matched                               333  
     -----------------------------------------
 
 . compress
@@ -2295,7 +2573,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_00000b.tmp saved as .dta format
   variable originalreadcode was str19 now str13
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str142
-  (34,068 bytes saved)
+  (33,966 bytes saved)
 
 . merge 1:1 medcodeid using `original', nogenerate
 (label eth16 already defined)
@@ -2303,11 +2581,11 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_3bf0_00000b.tmp saved as .dta format
 
     Result                      Number of obs
     -----------------------------------------
-    Not matched                            11
-        from master                        11  
+    Not matched                            12
+        from master                        12  
         from using                          0  
 
-    Matched                               323  
+    Matched                               321  
     -----------------------------------------
 
 . order medcodeid observations originalreadcode cleansedreadcode ///
@@ -2333,34 +2611,48 @@ New terms found for: eth5
      +---------------------------------------------------------------------------------------+
      | snomedctconce~d   originalrea~e                                                  term |
      |---------------------------------------------------------------------------------------|
- 84. | 368051000000100   ^ESCTBR811943               British Israelite, follower of religion |
-101. | 368191000000107   ^ESCTGR811974                  Greek Catholic, follower of religion |
-102. | 368311000000101   ^ESCTUK811999              Ukrainian Catholic, follower of religion |
-287. |       427963008   ^ESCTAD708142                  Advaitin Hindu, follower of religion |
-288. |       428347009   ^ESCTAR708714                Arya Samaj Hindu, follower of religion |
+ 87. |       428816005   ^ESCTAR709412               Armenian Catholic, follower of religion |
+ 89. | 368051000000100   ^ESCTBR811943               British Israelite, follower of religion |
+ 96. | 368191000000107   ^ESCTGR811974                  Greek Catholic, follower of religion |
+104. | 368311000000101   ^ESCTUK811999              Ukrainian Catholic, follower of religion |
+159. |       427963008   ^ESCTAD708142                  Advaitin Hindu, follower of religion |
      |---------------------------------------------------------------------------------------|
-289. |       428816005   ^ESCTAR709412               Armenian Catholic, follower of religion |
-290. | 368101000000100   ^ESCTCH811955   Chinese Evangelical Christian, follower of religion |
-293. |       160545000   ^ESCTHI453278                           Hindu, follower of religion |
-295. |        67929006   ^ESCTSI360508                                         Sikh religion |
-296. |       366740002   ^ESCTSI629668                            Sikh, follower of religion |
+160. |       428347009   ^ESCTAR708714                Arya Samaj Hindu, follower of religion |
+162. |       160545000   ^ESCTHI453278                           Hindu, follower of religion |
+165. |        67929006   ^ESCTSI360508                                         Sikh religion |
+166. |       366740002   ^ESCTSI629668                            Sikh, follower of religion |
+167. |       429511004   ^ESCTVA710449                 Vaishnava Hindu, follower of religion |
      |---------------------------------------------------------------------------------------|
-297. |       429511004   ^ESCTVA710449                 Vaishnava Hindu, follower of religion |
+230. | 368101000000100   ^ESCTCH811955   Chinese Evangelical Christian, follower of religion |
+245. |       372148003             9SJ                                          Ethnic group |
      +---------------------------------------------------------------------------------------+
 New terms found for: eth16
 
-     +---------------------------------------------------------------------------+
-     | snomedctconce~d   originalrea~e                                      term |
-     |---------------------------------------------------------------------------|
- 84. | 368051000000100   ^ESCTBR811943   British Israelite, follower of religion |
-     +---------------------------------------------------------------------------+
+     +---------------------------------------------------------------------------------------+
+     | snomedctconce~d   originalrea~e                                                  term |
+     |---------------------------------------------------------------------------------------|
+ 87. |       428816005   ^ESCTAR709412               Armenian Catholic, follower of religion |
+ 89. | 368051000000100   ^ESCTBR811943               British Israelite, follower of religion |
+ 96. | 368191000000107   ^ESCTGR811974                  Greek Catholic, follower of religion |
+104. | 368311000000101   ^ESCTUK811999              Ukrainian Catholic, follower of religion |
+159. |       427963008   ^ESCTAD708142                  Advaitin Hindu, follower of religion |
+     |---------------------------------------------------------------------------------------|
+160. |       428347009   ^ESCTAR708714                Arya Samaj Hindu, follower of religion |
+162. |       160545000   ^ESCTHI453278                           Hindu, follower of religion |
+165. |        67929006   ^ESCTSI360508                                         Sikh religion |
+166. |       366740002   ^ESCTSI629668                            Sikh, follower of religion |
+167. |       429511004   ^ESCTVA710449                 Vaishnava Hindu, follower of religion |
+     |---------------------------------------------------------------------------------------|
+230. | 368101000000100   ^ESCTCH811955   Chinese Evangelical Christian, follower of religion |
+245. |       372148003             9SJ                                          Ethnic group |
+     +---------------------------------------------------------------------------------------+
 
 . 
 . //Check new codes in the context of originally included SNOMED CT Concept ID codes
 . preserve
 
 .         keep if new_snomedct_synonym == 1
-(323 observations deleted)
+(321 observations deleted)
 
 .         keep snomedctconceptid
 
@@ -2369,7 +2661,7 @@ New terms found for: eth16
 
 . 
 .         count
-  11
+  12
 
 .         local obs = r(N)
 
@@ -2398,92 +2690,113 @@ New terms found for: eth16
   4. }
 SNOMED CT Concept ID for which additional terms where found: 160545000
 
-     +-------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                          term   new_sn~m    eth5   eth16 |
-     |-------------------------------------------------------------------------------------------|
-278. |        250268010            1358                         Hindu          0   Other       . |
-293. | 4532781000006115   ^ESCTHI453278   Hindu, follower of religion          1   Other       . |
-     +-------------------------------------------------------------------------------------------+
+     +-------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                          term   new_sn~m          eth5         eth16 |
+     |-------------------------------------------------------------------------------------------------------|
+131. |        250268010            1358                         Hindu          0   South Asian   Other Asian |
+162. | 4532781000006115   ^ESCTHI453278   Hindu, follower of religion          1   South Asian   Other Asian |
+     +-------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 366740002
 
-     +------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                         term   new_sn~m    eth5   eth16 |
-     |------------------------------------------------------------------------------------------|
-279. |        490271012            135B                         Sikh          0   Other       . |
-296. | 6296681000006115   ^ESCTSI629668   Sikh, follower of religion          1   Other       . |
-     +------------------------------------------------------------------------------------------+
+     +------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                         term   new_sn~m          eth5         eth16 |
+     |------------------------------------------------------------------------------------------------------|
+132. |        490271012            135B                         Sikh          0   South Asian   Other Asian |
+166. | 6296681000006115   ^ESCTSI629668   Sikh, follower of religion          1   South Asian   Other Asian |
+     +------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 368051000000100
 
      +-------------------------------------------------------------------------------------------------------------+
      |        medcodeid   originalrea~e                                      term   new_sn~m    eth5         eth16 |
      |-------------------------------------------------------------------------------------------------------------|
- 28. |  713341000000111            13y6                         British Israelite          0   White   Other White |
- 84. | 8119431000006119   ^ESCTBR811943   British Israelite, follower of religion          1   White   Other White |
+ 29. |  713341000000111            13y6                         British Israelite          0   White   Other White |
+ 89. | 8119431000006119   ^ESCTBR811943   British Israelite, follower of religion          1   White   Other White |
      +-------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 368101000000100
 
-     +-------------------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                                  term   new_sn~m    eth5   eth16 |
-     |-------------------------------------------------------------------------------------------------------------------|
-280. |  713491000000110            13yp                         Chinese Evangelical Christian          0   Other       . |
-290. | 8119551000006110   ^ESCTCH811955   Chinese Evangelical Christian, follower of religion          1   Other       . |
-     +-------------------------------------------------------------------------------------------------------------------+
+     +---------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                  term   new_sn~m    eth5     eth16 |
+     |---------------------------------------------------------------------------------------------------------------------|
+223. |  713491000000110            13yp                         Chinese Evangelical Christian          0   Other   Chinese |
+230. | 8119551000006110   ^ESCTCH811955   Chinese Evangelical Christian, follower of religion          1   Other   Chinese |
+     +---------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 368191000000107
 
-     +----------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                   term   new_sn~m    eth5   eth16 |
-     |----------------------------------------------------------------------------------------------------|
- 99. |  713761000000111            13yY                         Greek Catholic          0   White       . |
-101. | 8119741000006115   ^ESCTGR811974   Greek Catholic, follower of religion          1   White       . |
-     +----------------------------------------------------------------------------------------------------+
+     +----------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                   term   new_sn~m    eth5         eth16 |
+     |----------------------------------------------------------------------------------------------------------|
+ 30. |  713761000000111            13yY                         Greek Catholic          0   White   Other White |
+ 96. | 8119741000006115   ^ESCTGR811974   Greek Catholic, follower of religion          1   White   Other White |
+     +----------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 368311000000101
 
-     +--------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                       term   new_sn~m    eth5   eth16 |
-     |--------------------------------------------------------------------------------------------------------|
-100. |  714141000000111            13z5                         Ukrainian Catholic          0   White       . |
-102. | 8119991000006114   ^ESCTUK811999   Ukrainian Catholic, follower of religion          1   White       . |
-     +--------------------------------------------------------------------------------------------------------+
+     +--------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                       term   new_sn~m    eth5         eth16 |
+     |--------------------------------------------------------------------------------------------------------------|
+ 32. |  714141000000111            13z5                         Ukrainian Catholic          0   White   Other White |
+104. | 8119991000006114   ^ESCTUK811999   Ukrainian Catholic, follower of religion          1   White   Other White |
+     +--------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 372148003
+
+     +-------------------------------------------------------------------------------------------+
+     | medcodeid   origin~e                         term   new_sn~m    eth5                eth16 |
+     |-------------------------------------------------------------------------------------------|
+245. | 459785017        9SJ                 Ethnic group          1   Other   Other ethnic group |
+255. | 286017019       9T1A   Other Pacific ethnic group          0   Other   Other ethnic group |
+     +-------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 427963008
 
-     +----------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                   term   new_sn~m    eth5   eth16 |
-     |----------------------------------------------------------------------------------------------------|
-283. |       2694381019            13zf                         Advaitin Hindu          0   Other       . |
-287. | 7081421000006118   ^ESCTAD708142   Advaitin Hindu, follower of religion          1   Other       . |
-     +----------------------------------------------------------------------------------------------------+
+     +----------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                   term   new_sn~m          eth5         eth16 |
+     |----------------------------------------------------------------------------------------------------------------|
+134. |       2694381019            13zf                         Advaitin Hindu          0   South Asian   Other Asian |
+159. | 7081421000006118   ^ESCTAD708142   Advaitin Hindu, follower of religion          1   South Asian   Other Asian |
+     +----------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 428347009
 
-     +------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                     term   new_sn~m    eth5   eth16 |
-     |------------------------------------------------------------------------------------------------------|
-284. |       2692541014            13zg                         Arya Samaj Hindu          0   Other       . |
-288. | 7087141000006111   ^ESCTAR708714   Arya Samaj Hindu, follower of religion          1   Other       . |
-     +------------------------------------------------------------------------------------------------------+
+     +------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                     term   new_sn~m          eth5         eth16 |
+     |------------------------------------------------------------------------------------------------------------------|
+135. |       2692541014            13zg                         Arya Samaj Hindu          0   South Asian   Other Asian |
+160. | 7087141000006111   ^ESCTAR708714   Arya Samaj Hindu, follower of religion          1   South Asian   Other Asian |
+     +------------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 428816005
 
-     +-------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                      term   new_sn~m    eth5   eth16 |
-     |-------------------------------------------------------------------------------------------------------|
-281. |       2691976017            13z4                         Armenian Catholic          0   Other       . |
-289. | 7094121000006112   ^ESCTAR709412   Armenian Catholic, follower of religion          1   Other       . |
-     +-------------------------------------------------------------------------------------------------------+
+     +-------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                      term   new_sn~m    eth5         eth16 |
+     |-------------------------------------------------------------------------------------------------------------|
+ 31. |       2691976017            13z4                         Armenian Catholic          0   White   Other White |
+ 87. | 7094121000006112   ^ESCTAR709412   Armenian Catholic, follower of religion          1   White   Other White |
+     +-------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 429511004
 
-     +-----------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                    term   new_sn~m    eth5   eth16 |
-     |-----------------------------------------------------------------------------------------------------|
-282. |       2692313014            13zb                         Vaishnava Hindu          0   Other       . |
-297. | 7104491000006111   ^ESCTVA710449   Vaishnava Hindu, follower of religion          1   Other       . |
-     +-----------------------------------------------------------------------------------------------------+
+     +-----------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                    term   new_sn~m          eth5         eth16 |
+     |-----------------------------------------------------------------------------------------------------------------|
+133. |       2692313014            13zb                         Vaishnava Hindu          0   South Asian   Other Asian |
+167. | 7104491000006111   ^ESCTVA710449   Vaishnava Hindu, follower of religion          1   South Asian   Other Asian |
+     +-----------------------------------------------------------------------------------------------------------------+
 SNOMED CT Concept ID for which additional terms where found: 67929006
 
-     +-----------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e            term   new_sn~m    eth5   eth16 |
-     |-----------------------------------------------------------------------------|
-294. | 3605071000006112   ^ESCTSI360507         Sikhism          0   Other       . |
-295. | 3605081000006110   ^ESCTSI360508   Sikh religion          1   Other       . |
-     +-----------------------------------------------------------------------------+
+     +-----------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e            term   new_sn~m          eth5         eth16 |
+     |-----------------------------------------------------------------------------------------|
+164. | 3605071000006112   ^ESCTSI360507         Sikhism          0   South Asian   Other Asian |
+165. | 3605081000006110   ^ESCTSI360508   Sikh religion          1   South Asian   Other Asian |
+     +-----------------------------------------------------------------------------------------+
+
+. 
+. //Any corrections
+. list if medcodeid == "459785017"
+
+     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     | medcodeid   observ~s   origin~e   cleans~e   snome~tid   snomed~nid           term                eth16    eth5   lsh~2102   lsh~2414   lsh~4214   oc_ope~y   new_sn~m |
+     |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+245. | 459785017     100000        9SJ    9SJ..00   372148003   1210724015   Ethnic group   Other ethnic group   Other          .          .          .          .          1 |
+     +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. drop if medcodeid == "459785017"
+(1 observation deleted)
 
 . 
 . 
@@ -2565,10 +2878,10 @@ SNOMED CT Concept ID for which additional terms where found: 67929006
 . //Save clinican approved codelist
 . gsort /**/eth5 eth16/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
 
-. //drop new_snomedct_synonym /*codestatus*/ /*`clinician'*/
+. drop new_snomedct_synonym /*codestatus*/ /*`clinician'*/
+
 . compress
-  variable new_snomedct_synonym was float now byte
-  (1,002 bytes saved)
+  (0 bytes saved)
 
 . save `filename', replace
 file ethnicity.dta saved
@@ -2599,7 +2912,9 @@ file ethnicity.csv saved
 
 . local date_approved = . //year, month
 
-. local notes "An amalgamation of codelists created by Rohini Mathur and colleagues. I removed 'Not Stated' codes. Created for PRIORITY study."
+. local notes "The ethnicity categories defined in the 2001 Census: https://www.ethnicity-facts-figures.service.gov.uk/style-guide/ethnic-groups/#2001-census. Rationale being t
+> hat NHS Data Model and Dictionary still uses 2001 Census categories. See: https://github.com/opensafely/codelist-development/issues/126. An amalgamation of codelists created 
+> by Rohini Mathur and colleagues with some corrections I felt were necessary. 'Not Stated' codes were removed. Created for PRIORITY study."
 
 . local keywords ""
 
@@ -2644,7 +2959,7 @@ variable v1 was str9 now str21
 (0 real changes made)
 
 . replace v1 = "`notes'" in 9
-variable v1 was str21 now str127
+variable v1 was str21 now str472
 (1 real change made)
 
 . replace v1 = "`keywords'" in 10
@@ -2680,5 +2995,5 @@ file ethnicity.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton\GitHub\priority\codelists\ethnicity.log
   log type:  text
- closed on:  18 Feb 2025, 04:17:09
+ closed on:  18 Feb 2025, 21:48:24
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
