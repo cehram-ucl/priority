@@ -22,7 +22,10 @@ save _master_codelist, replace
 // MYOCARDIAL INFARCTION
 use myocardial_infarction, clear
 
-keep medcodeid mi
+rename prevalent mi_prevalent
+rename incident mi_incident
+
+keep medcodeid mi mi_prevalent mi_incident
 
 //Compact version
 save compact/myocardial_infarction, replace
@@ -35,7 +38,10 @@ save _master_codelist, replace
 // STROKE
 use stroke, clear
 
-keep medcodeid stroke
+rename prevalent stroke_prevalent
+rename incident stroke_incident
+
+keep medcodeid stroke stroke_prevalent stroke_incident
 
 //Compact version
 save compact/stroke, replace
@@ -48,7 +54,10 @@ save _master_codelist, replace
 // ISCHAEMIC HEART DISEASE
 use ischaemic_heart_disease, clear
 
-keep medcodeid ihd
+rename prevalent ihd_prevalent
+rename incident ihd_incident
+
+keep medcodeid ihd ihd_prevalent ihd_incident
 
 //Compact version
 save compact/ischaemic_heart_disease, replace
