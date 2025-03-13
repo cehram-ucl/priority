@@ -303,16 +303,84 @@ drop if _merge == 2
 drop _merge
 
 
-// STEP 7. SAVE AND EXPORT CODELIST
-//==================================
+// STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
+//===================================================
+
 drop bnf0402*  //these only label the codes with BNF codes so aren't perfect
-gsort -drugissues dmdid
+gsort /**/antipsychotic_medication/**/ -drugissues dmdid
 compress
 save `filename', replace
+export excel `filename'_raw.xlsx, firstrow(variables) replace
+
+//Format Excel file using Python
+python:
+from openpyxl import load_workbook, Workbook
+
+excel_file = "`filename'_raw.xlsx"
+
+wb = load_workbook(excel_file)
+ws = wb.active
+
+# Freeze top row
+ws.freeze_panes = 'A2'
+
+# Auto-size column widths
+for column in ws.columns:
+	max_length = 0
+	column_letter = column[0].column_letter
+
+	for cell in column:
+		try:
+			if len(str(cell.value)) > max_length:
+				max_length = len(cell.value)
+		except:
+			pass
+
+	adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+	ws.column_dimensions[column_letter].width = adjusted_width
+
+wb.save(excel_file)
+end
+/*
+Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+
+e.g. codelist_raw_ABC.xlsx
+*/
+
+
+// STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
+//===================================================================
+/*
+//Load clinician classifications
+local clinician "ABC"
+
+import excel `filename'_raw_`clinician', firstrow clear
+
+//Remerge with original in case of any formatting issues with Excel spreadsheet
+keep medcodeid `clinician'
+
+tempfile `clinician'_classification
+save ``clinician'_classification'
+
+use `filename', clear
+
+merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+recode `clinician' (. = 0)
+
+//Remove codes marked for exclusion by clinician
+display "Terms excluded by clinician..."
+list medcodeid snomedctconceptid term if `clinician' == 0
+drop if `clinician' == 0
+
+//Save clinican approved codelist
+gsort /**/antipsychotic_medication/**/ -drugissues dmdid
+drop `clinician'
+compress
+save `filename', replace*/
 export delimited `filename', replace quote
 
 
-// STEP 8. GENERATE METADATA FILE
+// STEP 9. GENERATE METADATA FILE
 //================================
 
 //=**Update details here, everything else is automated**========================
@@ -325,7 +393,7 @@ local author "Philip Stone"
 local date = ym(2025, 3)  //year, month
 local clinical_reviewer ""
 local date_approved = . //ym(2025, 3)  //year, month
-local notes "Not reviewed by a clinician. Created for PRIORITY study"
+local notes "Created for PRIORITY study"
 local keywords "amisulpride aripiprazole benperidol cariprazine chlorpromazine chlorprothixene clozapine droperidol flupentixol fluphenazine haloperidol levomepromazine loxapine lurasidone melperone olanzapine oxypertine paliperidone pericyazine perphenazine pimozide promazine quetiapine risperidone sertindole sulpiride thioridazine trifluoperazine ziprasidone zotepine zuclopenthixol pipotiazine asenapine"
 //==============================================================================
 
