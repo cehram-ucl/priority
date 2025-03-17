@@ -8,6 +8,7 @@
 - Exclude:
 	- Practice doesn't meet quality standards
 	- Outcome before initiation of antipsychotic medication
+ 	- Dementia diagnosis?
 
 ## Exposure
 First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with no previous treatment records (no previous prescriptions or any code that could indicate treatment for SMI)
