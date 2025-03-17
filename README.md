@@ -37,7 +37,13 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 
 ## Codelists
 
-### Medication codes (should all already be inside DSH):
+### Medication codes
+
+| Codelist | Validated codelist? | Repository codelists? | Creation script | Finished codelist | Complete? |
+| --- | :-: | :-: | :-: | :-: | :-: |
+| Antipsychotics | ❌ | ✔️ | [antipsychotics.do](codelists/antipsychotics.do) | [antipsychotics.csv](codelists/antipsychotics.csv) | ❌ Clinical review required |
+| Statins |  |  |  |  |  |
+| Antihypertensives |  |  |  |  |  |
 
 #### Antipsychotics
 1. PubMed validated codelist search:
@@ -66,9 +72,6 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [antipsychotics.csv](codelists/antipsychotics.csv)
 
-#### Statins
-
-#### Antihypertensives
 
 ### Descriptive codes:
 
