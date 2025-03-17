@@ -37,7 +37,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 
 ## Codelists
 
-### Medication codes
+### Product codes
 
 | Codelist | Validated codelist? | Repository codelists? | Creation script | Finished codelist | Complete? |
 | --- | :-: | :-: | :-: | :-: | :-: |
@@ -73,7 +73,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
     - [antipsychotics.csv](codelists/antipsychotics.csv)
 
 
-### Descriptive codes:
+### Medical codes (description)
 
 #### Severe mental illness
 - Definition inside DSH [Yes]
@@ -317,7 +317,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 4. Finished codelist:
     - [ethnicity.csv](codelists/ethnicity.csv)
 
-### Value codes:
+### Medical codes (value)
 
 #### Cholesterol (broadened from low-density lipoprotein cholesterol (LDL-C)) [yes]
 1. PubMed validated codelist search:
