@@ -37,12 +37,37 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 ## Codelists
 
 ### Medication codes (should all already be inside DSH):
-- Olanzapine [No]
-- Risperidone [No]
-- Quetiapine [No]
-- Other antipsychotic medication [?]
-- Statin medication [Yes]
-- Antihypertensive medication [Yes]
+
+#### Antipsychotics
+1. PubMed validated codelist search:
+    - Search: "antipsychotics validated (CPRD OR SNOMED CT)"
+    - 1 results
+    - no validated codelists found
+2. Repository codelist search:
+    - HDR UK Phenotype library:
+      - Search: "antipsychotics"
+      - 55 results
+      - No suitable codelists
+    - LSHTM Data Compass:
+      - Search: "antipsychotics codelist"
+      - 4 results
+      - 3 suitable codelists?:
+        - https://www.opencodelists.org/codelist/opensafely/first-generation-antipsychotics-excluding-long-acting-depots-dmd/1e9b227c/
+        - https://www.opencodelists.org/codelist/opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11/
+        - https://www.opencodelists.org/codelist/opensafely/long-acting-injectable-and-depot-antipsychotics-dmd/536cc8dc/
+    - OpenCodelists:
+      - Search "antipsychotics"
+      - 12 results
+      - 1 suitable codelists:
+        - https://datacompass.lshtm.ac.uk/id/eprint/2796/
+3. Codelist creation script:
+    - [antipsychotics.do](codelists/antipsychotics.do)
+4. Finished codelist:
+    - [antipsychotics.csv](codelists/antipsychotics.csv)
+
+#### Statins
+
+#### Antihypertensives
 
 ### Descriptive codes:
 
