@@ -194,7 +194,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 3. Codelist creation script:
     - [major_cardiovascular_surgery.do](codelists/major_cardiovascular_surgery.do)
 4. Finished codelist:
-    - [major_cardiovascular_surgery.csv](codelists/major_cardiovascular_surgery.csv)
+    - [major_cardiovascular_surgery.csv](codelists/major_cardiovascular_surgery.csv) **("Prevalent only" codes removed for study.)**
 
 #### Smoking status [Yes]
 *Suggest using codelist from [Phil's COPD prevalence paper](https://doi.org/10.2147/COPD.S411739): [smoking_status.dta.csv](https://github.com/NHLI-Respiratory-Epi/COPD_prevalence/blob/main/codelists/CSV/smoking_status.dta.csv).*
