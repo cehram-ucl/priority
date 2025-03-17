@@ -1,19 +1,19 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\rmjlton\GitHub\priority\codelists\blood_pressure.log
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\blood_pressure.log
   log type:  text
- opened on:  30 Jan 2025, 18:47:35
+ opened on:  17 Mar 2025, 16:07:34
 
 . 
 . 
 . //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 . 
 . //*Directory of medical dictionary*
-. local browser_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
+. local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 . 
 . //*Directory of label lookups*
-. local lookup_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
+. local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 . 
 . //==============================================================================
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000001.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000001.tmp saved as .dta format
 
 . 
 . 
@@ -360,7 +360,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000003.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000003.tmp saved as .dta format
 
 . restore
 
@@ -682,7 +682,7 @@ diastolic_b |
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000006.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000006.tmp saved as .dta format
 
 . restore, preserve
 
@@ -708,7 +708,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000006.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000007.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000007.tmp saved as .dta format
 
 . restore
 
@@ -913,7 +913,7 @@ Terms on pre-existing list only...
 .         tempfile notindict
 
 .         save `notindict'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000009.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000009.tmp saved as .dta format
 
 . restore
 
@@ -1014,7 +1014,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_000009.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000b.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000b.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1040,7 +1040,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000b.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000c.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000c.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1067,7 +1067,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000c.tmp saved as .dta format
   (1,194 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000d.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000d.tmp saved as .dta format
 
 . restore, preserve
 
@@ -1093,7 +1093,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000d.tmp saved as .dta format
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000e.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000e.tmp saved as .dta format
 
 . restore
 
@@ -1132,7 +1132,7 @@ file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000e.tmp saved as .dta format
      +------------------------------------------------------------------------------+
      |                                    term                     term_refset_abpm |
      |------------------------------------------------------------------------------|
-105. | Ambulatory systolic BP (blood pressure)   Ambulatory systolic blood pressure |
+104. | Ambulatory systolic BP (blood pressure)   Ambulatory systolic blood pressure |
      +------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 (0 real changes made)
@@ -1162,58 +1162,58 @@ Terms on pre-existing list only...
      +-------------------------------------------------------------------------------------------------------+
      |                                      term                                              term_refset_bp |
      |-------------------------------------------------------------------------------------------------------|
- 17. | Decreased blood pressure, not hypotension                         Finding of decreased blood pressure |
- 20. |            Normal systolic blood pressure                           Normal systolic arterial pressure |
- 24. |            O/E-blood pressure reading NOS                     On examination - blood pressure reading |
- 25. |                      O/E - blood pressure                     On examination - blood pressure reading |
- 26. |              O/E - blood pressure reading                     On examination - blood pressure reading |
+ 18. | Decreased blood pressure, not hypotension                         Finding of decreased blood pressure |
+ 19. |            Normal systolic blood pressure                           Normal systolic arterial pressure |
+ 24. |                      O/E - blood pressure                     On examination - blood pressure reading |
+ 25. |                          O/E - BP reading                     On examination - blood pressure reading |
+ 26. |            O/E-blood pressure reading NOS                     On examination - blood pressure reading |
      |-------------------------------------------------------------------------------------------------------|
- 27. |                          O/E - BP reading                     On examination - blood pressure reading |
+ 28. |              O/E - blood pressure reading                     On examination - blood pressure reading |
  29. |                 O/E - BP reading very low            On examination - blood pressure reading very low |
  30. |                      O/E - BP reading low                 On examination - blood pressure reading low |
  31. |                   O/E - BP borderline low              On examination - blood pressure borderline low |
- 32. |                   O/E - BP reading normal              On examination - blood pressure reading normal |
+ 33. |                   O/E - BP reading normal              On examination - blood pressure reading normal |
      |-------------------------------------------------------------------------------------------------------|
  34. |                O/E - BP borderline raised           On examination - blood pressure borderline raised |
- 36. |                   O/E - BP reading raised              On examination - blood pressure reading raised |
+ 35. |                   O/E - BP reading raised              On examination - blood pressure reading raised |
  37. |                O/E - BP reading very high           On examination - blood pressure reading very high |
  39. | On examination - BP reading:postural drop      On examination - blood pressure reading: postural drop |
  40. |            O/E - BP reading:postural drop      On examination - blood pressure reading: postural drop |
      |-------------------------------------------------------------------------------------------------------|
  41. |                 O/E - Systolic BP reading            On examination - Systolic blood pressure reading |
- 42. |     On examination - Diastolic BP reading           On examination - Diastolic blood pressure reading |
- 43. |                O/E - Diastolic BP reading           On examination - Diastolic blood pressure reading |
+ 42. |                O/E - Diastolic BP reading           On examination - Diastolic blood pressure reading |
+ 43. |     On examination - Diastolic BP reading           On examination - Diastolic blood pressure reading |
  45. |                           O/E - BP stable                      On examination - blood pressure stable |
- 47. |              Lying blood pressure reading                                        Lying blood pressure |
+ 46. |              Lying blood pressure reading                                        Lying blood pressure |
      |-------------------------------------------------------------------------------------------------------|
- 48. |           Standing blood pressure reading                                     Standing blood pressure |
- 51. |            Sitting blood pressure reading                                      Sitting blood pressure |
+ 49. |           Standing blood pressure reading                                     Standing blood pressure |
+ 50. |            Sitting blood pressure reading                                      Sitting blood pressure |
  52. |            O/E - blood pressure decreased                   On examination - blood pressure decreased |
  53. |                           O/E - BP labile                      On examination - blood pressure labile |
  58. |                     O/E - initial high BP                On examination - initial high blood pressure |
      |-------------------------------------------------------------------------------------------------------|
- 59. |                       O/E - check high BP                  On examination - check high blood pressure |
- 69. |     High systolic arterial pulse pressure                        Increased systolic arterial pressure |
-105. |   Ambulatory systolic BP (blood pressure)                          Ambulatory systolic blood pressure |
+ 60. |                       O/E - check high BP                  On examination - check high blood pressure |
+ 68. |     High systolic arterial pulse pressure                        Increased systolic arterial pressure |
+104. |   Ambulatory systolic BP (blood pressure)                          Ambulatory systolic blood pressure |
 110. |                              Normotensive                                       Normal blood pressure |
-115. |          High diastolic arterial pressure                       Increased diastolic arterial pressure |
+116. |          High diastolic arterial pressure                       Increased diastolic arterial pressure |
      |-------------------------------------------------------------------------------------------------------|
 117. |                     Raised blood pressure                         Finding of increased blood pressure |
 118. |                   Elevated blood pressure                         Finding of increased blood pressure |
-122. |          Non-invasive mean blood pressure                         Non-invasive mean arterial pressure |
-124. |              MAP - Mean arterial pressure                         Non-invasive mean arterial pressure |
-138. |               Diastolic arterial pressure                                    Diastolic blood pressure |
+122. |              MAP - Mean arterial pressure                         Non-invasive mean arterial pressure |
+123. |          Non-invasive mean blood pressure                         Non-invasive mean arterial pressure |
+137. |               Diastolic arterial pressure                                    Diastolic blood pressure |
      |-------------------------------------------------------------------------------------------------------|
 152. |        O/E - BP reading: no postural drop   On examination - blood pressure reading: no postural drop |
 184. | Self measured BP (blood pressure) reading                        Self measured blood pressure reading |
 206. |             ABP - Arterial blood pressure                                     Arterial blood pressure |
-209. |             SBP - Systemic blood pressure                                     Systemic blood pressure |
+208. |             SBP - Systemic blood pressure                                     Systemic blood pressure |
 241. |                 Normal diastolic arterial                          Normal diastolic arterial pressure |
      |-------------------------------------------------------------------------------------------------------|
-242. |              MAP - Mean arterial pressure                                         Mean blood pressure |
-243. |                 MBP - Mean blood pressure                                         Mean blood pressure |
+242. |                 MBP - Mean blood pressure                                         Mean blood pressure |
+243. |              MAP - Mean arterial pressure                                         Mean blood pressure |
 256. |                   Systolic blood pressure                                  Systolic arterial pressure |
-262. |                       BP - Blood pressure                                              Blood pressure |
+263. |                       BP - Blood pressure                                              Blood pressure |
      +-------------------------------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 
@@ -1241,7 +1241,7 @@ Terms on pre-existing list only...
      |                                    term                           term_qof44 |
      |------------------------------------------------------------------------------|
 105. | Ambulatory systolic BP (blood pressure)   Ambulatory systolic blood pressure |
-258. |                 Systolic blood pressure           Systolic arterial pressure |
+257. |                 Systolic blood pressure           Systolic arterial pressure |
      +------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 (0 real changes made)
@@ -1307,7 +1307,7 @@ Terms on pre-existing list only...
 .         tempfile notindict
 
 .         save `notindict'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000g.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000g.tmp saved as .dta format
 
 . restore
 
@@ -1404,74 +1404,451 @@ file blood_pressure_raw.xlsx saved
 > */
 . 
 . 
-. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-. //=======================================================================================
+. // STEP 9. RESTRICT CODELIST TO CODES APPROVED BY A CLINICIAN AND SAVE
+. //=====================================================================
 . 
 . //Load clinician classifications
 . local clinician "CA"  //Christina Avgerinou
 
+. local sheets " "BP (value)" "Hypertension (code)" "Hypotension (code)" "Abnormal BP (code)" "Normal BP (code)" "Unsure" "
+
+. local firstsheet: word 1 of `sheets'
+
+. local count = 0
+
+. tempfile sheetlabels
+
 . 
-. import excel `filename'_raw_`clinician', firstrow clear sheet("BP (value)")
+. foreach sheet of local sheets {
+  2.         
+.         local count = `count'+1
+  3.         display "Reading worksheet: `sheet'"
+  4.         import excel `filename'_raw_`clinician', firstrow clear sheet("`sheet'")
+  5.         
+.         keep medcodeid
+  6.         generate byte `clinician' = 1
+  7.         generate byte bp_type = `count'
+  8.         
+.         if "`sheet'" != "`firstsheet'" {
+  9.                 do `sheetlabels'
+ 10.         }
+ 11.         label define bp_type `count' "`sheet'", add
+ 12.         label save using `sheetlabels', replace
+ 13.         
+.         tempfile clinician`count'
+ 14.         save `clinician`count''
+ 15. }
+Reading worksheet: BP (value)
 (12 vars, 58 obs)
+(file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp not found)
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000i.tmp saved as .dta format
+Reading worksheet: Hypertension (code)
+(12 vars, 13 obs)
+
+. label define bp_type 1 `"BP (value)"', modify
 
 . 
-. //Remerge with original in case of any formatting issues with Excel spreadsheet
-. keep medcodeid `clinician'
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000j.tmp saved as .dta format
+Reading worksheet: Hypotension (code)
+(12 vars, 4 obs)
+
+. label define bp_type 1 `"BP (value)"', modify
+
+. label define bp_type 2 `"Hypertension (code)"', modify
 
 . 
-. tempfile `clinician'_classification
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000k.tmp saved as .dta format
+Reading worksheet: Abnormal BP (code)
+(12 vars, 50 obs)
 
-. save ``clinician'_classification'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_1e60_00000h.tmp saved as .dta format
+. label define bp_type 1 `"BP (value)"', modify
+
+. label define bp_type 2 `"Hypertension (code)"', modify
+
+. label define bp_type 3 `"Hypotension (code)"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000l.tmp saved as .dta format
+Reading worksheet: Normal BP (code)
+(12 vars, 9 obs)
+
+. label define bp_type 1 `"BP (value)"', modify
+
+. label define bp_type 2 `"Hypertension (code)"', modify
+
+. label define bp_type 3 `"Hypotension (code)"', modify
+
+. label define bp_type 4 `"Abnormal BP (code)"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000m.tmp saved as .dta format
+Reading worksheet: Unsure
+(12 vars, 26 obs)
+
+. label define bp_type 1 `"BP (value)"', modify
+
+. label define bp_type 2 `"Hypertension (code)"', modify
+
+. label define bp_type 3 `"Hypotension (code)"', modify
+
+. label define bp_type 4 `"Abnormal BP (code)"', modify
+
+. label define bp_type 5 `"Normal BP (code)"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000n.tmp saved as .dta format
 
 . 
 . use `filename', clear
 
 . 
-. merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+. forvalues i = 1/`count' {
+  2.         
+.         merge 1:1 medcodeid using `clinician`i'', update replace
+  3.         list medcodeid term if _merge == 2
+  4.         drop if _merge == 2
+  5.         drop _merge
+  6. }
 
     Result                      Number of obs
     -----------------------------------------
     Not matched                           229
-        from master                       229  
-        from using                          0  
+        from master                       229  (_merge==1)
+        from using                          0  (_merge==2)
 
-    Matched                                58  
+    Matched                                58
+        not updated                        58  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           274
+        from master                       274  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                13
+        not updated                         0  (_merge==3)
+        missing updated                    13  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           283
+        from master                       283  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                 4
+        not updated                         0  (_merge==3)
+        missing updated                     4  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           237
+        from master                       237  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                50
+        not updated                         0  (_merge==3)
+        missing updated                    50  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           280
+        from master                       279  (_merge==1)
+        from using                          1  (_merge==2)
+
+    Matched                                 8
+        not updated                         0  (_merge==3)
+        missing updated                     8  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
     -----------------------------------------
 
+     +-----------------+
+     | medcod~d   term |
+     |-----------------|
+288. |        |        |
+     +-----------------+
+(1 observation deleted)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           261
+        from master                       261  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                26
+        not updated                         0  (_merge==3)
+        missing updated                    26  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+(0 observations deleted)
+
+. do `sheetlabels'
+
+. label define bp_type 1 `"BP (value)"', modify
+
+. label define bp_type 2 `"Hypertension (code)"', modify
+
+. label define bp_type 3 `"Hypotension (code)"', modify
+
+. label define bp_type 4 `"Abnormal BP (code)"', modify
+
+. label define bp_type 5 `"Normal BP (code)"', modify
+
+. label define bp_type 6 `"Unsure"', modify
+
+. 
+end of do-file
+
+. label values bp_type bp_type
+
+. tab bp_type, missing
+
+            bp_type |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+         BP (value) |         58       20.21       20.21
+Hypertension (code) |         13        4.53       24.74
+ Hypotension (code) |          4        1.39       26.13
+ Abnormal BP (code) |         50       17.42       43.55
+   Normal BP (code) |          8        2.79       46.34
+             Unsure |         26        9.06       55.40
+                  . |        128       44.60      100.00
+--------------------+-----------------------------------
+              Total |        287      100.00
+
+. list medcodeid term if bp_type == .
+
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                                                                                term |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+  6. |        1222392019                                                                                                        Normotensive |
+  7. |   125231000006119                                                                                               Standing Diastolic Bp |
+  8. |   125251000006114                                                                                                Standing Systolic Bp |
+  9. | 12619501000006118   Blood pressure measurement using oscillometric monitoring device with opportunistic atrial fibrillation detection |
+ 10. | 13935961000006111                                                             Arrhythmia-detection blood pressure ambulatory recorder |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 11. | 13949021000006118                                                                                  No postural drop in blood pressure |
+ 12. | 13954141000006110                                                                               Pulmonary arterial pressure increased |
+ 13. | 14332941000006114                                                      Level of postural drop in diastolic blood pressure on standing |
+ 14. |         144563017                                                                                             Arterial pulse pressure |
+ 18. |    15841000000115                                                                                            BP screen administration |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 19. |    15861000000119                                                                                         Blood pressure screen admin |
+ 20. |    15881000000111                                                                               Hypertension screening administration |
+ 21. |    15901000000114                                                                                      Hypertension screen admin. NOS |
+ 23. |  1751331000006119                                                                                            Blood pressure cuff size |
+ 24. |  1751341000006112                                                                                     Blood pressure cuff size, large |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 25. |  1751351000006114                                                                                  Blood pressure cuff size, standard |
+ 26. |  1751361000006111                                                                                Blood pressure cuff size, paediatric |
+ 27. |  1760931000000113                                                                                  Highest brachial systolic pressure |
+ 28. |        1780182014                                                                                    Standing systolic blood pressure |
+ 29. |        1780183016                                                                                   Standing diastolic blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 35. |  1916581000006119                                                                                     Highest ankle systolic pressure |
+ 36. |  1978701000006112                                                        Atrial fibrillation screen using BP monitor with AF detector |
+ 37. |  1978711000006110                                                                AF screen using BP monitor with AF detector abnormal |
+ 38. |  1978721000006119                                                                  AF screen using BP monitor with AF detector normal |
+ 43. |  2012461000006117                                                                       Self measured blood pressure reading required |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 47. |        2159157015                                                                                       Lying systolic blood pressure |
+ 48. |        2159158013                                                                                      Lying diastolic blood pressure |
+ 69. |         254077016                                                                                                     O/E - BP stable |
+ 70. |         254079018                                                                                        Lying blood pressure reading |
+ 71. |         254080015                                                                                     Standing blood pressure reading |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 73. |         254084012                                                                                      O/E - blood pressure decreased |
+ 77. |  2608391000006111                                                                                                 Mean blood pressure |
+ 78. |  2608401000006113                                                                                        MAP - Mean arterial pressure |
+ 79. |  2608411000006111                                                                                           MBP - Mean blood pressure |
+ 81. |  2610831000000111                                                                            Postoperative blood pressure measurement |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 82. |  2616321000000118                                                                                 Non-invasive central blood pressure |
+ 83. |  2616361000000114                                                                        Non-invasive central systolic blood pressure |
+ 84. |  2616401000000117                                                                       Non-invasive central diastolic blood pressure |
+ 90. |  2702921000006117                                                                                 Finding of decreased blood pressure |
+ 93. |  2725431000000119                                                           Level of reduction in systolic blood pressure on standing |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+ 94. |  2772091000006110                                                                   Arterial pressure monitoring, non-invasive method |
+ 98. |         283479012                                                                                              Conscious B.P. control |
+ 99. |         285657013                                                                                                BP screen - 1st call |
+100. |         285658015                                                                                                BP screen - 2nd call |
+101. |         285661019                                                                                                BP screen - 3rd call |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+102. |         285662014                                                                                            BP screen - call deleted |
+103. |         285666012                                                                                              BP screen - 2nd recall |
+104. |         285667015                                                                                              BP screen - 3rd recall |
+111. |  2916241000006112                                                                                    Increased mean arterial pressure |
+133. |  3188121000006118                                                                               Decreased diastolic arterial pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+144. |  4201861000006110                                                                                                             Systole |
+146. |  4201881000006117                                                                                                   Systole, function |
+147. |  4356341000006111                                                                                               Blood oxygen pressure |
+148. |  4432551000006111                                                                                           Blood pressure alteration |
+149. |         453931017                                                                                O/E - Arterial pressure index normal |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+150. |         453932012                                                                              O/E - Arterial pressure index abnormal |
+157. |  4556651000006118                                                                              On examination - blood pressure stable |
+158. |  4556671000006111                                                                                                Lying blood pressure |
+159. |  4556691000006112                                                                                             Standing blood pressure |
+161. |         456830011                                                                                  O/E - BP reading: no postural drop |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+163. |         458808015                                                                      Average night interval systolic blood pressure |
+167. |         458823013                                                                     Average night interval diastolic blood pressure |
+170. |         459379010                                                                                           Borderline blood pressure |
+171. |         460131015                                                                                      Target systolic blood pressure |
+172. |         460132010                                                                                     Target diastolic blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+175. |  4634791000006119                                                                          On examination - check high blood pressure |
+176. |  4660711000006111                                                                            Non-invasive diastolic arterial pressure |
+177. |  4722951000006111                                                                                    Conscious blood pressure control |
+178. |  4737611000006116                                                                                           BP screening - first call |
+179. |  4737641000006117                                                                                          BP screening - second call |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+180. |  4737671000006113                                                                                           BP screening - third call |
+181. |  4737701000006114                                                                                         BP screening - call deleted |
+182. |  4737751000006113                                                                                        BP screening - second recall |
+183. |  4737781000006117                                                                                         BP screening - third recall |
+184. |  4737811000006115                                                                                       BP screening - recall deleted |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+190. |   523861000006118                                                                                         BP screening - first recall |
+191. |   523921000006115                                                                                          BP screen - recall deleted |
+192. |  5289991000006115                                                                                  Pulmonary artery systolic pressure |
+193. |  5295021000006119                                                                             Non-invasive systolic arterial pressure |
+194. |  5295081000006115                                                                                Invasive diastolic arterial pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+195. |  5295101000006111                                                                                 Non-invasive mean arterial pressure |
+196. |  5295111000006114                                                                                        MAP - Mean arterial pressure |
+197. |  5295121000006118                                                                                    Non-invasive mean blood pressure |
+198. |  5295151000006110                                                                                      Non-invasive arterial pressure |
+200. |  5310261000006119                                                                                             Arterial pressure index |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+201. |  5310271000006114                                                                                       ABI - Arterial pressure index |
+202. |  5357861000006113                                                                                                       Peak systolic |
+203. |  5357871000006118                                                                                             Peak systolic, function |
+205. |  5390601000006118                                                                                 Non-invasive blood pressure monitor |
+206. |  5390611000006115                                                                                                        NIBP monitor |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+211. |  5527251000006111                                                                                               Stable blood pressure |
+214. |  5590371000006116                                                                                 Right ventricular systolic pressure |
+215. |  5590461000006117                                                                                  Left ventricular systolic pressure |
+216. |  5590481000006110                                                                     LVEDP - Left ventricular end-diastolic pressure |
+218. |  5889641000006111                                                                              Finding of pulmonary arterial pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+219. |  6046051000006119                                                                                     Minimum systolic blood pressure |
+220. |  6046061000006117                                                                                     Maximum systolic blood pressure |
+221. |  6046081000006110                                                                        Minimum day interval systolic blood pressure |
+222. |  6046091000006113                                                                      Minimum night interval systolic blood pressure |
+223. |  6046101000006119                                                                      Maximum night interval systolic blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+224. |  6046111000006116                                                                        Maximum day interval systolic blood pressure |
+225. |  6046141000006117                                                                             Minimum 24 hour systolic blood pressure |
+226. |  6046151000006115                                                                             Maximum 24 hour systolic blood pressure |
+227. |  6046181000006111                                                                                    Minimum diastolic blood pressure |
+228. |  6046191000006114                                                                                    Maximum diastolic blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+229. |  6046211000006110                                                                       Minimum day interval diastolic blood pressure |
+230. |  6046221000006119                                                                     Minimum night interval diastolic blood pressure |
+231. |  6046231000006116                                                                            Minimum 24 hour diastolic blood pressure |
+232. |  6046241000006114                                                                     Maximum night interval diastolic blood pressure |
+233. |  6046251000006111                                                                       Maximum day interval diastolic blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+234. |  6046261000006113                                                                            Maximum 24 hour diastolic blood pressure |
+245. |  6445081000006114                                                                                    Blood pressure taking management |
+246. |  6456641000006116                                                                                          Invasive arterial pressure |
+253. |  7077951000006116                                                                                             Blood pressure response |
+254. |  7328361000006117                                                Measurement of blood pressure at anterior tibial pulse using doppler |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+258. |  7615061000006110                                                             Post exercise systolic blood pressure response abnormal |
+259. |  7615071000006115                                                               Post exercise systolic blood pressure response normal |
+260. |  7830331000006112                                                                         Blood pressure cuff multichannel valve unit |
+262. |  7841941000006110                                                                                              Maximum blood pressure |
+263. |  7841951000006112                                                                                              Minimum blood pressure |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+272. |  8291621000006119                                                                                          Target mean blood pressure |
+273. |  8291631000006116                                                                                         Maximum mean blood pressure |
+278. |  8369461000006116                                            Measurement of blood pressure using large adult size blood pressure cuff |
+279. |  8369471000006111                                         Measurement of blood pressure using standard adult size blood pressure cuff |
+280. |  8369481000006114                                           Measurement of blood pressure using medium adult size blood pressure cuff |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+281. |  8369491000006112                                            Measurement of blood pressure using small adult size blood pressure cuff |
+282. |  8369501000006116                                             Measurement of blood pressure using paediatric size blood pressure cuff |
+284. |   856311000006119                                                                                             Sitting and standing BP |
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+
+. replace bp_type = 5 if medcodeid == "1222392019"  //should have been "Normal"
+(1 real change made)
+
+. replace `clinician' = 1 if medcodeid == "1222392019"
+(1 real change made)
+
+. tab bp_type, missing
+
+            bp_type |      Freq.     Percent        Cum.
+--------------------+-----------------------------------
+         BP (value) |         58       20.21       20.21
+Hypertension (code) |         13        4.53       24.74
+ Hypotension (code) |          4        1.39       26.13
+ Abnormal BP (code) |         50       17.42       43.55
+   Normal BP (code) |          9        3.14       46.69
+             Unsure |         26        9.06       55.75
+                  . |        127       44.25      100.00
+--------------------+-----------------------------------
+              Total |        287      100.00
+
+. 
 . recode `clinician' (. = 0)
-(229 changes made to CA)
+(127 changes made to CA)
 
 . 
 . //Remove codes marked for exclusion by clinician
 . display "Terms excluded by clinician..."
 Terms excluded by clinician...
 
+. count if `clinician' == 0
+  127
+
 . list medcodeid snomedctconceptid term if `clinician' == 0
 
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |         medcodeid   snomedctconcep~d                                                                                                                term |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  1. |  1009231000006116   1009231000006100                                                                                       24 hr blood pressure abnormal |
-  2. |  1009241000006114   1009241000006105                                                                                         24 hr blood pressure normal |
-  6. |        1222392019            2004005                                                                                                        Normotensive |
   7. |   125231000006119    125231000006103                                                                                               Standing Diastolic Bp |
   8. |   125251000006114    125251000006105                                                                                                Standing Systolic Bp |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
   9. | 12619501000006118   1105331000000106   Blood pressure measurement using oscillometric monitoring device with opportunistic atrial fibrillation detection |
  10. | 13935961000006111          836392007                                                             Arrhythmia-detection blood pressure ambulatory recorder |
  11. | 13949021000006118          860643007                                                                                  No postural drop in blood pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  12. | 13954141000006110          863928009                                                                               Pulmonary arterial pressure increased |
  13. | 14332941000006114   1365171000000100                                                      Level of postural drop in diastolic blood pressure on standing |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  14. |         144563017           87179004                                                                                             Arterial pulse pressure |
- 17. | 14933911000006112   1659111000000107                                                                     Community Pharmacy Blood Pressure Check Service |
  18. |    15841000000115    715051000000108                                                                                            BP screen administration |
  19. |    15861000000119    715051000000108                                                                                         Blood pressure screen admin |
- 20. |    15881000000111    715051000000108                                                                               Hypertension screening administration |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 20. |    15881000000111    715051000000108                                                                               Hypertension screening administration |
  21. |    15901000000114    715051000000108                                                                                      Hypertension screen admin. NOS |
- 22. |  1736511000000119          448678005                                                                    Application of ambulatory blood pressure monitor |
  23. |  1751331000006119   1751331000006103                                                                                            Blood pressure cuff size |
  24. |  1751341000006112   1751341000006108                                                                                     Blood pressure cuff size, large |
  25. |  1751351000006114   1751351000006105                                                                                  Blood pressure cuff size, standard |
@@ -1480,185 +1857,95 @@ Terms excluded by clinician...
  27. |  1760931000000113    787541000000108                                                                                  Highest brachial systolic pressure |
  28. |        1780182014          400974009                                                                                    Standing systolic blood pressure |
  29. |        1780183016          400975005                                                                                   Standing diastolic blood pressure |
- 30. |  1805081000006114   1805081000006105                                                                              Blood pressure monitoring in both arms |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  35. |  1916581000006119   1916581000006103                                                                                     Highest ankle systolic pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  36. |  1978701000006112   1978701000006108                                                        Atrial fibrillation screen using BP monitor with AF detector |
  37. |  1978711000006110   1978711000006106                                                                AF screen using BP monitor with AF detector abnormal |
  38. |  1978721000006119   1978721000006103                                                                  AF screen using BP monitor with AF detector normal |
- 41. |  2011931000006112   2011931000006108                                                                                 Blood pressure recorded by pharmacy |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 42. |  2011941000006119   2011941000006103                                                                                Blood pressure recorded in community |
  43. |  2012461000006117   2012461000006101                                                                       Self measured blood pressure reading required |
- 44. |  2018581000006111   2018581000006107                                                                                 Blood pressure recorded by optician |
  47. |        2159157015          407556006                                                                                       Lying systolic blood pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  48. |        2159158013          407557002                                                                                      Lying diastolic blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 49. |         216600016          135840009                                                                                           Blood pressure monitoring |
- 50. |  2371211000000110    924481000000109                                                                                   Self-monitoring of blood pressure |
- 55. |  2530601000006114            2004005                                                                                               Normal blood pressure |
- 61. |         254067018          163022004                                                                                           O/E - BP reading very low |
- 62. |         254068011          163023009                                                                                                O/E - BP reading low |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 63. |         254069015          163024003                                                                                             O/E - BP borderline low |
- 64. |         254070019          163025002                                                                                             O/E - BP reading normal |
- 65. |         254071015          163026001                                                                                          O/E - BP borderline raised |
- 66. |         254072010          163027005                                                                                             O/E - BP reading raised |
- 67. |         254073017          163028000                                                                                          O/E - BP reading very high |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 68. |         254074011          163029008                                                                                      O/E - BP reading:postural drop |
  69. |         254077016          163032006                                                                                                     O/E - BP stable |
  70. |         254079018          163033001                                                                                        Lying blood pressure reading |
  71. |         254080015          163034007                                                                                     Standing blood pressure reading |
  73. |         254084012          163036009                                                                                      O/E - blood pressure decreased |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 74. |         254085013          163037000                                                                                                     O/E - BP labile |
- 75. |         254091010          163020007                                                                                      O/E-blood pressure reading NOS |
  77. |  2608391000006111            6797001                                                                                                 Mean blood pressure |
  78. |  2608401000006113            6797001                                                                                        MAP - Mean arterial pressure |
  79. |  2608411000006111            6797001                                                                                           MBP - Mean blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 80. |  2610791000000116          722500002                                                                             Preoperative blood pressure measurement |
  81. |  2610831000000111          722502005                                                                            Postoperative blood pressure measurement |
  82. |  2616321000000118   1036531000000108                                                                                 Non-invasive central blood pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
  83. |  2616361000000114   1036551000000101                                                                        Non-invasive central systolic blood pressure |
  84. |  2616401000000117   1036571000000105                                                                       Non-invasive central diastolic blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 86. |         264475015          170581003                                                                                               O/E - initial high BP |
- 87. |         264476019          170582005                                                                                                 O/E - check high BP |
- 88. |         264498011          170599006                                                                                     24 hr blood pressure monitoring |
- 89. |  2702901000006110           12763006                                                                           Decreased blood pressure, not hypotension |
  90. |  2702921000006117           12763006                                                                                 Finding of decreased blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 91. |  2705391000006113           12929001                                                                                   Normal systolic arterial pressure |
- 92. |  2705401000006110           12929001                                                                                      Normal systolic blood pressure |
  93. |  2725431000000119   1087991000000109                                                           Level of reduction in systolic blood pressure on standing |
  94. |  2772091000006110           17146006                                                                   Arterial pressure monitoring, non-invasive method |
- 95. |  2786481000006111           18050000                                                                                Increased systolic arterial pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 96. |  2786501000006118           18050000                                                                               High systolic arterial pulse pressure |
- 97. |  2791691000006118           18352002                                                                                 Abnormal systolic arterial pressure |
  98. |         283479012          183413003                                                                                              Conscious B.P. control |
  99. |         285657013          185665008                                                                                                BP screen - 1st call |
 100. |         285658015          185666009                                                                                                BP screen - 2nd call |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 101. |         285661019          185667000                                                                                                BP screen - 3rd call |
 102. |         285662014          185668005                                                                                            BP screen - call deleted |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 103. |         285666012          185670001                                                                                              BP screen - 2nd recall |
 104. |         285667015          185671002                                                                                              BP screen - 3rd recall |
-105. |         285670016          185673004                                                                                            BP ABNORMAL - 1st recall |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-106. |         285671017          185674005                                                                                            BP ABNORMAL - 2nd recall |
-107. |         285672012          185675006                                                                                            BP ABNORMAL - 3rd recall |
-108. |         285673019          185676007                                                                                               BP ABNORMAL - deleted |
-109. |  2869171000006111           23154005                                                                               Increased diastolic arterial pressure |
-110. |  2869181000006114           23154005                                                                                    High diastolic arterial pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 111. |  2916241000006112           26014004                                                                                    Increased mean arterial pressure |
-114. |         299686018           38341003                                                                                Other specified hypertensive disease |
-115. |         299687010           38341003                                                                                               Hypertensive disorder |
-116. |         300837014           45007003                                                                                                     Hypotension NOS |
-117. |         300869017           38341003                                                                                            [X]Hypertensive diseases |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-118. |         300988013           45007003                                                                                                [X]Other hypotension |
-119. |  3117411000006118           38341003                                                                                                 High blood pressure |
-120. |  3117421000006114           38341003                                                                                       Hypertensive vascular disease |
-121. |  3117451000006117           38341003                                                                                            BP - High blood pressure |
-122. |  3117461000006115           38341003                                                                                      Systemic arterial hypertension |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-123. |  3117471000006110           38341003                                                                                           HBP - High blood pressure |
-124. |  3117481000006113           38341003                                                                                                   HT - Hypertension |
-125. |  3117491000006111           38341003                                                                                        High blood pressure disorder |
-126. |  3117501000006115           38341003                                                                                                  BP+ - Hypertension |
-127. |  3117511000006117           38341003                                                                                                  HTN - Hypertension |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-128. |  3117521000006113           38341003                                                                            Hypertensive disorder, systemic arterial |
-129. |  3126651000006111           38936003                                                                                             Abnormal blood pressure |
-130. |         317910016           24184005                                                                                               Raised blood pressure |
-131. |         317911017          271870002                                                                                          Low blood pressure reading |
-132. |         317912012          271871003                                                                                                   BP reading labile |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 133. |  3188121000006118           42689008                                                                               Decreased diastolic arterial pressure |
-134. |  3190481000006110           42826002                                                                               Systemic arterial pressure monitoring |
-135. |  3190511000006119           42826002                                                                                        Arterial pressure monitoring |
-136. |  3226171000006113           45007003                                                                                                  Low blood pressure |
-137. |  3259241000006119           46973005                                                                                               Blood pressure taking |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-138. |  3306781000006110           49844009                                                                                Abnormal diastolic arterial pressure |
-139. |  3372531000006111           53813002                                                                                  Normal diastolic arterial pressure |
-140. |  3372551000006116           53813002                                                                                           Normal diastolic arterial |
 144. |  4201861000006110          111973004                                                                                                             Systole |
-146. |  4201881000006117          111973004                                                                                                   Systole, function |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+146. |  4201881000006117          111973004                                                                                                   Systole, function |
 147. |  4356341000006111          123820005                                                                                               Blood oxygen pressure |
 148. |  4432551000006111          129899009                                                                                           Blood pressure alteration |
 149. |         453931017          310356000                                                                                O/E - Arterial pressure index normal |
 150. |         453932012          310357009                                                                              O/E - Arterial pressure index abnormal |
-152. |  4556441000006117          163025002                                                                      On examination - blood pressure reading normal |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-153. |  4556501000006118          163027005                                                                      On examination - blood pressure reading raised |
-154. |  4556531000006114          163028000                                                                   On examination - blood pressure reading very high |
-155. |  4556571000006112          163029008                                                                           On examination - BP reading:postural drop |
 157. |  4556651000006118          163032006                                                                              On examination - blood pressure stable |
 158. |  4556671000006111          163033001                                                                                                Lying blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 159. |  4556691000006112          163034007                                                                                             Standing blood pressure |
 161. |         456830011          313005002                                                                                  O/E - BP reading: no postural drop |
 163. |         458808015          314445006                                                                      Average night interval systolic blood pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 167. |         458823013          314460009                                                                     Average night interval diastolic blood pressure |
 170. |         459379010          314956000                                                                                           Borderline blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 171. |         460131015          315612005                                                                                      Target systolic blood pressure |
 172. |         460132010          315613000                                                                                     Target diastolic blood pressure |
-173. |         461166013          274785000                                                                                    [V]Examination of blood pressure |
 175. |  4634791000006119          170582005                                                                          On examination - check high blood pressure |
-176. |  4660711000006111          174255007                                                                            Non-invasive diastolic arterial pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+176. |  4660711000006111          174255007                                                                            Non-invasive diastolic arterial pressure |
 177. |  4722951000006111          183413003                                                                                    Conscious blood pressure control |
 178. |  4737611000006116          185665008                                                                                           BP screening - first call |
 179. |  4737641000006117          185666009                                                                                          BP screening - second call |
 180. |  4737671000006113          185667000                                                                                           BP screening - third call |
-181. |  4737701000006114          185668005                                                                                         BP screening - call deleted |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+181. |  4737701000006114          185668005                                                                                         BP screening - call deleted |
 182. |  4737751000006113          185670001                                                                                        BP screening - second recall |
 183. |  4737781000006117          185671002                                                                                         BP screening - third recall |
 184. |  4737811000006115          185672009                                                                                       BP screening - recall deleted |
-185. |  4737831000006114          185673004                                                                                Blood pressure abnormal - 1st recall |
-186. |  4737851000006119          185674005                                                                                Blood pressure abnormal - 2nd recall |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-187. |  4737881000006110          185675006                                                                                Blood pressure abnormal - 3rd recall |
-188. |         493451019           42826002                                                                                     Monitoring of arterial pressure |
-189. |   523801000006119           38341003                                                                                           BP - hypertensive disease |
 190. |   523861000006118          185669002                                                                                         BP screening - first recall |
-191. |   523921000006115          185672009                                                                                          BP screen - recall deleted |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+191. |   523921000006115          185672009                                                                                          BP screen - recall deleted |
 192. |  5289991000006115          250768007                                                                                  Pulmonary artery systolic pressure |
 193. |  5295021000006119          251070002                                                                             Non-invasive systolic arterial pressure |
 194. |  5295081000006115          251073000                                                                                Invasive diastolic arterial pressure |
 195. |  5295101000006111          251074006                                                                                 Non-invasive mean arterial pressure |
-196. |  5295111000006114          251074006                                                                                        MAP - Mean arterial pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+196. |  5295111000006114          251074006                                                                                        MAP - Mean arterial pressure |
 197. |  5295121000006118          251074006                                                                                    Non-invasive mean blood pressure |
 198. |  5295151000006110          251076008                                                                                      Non-invasive arterial pressure |
-199. |  5295211000006115          251080003                                                                                               Labile blood pressure |
 200. |  5310261000006119          252071000                                                                                             Arterial pressure index |
 201. |  5310271000006114          252071000                                                                                       ABI - Arterial pressure index |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 202. |  5357861000006113          255236000                                                                                                       Peak systolic |
 203. |  5357871000006118          255236000                                                                                             Peak systolic, function |
-204. |  5358921000006112          255330009                                                                                                 Blood pressure rise |
 205. |  5390601000006118          258057004                                                                                 Non-invasive blood pressure monitor |
 206. |  5390611000006115          258057004                                                                                                        NIBP monitor |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-207. |  5527181000006111          271648003                                                                                     Postural drop in blood pressure |
 211. |  5527251000006111          271651005                                                                                               Stable blood pressure |
-212. |  5530451000006114          271871003                                                                                       Blood pressure reading labile |
-213. |  5566331000006119          274785000                                                                                       Examination of blood pressure |
-214. |  5590371000006116          276772001                                                                                 Right ventricular systolic pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+214. |  5590371000006116          276772001                                                                                 Right ventricular systolic pressure |
 215. |  5590461000006117          276780008                                                                                  Left ventricular systolic pressure |
 216. |  5590481000006110          276781007                                                                     LVEDP - Left ventricular end-diastolic pressure |
-217. |  5889621000006116          301140001                                                                               Finding of systemic arterial pressure |
 218. |  5889641000006111          301141002                                                                              Finding of pulmonary arterial pressure |
 219. |  6046051000006119          314438006                                                                                     Minimum systolic blood pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1680,66 +1967,40 @@ Terms excluded by clinician...
 233. |  6046251000006111          314458007                                                                       Maximum day interval diastolic blood pressure |
 234. |  6046261000006113          314459004                                                                            Maximum 24 hour diastolic blood pressure |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-241. |  6357971000006110          371622005                                                   Elevated blood-pressure reading without diagnosis of hypertension |
-242. |  6357981000006113          371622005                                                   Elevated blood pressure reading without diagnosis of hypertension |
-243. |          64168014           38341003                                                                                                Hypertensive disease |
-244. |          64172013           24184005                                                                                             Elevated blood pressure |
 245. |  6445081000006114          385846000                                                                                    Blood pressure taking management |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 246. |  6456641000006116          386532001                                                                                          Invasive arterial pressure |
-251. |  6543651000006115          392570002                                                                                              Blood pressure finding |
 253. |  7077951000006116          427732000                                                                                             Blood pressure response |
 254. |  7328361000006117          446695008                                                Measurement of blood pressure at anterior tibial pulse using doppler |
-255. |  7358561000006111          448678005                                                             Application of ABPM (ambulatory blood pressure monitor) |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-256. |          75071013           45007003                                                                                                         Hypotension |
-257. |          75073011           45007003                                                                                                          Hypopiesis |
 258. |  7615061000006110          707303003                                                             Post exercise systolic blood pressure response abnormal |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 259. |  7615071000006115          707304009                                                               Post exercise systolic blood pressure response normal |
 260. |  7830331000006112          722359009                                                                         Blood pressure cuff multichannel valve unit |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 262. |  7841941000006110          723235005                                                                                              Maximum blood pressure |
 263. |  7841951000006112          723236006                                                                                              Minimum blood pressure |
-264. |  7875581000006110          725956001                                                                         Ambulatory blood pressure monitoring report |
-265. |   790121000006116           38341003                                                                                                        Hypertension |
-268. |  8189771000006113    502541000000105                                                                [D]Blood pressure raised, hypertension not diagnosed |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-269. |  8189781000006111    502551000000108                                                                           [D]Nonspecific low blood pressure reading |
-270. |  8260011000006111    810061000000102                    Measurement of blood pressure using manual sphygmomanometer by auscultation over brachial artery |
-271. |  8264071000006110    816161000000103                                             Measurement of blood pressure using non-invasive blood pressure monitor |
 272. |  8291621000006119    852281000000108                                                                                          Target mean blood pressure |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 273. |  8291631000006116    852291000000105                                                                                         Maximum mean blood pressure |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-274. |  8297911000006113    862121000000109                                                                               Unusual variability in blood pressure |
-275. |  8369351000006113    990141000000106                                                                           Measurement of blood pressure in left arm |
-276. |  8369361000006110    990151000000109                                                                          Measurement of blood pressure in right arm |
-277. |  8369371000006115    990161000000107                                            Measurement of blood pressure using manual sphygmomanometer by palpation |
 278. |  8369461000006116    990231000000105                                            Measurement of blood pressure using large adult size blood pressure cuff |
-     |----------------------------------------------------------------------------------------------------------------------------------------------------------|
 279. |  8369471000006111    990241000000101                                         Measurement of blood pressure using standard adult size blood pressure cuff |
 280. |  8369481000006114    990241000000101                                           Measurement of blood pressure using medium adult size blood pressure cuff |
 281. |  8369491000006112    990251000000103                                            Measurement of blood pressure using small adult size blood pressure cuff |
-282. |  8369501000006116    990261000000100                                             Measurement of blood pressure using paediatric size blood pressure cuff |
-283. |   851251000006118    851251000006102                                                                                               BP reading labile [D] |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
+282. |  8369501000006116    990261000000100                                             Measurement of blood pressure using paediatric size blood pressure cuff |
 284. |   856311000006119    856311000006103                                                                                             Sitting and standing BP |
-285. |   895081000006112    501631000000108                                                                                      Nonspecific low BP reading [D] |
-286. |   905371000006115    905371000006104                                                                                                   [RFC] High/low BP |
-287. |   961921000006116    961921000006100                                                                                     Abnormal blood pressure reading |
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 . drop if `clinician' == 0
-(229 observations deleted)
+(127 observations deleted)
 
 . 
 . //Save clinican approved codelist
 . gsort systolic diastolic -observations snomedctconceptid snomedctdescriptionid originalreadcode
 
-. drop new_snomedct_synonym /*codestatus*/ lshtm* refset* qof* `clinician'
+. drop new_snomedct_synonym lshtm* refset* qof* `clinician'  //many external codes removed
 
 . compress
-  variable term was str113 now str45
-  (3,944 bytes saved)
+  variable term was str113 now str96
+  (2,720 bytes saved)
 
 . save `filename', replace
 file blood_pressure.dta saved
@@ -1768,7 +2029,7 @@ file blood_pressure.csv saved
 
 . local clinical_reviewer "Christina Avgerinou"
 
-. local date_approved = ym(2025, 1)  //year, month
+. local date_approved = ym(2024, 12)  //year, month
 
 . local notes "Created for PRIORITY study. This codelist identifies values/measurements of blood pressure only and is not intended to included diagnosis codes"
 
@@ -1849,7 +2110,7 @@ file blood_pressure.meta saved
 . 
 . log close
       name:  <unnamed>
-       log:  C:\Users\rmjlton\GitHub\priority\codelists\blood_pressure.log
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\blood_pressure.log
   log type:  text
- closed on:  30 Jan 2025, 18:47:39
+ closed on:  17 Mar 2025, 16:07:38
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

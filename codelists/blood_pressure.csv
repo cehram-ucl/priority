@@ -1,59 +1,161 @@
-medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,bp,systolic_bp,diastolic_bp
-"114311000006111",300000000,"2469","2469.00","72313002","120159016","Systolic arterial pressure",1,1,
-"2533615017",2000000,"246d","246d.00","413606001","2533615017","Average home systolic blood pressure",1,1,
-"2159155011",700000,"246Q","246Q.00","407554009","2159155011","Sitting systolic blood pressure",1,1,
-"458812014",300000,"246W","246W.00","314449000","458812014","Average 24 hour systolic blood pressure",1,1,
-"458809011",200000,"246Y","246Y.00","314446007","458809011","Average day interval systolic blood pressure",1,1,
-"11903371000006115",90000,"^ESCT1190337","","163030003","254075012","O/E - Systolic BP reading",1,1,
-"298281000000114",90000,"246e","246e.00","198081000000101","298281000000114","Ambulatory systolic blood pressure",1,1,
-"1808011000006111",30000,"EMISNQSY8","","1808011000006107","1808011000006111","Systolic blood pressure - left arm",1,1,
-"1808041000006110",20000,"EMISNQSY9","","1808041000006106","1808041000006110","Systolic blood pressure - right arm",1,1,
-"1994021000006115",20000,"EMISNQHO139","","1994021000006104","1994021000006115","Home systolic blood pressure",1,1,
-"458803012",10000,"246l","246l.00","314440001","458803012","Average systolic blood pressure",1,1,
-"5527191000006114",4000,"^ESCTSY552719","","271649006","406507015","Systolic blood pressure",1,1,
-"2418961000000111",3000,"246n1","246n100","716579001","3306694016","Baseline systolic blood pressure",1,1,
-"3676271000006117",700,"^ESCTSY367627","","72313002","120163011","Systolic blood pressure",1,1,
-"6046311000006118",400,"^ESCT24604631","","314464000","458827014","24 hour systolic blood pressure",1,1,
-"4201871000006115",70,"^ESCTSY420187","","111973004","1219707017","Systolic",1,1,
-"6620591000006114",60,"^ESCTSY662059","","399304008","1778756019","Systolic blood pressure on admission",1,1,
-"14536491000006114",10,"^ESCT1453649","","1162737008","4591106012","Self reported systolic blood pressure",1,1,
-"8057971000006116",2,"^ESCTAM805797","","198081000000101","1677251000000113","Ambulatory systolic BP (blood pressure)",1,1,
-"619931000006119",300000000,"246A","246A.00","1091811000000102","2734671000000117","Diastolic arterial pressure",1,,1
-"2533636015",2000000,"246c","246c.00","413605002","2533636015","Average home diastolic blood pressure",1,,1
-"2159156012",600000,"246R","246R.00","407555005","2159156012","Sitting diastolic blood pressure",1,,1
-"458825018",300000,"246V","246V.00","314462001","458825018","Average 24 hour diastolic blood pressure",1,,1
-"458824019",200000,"246X","246X.00","314461008","458824019","Average day interval diastolic blood pressure",1,,1
-"11924381000006114",90000,"^ESCT1192438","","163031004","254076013","O/E - Diastolic BP reading",1,,1
-"298311000000112",90000,"246f","246f.00","198091000000104","298311000000112","Ambulatory diastolic blood pressure",1,,1
-"1993951000006110",20000,"EMISNQHO138","","1993951000006106","1993951000006110","Home diastolic blood pressure",1,,1
-"1808021000006115",10000,"EMISNQDI86","","1808021000006104","1808021000006115","Diastolic blood pressure - left arm",1,,1
-"1808051000006112",10000,"EMISNQDI87","","1808051000006108","1808051000006112","Diastolic blood pressure - right arm",1,,1
-"458816012",10000,"246m","246m.00","314453003","458816012","Average diastolic blood pressure",1,,1
-"2418921000000115",4000,"246n0","246n000","716632005","3306936015","Baseline diastolic blood pressure",1,,1
-"5527211000006110",3000,"^ESCTDI552721","","271650006","406508013","Diastolic blood pressure",1,,1
-"6046321000006114",300,"^ESCT24604632","","314465004","458828016","24 hour diastolic blood pressure",1,,1
-"14536471000006113",10,"^ESCT1453647","","1162735000","4591102014","Self reported diastolic blood pressure",1,,1
-"5527241000006114",2,"^ESCTDI552724","","271650006","2620223019","Diastolic arterial pressure",1,,1
-"4556631000006113",1,"^ESCTON455663","","163031004","2667440012","On examination - Diastolic BP reading",1,,1
-"254063019",400000000,"246","246..00","163020007","254063019","O/E - blood pressure reading",1,,
-"2474699019",3000000,"662j","662j.00","413153004","2474699019","Blood pressure recorded by patient at home",1,,
-"254065014",2000000,"246-1","246..11","163020007","254065014","O/E - BP reading",1,,
-"256343017",1000000,"315B","315B.00","164783007","256343017","Ambulatory blood pressure recording",1,,
-"254064013",500000,"246-2","246..12","163020007","254064013","O/E - blood pressure",1,,
-"254083018",500000,"246E","246E.00","163035008","254083018","Sitting blood pressure reading",1,,
-"622341000000118",200000,"246g","246g.00","335661000000109","622341000000118","Self measured blood pressure reading",1,,
-"3725601000006111",50000,"^ESCTBL372560","","75367002","125176019","Blood pressure",1,,
-"264466017",40000,"6623","6623.00","170573004","264466017","Pre-treatment BP reading",1,,
-"6046301000006116",20000,"^ESCT24604630","","314463006","458826017","24 hour blood pressure",1,,
-"4556711000006110",5000,"^ESCTSI455671","","163035008","254082011","Sitting blood pressure",1,,
-"3725611000006114",5000,"^ESCTBP372561","","75367002","1495437014","BP - Blood pressure",1,,
-"2378631000000110",4000,"246n","246n.00","928021000000108","2378631000000110","Baseline blood pressure",1,,
-"7841931000006117",2000,"^ESCTAV784193","","723232008","3335137018","Average blood pressure",1,,
-"6456681000006110",100,"^ESCTAB645668","","386534000","1491593017","ABP - Arterial blood pressure",1,,
-"6456701000006113",100,"^ESCTSY645670","","386536003","1480681012","Systemic blood pressure",1,,
-"4556301000006111",80,"^ESCTON455630","","163020007","2667419011","On examination - blood pressure reading",1,,
-"8107481000006110",40,"^ESCTSE810748","","335661000000109","1692821000000111","Self measured BP (blood pressure) reading",1,,
-"6456671000006112",40,"^ESCTAR645667","","386534000","1480679010","Arterial blood pressure",1,,
-"6456711000006111",7,"^ESCTSB645671","","386536003","1491594011","SBP - Systemic blood pressure",1,,
-"6254131000006114",4,"^ESCTSY625413","","364090009","487225016","Systemic arterial pressure",1,,
-"4634651000006115",1,"^ESCTPR463465","","170573004","2972104013","Pre-treatment blood pressure reading",1,,
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,bp,systolic_bp,diastolic_bp,bp_type
+"114311000006111",300000000,"2469","2469.00","72313002","120159016","Systolic arterial pressure",1,1,,"BP (value)"
+"2533615017",2000000,"246d","246d.00","413606001","2533615017","Average home systolic blood pressure",1,1,,"BP (value)"
+"2159155011",700000,"246Q","246Q.00","407554009","2159155011","Sitting systolic blood pressure",1,1,,"BP (value)"
+"458812014",300000,"246W","246W.00","314449000","458812014","Average 24 hour systolic blood pressure",1,1,,"BP (value)"
+"458809011",200000,"246Y","246Y.00","314446007","458809011","Average day interval systolic blood pressure",1,1,,"BP (value)"
+"11903371000006115",90000,"^ESCT1190337","","163030003","254075012","O/E - Systolic BP reading",1,1,,"BP (value)"
+"298281000000114",90000,"246e","246e.00","198081000000101","298281000000114","Ambulatory systolic blood pressure",1,1,,"BP (value)"
+"1808011000006111",30000,"EMISNQSY8","","1808011000006107","1808011000006111","Systolic blood pressure - left arm",1,1,,"BP (value)"
+"1808041000006110",20000,"EMISNQSY9","","1808041000006106","1808041000006110","Systolic blood pressure - right arm",1,1,,"BP (value)"
+"1994021000006115",20000,"EMISNQHO139","","1994021000006104","1994021000006115","Home systolic blood pressure",1,1,,"BP (value)"
+"458803012",10000,"246l","246l.00","314440001","458803012","Average systolic blood pressure",1,1,,"BP (value)"
+"5527191000006114",4000,"^ESCTSY552719","","271649006","406507015","Systolic blood pressure",1,1,,"BP (value)"
+"2418961000000111",3000,"246n1","246n100","716579001","3306694016","Baseline systolic blood pressure",1,1,,"BP (value)"
+"3676271000006117",700,"^ESCTSY367627","","72313002","120163011","Systolic blood pressure",1,1,,"BP (value)"
+"6046311000006118",400,"^ESCT24604631","","314464000","458827014","24 hour systolic blood pressure",1,1,,"BP (value)"
+"2705391000006113",80,"^ESCTNO270539","","12929001","22164011","Normal systolic arterial pressure",1,1,,"Normal BP (code)"
+"4201871000006115",70,"^ESCTSY420187","","111973004","1219707017","Systolic",1,1,,"BP (value)"
+"6620591000006114",60,"^ESCTSY662059","","399304008","1778756019","Systolic blood pressure on admission",1,1,,"BP (value)"
+"14536491000006114",10,"^ESCT1453649","","1162737008","4591106012","Self reported systolic blood pressure",1,1,,"BP (value)"
+"2786481000006111",5,"^ESCTIN278648","","18050000","30497018","Increased systolic arterial pressure",1,1,,"Abnormal BP (code)"
+"2791691000006118",3,"^ESCTAB279169","","18352002","30985013","Abnormal systolic arterial pressure",1,1,,"Abnormal BP (code)"
+"2786501000006118",2,"^ESCTHI278650","","18050000","30499015","High systolic arterial pulse pressure",1,1,,"Abnormal BP (code)"
+"8057971000006116",2,"^ESCTAM805797","","198081000000101","1677251000000113","Ambulatory systolic BP (blood pressure)",1,1,,"BP (value)"
+"2705401000006110",1,"^ESCTNO270540","","12929001","22163017","Normal systolic blood pressure",1,1,,"Normal BP (code)"
+"619931000006119",300000000,"246A","246A.00","1091811000000102","2734671000000117","Diastolic arterial pressure",1,,1,"BP (value)"
+"2533636015",2000000,"246c","246c.00","413605002","2533636015","Average home diastolic blood pressure",1,,1,"BP (value)"
+"2159156012",600000,"246R","246R.00","407555005","2159156012","Sitting diastolic blood pressure",1,,1,"BP (value)"
+"458825018",300000,"246V","246V.00","314462001","458825018","Average 24 hour diastolic blood pressure",1,,1,"BP (value)"
+"458824019",200000,"246X","246X.00","314461008","458824019","Average day interval diastolic blood pressure",1,,1,"BP (value)"
+"11924381000006114",90000,"^ESCT1192438","","163031004","254076013","O/E - Diastolic BP reading",1,,1,"BP (value)"
+"298311000000112",90000,"246f","246f.00","198091000000104","298311000000112","Ambulatory diastolic blood pressure",1,,1,"BP (value)"
+"1993951000006110",20000,"EMISNQHO138","","1993951000006106","1993951000006110","Home diastolic blood pressure",1,,1,"BP (value)"
+"1808021000006115",10000,"EMISNQDI86","","1808021000006104","1808021000006115","Diastolic blood pressure - left arm",1,,1,"BP (value)"
+"1808051000006112",10000,"EMISNQDI87","","1808051000006108","1808051000006112","Diastolic blood pressure - right arm",1,,1,"BP (value)"
+"458816012",10000,"246m","246m.00","314453003","458816012","Average diastolic blood pressure",1,,1,"BP (value)"
+"2418921000000115",4000,"246n0","246n000","716632005","3306936015","Baseline diastolic blood pressure",1,,1,"BP (value)"
+"5527211000006110",3000,"^ESCTDI552721","","271650006","406508013","Diastolic blood pressure",1,,1,"BP (value)"
+"6046321000006114",300,"^ESCT24604632","","314465004","458828016","24 hour diastolic blood pressure",1,,1,"BP (value)"
+"3372531000006111",50,"^ESCTNO337253","","53813002","89435017","Normal diastolic arterial pressure",1,,1,"Normal BP (code)"
+"14536471000006113",10,"^ESCT1453647","","1162735000","4591102014","Self reported diastolic blood pressure",1,,1,"BP (value)"
+"2869171000006111",10,"^ESCTIN286917","","23154005","38883016","Increased diastolic arterial pressure",1,,1,"Abnormal BP (code)"
+"3306781000006110",3,"^ESCTAB330678","","49844009","83026014","Abnormal diastolic arterial pressure",1,,1,"Abnormal BP (code)"
+"5527241000006114",2,"^ESCTDI552724","","271650006","2620223019","Diastolic arterial pressure",1,,1,"BP (value)"
+"4556631000006113",1,"^ESCTON455663","","163031004","2667440012","On examination - Diastolic BP reading",1,,1,"BP (value)"
+"2869181000006114",1,"^ESCTHI286918","","23154005","38882014","High diastolic arterial pressure",1,,1,"Abnormal BP (code)"
+"3372551000006116",1,"^ESCTNO337255","","53813002","89438015","Normal diastolic arterial",1,,1,"Normal BP (code)"
+"254063019",400000000,"246","246..00","163020007","254063019","O/E - blood pressure reading",1,,,"BP (value)"
+"64168014",10000000,"G2","G2...00","38341003","64168014","Hypertensive disease",1,,,"Hypertension (code)"
+"254070019",4000000,"2464","2464.00","163025002","254070019","O/E - BP reading normal",1,,,"Normal BP (code)"
+"2474699019",3000000,"662j","662j.00","413153004","2474699019","Blood pressure recorded by patient at home",1,,,"BP (value)"
+"216600016",2000000,"662V","662V.00","135840009","216600016","Blood pressure monitoring",1,,,"Unsure"
+"254065014",2000000,"246-1","246..11","163020007","254065014","O/E - BP reading",1,,,"BP (value)"
+"317910016",2000000,"R1y2","R1y2.00","24184005","1784950015","Raised blood pressure",1,,,"Abnormal BP (code)"
+"254071015",1000000,"2465","2465.00","163026001","254071015","O/E - BP borderline raised",1,,,"Abnormal BP (code)"
+"256343017",1000000,"315B","315B.00","164783007","256343017","Ambulatory blood pressure recording",1,,,"BP (value)"
+"790121000006116",1000000,"G20z-1","G20z.11","38341003","64176011","Hypertension",1,,,"Hypertension (code)"
+"254072010",900000,"2466","2466.00","163027005","254072010","O/E - BP reading raised",1,,,"Abnormal BP (code)"
+"299687010",900000,"G2z","G2z..00","38341003","1215744012","Hypertensive disorder",1,,,"Hypertension (code)"
+"264498011",700000,"662L","662L.00","170599006","264498011","24 hr blood pressure monitoring",1,,,"Unsure"
+"254064013",500000,"246-2","246..12","163020007","254064013","O/E - blood pressure",1,,,"BP (value)"
+"254083018",500000,"246E","246E.00","163035008","254083018","Sitting blood pressure reading",1,,,"BP (value)"
+"64172013",500000,"G20-1","G20..11","24184005","196353013","Elevated blood pressure",1,,,"Abnormal BP (code)"
+"461166013",400000,"ZV70B","ZV70B00","274785000","410648013","[V]Examination of blood pressure",1,,,"Unsure"
+"1736511000000119",300000,"7P1B2","7P1B200","448678005","2900160016","Application of ambulatory blood pressure monitor",1,,,"Unsure"
+"254091010",200000,"246Z","246Z.00","163020007","254063019","O/E-blood pressure reading NOS",1,,,"Unsure"
+"622341000000118",200000,"246g","246g.00","335661000000109","622341000000118","Self measured blood pressure reading",1,,,"BP (value)"
+"523801000006119",100000,"G2-1","G2...11","38341003","64168014","BP - hypertensive disease",1,,,"Hypertension (code)"
+"75071013",100000,"G87","G87..00","45007003","75071013","Hypotension",1,,,"Hypotension (code)"
+"2371211000000110",100000,"8A59","8A59.00","924481000000109","2371211000000110","Self-monitoring of blood pressure",1,,,"Unsure"
+"493451019",60000,"7A551","7A55100","42826002","493451019","Monitoring of arterial pressure",1,,,"Unsure"
+"3725601000006111",50000,"^ESCTBL372560","","75367002","125176019","Blood pressure",1,,,"BP (value)"
+"254069015",40000,"2463","2463.00","163024003","254069015","O/E - BP borderline low",1,,,"Abnormal BP (code)"
+"254073017",40000,"2467","2467.00","163028000","254073017","O/E - BP reading very high",1,,,"Abnormal BP (code)"
+"254074011",40000,"2468","2468.00","163029008","254074011","O/E - BP reading:postural drop",1,,,"Abnormal BP (code)"
+"264466017",40000,"6623","6623.00","170573004","264466017","Pre-treatment BP reading",1,,,"BP (value)"
+"264476019",40000,"662C","662C.00","170582005","264476019","O/E - check high BP",1,,,"Abnormal BP (code)"
+"1222392019",30000,"662R","662R.00","2004005","1222392019","Normotensive",1,,,"Normal BP (code)"
+"2530601000006114",30000,"^ESCTNO253060","","2004005","4461010","Normal blood pressure",1,,,"Normal BP (code)"
+"317911017",30000,"R1y3","R1y3.00","271870002","406863012","Low blood pressure reading",1,,,"Abnormal BP (code)"
+"254068011",20000,"2462","2462.00","163023009","254068011","O/E - BP reading low",1,,,"Abnormal BP (code)"
+"285670016",20000,"9OD9","9OD9.00","185673004","285670016","BP ABNORMAL - 1st recall",1,,,"Abnormal BP (code)"
+"6046301000006116",20000,"^ESCT24604630","","314463006","458826017","24 hour blood pressure",1,,,"BP (value)"
+"1009241000006114",10000,"EMISNQ242","","1009241000006105","1009241000006114","24 hr blood pressure normal",1,,,"Normal BP (code)"
+"264475015",10000,"662B","662B.00","170581003","264475015","O/E - initial high BP",1,,,"Abnormal BP (code)"
+"4737831000006114",10000,"^ESCTBL473783","","185673004","2668771017","Blood pressure abnormal - 1st recall",1,,,"Abnormal BP (code)"
+"285671017",10000,"9ODA","9ODA.00","185674005","285671017","BP ABNORMAL - 2nd recall",1,,,"Abnormal BP (code)"
+"317912012",10000,"R1y4","R1y4.00","271871003","406864018","BP reading labile",1,,,"Abnormal BP (code)"
+"961921000006116",9000,"EMISCAB20","","961921000006100","961921000006116","Abnormal blood pressure reading",1,,,"Abnormal BP (code)"
+"2011931000006112",8000,"EMISNQBL39","","2011931000006108","2011931000006112","Blood pressure recorded by pharmacy",1,,,"Unsure"
+"1009231000006116",6000,"EMISNQ241","","1009231000006100","1009231000006116","24 hr blood pressure abnormal",1,,,"Abnormal BP (code)"
+"299686018",6000,"G2y","G2y..00","38341003","1215744012","Other specified hypertensive disease",1,,,"Hypertension (code)"
+"300837014",6000,"G87z","G87z.00","45007003","75071013","Hypotension NOS",1,,,"Hypotension (code)"
+"4556711000006110",5000,"^ESCTSI455671","","163035008","254082011","Sitting blood pressure",1,,,"BP (value)"
+"3725611000006114",5000,"^ESCTBP372561","","75367002","1495437014","BP - Blood pressure",1,,,"BP (value)"
+"254067018",4000,"2461","2461.00","163022004","254067018","O/E - BP reading very low",1,,,"Abnormal BP (code)"
+"254085013",4000,"246G","246G.00","163037000","254085013","O/E - BP labile",1,,,"Abnormal BP (code)"
+"5566331000006119",4000,"^ESCTEX556633","","274785000","410648013","Examination of blood pressure",1,,,"Unsure"
+"2378631000000110",4000,"246n","246n.00","928021000000108","2378631000000110","Baseline blood pressure",1,,,"BP (value)"
+"1805081000006114",2000,"EMISNQBL19","","1805081000006105","1805081000006114","Blood pressure monitoring in both arms",1,,,"Unsure"
+"4737851000006119",2000,"^ESCTBL473785","","185674005","2668772012","Blood pressure abnormal - 2nd recall",1,,,"Abnormal BP (code)"
+"7358561000006111",2000,"^ESCTAP735856","","448678005","1780841000000111","Application of ABPM (ambulatory blood pressure monitor)",1,,,"Unsure"
+"3226171000006113",2000,"^ESCTLO322617","","45007003","494085018","Low blood pressure",1,,,"Abnormal BP (code)"
+"3259241000006119",2000,"^ESCTBL325924","","46973005","78280016","Blood pressure taking",1,,,"Unsure"
+"7841931000006117",2000,"^ESCTAV784193","","723232008","3335137018","Average blood pressure",1,,,"BP (value)"
+"285672012",1000,"9ODB","9ODB.00","185675006","285672012","BP ABNORMAL - 3rd recall",1,,,"Abnormal BP (code)"
+"2011941000006119",1000,"EMISNQBL40","","2011941000006103","2011941000006119","Blood pressure recorded in community",1,,,"Unsure"
+"905371000006115",1000,"HNG0011","","905371000006104","905371000006115","[RFC] High/low BP",1,,,"Abnormal BP (code)"
+"5295211000006115",700,"^ESCTLA529521","","251080003","374216013","Labile blood pressure",1,,,"Abnormal BP (code)"
+"300988013",600,"Gyu90","Gyu9000","45007003","75071013","[X]Other hypotension",1,,,"Hypotension (code)"
+"4737881000006110",500,"^ESCTBL473788","","185675006","2668773019","Blood pressure abnormal - 3rd recall",1,,,"Abnormal BP (code)"
+"5527181000006111",500,"^ESCTPO552718","","271648003","406506012","Postural drop in blood pressure",1,,,"Abnormal BP (code)"
+"2610791000000116",500,"662s","","722500002","3332473014","Preoperative blood pressure measurement",1,,,"Unsure"
+"7875581000006110",500,"^ESCTAM787558","","725956001","3446746014","Ambulatory blood pressure monitoring report",1,,,"Unsure"
+"300869017",400,"Gyu2","Gyu2.00","38341003","1215744012","[X]Hypertensive diseases",1,,,"Hypertension (code)"
+"6357971000006110",300,"^ESCTEL635797","","371622005","1210245011","Elevated blood-pressure reading without diagnosis of hypertension",1,,,"Abnormal BP (code)"
+"3190481000006110",300,"^ESCTSY319048","","42826002","71464016","Systemic arterial pressure monitoring",1,,,"Unsure"
+"3117511000006117",200,"^ESCTHT311751","","38341003","2164904016","HTN - Hypertension",1,,,"Hypertension (code)"
+"3117411000006118",200,"^ESCTHI311741","","38341003","64172013","High blood pressure",1,,,"Abnormal BP (code)"
+"851251000006118",200,"EMISR4QBP1","","851251000006102","851251000006118","BP reading labile [D]",1,,,"Abnormal BP (code)"
+"14933911000006112",100,"^ESCT1493391","","1659111000000107","3195611000000115","Community Pharmacy Blood Pressure Check Service",1,,,"Unsure"
+"6456681000006110",100,"^ESCTAB645668","","386534000","1491593017","ABP - Arterial blood pressure",1,,,"BP (value)"
+"6456701000006113",100,"^ESCTSY645670","","386536003","1480681012","Systemic blood pressure",1,,,"BP (value)"
+"6543651000006115",100,"^ESCTBL654365","","392570002","1486548010","Blood pressure finding",1,,,"Unsure"
+"8189771000006113",100,"^ESCTDB818977","","502541000000105","1108001000000113","[D]Blood pressure raised, hypertension not diagnosed",1,,,"Abnormal BP (code)"
+"3190511000006119",90,"^ESCTAR319051","","42826002","493452014","Arterial pressure monitoring",1,,,"Unsure"
+"4556301000006111",80,"^ESCTON455630","","163020007","2667419011","On examination - blood pressure reading",1,,,"BP (value)"
+"3117481000006113",80,"^ESCTHT311748","","38341003","490281011","HT - Hypertension",1,,,"Hypertension (code)"
+"3126651000006111",60,"^ESCTAB312665","","38936003","65302013","Abnormal blood pressure",1,,,"Abnormal BP (code)"
+"8369361000006110",60,"^ESCTME836936","","990151000000109","2516231000000118","Measurement of blood pressure in right arm",1,,,"Unsure"
+"2702901000006110",50,"^ESCTDE270290","","12763006","21906012","Decreased blood pressure, not hypotension",1,,,"Abnormal BP (code)"
+"8369351000006113",50,"^ESCTME836935","","990141000000106","2516211000000114","Measurement of blood pressure in left arm",1,,,"Unsure"
+"285673019",40,"9ODC","9ODC.00","185676007","285673019","BP ABNORMAL - deleted",1,,,"Abnormal BP (code)"
+"8107481000006110",40,"^ESCTSE810748","","335661000000109","1692821000000111","Self measured BP (blood pressure) reading",1,,,"BP (value)"
+"6456671000006112",40,"^ESCTAR645667","","386534000","1480679010","Arterial blood pressure",1,,,"BP (value)"
+"895081000006112",40,"R1y3-99","R1y3.99","501631000000108","895081000006112","Nonspecific low BP reading [D]",1,,,"Abnormal BP (code)"
+"3117521000006113",20,"^ESCTHY311752","","38341003","2671386015","Hypertensive disorder, systemic arterial",1,,,"Hypertension (code)"
+"8260011000006111",20,"^ESCTME826001","","810061000000102","2113861000000110","Measurement of blood pressure using manual sphygmomanometer by auscultation over brachial artery",1,,,"Unsure"
+"3117451000006117",10,"^ESCTBP311745","","38341003","490277011","BP - High blood pressure",1,,,"Abnormal BP (code)"
+"3117461000006115",10,"^ESCTSY311746","","38341003","490278018","Systemic arterial hypertension",1,,,"Hypertension (code)"
+"3117501000006115",10,"^ESCTBP311750","","38341003","490283014","BP+ - Hypertension",1,,,"Hypertension (code)"
+"75073011",10,"G87-1","G87..11","45007003","75073011","Hypopiesis",1,,,"Hypotension (code)"
+"6456711000006111",7,"^ESCTSB645671","","386536003","1491594011","SBP - Systemic blood pressure",1,,,"BP (value)"
+"8297911000006113",7,"^ESCTUN829791","","862121000000109","2229471000000112","Unusual variability in blood pressure",1,,,"Abnormal BP (code)"
+"4556531000006114",6,"^ESCTON455653","","163028000","2667434017","On examination - blood pressure reading very high",1,,,"Abnormal BP (code)"
+"8264071000006110",6,"^ESCTME826407","","816161000000103","2126881000000116","Measurement of blood pressure using non-invasive blood pressure monitor",1,,,"Unsure"
+"2018581000006111",5,"EMISNQBL41","","2018581000006107","2018581000006111","Blood pressure recorded by optician",1,,,"Unsure"
+"8369371000006115",5,"^ESCTME836937","","990161000000107","2516251000000113","Measurement of blood pressure using manual sphygmomanometer by palpation",1,,,"Unsure"
+"5889621000006116",4,"^ESCTFI588962","","301140001","442393011","Finding of systemic arterial pressure",1,,,"Unsure"
+"6254131000006114",4,"^ESCTSY625413","","364090009","487225016","Systemic arterial pressure",1,,,"BP (value)"
+"6357981000006113",4,"^ESCTEL635798","","371622005","2820233013","Elevated blood pressure reading without diagnosis of hypertension",1,,,"Abnormal BP (code)"
+"4556441000006117",3,"^ESCTON455644","","163025002","2667428012","On examination - blood pressure reading normal",1,,,"Normal BP (code)"
+"4556501000006118",3,"^ESCTON455650","","163027005","2667432018","On examination - blood pressure reading raised",1,,,"Abnormal BP (code)"
+"4556571000006112",3,"^ESCTON455657","","163029008","2667437012","On examination - BP reading:postural drop",1,,,"Abnormal BP (code)"
+"5358921000006112",3,"^ESCTBL535892","","255330009","2619934015","Blood pressure rise",1,,,"Abnormal BP (code)"
+"5530451000006114",3,"^ESCTBL553045","","271871003","2972308015","Blood pressure reading labile",1,,,"Abnormal BP (code)"
+"3117471000006110",3,"^ESCTHB311747","","38341003","490280012","HBP - High blood pressure",1,,,"Abnormal BP (code)"
+"4634651000006115",1,"^ESCTPR463465","","170573004","2972104013","Pre-treatment blood pressure reading",1,,,"BP (value)"
+"3117491000006111",1,"^ESCTHI311749","","38341003","490282016","High blood pressure disorder",1,,,"Hypertension (code)"
+"3117421000006114",1,"^ESCTHY311742","","38341003","64173015","Hypertensive vascular disease",1,,,"Hypertension (code)"
+"8189781000006111",1,"^ESCTDN818978","","502551000000108","1108031000000119","[D]Nonspecific low blood pressure reading",1,,,"Abnormal BP (code)"

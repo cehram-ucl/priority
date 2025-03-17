@@ -17,7 +17,7 @@ set more off
 //** UPDATE THESE VARIABLES **==================================================
 
 //**Working directory - where you will open/save files**
-cd "C:\Users\rmjlton\GitHub\priority\codelists"
+cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 
 //**Enter name of do file here. This ensures all files have the same name.**
 local filename "blood_pressure"
@@ -35,10 +35,10 @@ log using `filename', text replace
 //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 
 //*Directory of medical dictionary*
-local browser_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
+local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //*Directory of label lookups*
-local lookup_dir "C:\Users\rmjlton\OneDrive - University College London\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
+local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //==============================================================================
 
@@ -490,33 +490,64 @@ e.g. codelist_raw_ABC.xlsx
 */
 
 
-// STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-//=======================================================================================
+// STEP 9. RESTRICT CODELIST TO CODES APPROVED BY A CLINICIAN AND SAVE
+//=====================================================================
 
 //Load clinician classifications
 local clinician "CA"  //Christina Avgerinou
+local sheets " "BP (value)" "Hypertension (code)" "Hypotension (code)" "Abnormal BP (code)" "Normal BP (code)" "Unsure" "
+local firstsheet: word 1 of `sheets'
+local count = 0
+tempfile sheetlabels
 
-import excel `filename'_raw_`clinician', firstrow clear sheet("BP (value)")
-
-//Remerge with original in case of any formatting issues with Excel spreadsheet
-keep medcodeid `clinician'
-
-tempfile `clinician'_classification
-save ``clinician'_classification'
+foreach sheet of local sheets {
+	
+	local count = `count'+1
+	display "Reading worksheet: `sheet'"
+	import excel `filename'_raw_`clinician', firstrow clear sheet("`sheet'")
+	
+	keep medcodeid
+	generate byte `clinician' = 1
+	generate byte bp_type = `count'
+	
+	if "`sheet'" != "`firstsheet'" {
+		do `sheetlabels'
+	}
+	label define bp_type `count' "`sheet'", add
+	label save using `sheetlabels', replace
+	
+	tempfile clinician`count'
+	save `clinician`count''
+}
 
 use `filename', clear
 
-merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+forvalues i = 1/`count' {
+	
+	merge 1:1 medcodeid using `clinician`i'', update replace
+	list medcodeid term if _merge == 2
+	drop if _merge == 2
+	drop _merge
+}
+do `sheetlabels'
+label values bp_type bp_type
+tab bp_type, missing
+list medcodeid term if bp_type == .
+replace bp_type = 5 if medcodeid == "1222392019"  //should have been "Normal"
+replace `clinician' = 1 if medcodeid == "1222392019"
+tab bp_type, missing
+
 recode `clinician' (. = 0)
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
+count if `clinician' == 0
 list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
 //Save clinican approved codelist
 gsort systolic diastolic -observations snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ lshtm* refset* qof* `clinician'
+drop new_snomedct_synonym lshtm* refset* qof* `clinician'  //many external codes removed
 compress
 save `filename', replace
 export delimited `filename', replace quote
