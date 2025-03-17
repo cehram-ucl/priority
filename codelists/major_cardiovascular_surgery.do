@@ -17,7 +17,7 @@ set more off
 //** UPDATE THESE VARIABLES **==================================================
 
 //**Working directory - where you will open/save files**
-cd "C:\Users\rmjlton\GitHub\priority\codelists"
+cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 
 //**Enter name of do file here. This ensures all files have the same name.**
 local filename "major_cardiovascular_surgery"
@@ -35,10 +35,10 @@ log using `filename', text replace
 //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 
 //*Directory of medical dictionary*
-local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //*Directory of label lookups*
-local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //==============================================================================
 
@@ -474,36 +474,58 @@ e.g. codelist_raw_ABC.xlsx
 */
 
 
-// STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-//=======================================================================================
-/*
+// STEP 9. RESTRICT CODELIST TO CODES APPROVED BY LINICIAN AND SAVE
+//==================================================================
+
 //Load clinician classifications
-local clinician "ABC"
+local clinician "CA"
+local sheets " "Coronary artery surgery" "Prevalent only" "Carotid surgery" "Surgery for PVD" "
+local firstsheet: word 1 of `sheets'
+local count = 0
+tempfile sheetlabels
 
-import excel `filename'_raw_`clinician', firstrow clear
-
-//Remerge with original in case of any formatting issues with Excel spreadsheet
-keep medcodeid `clinician'
-
-tempfile `clinician'_classification
-save ``clinician'_classification'
+foreach sheet of local sheets {
+	
+	local count = `count'+1
+	display "Reading worksheet: `sheet'"
+	import excel `filename'_raw_`clinician', firstrow clear sheet("`sheet'")
+	
+	keep medcodeid
+	generate byte `clinician' = 1
+	generate byte cvsurgery_type = `count'
+	
+	if "`sheet'" != "`firstsheet'" {
+		do `sheetlabels'
+	}
+	label define cvsurgery_type `count' "`sheet'", add
+	label save using `sheetlabels', replace
+	
+	tempfile clinician`count'
+	save `clinician`count''
+}
 
 use `filename', clear
 
-merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+forvalues i = 1/`count' {
+	
+	merge 1:1 medcodeid using `clinician`i'', nogenerate update replace
+}
+do `sheetlabels'
+label values cvsurgery_type cvsurgery_type
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
-list medcodeid snomedctconceptid term if `clinican' == 0
-drop if `clinician' == 0
+count if `clinician' == .
+list medcodeid snomedctconceptid term if `clinician' == .
+drop if `clinician' == .
 
-//Save clinican approved codelist
+//Save clinician approved codelist
 gsort snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ `clinician'
+drop new_snomedct_synonym `clinician'
 compress
 save `filename', replace
 export delimited `filename', replace quote
-*/
+
 
 // STEP 10. GENERATE METADATA FILE
 //=================================
@@ -517,7 +539,7 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 local author "Philip Stone"
 local date = ym(2024, 11)  //year, month
 local clinical_reviewer "Christina Avgerinou"
-local date_approved = . //ym(2024, 12)  //year, month
+local date_approved = ym(2025, 3)  //year, month
 local notes "Created for PRIORITY study"
 local keywords ""
 //==============================================================================

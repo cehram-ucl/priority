@@ -1,19 +1,19 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       name:  <unnamed>
-       log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\major_cardiovascular_surgery.log
   log type:  text
- opened on:  20 Jan 2025, 20:56:49
+ opened on:  17 Mar 2025, 14:43:49
 
 . 
 . 
 . //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 . 
 . //*Directory of medical dictionary*
-. local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+. local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 . 
 . //*Directory of label lookups*
-. local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+. local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 . 
 . //==============================================================================
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_6478_000001.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000001.tmp saved as .dta format
 
 . 
 . 
@@ -248,7 +248,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton\AppData\Local\Temp\ST_6478_000003.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000003.tmp saved as .dta format
 
 . restore
 
@@ -1446,36 +1446,674 @@ file major_cardiovascular_surgery_raw.xlsx saved
 > */
 . 
 . 
-. // STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-. //=======================================================================================
-. /*
-> //Load clinician classifications
-> local clinician "ABC"
-> 
-> import excel `filename'_raw_`clinician', firstrow clear
-> 
-> //Remerge with original in case of any formatting issues with Excel spreadsheet
-> keep medcodeid `clinician'
-> 
-> tempfile `clinician'_classification
-> save ``clinician'_classification'
-> 
-> use `filename', clear
-> 
-> merge 1:1 medcodeid using ``clinician'_classification', nogenerate
-> 
-> //Remove codes marked for exclusion by clinician
-> display "Terms excluded by clinician..."
-> list medcodeid snomedctconceptid term if `clinican' == 0
-> drop if `clinician' == 0
-> 
-> //Save clinican approved codelist
-> gsort snomedctconceptid snomedctdescriptionid originalreadcode
-> drop new_snomedct_synonym /*codestatus*/ `clinician'
-> compress
-> save `filename', replace
-> export delimited `filename', replace quote
-> */
+. // STEP 9. RESTRICT CODELIST TO CODES APPROVED BY LINICIAN AND SAVE
+. //==================================================================
+. 
+. //Load clinician classifications
+. local clinician "CA"
+
+. local sheets " "Coronary artery surgery" "Prevalent only" "Carotid surgery" "Surgery for PVD" "
+
+. local firstsheet: word 1 of `sheets'
+
+. local count = 0
+
+. tempfile sheetlabels
+
+. 
+. foreach sheet of local sheets {
+  2.         
+.         local count = `count'+1
+  3.         display "Reading worksheet: `sheet'"
+  4.         import excel `filename'_raw_`clinician', firstrow clear sheet("`sheet'")
+  5.         
+.         keep medcodeid
+  6.         generate byte `clinician' = 1
+  7.         generate byte cvsurgery_type = `count'
+  8.         
+.         if "`sheet'" != "`firstsheet'" {
+  9.                 do `sheetlabels'
+ 10.         }
+ 11.         label define cvsurgery_type `count' "`sheet'", add
+ 12.         label save using `sheetlabels', replace
+ 13.         
+.         tempfile clinician`count'
+ 14.         save `clinician`count''
+ 15. }
+Reading worksheet: Coronary artery surgery
+(7 vars, 178 obs)
+(file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp not found)
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000006.tmp saved as .dta format
+Reading worksheet: Prevalent only
+(8 vars, 7 obs)
+
+. label define cvsurgery_type 1 `"Coronary artery surgery"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000007.tmp saved as .dta format
+Reading worksheet: Carotid surgery
+(7 vars, 23 obs)
+
+. label define cvsurgery_type 1 `"Coronary artery surgery"', modify
+
+. label define cvsurgery_type 2 `"Prevalent only"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000008.tmp saved as .dta format
+Reading worksheet: Surgery for PVD
+(7 vars, 97 obs)
+
+. label define cvsurgery_type 1 `"Coronary artery surgery"', modify
+
+. label define cvsurgery_type 2 `"Prevalent only"', modify
+
+. label define cvsurgery_type 3 `"Carotid surgery"', modify
+
+. 
+end of do-file
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000009.tmp saved as .dta format
+
+. 
+. use `filename', clear
+
+. 
+. forvalues i = 1/`count' {
+  2.         
+.         merge 1:1 medcodeid using `clinician`i'', nogenerate update replace
+  3. }
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           534
+        from master                       534  
+        from using                          0  
+
+    Matched                               178
+        not updated                       178  
+        missing updated                     0  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           705
+        from master                       705  
+        from using                          0  
+
+    Matched                                 7
+        not updated                         0  
+        missing updated                     7  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           689
+        from master                       689  
+        from using                          0  
+
+    Matched                                23
+        not updated                         0  
+        missing updated                    23  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           615
+        from master                       615  
+        from using                          0  
+
+    Matched                                97
+        not updated                         0  
+        missing updated                    97  
+        nonmissing conflict                 0  
+    -----------------------------------------
+
+. do `sheetlabels'
+
+. label define cvsurgery_type 1 `"Coronary artery surgery"', modify
+
+. label define cvsurgery_type 2 `"Prevalent only"', modify
+
+. label define cvsurgery_type 3 `"Carotid surgery"', modify
+
+. label define cvsurgery_type 4 `"Surgery for PVD"', modify
+
+. 
+end of do-file
+
+. label values cvsurgery_type cvsurgery_type
+
+. 
+. //Remove codes marked for exclusion by clinician
+. display "Terms excluded by clinician..."
+Terms excluded by clinician...
+
+. count if `clinician' == .
+  407
+
+. list medcodeid snomedctconceptid term if `clinician' == .
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid   snomedctconce~d                                                                                                                          term |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  1. |   105301000006111          73544002                                                                          Therapeutic transluminal operation on heart valve OS |
+  2. |   105321000006118         118805000                                                                         Therapeutic transluminal operation on other artery OS |
+  3. |   105341000006113         265469000                                                                      Therapeutic transluminal operation on septum of heart OS |
+  4. |   105381000006119         386727004                                                                         Therapeutic transluminal operations on valve of heart |
+  5. |   107511000006111          13662000                                                                  Taussig anastomosis of subclavian artery to pulmonary artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  6. | 11902531000006117          62858004                                                                                                      Operation on pericardium |
+  8. | 12009351000006117         763725002                                            Percutaneous transluminal coronary angioplasty using drug eluting balloon catheter |
+ 15. |        1235117015          86274005                                                                     Percutaneous transluminal angioplasty of vertebral artery |
+ 27. | 13971301000006111         871617000                                                                Low output heart failure due to and following Fontan operation |
+ 33. | 14208971000006115         438533003                                Fluoroscopy guided percutaneous transluminal cutting balloon angioplasty of vein with contrast |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 38. |    14671000006119          77371000                                                                    Other specified closure of defect unspecified heart septum |
+ 39. |        1488330014         394603008                                                                                                        Cardiothoracic surgery |
+ 40. |  1545571000006111         425712000                                                                Percutaneous transluminal angioplasty of blood vessel of liver |
+ 41. |  1546581000006117         232970005                                                                                                     Cardiomyoplasty operation |
+ 50. |  1547781000006110          38629001                                                                   Transluminal operations internal mammary artery side branch |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 51. |  1547791000006113          38629001                                                                   Translum occlusion left internal mammary artery side branch |
+ 52. |  1547911000006117         428901006                   Percutaneous transluminal balloon angioplasty of anastomosis between pulmonary artery and subclavian artery |
+ 53. |  1547951000006116   233631000000106                                                     Percutaneous transluminal cutting balloon angioplasty of pulmonary artery |
+ 54. |  1547961000006119         425979008                                                             Percutaneous transluminal balloon angioplasty of pulmonary artery |
+ 55. |  1547971000006114         429122009                                   Percutaneous transluminal balloon angioplasty with insertion of stent into pulmonary artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 56. |  1548021000006110         233114002                                                                        Operation for major aortopulmonary collateral arteries |
+ 57. |  1548061000006116   223431000000107                                Percutaneous transluminal balloon angioplasty of major systemic to pulmonary collateral artery |
+ 58. |  1548091000006112         233114002                                                                   Operations major systemic pulmonary collateral arteries NOS |
+ 60. |  1548321000006113         427862004                                       Percutaneous transluminal balloon angioplasty with insertion of stent into renal artery |
+ 61. |  1548361000006119         415071007                                                                                                   Percutaneous endarterectomy |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 62. |  1548461000006113         118805000                                                                  Other specified other therapeutic transluminal operat artery |
+ 63. |  1549091000006116         276890005                                                                         Percutaneous transluminal balloon angioplasty of vein |
+ 64. |  1549251000006118         276892002                                                                            Percutaneous balloon angioplasty of pulmonary vein |
+ 65. |  1549261000006116         712817003                                                       Percutaneous transluminal cutting balloon angioplasty of pulmonary vein |
+ 66. |  1549271000006111         429042002                                     Percutaneous transluminal balloon angioplasty with insertion of stent into pulmonary vein |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 68. |  1587401000006119          77371000                                                                   Repair defect of septum of heart using prosthetic patch NEC |
+ 69. |  1587411000006116          77371000                                                                     Repair defect of heart septum using pericardial patch NEC |
+ 70. |  1587451000006115          77371000                                                                  Other specified repair of defect of unspecified septum heart |
+ 71. |  1587661000006116         425979008                                                                  Percut transluminal balloon angioplasty pulmonary artery NEC |
+ 75. |  1620621000006114   828081000000100                                                                                                    Paediatric cardiac surgery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 78. |  1767651000006116   763751000000108                                                                                               Percutaneous operation on heart |
+ 79. |  1767671000006114   763751000000108                                                                              Other specified percutaneous operations on heart |
+ 80. |  1767681000006112   763751000000108                                                                                          Percutaneous operations on heart NOS |
+ 83. |   187941000006115         392242000                                                                   Reconstruction of other visceral branch abdominal aorta NOS |
+ 84. |   187951000006118         392242000                                                                    Reconstruction of other visceral branch abdominal aorta OS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 85. |    20181000006111          78418002                                                                             Other parts of heart or pericardium operations OS |
+ 86. |        2160018018         408466002                                                                                                               Cardiac surgery |
+ 89. |   232781000006115         233258006                                                                   Percutaneous transluminal angioplasty suprarenal artery NEC |
+ 90. |   233261000006114         386727004                                                                                           Percutaneous transluminal valvotomy |
+ 91. |    23841000006117         175472009                                                                   Other open operations other visceral branch abdominal aorta |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 96. |   239261000006112         265507002                                                                                       Percutaneous operations on renal artery |
+ 97. |   239401000006112         233258006                                                                  Percutaneous transluminal angioplasty inf mesenteric art NEC |
+ 98. |   239441000006114         175455002                                                                      Percutaneous transluminal angioplasty of brachial artery |
+100. |   239511000006111         175454003                                                                    Percutaneous transluminal angioplasty of subclavian artery |
+101. |   239541000006110         233272002                                                                  Percutaneous transluminal angioplasty sup mesenteric art NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+102. |    24131000006118         175362007                                                                                      Other open operations on cerebral artery |
+103. |    24151000006113         175362007                                                                                     Other open operations on circle of Willis |
+104. |    24431000006111         175472009                                                                     Other open op on other visceral branch abdominal aorta OS |
+105. |  2447001000000118   960041000000107                                                                                              Cardiothoracic surgery care plan |
+106. |    24511000006116         175362007                                                                  Other open operation on cerebral artery/circle of Willis NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+107. |    24521000006112         175362007                                                                   Other open operation on cerebral artery/circle of Willis OS |
+110. |        2476471018          30904006                                                                                                       Blood vessel operations |
+113. |   250961000006114          64915003                                                                          Other therapeutic transluminal operation on heart OS |
+114. |    25261000006116         175472009                                                                    Other open op on other visceral branch abdominal aorta NOS |
+117. |  2540341000006117           2598006                                                                                                            Open heart surgery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+118. |  2586321000006117           5431005                                                                                         Percutaneous transluminal angioplasty |
+120. |        2675439010         426900002                                                                                               Pulmonary thromboendarterectomy |
+121. |        2675882017         426674009                                                                       Percutaneous transluminal balloon angioplasty of artery |
+122. |        2675883010         426736009                                                                                             Patch angioplasty of renal artery |
+127. |        2695246012         428120007                                                                                         Seen in cardiothoracic surgery clinic |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+128. |        2695729013         428811000                                                                          Transjugular intrahepatic angioplasty of portal vein |
+129. |         270839018          77371000                                                                              Closure of defect of unspecified septum of heart |
+130. |         270842012          77371000                                                                   Closure of defect of septum of heart using tissue graft NEC |
+131. |         270844013          77371000                                                                                    Revision of closure of septum of heart NEC |
+132. |         270846010          77371000                                                                          Closure of defect of unspecified septum of heart NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+133. |         270847018          77371000                                                                                      Other open operations on septum of heart |
+134. |         270853018          77371000                                                                       Other specified other open operation on septum of heart |
+135. |         270854012          77371000                                                                                   Other open operation on septum of heart NOS |
+136. |         270855013         174870004                                                                                          Closed operations on septum of heart |
+137. |         270858010         174870004                                                                           Other specified closed operation on septum of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+138. |         270859019         174870004                                                                                       Closed operation on septum of heart NOS |
+139. |         270868017         265469000                                                                     Therapeutic transluminal operation on septum of heart NOS |
+140. |         270907012         307823003                                                                                             Other operations on wall of heart |
+141. |         270908019         307823003                                                                                       Excision of lesion of wall of heart NEC |
+142. |         270910017         307823003                                                                                                   Repair of wall of heart NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+143. |         270913015         307823003                                                                                    Other specified operation on wall of heart |
+144. |         270914014         307823003                                                                                                Operation on wall of heart NOS |
+145. |         270915010         265466007                                                                   Other specified operations on heart wall, septum or chamber |
+146. |         270916011         265466007                                                                                 Heart wall, septum and chamber operations NOS |
+147. |         270917019         174916002                                                                            Valves of heart and adjacent structures operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+148. |         270987010          73544002                                                                                   Allograft replacement of valve of heart NEC |
+149. |         270988017          73544002                                                                                   Xenograft replacement of valve of heart NEC |
+150. |         270995014          73544002                                                                  Other specified plastic repair of unspecified valve of heart |
+151. |         270996010          73544002                                                                              Plastic repair of unspecified valve of heart NOS |
+152. |         271029019          73544002                                                                                       Other open operations on valve of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+153. |         271036018          73544002                                                                                            Annuloplasty of valve of heart NEC |
+154. |         271038017          73544002                                                                        Other specified other open operation on valve of heart |
+155. |         271039013          73544002                                                                                    Other open operation on valve of heart NOS |
+156. |         271052015          73544002                                                                         Therapeutic transluminal operation on heart valve NOS |
+157. |         271062010          73544002                                                                      Other operations on structure adjacent to valve of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+158. |         271064011          64915003                                                                         Operation on structure adjacent to valve of heart NOS |
+159. |         271066013          73544002                                                                            Heart valve and adjacent structures operations NOS |
+170. |         271129017         232717009                                                                        Connection of other thoracic artery to coronary artery |
+178. |         271157012         175076003                                                                         Diagnostic transluminal operations on coronary artery |
+179. |         271160017         175076003                                                                      Diagnostic transluminal operation on coronary artery NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+192. |         271174012          78418002                                                                               Other parts of heart and pericardium operations |
+193. |         271175013         175094009                                                                                 Open operations on conducting system of heart |
+194. |         271181017         175094009                                                                  Other specified open operation on conducting system of heart |
+195. |         271182012         175094009                                                                              Open operation on conducting system of heart NOS |
+196. |         271183019         307823003                                                                                                       Other incision of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+197. |         271185014         307823003                                                                                                      Exploration of heart NEC |
+198. |         271186010         307823003                                                                                                                Cardiotomy NEC |
+199. |         271187018         307823003                                                                                       Other specified other incision of heart |
+200. |         271188011         307823003                                                                                                   Other incision of heart NOS |
+201. |         271189015          64915003                                                                                                Other open operations on heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+202. |         271191011          64915003                                                                                       Other specified open operation on heart |
+203. |         271192016          64915003                                                                                                   Open operation on heart NOS |
+204. |         271193014         175112006                                                                                          Transluminal heart assist operations |
+205. |         271196018         175112006                                                                             Transluminal insertion of heart assist system NEC |
+206. |         271206017         175112006                                                                           Other specified transluminal heart assist operation |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+207. |         271207014         175112006                                                                                       Transluminal heart assist operation NOS |
+208. |         271208016          64915003                                                                            Other therapeutic transluminal operations on heart |
+209. |         271212010          64915003                                                                         Other therapeutic transluminal operation on heart NOS |
+210. |         271213017         175129009                                                                                   Diagnostic transluminal operations on heart |
+211. |         271218014         175129009                                                                    Other specified diagnostic transluminal operation on heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+212. |         271219018         175129009                                                                                Diagnostic transluminal operation on heart NOS |
+213. |         271296012          62858004                                                                                                         Pericardium operation |
+214. |         271301012          62858004                                                                                Other specified other operation on pericardium |
+215. |         271302017          62858004                                                                                            Other operation on pericardium NOS |
+216. |         271303010          64915003                                                                                                     Other operations on heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+217. |         271305015          64915003                                                                                      Other specified other operation on heart |
+218. |         271306019          64915003                                                                                                  Other operation on heart NOS |
+219. |         271309014          78418002                                                                           Other parts of heart and pericardium operations NOS |
+220. |         271311017          64915003                                                                                           Other specified operations on heart |
+221. |         271312012          64915003                                                                                                          Heart operations NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+222. |         271365017         233226001                                                                   Other connection from subclavian artery to pulmonary artery |
+223. |         271388016         233207009                                                                                     Other open operations on pulmonary artery |
+224. |         271396014         233207009                                                                      Other specified other open operation on pulmonary artery |
+225. |         271397017         233207009                                                                                  Other open operation on pulmonary artery NOS |
+226. |         271398010         175266007                                                                                   Transluminal operations on pulmonary artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+227. |         271405016         175266007                                                                    Other specified transluminal operation on pulmonary artery |
+228. |         271406015         175266007                                                                                Transluminal operation on pulmonary artery NOS |
+229. |         271408019         265488007                                                                              Great vessel and pulmonary artery operations NOS |
+234. |         271527011         175362007                                                                            Carotid, cerebral and subclavian artery operations |
+245. |         271605013         175418002                                                                                            Endarterectomy of vertebral artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+246. |         271607017         240923000                                                                                           Endarterectomy of subclavian artery |
+247. |         271608010         233299000                                                                                             Endarterectomy of brachial artery |
+248. |         271613014         450512004                                                                                             Endarterectomy of axillary artery |
+249. |         271614015         175418002                                                                                        Endarterectomy of vertebral artery NEC |
+250. |         271640014         175447009                                                                                    Operation on aneurysm of subclavian artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+251. |         271641013         175448004                                                                                      Operation on aneurysm of axillary artery |
+252. |         271642018         175449007                                                                                      Operation on aneurysm of brachial artery |
+253. |         271643011         175450007                                                                                     Operation on aneurysm of vertebral artery |
+254. |         271644017         175362007                                                                     Other specified other open operation on subclavian artery |
+255. |         271645016         175362007                                                                                 Other open operation on subclavian artery NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+256. |  2716611000006117          13662000                                                       Anastomosis of pulmonary-subclavian artery by Blalock-Taussig operation |
+257. |  2716651000006116          13662000                                                                                                         Blalock-Taussig shunt |
+258. |  2716671000006114          13662000                                                                                                   BTS - Blalock-Taussig shunt |
+259. |         271670016         175464007                                                                      Percutaneous transluminal angioplasty of axillary artery |
+260. |         271676010         265505005                                                                   Other specified transluminal operation on subclavian artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+261. |         271677018         265505005                                                                               Transluminal operation on subclavian artery NOS |
+263. |         271680017         175472009                                                                                        Branches of abdominal aorta operations |
+264. |         271688012         175477003                                                                                                Endarterectomy of renal artery |
+265. |         271694016         175472009                                                                                         Other open operations on renal artery |
+266. |         271699014         175485007                                                                                         Operation on aneurysm of renal artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+267. |         271700010         175472009                                                                          Other specified other open operation on renal artery |
+268. |         271701014         175472009                                                                                      Other open operation on renal artery NOS |
+269. |         271710018         265507002                                                                        Other specified transluminal operation on renal artery |
+270. |         271711019         265507002                                                                                    Transluminal operation on renal artery NOS |
+271. |         271726017         392242000                                                                                            Replantation of coeliac artery NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+272. |         271728016         392242000                                                                                Replantation of superior mesenteric artery NEC |
+273. |         271729012         392242000                                                                                Replantation of inferior mesenteric artery NEC |
+274. |         271730019         392242000                                                                                         Replantation of suprarenal artery NEC |
+275. |         271738014         233302000                                                                                              Endarterectomy of coeliac artery |
+276. |         271740016         233303005                                                                                  Endarterectomy of superior mesenteric artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+277. |         271744013         392242000                                                                        Replantation of visceral branch of abdominal aorta NEC |
+278. |         271746010         392031002                                                                      Endarterectomy of visceral branch of abdominal aorta NEC |
+279. |         271775016         392242000                                                                                   Operation on aneurysm of coeliac artery NEC |
+280. |         271777012         392242000                                                                       Operation on aneurysm of superior mesenteric artery NEC |
+281. |         271779010         392242000                                                                                Operation on aneurysm of suprarenal artery NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+282. |         271795010         233270005                                                                   Percutaneous transluminal angioplasty of coeliac artery NEC |
+283. |         271820016         175472009                                                                     Other specified operations on branches of abdominal aorta |
+284. |         271821017         175472009                                                                                    Branches of abdominal aorta operations NOS |
+302. |         272073017         118805000                                                                                                       Other artery operations |
+303. |         272085013         392242000                                                                                                              Repair of artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+304. |         272093013         392242000                                                                                        Other specified repair of other artery |
+305. |         272094019         392242000                                                                                                    Repair of other artery NOS |
+306. |         272095018         118805000                                                                                         Other open operations on other artery |
+307. |         272101017         118805000                                                                                                Open cannulation of artery NEC |
+308. |         272102012         118805000                                                                                           Operation on aneurysm of artery NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+309. |         272104013         118805000                                                                          Other specified other open operation on other artery |
+310. |         272105014         118805000                                                                                      Other open operation on other artery NOS |
+311. |         272106010         118805000                                                                           Therapeutic transluminal operations on other artery |
+312. |         272107018         276861004                                                                                    Percutaneous balloon angioplasty of artery |
+313. |         272113010         118805000                                                                           Percutaneous transluminal cannulation of artery NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+315. |         272121016         118805000                                                                        Therapeutic transluminal operation on other artery NOS |
+316. |         272122011         118805000                                                                            Diagnostic transluminal operations on other artery |
+317. |         272128010         118805000                                                                         Diagnostic transluminal operation on other artery NOS |
+318. |         272129019         118805000                                                                                    Other specified operations on other artery |
+319. |         272130012         118805000                                                                                                   Other artery operations NOS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+320. |         272295013         175882004                                                                                                      Peroperative angioplasty |
+321. |         272297017         118805000                                                                                                       Operation on artery NEC |
+322. |         272311019          30904006                                                                                  Other specified operations on artery or vein |
+323. |         272312014          30904006                                                                                                Artery and vein operations NOS |
+327. |         284211013         183983001                                                                                                       Heart operation planned |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+330. |         300214014         195130005                                                                                 Post cardiac operation functional disturbance |
+331. |         300217019         195130005                                                                                      Post cardiac operation heart failure NOS |
+337. |    33541000006117         233226001                                                                     Other connection from subclavian art to pulmonary art NOS |
+338. |  3422651000006111          56801004                                                                         Percutaneous transluminal angioplasty of renal artery |
+339. |  3422671000006118          56801004                                                                                PTA - Percutaneous angioplasty of renal artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+340. |   343561000006119         105501005                                                                                                  [V]Other postsurgical states |
+341. |  3448461000006111          58380004                                                                                                               Pericardiostomy |
+343. |         349451014         233243003                                                                                  Transluminal operations on suprarenal artery |
+344. |         349452019         233244009                                                                         Transluminal operations on superior mesenteric artery |
+345. |         349453012         233245005                                                                         Transluminal operations on inferior mesenteric artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+346. |         349454018         233246006                                                                                     Transluminal operations on coeliac artery |
+347. |         349456016         175472009                                                                                    Other open operations on suprarenal artery |
+348. |         349457013         175472009                                                                           Other open operations on superior mesenteric artery |
+349. |         349458015         175472009                                                                           Other open operations on inferior mesenteric artery |
+350. |         349459011         175472009                                                                                       Other open operations on coeliac artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+351. |         349461019         233251000                                                                                   Transluminal operations on vertebral artery |
+352. |         349462014         233252007                                                                                    Transluminal operations on brachial artery |
+353. |         349463016         233253002                                                                                    Transluminal operations on axillary artery |
+354. |         349464010         175362007                                                                                     Other open operations on vertebral artery |
+355. |         349465011         118805000                                                                                      Other open operations on brachial artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+356. |         349466012         118805000                                                                                      Other open operations on axillary artery |
+361. |        3525408011      511000087101                                                                  Fluoroscopy guided angioplasty of artery of right lower limb |
+369. |  3555861000006110          64915003                                                                                                     Cardiac surgery procedure |
+370. |   356421000000114         233142000                                                                                    Transluminal operations on cardiac conduit |
+371. |   356921000000119         233050006                                                                                       Other operations on ventricles of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+372. |  3586411000006112          66816004   Insertion of electrode of heart for temporary transvenous pacemaker system during and immediately following cardiac surgery |
+374. |   359071000000111         276890005                                                                                 Percutaneous transluminal angioplasty of vein |
+375. |   359351000000116         118805000                                                                       Other therapeutic transluminal operations on artery NOS |
+376. |   359411000000112         118805000                                                                           Other therapeutic transluminal operations on artery |
+377. |   359451000000111         709019007                                                                      Percutaneous transluminal stent reconstruction of artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+378. |  3613991000006113          68457009                                                                                 Percutaneous transluminal balloon angioplasty |
+379. |  3614011000006118          68457009                                                                                                PCA - Percutaneous angioplasty |
+380. |  3614021000006114          68457009                                                                                                      Percutaneous angioplasty |
+381. |  3614031000006112          68457009                                                                                              Percutaneous balloon angioplasty |
+383. |   368201000000113   229511000000103                                                                                                  Open heart assist operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+385. |  3695691000006118          73544002                                                                                                      Operation on heart valve |
+386. |   376641000000118         233050006                                                                       Other specified other operations on ventricles of heart |
+387. |   376861000000118         233142000                                                                                Transluminal operations on cardiac conduit NOS |
+388. |   376941000000111         233142000                                                                    Other specified transluminal operations on cardiac conduit |
+389. |  3775661000006111          78418002                                                                                            Operation on heart and pericardium |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+390. |   380641000000113   229511000000103                                                                                              Open heart assist operations NOS |
+391. |   384141000000114         233050006                                                                                   Other operations on ventricles of heart NOS |
+392. |   386511000000110   229511000000103                                                                                  Other specified open heart assist operations |
+394. |         394270015         265466007                                                                                     Heart wall, septum and chamber operations |
+395. |         394273018         265469000                                                                        Therapeutic transluminal operations on septum of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+396. |         394280016          73544002                                                                                  Plastic repair of unspecified valve of heart |
+397. |         394297010         265488007                                                                                 Great vessels and pulmonary artery operations |
+398. |         394311013         175362007                                                                  Other open operations on cerebral artery or circle of Willis |
+399. |         394314017         175362007                                                                                    Other open operations on subclavian artery |
+400. |         394315016         265505005                                                                                  Transluminal operations on subclavian artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+401. |         394317012         265507002                                                                                       Transluminal operations on renal artery |
+402. |         394318019         392242000                                                                    Reconstruction of other visceral branch of abdominal aorta |
+411. |         394346017         450696008                                                                                     Endarterectomy and patch repair of artery |
+412. |         394348016         118805000                                                                              Percutaneous transluminal dilation of artery NEC |
+414. |  4072391000006115         102319006                                                                                 Percutaneous transluminal angioplasty balloon |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+415. |         410951015         275028003                                                                                          Heart atria and ventricle operations |
+424. |         410987010         275064002                                                                                                     Endarterectomy and repair |
+425. |         413257013         276897008                                                                     Percutaneous balloon angioplasty of arteriovenous fistula |
+426. |  4312241000006114         118797008                                                                                                            Procedure on heart |
+427. |  4312251000006111         118797008                                                                                                               Heart procedure |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+428. |  4312331000006112         118805000                                                                                                           Procedure on artery |
+432. |         451208015         307823003                                                                                                         Heart wall operations |
+434. |    45491000006113          73544002                                                                             Operation on structure adjacent to heart valve OS |
+435. |         456362017         312610006                                                                                            Prosthetic graft patch angioplasty |
+436. |         456363010         312611005                                                                       Percutaneous transluminal angioplasty of vascular graft |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+437. |    45851000006116         265500000                                                                   Operation on cerebral artery/ circle of Willis aneurysm NOS |
+438. |    45861000006119         265500000                                                                    Operation on cerebral artery/ circle of Willis aneurysm OS |
+441. |         460692012         105501005                                                                            [V]Presence of artificial limb (complete)(partial) |
+442. |         460702010         105501005                                                                                      Dependence on enabling machine or device |
+443. |    46601000006110         392242000                                                                  Operation on aneurysm visceral branch of abdominal aorta NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+444. |  4667261000006119         175454003                                                                                 Percutaneous angioplasty of subclavian artery |
+445. |  4667281000006112         175455002                                                                                   Percutaneous angioplasty of brachial artery |
+446. |   483681000000117          30904006                                                                                                    Operations on blood vessel |
+447. |   484131000000113         118797008                                                                                  Therapeutic transluminal operations on heart |
+448. |   484151000000118         118797008                                                                  Other specified therapeutic transluminal operations on heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+449. |   484171000000110          64915003                                                                              Therapeutic transluminal operations on heart NOS |
+452. |         498154019          58380004                                                                                                  Pericardial window operation |
+471. |  5044121000006115         232980009                                                                                         Balloon angioplasty of pulmonary vein |
+472. |  5044131000006117         232980009                                                                                          Balloon dilatation of pulmonary vein |
+473. |  5044191000006118         232983006                                                                               Balloon angioplasty of pulmonary venous pathway |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+474. |  5044751000006111         233022006                                                                     Construction of conduit - right atrium to pulmonary trunk |
+475. |  5044761000006113         233022006                                                           Fontan operation with conduit from right atrium to pulmonary artery |
+476. |  5045151000006113         233050006                                                                                                         Ventricular operation |
+478. |  5046421000006117         233142000                                                                                                     Cardiac conduit operation |
+479. |  5047241000006114         233208004                                                                                  Pulmonary trunk and artery banding operation |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+480. |  5047311000006118         233214006                                                                                               Angioplasty of pulmonary artery |
+481. |  5047321000006114         233214006                                                                                        Balloon dilatation of pulmonary artery |
+482. |  5047511000006112         233226001                                                                                Subclavian to pulmonary artery shunt operation |
+483. |  5047861000006112         233258006                                                                                                         Angioplasty of artery |
+484. |  5047871000006117         233258006                                                                                                 Balloon angioplasty of artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+485. |  5047881000006119         233258006                                                                                                          Arterial angioplasty |
+486. |  5047981000006114         233262000                                                                                                Angioplasty of brachial artery |
+488. |  5048121000006113         233268001                                                                                                 Angioplasty of hepatic artery |
+489. |  5048161000006119         233270005                                                                                                 Angioplasty of coeliac artery |
+490. |  5048181000006112         233271009                                                                            Percutaneous balloon angioplasty of coeliac artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+491. |  5048221000006115         233272002                                                                                     Angioplasty of superior mesenteric artery |
+511. |  5048611000006114         233288002                                                                                                  Angioplasty of crural artery |
+513. |  5048671000006117         233290001                                                                                                 Angioplasty of arterial graft |
+522. |  5051271000006114         233476002                                                                                          Angioplasty of arteriovenous fistula |
+523. |   511571000000110          77371000                                                                               Repair of defect of unspecified septum of heart |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+524. |   511601000000115          77371000                                                                    Repair of defect of septum of heart using tissue graft NEC |
+525. |   511621000000112          77371000                                                                                     Revision of repair of septum of heart NEC |
+526. |   511641000000117          77371000                                                                           Repair of defect of unspecified septum of heart NOS |
+527. |   515241000006111          13662000                                                                  Blalock anastomosis of subclavian artery to pulmonary artery |
+532. |   537671000006115          64915003                                                                                                            Cardiac operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+533. |   538771000006114         175362007                                                                         Carotid, cerebral and subclavian artery operations OS |
+534. |   542501000006110         265500000                                                                 Operations on aneurysm of cerebral artery or circle of Willis |
+535. |   542511000006113         265500000                                                                                           Cerebral artery aneurysm operations |
+537. |  5486501000006111         265488007                                                                                   Great vessel and pulmonary artery procedure |
+538. |   557541000006111         265500000                                                                                          Circle of Willis aneurysm operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+539. |  5592141000006110         276890005                                                                                                   Balloon angioplasty of vein |
+540. |  5592171000006119         276890005                                                                                      Percutaneous balloon angioplasty of vein |
+541. |  5592211000006117         276893007                                                                        Percutaneous balloon angioplasty of superior vena cava |
+545. |   569651000006112          77371000                                                                    Closure defect of heart septum using pericardial patch NEC |
+546. |   569881000006117          77371000                                                                  Closure of defect of heart septum using prosthetic patch NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+547. |  5940101000006113         305410002                                                                                Admission to cardiothoracic surgery department |
+548. |  5940121000006115         305412005                                                                                       Admission to cardiac surgery department |
+549. |  5946461000006115         305886005                                                                                        Seen by cardiothoracic surgery service |
+550. |  5952671000006110         306182003                                                                                    Referral to cardiothoracic surgery service |
+551. |  5952701000006111         306185001                                                                                           Referral to cardiac surgery service |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+552. |  5955551000006114         306381000                                                                                               Seen by cardiac surgery service |
+553. |  5958991000006116         306650000                                                                                 Discharge from cardiothoracic surgery service |
+554. |  5959011000006118         306652008                                                                                        Discharge from cardiac surgery service |
+555. |  5980981000006110         308696000                                                                                                       Coarctation angioplasty |
+557. |  5994771000006116         309969008                                                                                             Cardiothoracic surgery department |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+558. |  5996891000006116         310140004                                                                                                Cardiothoracic surgery service |
+559. |  5996911000006119         310142007                                                                                                       Cardiac surgery service |
+560. |  5999161000006111         310362005                                                                                                          Angioplasty catheter |
+561. |   599971000006111         233226001                                                                    Creation anastomosis left subclav art to left pulm art NEC |
+562. |   599981000006114         233226001                                                                  Creation anastomosis right subclav art to right pulm art NEC |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+563. |   599991000006112         233226001                                                                   Creation anastomosis subclavian artery to pulmonary art NEC |
+564. |   600171000006110         233022006                                                                  Creation of conduit between right atrium and pulm artery NEC |
+565. |   600271000006115         233022006                                                                  Creation of Fontan conduit between right atrium & pulmon art |
+568. |  6175741000006117         344990004                                                                                           Balloon angioplasty of renal artery |
+569. |  6175921000006114         346007006                                                                                                   Angioplasty of renal artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+570. |   619381000006119         175076003                                                                       Diagnostic transluminal operation on coronary artery OS |
+571. |   619411000006116         118805000                                                                          Diagnostic transluminal operation on other artery OS |
+572. |  6203411000006116         359551000                                                                                                           Angioplasty of vein |
+573. |  6203421000006112         359551000                                                                                                            Venous angioplasty |
+580. |  6360591000006110         371823002                                                                                                      Patient post angioplasty |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+582. |   641501000006112         275064002                                                                  Endarterectomy & patch rep visceral branch abdomin aorta NEC |
+583. |   641511000006110         275064002                                                                  Endarterectomy & patch repair inferior mesenteric artery NEC |
+584. |   641521000006119         233303005                                                                  Endarterectomy & patch repair superior mesenteric artery NEC |
+585. |   641541000006114         175423002                                                         Endarterectomy of axillary artery and patch repair of axillary artery |
+586. |   641551000006111         175424008                                                         Endarterectomy of brachial artery and patch repair of brachial artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+588. |   641571000006118         233302000                                                                         Endarterectomy and patch repair of coeliac artery NEC |
+592. |   641711000006115         175419005                                                     Endarterectomy of subclavian artery and patch repair of subclavian artery |
+593. |   641721000006111         275064002                                                                      Endarterectomy and patch repair of suprarenal artery NEC |
+594. |   641731000006114         175425009                                                       Endarterectomy of vertebral artery and patch repair of vertebral artery |
+595. |   641751000006119         392031002                                                                                                                Endarterectomy |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+596. |  6460431000006117         386727004                                                                                   Percutaneous transluminal cardiac valvotomy |
+597. |  6530991000006112         392242000                                                                                                               Arterial repair |
+598. |  6531001000006113         392242000                                                                                                                 Arterioplasty |
+612. |  6918921000006113         418285008                                                                                                   Angioplasty of blood vessel |
+613. |  6918931000006111         418285008                                                                                                                   Angioplasty |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+624. |  7171111000006119         432952005                                         Percutaneous transluminal angioplasty of dialysis fistula using fluoroscopic guidance |
+625. |  7171121000006110         432952005                                                                                                       PTA of dialysis fistula |
+629. |  7226691000006114         439700004                                    Percutaneous transluminal angioplasty of cerebral venous sinus using fluoroscopic guidance |
+630. |  7283751000006113         443829004                          Percutaneous transluminal balloon angioplasty of aorta with stent placement for coarctation of aorta |
+640. |  7624061000006118         707822001                               Percutaneous transluminal balloon angioplasty for major systemic to pulmonary collateral artery |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+642. |  7643011000006117         709019007                                                        Percutaneous transluminal arterial angioplasty with insertion of stent |
+643. |  7643051000006116         709021002                                                          Percutaneous transluminal venous angioplasty with insertion of stent |
+648. |  7873641000006116         725823001                                                    Fluoroscopy guided percutaneous transluminal angioplasty of arterial graft |
+650. |   807051000006113         265488007                                                                                                       Great vessel operations |
+651. |   807061000006110         265488007                                                                                Great vessel or pulmonary artery operations OS |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+653. |   818471000006114         275028003                                                                                                     Heart chambers operations |
+654. |   818751000006112          64915003                                                                                                            Operation on heart |
+655. |   818791000006118          77371000                                                                                                   Operation on cardiac septum |
+656. |   818851000006118          73544002                                                                              Heart valve or adjacent structures operations OS |
+660. |   864941000006116         118797008                                                                                                     Cardiovascular operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+661. |   864981000006110   594341000000109                                                                                                    Heart septum operation NOS |
+662. |   865121000006112          73544002                                                                                                     Heart valve operation NOS |
+663. |   865131000006110          73544002                                                                                                        Heart valve operations |
+670. |   865341000006119         175112006                                                                                                               Other heart aid |
+671. |   865661000006111   555701000000102                                                                                                        Pericardium operations |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+672. |   865691000006115   561391000000104                                                                                                 Cardiovascular operations NOS |
+673. |   865701000006115          30904006                                                                                                        Other vascular op. NOS |
+674. |   865711000006117          30904006                                                                                                 Vessel surgical occlusion NOS |
+675. |   865721000006113          30904006                                                                                                        Vessel lesion excision |
+676. |   865731000006111          30904006                                                                                                       Vein excision for graft |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+677. |   865741000006118          30904006                                                                                                                Aneurysmectomy |
+678. |   865751000006116          30904006                                                                                                          Repair of vessel NOS |
+679. |   865761000006119          30904006                                                                                                              Aneurysmorrhaphy |
+680. |   865771000006114          30904006                                                                                                 Replacement of vascular graft |
+681. |   865781000006112          30904006                                                                                                              Suture of vessel |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+682. |   865791000006110          30904006                                                                                                              Repair of vessel |
+683. |   865801000006111          30904006                                                                                                      Vessel shunt/by-pass NOS |
+684. |   865811000006114          30904006                                                                                                Vascular prosth. by-pass graft |
+685. |   865991000006112         175362007                                                                                                     Meningeal artery ligation |
+686. |   866171000006118   597571000000100                                                                                                Aneurysm excision+reanastomos. |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+687. |   866181000006115   597571000000100                                                                                                          Other endarterectomy |
+688. |   866191000006117         275064002                                                                                                         Patch graft to artery |
+689. |   866201000006119         392031002                                                                                                        Removal of vessel clot |
+690. |   866211000006116         392031002                                                                                                      Other endarterectomy NOS |
+691. |   866221000006112         392031002                                                                                                         Thromboendarterectomy |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+695. |    89791000006111         175472009                                                                     Transluminal op other visceral branch abdominal aorta NOS |
+696. |    89801000006112         175472009                                                                      Transluminal op other visceral branch abdominal aorta OS |
+697. |    89871000006118         265502008                                                                   Transluminal operation on cerebral art/circle of Willis NOS |
+698. |    89881000006115         265502008                                                                    Transluminal operation on cerebral art/circle of Willis OS |
+701. |    90011000006112         265502008                                                                Transluminal operations on cerebral artery or circle of Willis |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+703. |    90141000006110         175472009                                                                        Transluminal ops other visceral branch abdominal aorta |
+704. |   904661000006118   904661000006102                                                                                               Cardiothoracic surgery referral |
+705. |   905401000006117   905401000006101                                                                                                    [RFC] Post-cardiac surgery |
+707. |   932471000006114         392031002                                                                                                          Other endarterectomy |
+709. |   933331000006114          30904006                                                                                                Aneurysm excision+reanastomos. |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+711. |          94463015          56801004                                                                                      Percutaneous angioplasty of renal artery |
+712. |          97023017          58380004                                                                                                   Fenestration of pericardium |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. drop if `clinician' == .
+(407 observations deleted)
+
+. 
+. //Save clinician approved codelist
+. gsort snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym `clinician'
+
+. compress
+  (0 bytes saved)
+
+. save `filename', replace
+file major_cardiovascular_surgery.dta saved
+
+. export delimited `filename', replace quote
+(file major_cardiovascular_surgery.csv not found)
+file major_cardiovascular_surgery.csv saved
+
+. 
 . 
 . // STEP 10. GENERATE METADATA FILE
 . //=================================
@@ -1496,7 +2134,7 @@ file major_cardiovascular_surgery_raw.xlsx saved
 
 . local clinical_reviewer "Christina Avgerinou"
 
-. local date_approved = . //ym(2024, 12)  //year, month
+. local date_approved = ym(2025, 3)  //year, month
 
 . local notes "Created for PRIORITY study"
 
@@ -1539,7 +2177,7 @@ variable v1 was str1 now str28
 (1 real change made)
 
 . replace v2 = `date_approved' in 8
-(0 real changes made)
+(1 real change made)
 
 . replace v1 = "`notes'" in 9
 (1 real change made)
@@ -1575,7 +2213,7 @@ file major_cardiovascular_surgery.meta saved
 . 
 . log close
       name:  <unnamed>
-       log:  C:\Users\rmjlton\GitHub\priority\codelists\major_cardiovascular_surgery.log
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\major_cardiovascular_surgery.log
   log type:  text
- closed on:  20 Jan 2025, 20:56:52
+ closed on:  17 Mar 2025, 14:43:53
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
