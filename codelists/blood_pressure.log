@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\blood_pressure.log
   log type:  text
- opened on:  17 Mar 2025, 16:07:34
+ opened on:  17 Mar 2025, 16:32:26
 
 . 
 . 
@@ -1162,58 +1162,58 @@ Terms on pre-existing list only...
      +-------------------------------------------------------------------------------------------------------+
      |                                      term                                              term_refset_bp |
      |-------------------------------------------------------------------------------------------------------|
- 18. | Decreased blood pressure, not hypotension                         Finding of decreased blood pressure |
+ 17. | Decreased blood pressure, not hypotension                         Finding of decreased blood pressure |
  19. |            Normal systolic blood pressure                           Normal systolic arterial pressure |
  24. |                      O/E - blood pressure                     On examination - blood pressure reading |
- 25. |                          O/E - BP reading                     On examination - blood pressure reading |
- 26. |            O/E-blood pressure reading NOS                     On examination - blood pressure reading |
+ 25. |            O/E-blood pressure reading NOS                     On examination - blood pressure reading |
+ 27. |                          O/E - BP reading                     On examination - blood pressure reading |
      |-------------------------------------------------------------------------------------------------------|
  28. |              O/E - blood pressure reading                     On examination - blood pressure reading |
  29. |                 O/E - BP reading very low            On examination - blood pressure reading very low |
  30. |                      O/E - BP reading low                 On examination - blood pressure reading low |
  31. |                   O/E - BP borderline low              On examination - blood pressure borderline low |
- 33. |                   O/E - BP reading normal              On examination - blood pressure reading normal |
+ 32. |                   O/E - BP reading normal              On examination - blood pressure reading normal |
      |-------------------------------------------------------------------------------------------------------|
  34. |                O/E - BP borderline raised           On examination - blood pressure borderline raised |
- 35. |                   O/E - BP reading raised              On examination - blood pressure reading raised |
+ 36. |                   O/E - BP reading raised              On examination - blood pressure reading raised |
  37. |                O/E - BP reading very high           On examination - blood pressure reading very high |
- 39. | On examination - BP reading:postural drop      On examination - blood pressure reading: postural drop |
- 40. |            O/E - BP reading:postural drop      On examination - blood pressure reading: postural drop |
+ 39. |            O/E - BP reading:postural drop      On examination - blood pressure reading: postural drop |
+ 40. | On examination - BP reading:postural drop      On examination - blood pressure reading: postural drop |
      |-------------------------------------------------------------------------------------------------------|
  41. |                 O/E - Systolic BP reading            On examination - Systolic blood pressure reading |
  42. |                O/E - Diastolic BP reading           On examination - Diastolic blood pressure reading |
  43. |     On examination - Diastolic BP reading           On examination - Diastolic blood pressure reading |
- 45. |                           O/E - BP stable                      On examination - blood pressure stable |
+ 44. |                           O/E - BP stable                      On examination - blood pressure stable |
  46. |              Lying blood pressure reading                                        Lying blood pressure |
      |-------------------------------------------------------------------------------------------------------|
  49. |           Standing blood pressure reading                                     Standing blood pressure |
- 50. |            Sitting blood pressure reading                                      Sitting blood pressure |
+ 51. |            Sitting blood pressure reading                                      Sitting blood pressure |
  52. |            O/E - blood pressure decreased                   On examination - blood pressure decreased |
  53. |                           O/E - BP labile                      On examination - blood pressure labile |
  58. |                     O/E - initial high BP                On examination - initial high blood pressure |
      |-------------------------------------------------------------------------------------------------------|
- 60. |                       O/E - check high BP                  On examination - check high blood pressure |
+ 59. |                       O/E - check high BP                  On examination - check high blood pressure |
  68. |     High systolic arterial pulse pressure                        Increased systolic arterial pressure |
 104. |   Ambulatory systolic BP (blood pressure)                          Ambulatory systolic blood pressure |
-110. |                              Normotensive                                       Normal blood pressure |
-116. |          High diastolic arterial pressure                       Increased diastolic arterial pressure |
+109. |                              Normotensive                                       Normal blood pressure |
+115. |          High diastolic arterial pressure                       Increased diastolic arterial pressure |
      |-------------------------------------------------------------------------------------------------------|
 117. |                     Raised blood pressure                         Finding of increased blood pressure |
 118. |                   Elevated blood pressure                         Finding of increased blood pressure |
-122. |              MAP - Mean arterial pressure                         Non-invasive mean arterial pressure |
-123. |          Non-invasive mean blood pressure                         Non-invasive mean arterial pressure |
+123. |              MAP - Mean arterial pressure                         Non-invasive mean arterial pressure |
+124. |          Non-invasive mean blood pressure                         Non-invasive mean arterial pressure |
 137. |               Diastolic arterial pressure                                    Diastolic blood pressure |
      |-------------------------------------------------------------------------------------------------------|
 152. |        O/E - BP reading: no postural drop   On examination - blood pressure reading: no postural drop |
-184. | Self measured BP (blood pressure) reading                        Self measured blood pressure reading |
+183. | Self measured BP (blood pressure) reading                        Self measured blood pressure reading |
 206. |             ABP - Arterial blood pressure                                     Arterial blood pressure |
 208. |             SBP - Systemic blood pressure                                     Systemic blood pressure |
-241. |                 Normal diastolic arterial                          Normal diastolic arterial pressure |
+240. |                 Normal diastolic arterial                          Normal diastolic arterial pressure |
      |-------------------------------------------------------------------------------------------------------|
-242. |                 MBP - Mean blood pressure                                         Mean blood pressure |
-243. |              MAP - Mean arterial pressure                                         Mean blood pressure |
+243. |                 MBP - Mean blood pressure                                         Mean blood pressure |
+244. |              MAP - Mean arterial pressure                                         Mean blood pressure |
 256. |                   Systolic blood pressure                                  Systolic arterial pressure |
-263. |                       BP - Blood pressure                                              Blood pressure |
+262. |                       BP - Blood pressure                                              Blood pressure |
      +-------------------------------------------------------------------------------------------------------+
 Terms on pre-existing list only...
 
@@ -2033,7 +2033,7 @@ file blood_pressure.csv saved
 
 . local notes "Created for PRIORITY study. This codelist identifies values/measurements of blood pressure only and is not intended to included diagnosis codes"
 
-. local keywords ""
+. local keywords "systolic, diastolic"
 
 . //==============================================================================
 . 
@@ -2080,7 +2080,7 @@ variable v1 was str21 now str143
 (1 real change made)
 
 . replace v1 = "`keywords'" in 10
-(0 real changes made)
+(1 real change made)
 
 . 
 . tostring v2, replace usedisplayformat force
@@ -2112,5 +2112,5 @@ file blood_pressure.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\blood_pressure.log
   log type:  text
- closed on:  17 Mar 2025, 16:07:38
+ closed on:  17 Mar 2025, 16:32:30
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
