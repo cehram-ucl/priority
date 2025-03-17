@@ -1,77 +1,167 @@
-medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,cholesterol,triglycerides,total,hdl,ldl
-"12620771000006117",1,"^ESCT1262077","","1106541000000101","2769291000000112","Cholesterol substance concentration in serum",1,,1,,
-"6279001000006116",1,"^ESCTCH627900","","365793008","489233011","Cholesterol level - finding",1,,1,,
-"6279031000006112",1,"^ESCTSE627903","","365794002","489234017","Serum cholesterol level - finding",1,,1,,
-"6279011000006118",4,"^ESCTCH627901","","365793008","489232018","Cholesterol level",1,,1,,
-"127946011",30,"^ESCT1164040","","77068002","127946011","Cholesterol measurement",1,,1,,
-"6831591000006111",50,"^ESCTSE683159","","412808005","2474364010","Serum total cholesterol measurement",1,,1,,
-"6052931000006111",100,"^ESCTFA605293","","315017003","459479011","Fasting cholesterol level",1,,1,,
-"6831601000006115",100,"^ESCTSE683160","","412808005","2478443019","Serum total cholesterol level",1,,1,,
-"6279041000006119",300,"^ESCTSE627904","","365794002","489235016","Serum cholesterol level",1,,1,,
-"34521000033114",700,"DRGC406","","84698008","34521000033114","Cholesterol",1,,1,,
-"3877651000006116",3000,"^ESCTCH387765","","84698008","140417016","Cholesterol",1,,1,,
-"1488851015",4000,"662a","662a.00","395153009","1488851015","Pre-treatment serum cholesterol level",1,,1,,
-"8290381000006115",4000,"^ESCTCH829038","","850981000000101","2204831000000119","Cholesterol level",1,,1,,
-"8292941000006114",8000,"^ESCTTO829294","","853681000000104","2210431000000111","Total cholesterol level",1,,1,,
-"405621000000116",60000,"44PK","44PK.00","1083761000000106","2715881000000113","Serum fasting total cholesterol level",1,,1,,
-"1879211000006117",90000,"EMISREQ|44P..","44P..00","1879211000006101","1879211000006117","Test request : Serum cholesterol",1,,1,,
-"259239018",100000,"44P9","44P9.00","1026441000000100","2599591000000110","Serum cholesterol studies",1,,1,,
-"259252011",200000,"44PZ","44PZ.00","1005671000000105","2551271000000118","Serum cholesterol NOS",1,,1,,
-"186091018",400000,"44PH","44PH.00","121868005","186091018","Total cholesterol measurement",1,,1,,
-"667191000006111",400000,"EGTON456","","667191000006107","667191000006111","Fasting serum cholesterol",1,,1,,
-"259229012",2000000,"44P3","44P3.00","166830008","259229012","Serum cholesterol raised",1,,1,,
-"1484985012",4000000,"44OE","44OE.00","1017161000000104","2552911000000113","Plasma total cholesterol level",1,,1,,
-"2478443019",8000000,"44PJ","44PJ.00","994351000000103","2581451000000115","Serum total cholesterol level",1,,1,,
-"150921000006118",80000000,"44P","44P..00","1005671000000105","2551271000000118","Serum cholesterol level",1,,1,,
-"4079601000006113",1,"^ESCTHD407960","","102737005","1218863018","HDLC - High density lipoprotein cholesterol",1,,,1,
-"12622291000006110",1,"^ESCT1262229","","1107661000000104","2771751000000118","HDL (high density lipoprotein) cholesterol substance concentration in plasma",1,,,1,
-"4600561000006117",1,"^ESCTLI460056","","166854003","2972661016","Lipoprotein electrophoresis - High density lipoprotein",1,,,1,
-"2950011000006112",1,"^ESCTHI295001","","28036006","1225750018","High density lipoprotein cholesterol level",1,,,1,
-"6041651000006119",1,"^ESCTPL604165","","314035000","458313013","Plasma HDL cholesterol level",1,,,1,
-"4079591000006117",2,"^ESCTHI407959","","102737005","1218862011","High density lipoprotein cholesterol",1,,,1,
-"5415671000006114",9,"^ESCTHI541567","","259557002","386540011","High density lipoprotein triglyceride",1,1,,1,
-"2950001000006114",10,"^ESCTHD295000","","28036006","483733018","HDL - High density lipoprotein cholesterol level",1,,,1,
-"2783851000006110",20,"^ESCTHD278385","","17888004","195851010","HDL measurement",1,,,1,
-"2783841000006113",20,"^ESCTHI278384","","17888004","30224015","High density lipoprotein measurement",1,,,1,
-"4600201000006115",30,"^ESCTSE460020","","166832000","259231015","Serum HDL cholesterol measurement",1,,,1,
-"12622321000006118",40,"^ESCT1262232","","1107681000000108","2771791000000114","HDL (high density lipoprotein) cholesterol substance concentration in serum",1,,,1,
-"2949981000006111",50,"^ESCTHD294998","","28036006","46935010","HDL cholesterol measurement",1,,,1,
-"987321000006112",60,"EMISNQPR9","","987321000006108","987321000006112","Pre-treatment fasting HDL cholesterol",1,,,1,
-"8385731000006118",200,"^ESCTSE838573","","1005681000000107","2607231000000110","Serum HDL (high density lipoprotein) cholesterol level",1,,,1,
-"4600211000006117",200,"^ESCTSE460021","","166832000","259232010","Serum HDL cholesterol level",1,,,1,
-"2650121000006116",400,"^ESCTHI265012","","9422000","16513016","High density lipoprotein",1,,,1,
-"2650141000006111",400,"^ESCTHD265014","","9422000","16515011","HDL",1,,,1,
-"4079571000006118",500,"^ESCTHD407957","","102737005","166116016","HDL cholesterol",1,,,1,
-"817591000006110",800,"44R3-1","44R3.11","166854003","259266018","HDL - electrophoresis",1,,,1,
-"2949971000006113",1000,"^ESCTHI294997","","28036006","46931018","High density lipoprotein cholesterol measurement",1,,,1,
-"259564016",30000,"44d2","44d2.00","1028831000000106","2600041000000114","Plasma random HDL (high density lipoprotein) cholesterol level",1,,,1,
-"259567011",50000,"44d3","44d3.00","1028841000000102","2600031000000117","Plasma fasting HDL (high density lipoprotein) cholesterol level",1,,,1,
-"1822511000006110",100000,"EMISREQ|44P5.","44P5.00","1822511000006106","1822511000006110","Test request : Serum HDL cholesterol level",1,,,1,
-"855771000006118",100000,"EGTONHD1","","855771000006102","855771000006118","HDL cholesterol level",1,,,1,
-"259243019",200000,"44PC","44PC.00","1026461000000104","2599971000000117","Serum random HDL (high density lipoprotein) cholesterol level",1,,,1,
-"259242012",300000,"44PB","44PB.00","1026451000000102","2599931000000119","Serum fasting HDL (high density lipoprotein) cholesterol level",1,,,1,
-"259266018",400000,"44R3","44R3.00","166854003","259266018","Lipoprotein electroph. - HDL",1,,,1,
-"458313013",3000000,"44dA","44dA.00","1010581000000101","2557051000000110","Plasma HDL (high density lipoprotein) cholesterol level",1,,,1,
-"259232010",70000000,"44P5","44P5.00","1005681000000107","2577901000000110","Serum high density lipoprotein cholesterol level",1,,,1,
-"4079651000006112",1,"^ESCTLD407965","","102739008","1218866014","LDLC - Low density lipoprotein cholesterol",1,,,,1
-"12623391000006112",1,"^ESCT1262339","","1108541000000100","2774131000000111","LDL-C (low density lipoprotein cholesterol) substance concentration in plasma",1,,,,1
-"4217691000006110",1,"^ESCTLO421769","","113079009","1219822018","Low density lipoprotein cholesterol level",1,,,,1
-"8403921000006111",2,"^ESCTSE840392","","1022191000000100","2607251000000115","Serum LDL (low density lipoprotein) cholesterol level",1,,,,1
-"4600231000006111",9,"^ESCTSE460023","","166833005","259234011","Serum LDL cholesterol measurement",1,,,,1
-"4217681000006112",20,"^ESCTLD421768","","113079009","380428016","LDL - Low density lipoprotein cholesterol level",1,,,,1
-"6550661000006112",20,"^ESCTCA655066","","395065005","1488764011","Calculated LDL cholesterol level",1,,,,1
-"12623411000006112",40,"^ESCT1262341","","1108551000000102","2774161000000118","LDL-C (low density lipoprotein cholesterol) substance concentration in serum",1,,,,1
-"4217661000006119",40,"^ESCTLD421766","","113079009","188838015","LDL cholesterol measurement",1,,,,1
-"2854331000006115",90,"^ESCTLO285433","","22244007","37344013","Low density lipoprotein",1,,,,1
-"4600241000006118",100,"^ESCTSE460024","","166833005","259233017","Serum LDL cholesterol level",1,,,,1
-"4079621000006115",300,"^ESCTLD407962","","102739008","166118015","LDL cholesterol",1,,,,1
-"4217651000006116",300,"^ESCTLO421765","","113079009","186163011","Low density lipoprotein cholesterol measurement",1,,,,1
-"2854351000006110",300,"^ESCTLD285435","","22244007","37346010","LDL",1,,,,1
-"259569014",20000,"44d4","44d4.00","1028851000000104","2600051000000112","Plasma random LDL (low density lipoprotein) cholesterol level",1,,,,1
-"259570010",50000,"44d5","44d5.00","1028861000000101","2600061000000110","Plasma fasting LDL (low density lipoprotein) cholesterol level",1,,,,1
-"259247018",100000,"44PE","44PE.00","1026481000000108","2599981000000115","Serum random LDL (low density lipoprotein) cholesterol level",1,,,,1
-"857141000006116",200000,"EGTONLD1","","857141000006100","857141000006116","LDL cholesterol level",1,,,,1
-"259246010",300000,"44PD","44PD.00","1026471000000106","2599941000000111","Serum fasting LDL (low density lipoprotein) cholesterol level",1,,,,1
-"458314019",2000000,"44dB","44dB.00","1010591000000104","2586471000000117","Plasma LDL (low density lipoprotein) cholesterol level",1,,,,1
-"1488764011",10000000,"44PI","44PI.00","1014501000000104","2552501000000118","Calculated LDL (low density lipoprotein) cholesterol level",1,,,,1
-"259233017",40000000,"44P6","44P6.00","1022191000000100","2566581000000116","Serum low density lipoprotein cholesterol level",1,,,,1
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,cholesterol,triglycerides,ldl,non_hdl,hdl,total,ratio,vldl,oc_chol_total,oc_chol_test,oc_chol_value,oc_hdlc,oc_hdlc_2,refset_hdlcchol,refset_ldlcchol,refset_ndacholest,oc_nonhdlc,refset_nonhdlcchol,refset_chol,refset_chol2,refset_tcholhdl,cholesterol_type
+"2478443019",8000000,"44PJ","44PJ.00","994351000000103","2581451000000115","Serum total cholesterol level",1,,,,,1,,,1,,,,,,,1,,,1,1,,"Total cholesterol"
+"1484985012",4000000,"44OE","44OE.00","1017161000000104","2552911000000113","Plasma total cholesterol level",1,,,,,1,,,1,1,1,,,,,1,,,1,1,,"Total cholesterol"
+"186091018",400000,"44PH","44PH.00","121868005","186091018","Total cholesterol measurement",1,,,,,1,,,,,,,,,,1,,,1,,,"Total cholesterol"
+"405621000000116",60000,"44PK","44PK.00","1083761000000106","2715881000000113","Serum fasting total cholesterol level",1,,,,,1,,,,,,,,,,1,,,1,1,,"Total cholesterol"
+"8292941000006114",8000,"^ESCTTO829294","","853681000000104","2210431000000111","Total cholesterol level",1,,,,,1,,,,1,,,,,,1,,,,1,,"Total cholesterol"
+"6831601000006115",100,"^ESCTSE683160","","412808005","2478443019","Serum total cholesterol level",1,,,,,1,,,,1,,,,,,,,,,,,"Total cholesterol"
+"6831591000006111",50,"^ESCTSE683159","","412808005","2474364010","Serum total cholesterol measurement",1,,,,,1,,,,1,,,,,,,,,,,,"Total cholesterol"
+"150921000006118",80000000,"44P","44P..00","1005671000000105","2551271000000118","Serum cholesterol level",1,,,,,,,,1,1,1,,,,,1,,,1,1,,"Total cholesterol"
+"259229012",2000000,"44P3","44P3.00","166830008","259229012","Serum cholesterol raised",1,,,,,,,,,,,,,,,1,,,1,,,"Total cholesterol"
+"667191000006111",400000,"EGTON456","","667191000006107","667191000006111","Fasting serum cholesterol",1,,,,,,,,1,,,,,,,,,,,,,"Total cholesterol"
+"259252011",200000,"44PZ","44PZ.00","1005671000000105","2551271000000118","Serum cholesterol NOS",1,,,,,,,,1,1,1,,,,,1,,,1,1,,"Total cholesterol"
+"259239018",100000,"44P9","44P9.00","1026441000000100","2599591000000110","Serum cholesterol studies",1,,,,,,,,,,,,,,,,,,,,,"Total cholesterol"
+"1879211000006117",90000,"EMISREQ|44P..","44P..00","1879211000006101","1879211000006117","Test request : Serum cholesterol",1,,,,,,,,,,,,,,,,,,,,,"Total cholesterol"
+"1488851015",4000,"662a","662a.00","395153009","1488851015","Pre-treatment serum cholesterol level",1,,,,,,,,,1,,,,,,1,,,,,,"Total cholesterol"
+"8290381000006115",4000,"^ESCTCH829038","","850981000000101","2204831000000119","Cholesterol level",1,,,,,,,,1,1,1,,,,,1,,,,1,,"Total cholesterol"
+"3877651000006116",3000,"^ESCTCH387765","","84698008","140417016","Cholesterol",1,,,,,,,,,,,,,,,,,,,,,"Total cholesterol"
+"34521000033114",700,"DRGC406","","84698008","34521000033114","Cholesterol",1,,,,,,,,,,,,,,,,,,,,,"Total cholesterol"
+"6279041000006119",300,"^ESCTSE627904","","365794002","489235016","Serum cholesterol level",1,,,,,,,,,1,,,,,,,,,,,,"Total cholesterol"
+"6052931000006111",100,"^ESCTFA605293","","315017003","459479011","Fasting cholesterol level",1,,,,,,,,,,,,,,,1,,,1,,,"Total cholesterol"
+"127946011",30,"^ESCT1164040","","77068002","127946011","Cholesterol measurement",1,,,,,,,,,,,,,,,,,,,,,"Total cholesterol"
+"6279011000006118",4,"^ESCTCH627901","","365793008","489232018","Cholesterol level",1,,,,,,,,,1,,,,,,,,,,,,"Total cholesterol"
+"12620771000006117",1,"^ESCT1262077","","1106541000000101","2769291000000112","Cholesterol substance concentration in serum",1,,,,,,,,,,,,,,,,,,1,1,,"Total cholesterol"
+"6279001000006116",1,"^ESCTCH627900","","365793008","489233011","Cholesterol level - finding",1,,,,,,,,,1,,,,,,,,,,,,"Total cholesterol"
+"6279031000006112",1,"^ESCTSE627903","","365794002","489234017","Serum cholesterol level - finding",1,,,,,,,,,1,,,,,,,,,,,,"Total cholesterol"
+"259232010",70000000,"44P5","44P5.00","1005681000000107","2577901000000110","Serum high density lipoprotein cholesterol level",1,,,,1,,,,,,,1,1,1,,1,,,,,,"HDL"
+"458313013",3000000,"44dA","44dA.00","1010581000000101","2557051000000110","Plasma HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,1,1,1,,,,,,,,"HDL"
+"259266018",400000,"44R3","44R3.00","166854003","259266018","Lipoprotein electroph. - HDL",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"259242012",300000,"44PB","44PB.00","1026451000000102","2599931000000119","Serum fasting HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"259243019",200000,"44PC","44PC.00","1026461000000104","2599971000000117","Serum random HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"1822511000006110",100000,"EMISREQ|44P5.","44P5.00","1822511000006106","1822511000006110","Test request : Serum HDL cholesterol level",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"855771000006118",100000,"EGTONHD1","","855771000006102","855771000006118","HDL cholesterol level",1,,,,1,,,,,,,1,,,,,,,,,,"HDL"
+"259567011",50000,"44d3","44d3.00","1028841000000102","2600031000000117","Plasma fasting HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"259564016",30000,"44d2","44d2.00","1028831000000106","2600041000000114","Plasma random HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"2949971000006113",1000,"^ESCTHI294997","","28036006","46931018","High density lipoprotein cholesterol measurement",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"817591000006110",800,"44R3-1","44R3.11","166854003","259266018","HDL - electrophoresis",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"4079571000006118",500,"^ESCTHD407957","","102737005","166116016","HDL cholesterol",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2650121000006116",400,"^ESCTHI265012","","9422000","16513016","High density lipoprotein",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2650141000006111",400,"^ESCTHD265014","","9422000","16515011","HDL",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"8385731000006118",200,"^ESCTSE838573","","1005681000000107","2607231000000110","Serum HDL (high density lipoprotein) cholesterol level",1,,,,1,,,,,,,1,1,1,,1,,,,,,"HDL"
+"4600211000006117",200,"^ESCTSE460021","","166832000","259232010","Serum HDL cholesterol level",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"987321000006112",60,"EMISNQPR9","","987321000006108","987321000006112","Pre-treatment fasting HDL cholesterol",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2949981000006111",50,"^ESCTHD294998","","28036006","46935010","HDL cholesterol measurement",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"12622321000006118",40,"^ESCT1262232","","1107681000000108","2771791000000114","HDL (high density lipoprotein) cholesterol substance concentration in serum",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"4600201000006115",30,"^ESCTSE460020","","166832000","259231015","Serum HDL cholesterol measurement",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2783851000006110",20,"^ESCTHD278385","","17888004","195851010","HDL measurement",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2783841000006113",20,"^ESCTHI278384","","17888004","30224015","High density lipoprotein measurement",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2950001000006114",10,"^ESCTHD295000","","28036006","483733018","HDL - High density lipoprotein cholesterol level",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"5415671000006114",9,"^ESCTHI541567","","259557002","386540011","High density lipoprotein triglyceride",1,1,,,1,,,,,,,,,,,,,,,,,"HDL"
+"4079591000006117",2,"^ESCTHI407959","","102737005","1218862011","High density lipoprotein cholesterol",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"4079601000006113",1,"^ESCTHD407960","","102737005","1218863018","HDLC - High density lipoprotein cholesterol",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"12622291000006110",1,"^ESCT1262229","","1107661000000104","2771751000000118","HDL (high density lipoprotein) cholesterol substance concentration in plasma",1,,,,1,,,,,,,,,1,,,,,,,,"HDL"
+"4600561000006117",1,"^ESCTLI460056","","166854003","2972661016","Lipoprotein electrophoresis - High density lipoprotein",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"2950011000006112",1,"^ESCTHI295001","","28036006","1225750018","High density lipoprotein cholesterol level",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"6041651000006119",1,"^ESCTPL604165","","314035000","458313013","Plasma HDL cholesterol level",1,,,,1,,,,,,,,,,,,,,,,,"HDL"
+"259233017",40000000,"44P6","44P6.00","1022191000000100","2566581000000116","Serum low density lipoprotein cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"1488764011",10000000,"44PI","44PI.00","1014501000000104","2552501000000118","Calculated LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"458314019",2000000,"44dB","44dB.00","1010591000000104","2586471000000117","Plasma LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"259246010",300000,"44PD","44PD.00","1026471000000106","2599941000000111","Serum fasting LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"857141000006116",200000,"EGTONLD1","","857141000006100","857141000006116","LDL cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"259247018",100000,"44PE","44PE.00","1026481000000108","2599981000000115","Serum random LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"259570010",50000,"44d5","44d5.00","1028861000000101","2600061000000110","Plasma fasting LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"259569014",20000,"44d4","44d4.00","1028851000000104","2600051000000112","Plasma random LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"4079621000006115",300,"^ESCTLD407962","","102739008","166118015","LDL cholesterol",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"4217651000006116",300,"^ESCTLO421765","","113079009","186163011","Low density lipoprotein cholesterol measurement",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"2854351000006110",300,"^ESCTLD285435","","22244007","37346010","LDL",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"4600241000006118",100,"^ESCTSE460024","","166833005","259233017","Serum LDL cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"2854331000006115",90,"^ESCTLO285433","","22244007","37344013","Low density lipoprotein",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"12623411000006112",40,"^ESCT1262341","","1108551000000102","2774161000000118","LDL-C (low density lipoprotein cholesterol) substance concentration in serum",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"4217661000006119",40,"^ESCTLD421766","","113079009","188838015","LDL cholesterol measurement",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"4217681000006112",20,"^ESCTLD421768","","113079009","380428016","LDL - Low density lipoprotein cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"6550661000006112",20,"^ESCTCA655066","","395065005","1488764011","Calculated LDL cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"4600231000006111",9,"^ESCTSE460023","","166833005","259234011","Serum LDL cholesterol measurement",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"8403921000006111",2,"^ESCTSE840392","","1022191000000100","2607251000000115","Serum LDL (low density lipoprotein) cholesterol level",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"4079651000006112",1,"^ESCTLD407965","","102739008","1218866014","LDLC - Low density lipoprotein cholesterol",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"12623391000006112",1,"^ESCT1262339","","1108541000000100","2774131000000111","LDL-C (low density lipoprotein cholesterol) substance concentration in plasma",1,,1,,,,,,,,,,,,1,,,,,,,"LDL"
+"4217691000006110",1,"^ESCTLO421769","","113079009","1219822018","Low density lipoprotein cholesterol level",1,,1,,,,,,,,,,,,,,,,,,,"LDL"
+"259236013",20000,"44P7","44P7.00","1003441000000101","2607471000000113","Serum VLDL (very low density lipoprotein) cholesterol level",1,,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"457502013",2000,"44OB","44OB.00","1003411000000102","2607481000000110","Serum VLDL (very low density lipoprotein) triglyceride level",1,1,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"457942013",300,"44O8","44O8.00","1003381000000104","2561141000000112","Plasma VLDL (very low density lipoprotein) triglyceride level",1,1,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"4079671000006119",2,"^ESCTVL407967","","102740005","166119011","VLDL cholesterol",1,,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"4600271000006114",2,"^ESCTSE460027","","166834004","259236013","Serum VLDL cholesterol level",1,,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"3418121000006115",1,"^ESCTVE341812","","56516007","93983016","Very low density lipoprotein",1,,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"3418141000006110",1,"^ESCTVL341814","","56516007","93985011","VLDL",1,,,,,,,1,,,,,,,,,,,,,,"VLDL"
+"2344491000000115",20000000,"44PL0","44PL000","1006191000000106","2585861000000117","Serum non high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,,,1,,,,"non-HDL"
+"516351000000116",3000000,"44PL","44PL.00","1030411000000101","2595211000000119","Non high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,,1,1,,,,"non-HDL"
+"1924001000006115",70000,"44PL1","44PL100","920471000000100","2362791000000114","Estimated serum non-high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"8386311000006116",10000,"^ESCTSE838631","","1006191000000106","2607621000000111","Serum non HDL (high density lipoprotein) cholesterol level",1,,,1,,,,,,,,,,,,,,1,,,,"non-HDL"
+"8411411000006113",4000,"^ESCTNO841141","","1030411000000101","2595221000000113","Non HDL cholesterol level",1,,,1,,,,,,,,,,,,,1,1,,,,"non-HDL"
+"6014411000006114",300,"^ESCTNO601441","","312260007","455948011","Non-HDL cholesterol",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"12120081000006117",100,"^ESCT1212008","","1102851000000101","2760391000000111","Estimated serum non high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,1,,1,,,,"non-HDL"
+"8330391000006119",70,"^ESCTES833039","","920471000000100","2362761000000115","Estimated measurement of non-high density lipoprotein in serum specimen",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"8090451000006112",2,"^ESCTNO809045","","293821000000103","1676641000000110","Non HDL (high density lipoprotein) cholesterol level",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"8090441000006110",2,"^ESCTNO809044","","293821000000103","557031000000119","Non high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"8326261000006117",2,"^ESCTSE832626","","912151000000109","2344461000000114","Serum non HDL (high density lipoprotein) cholesterol measurement",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"8326271000006112",2,"^ESCTSE832627","","912151000000109","2344491000000115","Serum non high density lipoprotein cholesterol level",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"6014421000006118",1,"^ESCTNO601442","","312260007","2972279013","Non-high density lipoprotein cholesterol",1,,,1,,,,,,,,,,,,,,,,,,"non-HDL"
+"145471000006115",60000000,"44Q","44Q..00","1005691000000109","2551281000000116","Serum triglycerides level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259579011",2000000,"44e","44e..00","1010601000000105","2564971000000119","Plasma triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"854481000006110",400000,"EGTON457","","854481000006106","854481000006110","Fasting triglycerides",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259260012",300000,"44Q4","44Q4.00","1026491000000105","2599951000000114","Serum fasting triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"977481000006112",200000,"4QA1","4QA1.00","850991000000104","2204851000000114","Triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259263014",100000,"44QZ","44QZ.00","365796000","489238019","Serum triglyceride levels - finding",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259261011",80000,"44Q5","44Q5.00","1026501000000104","2599961000000112","Serum random triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"1864161000006119",50000,"EMISREQ|44Q..","44Q..00","1864161000006103","1864161000006119","Test request : Serum triglycerides",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259583011",30000,"44e1","44e1.00","1031321000000109","2600081000000118","Plasma fasting triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"259580014",7000,"44e0","44e0.00","1028871000000108","2600071000000115","Plasma random triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"2733541000006119",200,"^ESCTTR273354","","14740000","25044011","Triglycerides measurement",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"3891511000006119",200,"^ESCTTR389151","","85600001","141893017","Triacylglycerol",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"6279071000006110",100,"^ESCTTR627907","","365795001","489236015","Triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"3891531000006113",100,"^ESCTTR389153","","85600001","141895012","Triglyceride",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"3891501000006117",50,"^ESCTTR389150","","85600001","46577001000001112","Triglycerides",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"5522421000006118",8,"^ESCTSE552242","","271245006","405955015","Serum triglyceride levels",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"6279061000006115",5,"^ESCTTR627906","","365795001","489237012","Triglyceride level - finding",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"4600481000006111",3,"^ESCTSE460048","","166849007","259260012","Serum fasting triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"3891541000006115",3,"^ESCTTG389154","","85600001","1235057015","TG - Triglyceride",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"12624981000006112",1,"^ESCT1262498","","1109831000000104","2777171000000117","Triglyceride substance concentration in serum",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"2733561000006115",1,"^ESCTTG273356","","14740000","476661016","TG - Triglyceride level",,1,,,,,,,,,,,,,,,,,,,,"Triglycerides"
+"458253013",50000,"44lH","44lH.00","1015701000000106","2565681000000110","Serum cholesterol/low density lipoprotein ratio",1,,1,,,,1,,,,,,,,,,,,,,,"Chol to LDL ratio"
+"458256017",90,"44lI","44lI.00","1015711000000108","2580131000000114","Plasma cholesterol/LDL (low density lipoprotein) ratio",1,,1,,,,1,,,,,,,,,,,,,,,"Chol to LDL ratio"
+"6041011000006113",1,"^ESCTSE604101","","313991001","458253013","Serum cholesterol/LDL ratio",1,,1,,,,1,,,,,,,,,,,,,,,"Chol to LDL ratio"
+"458257014",80,"44lJ","44lJ.00","1015721000000102","2557711000000113","Serum cholesterol/very low density lipoprotein ratio",1,,,,,,1,1,,,,,,,,,,,,,,"Chol to VLDL ratio"
+"458260019",9,"44lK","44lK.00","1015731000000100","2580141000000117","Plasma cholesterol/VLDL (very low density lipoprotein) ratio",1,,,,,,1,1,,,,,,,,,,,,,,"Chol to VLDL ratio"
+"259250015",20000000,"44PF","44PF.00","1028551000000102","2602701000000112","Total cholesterol:HDL (high density lipoprotein) ratio",1,,,,1,1,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"4600431000006110",200,"^ESCTTO460043","","166842003","259250015","Total cholesterol:HDL ratio",1,,,,1,1,1,,,,,,,,,,,,,,,"Chol to HDL ratio"
+"4600421000006112",10,"^ESCTTO460042","","166842003","259249015","Total cholesterol:HDL ratio measurement",1,,,,1,1,1,,,,,,,,,,,,,,,"Chol to HDL ratio"
+"458249011",40000000,"44lF","44lF.00","1015681000000109","2574851000000110","Serum cholesterol/high density lipoprotein ratio",1,,,,1,,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"458252015",1000000,"44lG","44lG.00","1015691000000106","2557701000000111","Plasma cholesterol/HDL (high density lipoprotein) ratio",1,,,,1,,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"457911015",500000,"44l2","44l2.00","313811003","457911015","Cholesterol/HDL ratio",1,,,,1,,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"6036221000006115",4000,"^ESCTCH603622","","313811003","457910019","Cholesterol/HDL ratio measurement",1,,,,1,,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"6040951000006115",70,"^ESCTSE604095","","313989009","458249011","Serum cholesterol/HDL ratio",1,,,,1,,1,,,,,,,,,,,,,,,"Chol to HDL ratio"
+"8396611000006112",4,"^ESCTSE839661","","1015681000000109","2607531000000112","Serum cholesterol/HDL (high density lipoprotein) ratio",1,,,,1,,1,,,,,,,,,1,,,,,1,"Chol to HDL ratio"
+"144141000006119",200000,"44P8","44P8.00","1015271000000109","2565581000000114","Serum high density lipoprotein:non-high density lipoprotein cholesterol ratio",1,,,1,1,,1,,,,,,,,,,,,,,,"HDL to non-HDL ratio"
+"5519791000006113",70,"^ESCTSE551979","","271059008","405628014","Serum HDL/non-HDL cholesterol ratio",1,,,1,1,,1,,,,,,,,,,,,,,,"HDL to non-HDL ratio"
+"8396091000006112",8,"^ESCTSE839609","","1015271000000109","2607241000000118","Serum HDL (high density lipoprotein):non-HDL (high density lipoprotein) cholesterol ratio",1,,,1,1,,1,,,,,,,,,,,,,,,"HDL to non-HDL ratio"
+"8055041000006115",8,"^ESCTHD805504","","194801000000108","1678641000000111","HDL (high density lipoprotein)/non-HDL (high density lipoprotein) cholesterol ratio measurement",1,,,1,1,,1,,,,,,,,,,,,,,,"HDL to non-HDL ratio"
+"5519781000006110",5,"^ESCTSE551978","","271059008","405627016","Serum HDL/non-HDL cholesterol ratio measurement",1,,,1,1,,1,,,,,,,,,,,,,,,"HDL to non-HDL ratio"
+"817601000006119",400000,"44PA","44PA.00","1029071000000109","2602471000000111","High density/low density lipoprotein ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"HDL to LDL ratio"
+"5289551000006119",100,"^ESCTHI528955","","250743005","373818011","High density/low density lipoprotein ratio measurement",1,,1,,1,,1,,,,,,,,,,,,,,,"HDL to LDL ratio"
+"5289571000006112",8,"^ESCTHD528957","","250743005","1224426010","HDL/LDL ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"HDL to LDL ratio"
+"8410031000006119",2,"^ESCTHD841003","","1029071000000109","2602491000000110","HDL/LDL ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"HDL to LDL ratio"
+"458283016",300000,"44lL","44lL.00","1015741000000109","2565691000000112","Serum low density lipoprotein/high density lipoprotein ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"LDL to HDL ratio"
+"458284010",9000,"44lM","44lM.00","1015751000000107","2574861000000113","Plasma LDL/HDL (low density lipoprotein/high density lipoprotein) ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"LDL to HDL ratio"
+"8396711000006116",1,"^ESCTSE839671","","1015741000000109","2607261000000117","Serum LDL (low density lipoprotein)/HDL (high density lipoprotein) ratio",1,,1,,1,,1,,,,,,,,,,,,,,,"LDL to HDL ratio"
+"279462018",2000000,"44PG","44PG.00","1031421000000101","2602691000000112","High density lipoprotein/total cholesterol ratio",1,,,,1,1,1,,,,,,,,,,,,,,,"HDL to chol"
+"4108441000006119",300,"^ESCTHD410844","","104583003","168549011","HDL/total cholesterol ratio measurement",1,,,,1,1,1,,,,,,,,,1,,,,,,"HDL to chol"
+"12622421000006112",40,"^ESCT1262242","","1107741000000108","2771911000000115","HDL (high density lipoprotein) cholesterol/total cholesterol ratio in serum",1,,,,1,1,1,,,,,,,,,,,,,,,"HDL to chol"
+"4108451000006117",20,"^ESCTHD410845","","104583003","279462018","HDL : total cholesterol ratio",1,,,,1,1,1,,,,,,,,,1,,,,,,"HDL to chol"
+"12622411000006116",4,"^ESCT1262241","","1107731000000104","2771891000000118","HDL (high density lipoprotein) cholesterol/total cholesterol ratio in plasma",1,,,,1,1,1,,,,,,,,,,,,,,,"HDL to chol"
+"1916571000006117",600,"EMISNQSE130","","1916571000006101","1916571000006117","Serum triglyceride/HDL cholesterol ratio",1,1,,,1,,1,,,,,,,,,,,,,,,"TG to HDL ratio"
+"1942631000006110",200,"44lzY","44lzY00","1083861000000102","2716101000000116","Serum high density lipoprotein cholesterol/triglyceride ratio",1,1,,,1,,1,,,,,,,,,,,,,,,"HDL to TG ratio"
+"5289531000006114",3,"^ESCTHI528953","","250742000","373815014","High density lipoprotein/triglyceride ratio measurement",1,1,,,1,,1,,,,,,,,,,,,,,,"HDL to TG ratio"
+"8460611000006119",2,"^ESCTSE846061","","1083861000000102","2722451000000118","Serum HDL (high density lipoprotein) cholesterol/triglyceride ratio",1,1,,,1,,1,,,,,,,,,,,,,,,"HDL to TG ratio"
+"8341141000006117",1,"^ESCTSE834114","","939391000000100","2404851000000113","Serum high density lipoprotein cholesterol:triglyceride ratio measurement",1,1,,,1,,1,,,,,,,,,,,,,,,"HDL to TG ratio"
+"7230021000006118",3,"^ESCTEL723002","","439953004","2790691014","Elevated cholesterol/high density lipoprotein ratio",1,,,,1,,1,,,,,,,,,,,,,,,"Diagnostic codes"
+"259227014",400000,"44P1","44P1.00","166828006","259227014","Serum cholesterol normal",1,,,,,,,,,,,,,,,1,,,1,,,"Diagnostic codes"
+"259228016",100000,"44P2","44P2.00","166829003","259228016","Serum cholesterol borderline",1,,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"259256014",100000,"44Q1","44Q1.00","166846000","259256014","Serum triglycerides normal",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"259258010",100000,"44Q3","44Q3.00","166848004","259258010","Serum triglycerides raised",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"259230019",50000,"44P4","44P4.00","166831007","259230019","Serum cholesterol very high",1,,,,,,,,,,,,,,,1,,,1,,,"Diagnostic codes"
+"259257017",10000,"44Q2","44Q2.00","166847009","259257017","Serum triglycerides borderline",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"7261561000006118",2000,"^ESCTSE726156","","442234001","2820789017","Serum cholesterol borderline high",1,,,,,,,,,,,,,,,1,,,,,,"Diagnostic codes"
+"12716491000006111",1000,"^ESCT1271649","","166829003","259228016","Serum cholesterol borderline",1,,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"7261041000006112",300,"^ESCTSE726104","","442193004","2819854016","Serum triglycerides borderline high",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"12716501000006115",100,"^ESCT1271650","","166847009","259257017","Serum triglycerides borderline",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"
+"7263101000006113",10,"^ESCTSE726310","","442350007","2819746011","Serum cholesterol borderline low",1,,,,,,,,,,,,,,,1,,,,,,"Diagnostic codes"
+"7264941000006110",5,"^ESCTSE726494","","442480001","2820247012","Serum triglycerides borderline low",,1,,,,,,,,,,,,,,,,,,,,"Diagnostic codes"

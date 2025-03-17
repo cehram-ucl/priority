@@ -17,7 +17,7 @@ set more off
 //** UPDATE THESE VARIABLES **==================================================
 
 //**Working directory - where you will open/save files**
-cd "C:\Users\rmjlton\GitHub\priority\codelists"
+cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 
 //**Enter name of do file here. This ensures all files have the same name.**
 local filename "cholesterol"
@@ -35,10 +35,10 @@ log using `filename', text replace
 //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 
 //*Directory of medical dictionary*
-local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //*Directory of label lookups*
-local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //==============================================================================
 
@@ -531,57 +531,78 @@ e.g. codelist_raw_ABC.xlsx
 */
 
 
-// STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-//=======================================================================================
+// STEP 9. RESTRICT CODELIST TO CODES APPROVED BY A CLINICIAN AND SAVE
+//=====================================================================
 
 //Load clinician classifications
 local clinician "CA"  //Christina Avgerinou
 
-//Total cholesterol Excel worksheet
-import excel `filename'_raw_`clinician', firstrow clear sheet("Total cholesterol")
-keep medcodeid
-//generate missing variables
-generate byte `clinician' = 1
-generate byte total = 1
-tempfile clin_total
-save `clin_total'
+import excel `filename'_raw_`clinician', describe
 
-//HDL cholesterol Excel worksheet
-import excel `filename'_raw_`clinician', firstrow clear sheet("HDL")
-keep medcodeid
-//generate missing variables
-generate byte `clinician' = 1
-generate byte hdl = 1
-tempfile clin_hdl
-save `clin_hdl'
+local worksheets_N = r(N_worksheet)
+local sheets ""
 
-//LDL cholesterol Excel worksheet
-import excel `filename'_raw_`clinician', firstrow clear sheet("LDL")
-keep medcodeid
-//generate missing variables
-generate byte `clinician' = 1
-generate byte ldl = 1
-tempfile clin_ldl
-save `clin_ldl'
+forvalues i = 1/`worksheets_N' {
+	
+	local worksheet = r(worksheet_`i')
+	
+	if `i' == `worksheets_N' & lower("`worksheet'") == "exclude" {
+		
+		continue  //skip current loop
+	}
+	
+	local sheets "`sheets' `"`worksheet'"' "
+}
 
+local firstsheet: word 1 of `sheets'
+local count = 0
+tempfile sheetlabels
 
-//Remerge with original in case of any formatting issues with Excel spreadsheet
+foreach sheet of local sheets {
+	
+	local count = `count'+1
+	display "Reading worksheet: `sheet'"
+	import excel `filename'_raw_`clinician', firstrow clear sheet("`sheet'")
+	
+	keep medcodeid
+	generate byte `clinician' = 1
+	generate byte cholesterol_type = `count'
+	
+	if "`sheet'" != "`firstsheet'" {
+		do `sheetlabels'
+	}
+	label define cholesterol_type `count' "`sheet'", add
+	label save using `sheetlabels', replace
+	
+	tempfile clinician`count'
+	save `clinician`count''
+}
+
 use `filename', clear
-drop total hdl ldl non_hdl ratio vldl
 
-merge 1:1 medcodeid using `clin_total', nogenerate update replace
-merge 1:1 medcodeid using `clin_hdl', nogenerate update replace
-merge 1:1 medcodeid using `clin_ldl', nogenerate update replace
+forvalues i = 1/`count' {
+	
+	merge 1:1 medcodeid using `clinician`i'', update replace
+	list medcodeid term if _merge == 2
+	drop if _merge == 2
+	drop _merge
+}
+do `sheetlabels'
+label values cholesterol_type cholesterol_type
+tab cholesterol_type, missing
+list medcodeid term if cholesterol_type == .
+
 recode `clinician' (. = 0)
 
 //Remove codes marked for exclusion by clinician
 display "Terms excluded by clinician..."
+count if `clinician' == 0
 list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
 //Save clinician approved codelist
-gsort total hdl ldl observations snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ `clinician' oc_* refset_*
+gsort cholesterol_type total hdl ldl -observations snomedctconceptid snomedctdescriptionid originalreadcode
+drop new_snomedct_synonym `clinician'
 compress
 save `filename', replace
 export delimited `filename', replace quote
@@ -601,7 +622,7 @@ local date = ym(2024, 11)  //year, month
 local clinical_reviewer "Christina Avgerinou"
 local date_approved = ym(2025, 1)  //year, month
 local notes "Created for PRIORITY study. This codelist identifies values/measurements of cholesterol only and excludes codes that indicate a diagnosis of high cholesterol"
-local keywords "ldl, hdl, triglycerides, total, ratio"
+local keywords "ldl, hdl, triglycerides, total, ratio, vldl"
 //==============================================================================
 
 clear
