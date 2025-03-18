@@ -41,7 +41,7 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 
 | Codelist | Validated codelist? | Repository codelists? | Creation script | Finished codelist | Complete? |
 | --- | :-: | :-: | :-: | :-: | :-: |
-| Antipsychotics | [❌](codelists_validated.md#product-codes) | ✔️ | [antipsychotics.do](codelists/antipsychotics.do) | [antipsychotics.csv](codelists/antipsychotics.csv) | ❌ Clinical review required |
+| Antipsychotics | [❌](codelists_validated.md#product-codes) | [✔️(4)](codelists_repositories.md#antipsychotics) | [antipsychotics.do](codelists/antipsychotics.do) | [antipsychotics.csv](codelists/antipsychotics.csv) | ❌ Clinical review required |
 | Statins |  |  |  |  |  |
 | Antihypertensives |  |  |  |  |  |
 
