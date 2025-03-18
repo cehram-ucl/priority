@@ -1,11 +1,11 @@
 # Validated Codelists
 
 ## Product codes
-| Codelist          | PubMed Search Strategy                         | Search Results | Suitable Validated Codelists | Clinical Terminology | DOIs | Validity |
-| ----------------- | ---------------------------------------------- | -------------- | ---------------------------- | -------------------- | ---- | -------- |
-| Antihypertensives |                                                |                |                              |                      |      |          |
-| Antipsychotics    | "antipsychotics validated (CPRD OR SNOMED CT)" | 1              | 0                            | N/A                  | N/A  | N/A      |
-| Statins           |                                                |                |                              |                      |      |          |
+| Codelist          | PubMed Search Strategy                            | Search Results | Suitable Validated Codelists | Clinical Terminology | DOIs | Validity |
+| ----------------- | ------------------------------------------------- | -------------- | ---------------------------- | -------------------- | ---- | -------- |
+| Antihypertensives | "antihypertensives validated (CPRD OR SNOMED CT)" | 3              | 0                            | N/A                  | N/A  | N/A      |
+| Antipsychotics    | "antipsychotics validated (CPRD OR SNOMED CT)"    | 1              | 0                            | N/A                  | N/A  | N/A      |
+| Statins           | "statins validated (CPRD OR SNOMED CT)"           | 6              | 0                            | N/A                  | N/A  | N/A      |
 
 ## Medical codes (description)
 | Codelist                     | PubMed Search Strategy                                  | Search Results | Suitable Validated Codelists                | Clinical Terminology             | DOIs                                                                                                                          | Validity                                                               |
