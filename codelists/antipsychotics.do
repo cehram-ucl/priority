@@ -269,10 +269,12 @@ recode antipsychotic_medication (0 = .)
 tab1 antipsychotic_medication, missing
 
 
-// (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LIST
-//======================================================
+// (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LISTS
+//=======================================================
 
-//Compare against LSHTM list
+//Import repository codelists
+
+//MedCodeID codelists (LSHTM Data Compass)
 preserve
 	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2796/2/antipsychotics_aurum_feb21.txt, stringcols(1 2) favorstrfixed clear
 	
@@ -296,11 +298,102 @@ preserve
 	save ``name''
 restore
 
-//Everything from LSHTM list is already included
-merge 1:1 prodcodeid using `lshtm_2796'
-list prodcodeid termfromemis drugsubstancename if _merge == 2
-drop if _merge == 2
-drop _merge
+//SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
+preserve
+	import delimited https://www.opencodelists.org/codelist/opensafely/first-generation-antipsychotics-excluding-long-acting-depots-dmd/1e9b227c/download.csv, stringcols(1 3) favorstrfixed clear
+	
+	rename dmd_id dmdid
+	
+	//Check code and dmdid are the same
+	count if code != dmdid
+	drop code
+	
+	//Check which BNF codes are included
+	generate bnf_short = substr(bnf_code, 1, 6)
+	tab bnf_short, missing  //also includes 4.3.4
+	
+	local name "oc_opensafely_1stgenAP"
+	
+	rename * *_ext
+	rename dmdid_ext dmdid
+	generate byte `name' = 1
+	
+	count
+	merge 1:m dmdid using `product'
+	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid `name'
+
+	tempfile `name'
+	save ``name''
+restore, preserve
+	import delimited https://www.opencodelists.org/codelist/opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11/download.csv, stringcols(1 3) favorstrfixed clear
+	
+	rename dmd_id dmdid
+	
+	//Check code and dmdid are the same
+	count if code != dmdid
+	drop code
+	
+	//Check which BNF codes are included
+	generate bnf_short = substr(bnf_code, 1, 6)
+	tab bnf_short, missing
+	
+	local name "oc_opensafely_2ndgenAP"
+	
+	rename * *_ext
+	rename dmdid_ext dmdid
+	generate byte `name' = 1
+	
+	count
+	merge 1:m dmdid using `product'
+	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid `name'
+
+	tempfile `name'
+	save ``name''
+restore, preserve
+	import delimited https://www.opencodelists.org/codelist/opensafely/long-acting-injectable-and-depot-antipsychotics-dmd/536cc8dc/download.csv, stringcols(1 3) favorstrfixed clear
+	
+	rename dmd_id dmdid
+	
+	//Check code and dmdid are the same
+	count if code != dmdid
+	drop code
+	
+	//Check which BNF codes are included
+	generate bnf_short = substr(bnf_code, 1, 6)
+	tab bnf_short, missing
+	
+	local name "oc_opensafely_depotAP"
+	
+	rename * *_ext
+	rename dmdid_ext dmdid
+	generate byte `name' = 1
+	
+	count
+	merge 1:m dmdid using `product'
+	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid `name'
+
+	tempfile `name'
+	save ``name''
+restore
+
+//Merge in repository codelists
+foreach repocodelist in lshtm_2796 oc_opensafely_1stgenAP ///
+	oc_opensafely_2ndgenAP oc_opensafely_depotAP {
+	
+	display "Codelist: `repocodelist'"
+	merge 1:1 prodcodeid using ``repocodelist''
+	quietly count if _merge == 2
+	display "`repocodelist' codes that didn't match: " r(N)
+	list prodcodeid termfromemis drugsubstancename bnfcode if _merge == 2
+	drop if _merge == 2
+	drop _merge
+}
 
 
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
