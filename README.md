@@ -37,12 +37,12 @@ First prescription of *olanzapine*, *risperidone* or *quetiapine* in people with
 
 ## Codelists
 
-### Product codes
-| Codelist          |            Validated codelist?            |                Repository codelists?                 |                 Creation script                  |                 Finished codelist                  | Clinician Reviewed? |         Complete?          |
-| ----------------- | :---------------------------------------: | :--------------------------------------------------: | :----------------------------------------------: | :------------------------------------------------: | :-----------------: | :------------------------: |
-| Antihypertensives | [❌](codelists_validated.md#product-codes) | [✔️(6)](codelists_repositories.md#antihypertensives) |                                                  |                                                    |                     |                            |
-| Antipsychotics    | [❌](codelists_validated.md#product-codes) |  [✔️(4)](codelists_repositories.md#antipsychotics)   | [antipsychotics.do](codelists/antipsychotics.do) | [antipsychotics.csv](codelists/antipsychotics.csv) |          ❌          | ❌ Clinical review required |
-| Statins           | [❌](codelists_validated.md#product-codes) |      [✔️(8)](codelists_repositories.md#statins)      |                                                  |                                                    |                     |                            |
+## Product codes
+| Codelist          |            Validated codelist?            |                Repository codelists?                 |                    Creation script                     |                    Finished codelist                     | Clinician Reviewed? |                                Complete?                                 |
+| ----------------- | :---------------------------------------: | :--------------------------------------------------: | :----------------------------------------------------: | :------------------------------------------------------: | :-----------------: | :----------------------------------------------------------------------: |
+| Antihypertensives | [❌](codelists_validated.md#product-codes) | [✔️(6)](codelists_repositories.md#antihypertensives) | [antihypertensives.do](codelists/antihypertensives.do) | [antihypertensives.csv](codelists/antihypertensives.csv) |          ❌          | ❌ Required:<ul><li>Codelist comparison</li><li>Clinical review</li></ul> |
+| Antipsychotics    | [❌](codelists_validated.md#product-codes) |  [✔️(4)](codelists_repositories.md#antipsychotics)   |    [antipsychotics.do](codelists/antipsychotics.do)    |    [antipsychotics.csv](codelists/antipsychotics.csv)    |          ❌          |                        ❌ Clinical review required                        |
+| Statins           | [❌](codelists_validated.md#product-codes) |      [✔️(8)](codelists_repositories.md#statins)      |           [statins.do](codelists/statins.do)           |           [statins.do](codelists/statins.csv)            |          ❌          | ❌ Required:<ul><li>Codelist comparison</li><li>Clinical review</li></ul> |
 
 ### Medical codes (description)
 
