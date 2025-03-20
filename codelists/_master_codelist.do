@@ -1,7 +1,7 @@
 clear all
 set more off
 
-cd "C:\Users\rmjlton\GitHub\priority\codelists"
+cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 
 
 //Merge codelists into one master codelist
@@ -70,7 +70,7 @@ save _master_codelist, replace
 // MAJOR CARDIOVASCULAR SURGERY
 use major_cardiovascular_surgery, clear
 
-keep medcodeid cv_surgery
+keep medcodeid cv_surgery cvsurgery_type
 
 //Compact version
 save compact/major_cardiovascular_surgery, replace
@@ -109,7 +109,7 @@ save _master_codelist, replace
 // ETHNICITY
 use ethnicity, clear
 
-keep medcodeid eth5
+keep medcodeid eth5 eth16
 
 //Compact version
 save compact/ethnicity, replace
@@ -122,7 +122,8 @@ save _master_codelist, replace
 // CHOLESTEROL
 use cholesterol, clear
 
-keep medcodeid cholesterol triglycerides ldl /*non_hdl*/ hdl total /*ratio vldl*/
+keep medcodeid cholesterol triglycerides ldl non_hdl hdl total ratio vldl ///
+	cholesterol_type
 
 //Compact version
 save compact/cholesterol, replace
@@ -135,7 +136,7 @@ save _master_codelist, replace
 // BLOOD PRESSURE
 use blood_pressure, clear
 
-keep medcodeid bp systolic_bp diastolic_bp
+keep medcodeid bp systolic_bp diastolic_bp bp_type
 
 //Compact version
 save compact/blood_pressure, replace
@@ -161,10 +162,23 @@ save _master_codelist, replace
 // BMI
 use body_mass_index, clear
 
-keep medcodeid height weight bmi //bmicat
+keep medcodeid height weight bmi
 
 //Compact version
 save compact/body_mass_index, replace
+
+//Combined master codelist
+merge 1:1 medcodeid using _master_codelist, nogenerate
+save _master_codelist, replace
+
+
+// SEVERE MENTAL ILLNESS (SMI)
+use "smi(pop def)_snomed_6_PWS_v2", clear
+
+keep medcodeid smi subtype_agreed family_history resolved_remission
+
+//Compact version
+save "compact/smi(pop def)_snomed_6_PWS_v2", replace
 
 //Combined master codelist
 merge 1:1 medcodeid using _master_codelist, nogenerate
