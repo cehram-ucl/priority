@@ -17,7 +17,7 @@ set more off
 //** UPDATE THESE VARIABLES **==================================================
 
 //**Working directory - where you will open/save files**
-cd "C:\Users\rmjlton\GitHub\priority\codelists"
+cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 
 //**Enter name of do file here. This ensures all files have the same name.**
 local filename "body_mass_index"
@@ -35,10 +35,10 @@ log using `filename', text replace
 //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
 
 //*Directory of medical dictionary*
-local browser_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local browser_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //*Directory of label lookups*
-local lookup_dir "C:/Users/rmjlton/OneDrive - University College London/PRIORITY/lookups/`aurum_build'_Lookups_CPRDAurum"
+local lookup_dir "C:\Users\rmjlton.AD\OneDrive - University College London\Projects\PRIORITY\lookups/`aurum_build'_Lookups_CPRDAurum"
 
 //==============================================================================
 
@@ -466,7 +466,7 @@ foreach expanded_id of local expanded_ids {
 
 // STEP 8. EXPORT CODELIST FOR REVIEW BY A PRIMARY CARE CLINICIAN
 //================================================================
-
+/* NOT CLINICALLY REVIEWED
 gsort /**/bmi height weight/**/ -observations snomedctconceptid snomedctdescriptionid
 compress
 save `filename', replace
@@ -506,10 +506,10 @@ Make sure that reviewing clinician's initials are appended to the end of the fil
 
 e.g. codelist_raw_ABC.xlsx
 */
+*/
 
-
-// STEP 9. RESTRICT YOUR CODELIST TO CODES APPROVED BY A PRIMARY CARE CLINICIAN AND SAVE
-//=======================================================================================
+// STEP 9. RESTRICT CODELIST TO CODES APPROVED BY A CLINICIAN AND SAVE
+//=====================================================================
 
 //Load clinician classifications
 local clinician "ABC"
@@ -533,8 +533,9 @@ list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 */
 //Save clinican approved codelist
+order *_ext, last
 gsort /**/bmi height weight/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
-drop new_snomedct_synonym /*codestatus*/ *_ext lshtm_* oc_* /*`clinician'*/
+drop new_snomedct_synonym /**_ext lshtm_* oc_**/ /*`clinician'*/
 compress
 save `filename', replace
 export delimited `filename', replace quote
@@ -553,7 +554,7 @@ local author "Philip Stone"
 local date = ym(2024, 12)  //year, month
 local clinical_reviewer ""
 local date_approved = . //ym(2024, 12)  //year, month
-local notes "Created for PRIORITY study. Child and birth measures are excluded. Target weight/BMI is also excluded."
+local notes "Not clinicially reviewed. Created for PRIORITY study. Child and birth measures are excluded. Target weight/BMI is also excluded."
 local keywords "height, weight, bmi"
 //==============================================================================
 
