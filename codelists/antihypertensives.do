@@ -264,6 +264,7 @@ foreach bnf_section of local antihypertensives {
 
 egen antihyper_tot = rowtotal(bnf020501 bnf020502 bnf020503 bnf020504 bnf02050501 bnf02050502 bnf02050503 bnf020508)
 tab antihyper_tot antihypertensive, missing
+drop antihyper_tot
 
 //Check higher level categories
 replace bnf0205 = 1 if inlist(1, bnf020501, bnf020502, bnf020503, ///
@@ -341,56 +342,121 @@ foreach bnf_section of local antihypertensives {
 
 // (OPTIONAL) STEP 5. CATEGORISE DRUGS
 //=====================================
-/*
+
 //Check for any products containing multiple drugs (categorisation won't work otherwise)
-egen ap_count = rowtotal(amisulpride aripiprazole benperidol cariprazine chlorpromazine chlorprothixene clozapine droperidol flupentixol fluphenazine haloperidol levomepromazine loxapine lurasidone melperone olanzapine oxypertine paliperidone pericyazine perphenazine pimozide promazine quetiapine risperidone sertindole sulpiride thioridazine trifluoperazine ziprasidone zotepine zuclopenthixol pipotiazine asenapine)
+egen aht_count = rowtotal(ambrisentan bosentan diazoxide hydralazine iloprost macitentan minoxidil riociguat selexipag sildenafil sitaxentan tadalafil vericiguat clonidine guanfacine methyldopa moxonidine debrisoquine guanethidine doxazosin indoramin phenoxybenzamine phentolamine prazosin terazosin captopril cilazapril enalapril fosinopril imidapril lisinopril moexipril perindopril quinapril ramipril trandolapril azilsartan candesartan eprosartan irbesartan losartan olmesartan telmisartan valsartan aliskiren ketanserin)
 
-tab ap_count, missing
-drop ap_count
+tab aht_count, missing
+drop aht_count
 
-generate byte antipsychotic_medication = 0
-label define antipsychotic_medication, replace
-label values antipsychotic_medication antipsychotic_medication
+generate byte antihypertensive_medication = 0
+label define antihypertensive_medication, replace
+label values antihypertensive_medication antihypertensive_medication
 local count = 0
-foreach drug of local antipsychotics {
+foreach bnf_section of local antihypertensives {
 	
-	local count = `count'+1
-	local capitalise = strproper("`drug'")  //makes first letter upper case
-	
-	label define antipsychotic_medication `count' "`capitalise'", add
-	
-	replace antipsychotic_medication = `count' if `drug' == 1
-	
-	tab antipsychotic_medication `drug', missing
-	drop `drug'
+	foreach drug of local `bnf_section' {
+		
+		local count = `count'+1
+		local capitalise = strproper("`drug'")  //makes first letter upper case
+		
+		label define antihypertensive_medication `count' "`capitalise'", add
+		
+		replace antihypertensive_medication = `count' if `drug' == 1
+		
+		tab antihypertensive_medication `drug', missing
+		drop `drug'
+	}
 }
-recode antipsychotic_medication (0 = .)
-tab1 antipsychotic_medication, missing
-*/
+recode antihypertensive_medication (0 = .)
+tab1 antihypertensive_medication, missing
+
 
 // (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LISTS
 //=======================================================
-/*
+
 //Import repository codelists
 
 //MedCodeID codelists (LSHTM Data Compass)
 preserve
-	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2796/2/antipsychotics_aurum_feb21.txt, stringcols(1 2) favorstrfixed clear
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2102/37/antihypertensives_aurum_mar20.txt, stringcols(1) favorstrfixed clear
 	
-	tab1 bnfchapter drugsubstancename, missing
-	keep prodcodeid termfromemis drugsubstancename
+	keep prodcodeid termfromemis
 	
-	local name "lshtm_2796"
+	local name "lshtm_2102"
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
 	merge 1:1 prodcodeid using `product'
-	list prodcodeid termfromemis_ext drugsubstancename_ext if _merge == 1
+	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	keep prodcodeid external_codelist `name'
+
+	tempfile `name'
+	compress
+	save ``name''
+restore, preserve
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2187/1/Antihypertensives_aurum_mar20.csv, stringcols(1) favorstrfixed clear
+	
+	keep prodcodeid termfromemis
+	
+	local name "lshtm_2187"
+	
+	rename * *_ext
+	rename prodcodeid_ext prodcodeid
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:1 prodcodeid using `product'
+	list prodcodeid termfromemis_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid external_codelist `name'
+
+	tempfile `name'
+	compress
+	save ``name''
+restore, preserve
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2814/1/antihypertensives_aurum_feb21.txt, stringcols(1) favorstrfixed clear
+	
+	keep prodcodeid termfromemis
+	
+	local name "lshtm_2814"
+	
+	rename * *_ext
+	rename prodcodeid_ext prodcodeid
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:1 prodcodeid using `product'
+	list prodcodeid termfromemis_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid external_codelist `name'
+
+	tempfile `name'
+	compress
+	save ``name''
+restore, preserve
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/3590/96/codelist_antihypertensive_aurum.txt, stringcols(1) favorstrfixed clear
+	
+	keep prodcodeid termfromemis drugsub ace_i arb calcium_b beta_b
+	
+	local name "lshtm_3590"
+	
+	rename termfromemis termfromemis_ext
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:1 prodcodeid using `product'
+	list prodcodeid termfromemis_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -399,101 +465,80 @@ restore
 
 //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
 preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/first-generation-antipsychotics-excluding-long-acting-depots-dmd/1e9b227c/download.csv, stringcols(1 3) favorstrfixed clear
+	import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH1595/version/3008/export/codes, stringcols(1) favorstrfixed clear
 	
-	rename dmd_id dmdid
+	keep code description
+	rename code bnfcode
 	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
+	codebook bnfcode
 	
-	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
-	tab bnf_short, missing  //also includes 4.3.4
+	local name "hdruk_1595"
 	
-	local name "oc_opensafely_1stgenAP"
-	
-	rename * *_ext
-	rename dmdid_ext dmdid
+	rename description description_ext
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
-	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	merge 1:m bnfcode using `product'
+	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	keep prodcodeid external_codelist `name'
 
 	tempfile `name'
 	save ``name''
 restore, preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/second-generation-antipsychotics-excluding-long-acting-injections/6c7c3c11/download.csv, stringcols(1 3) favorstrfixed clear
+	import delimited https://www.opencodelists.org/codelist/opensafely/combination-blood-pressure-medication/2020-05-19/download.csv, stringcols(1 3) favorstrfixed clear
 	
-	rename dmd_id dmdid
+	rename code dmdid
+	rename bnf_code bnfcode
 	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
+	//Check dmdid and id are the same
+	count if dmdid != id
+	drop id
 	
 	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
+	generate bnf_short = substr(bnfcode, 1, 6)
 	tab bnf_short, missing
 	
-	local name "oc_opensafely_2ndgenAP"
+	local name "oc_opensafely_combbpmed"
 	
 	rename * *_ext
 	rename dmdid_ext dmdid
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
 	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	list dmdid term_ext bnfcode_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
-
-	tempfile `name'
-	save ``name''
-restore, preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/long-acting-injectable-and-depot-antipsychotics-dmd/536cc8dc/download.csv, stringcols(1 3) favorstrfixed clear
-	
-	rename dmd_id dmdid
-	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
-	
-	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
-	tab bnf_short, missing
-	
-	local name "oc_opensafely_depotAP"
-	
-	rename * *_ext
-	rename dmdid_ext dmdid
-	generate byte `name' = 1
-	
-	count
-	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
-	keep if _merge == 3
-	keep prodcodeid `name'
+	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
+		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
+	keep prodcodeid external_codelist `name'
 
 	tempfile `name'
 	save ``name''
 restore
 
 //Merge in repository codelists
-foreach repocodelist in lshtm_2796 oc_opensafely_1stgenAP ///
-	oc_opensafely_2ndgenAP oc_opensafely_depotAP {
+foreach repocodelist in lshtm_2102 lshtm_2187 lshtm_2814 lshtm_3590 ///
+	hdruk_1595 oc_opensafely_combbpmed {
 	
 	display "Codelist: `repocodelist'"
-	merge 1:1 prodcodeid using ``repocodelist''
+	merge 1:1 prodcodeid using ``repocodelist'', update replace
 	quietly count if _merge == 2
 	display "`repocodelist' codes that didn't match: " r(N)
-	list prodcodeid termfromemis drugsubstancename bnfcode if _merge == 2
-	drop if _merge == 2
+	//drop if _merge == 2
 	drop _merge
 }
-*/
+
+merge 1:1 prodcodeid using `product', update replace
+drop if _merge == 2
+drop _merge
+tab external_codelist, missing  //lots of extras
+
+//Clinician input needed on whether these should be included
+//Would require adding extra terms to search if these should be included
+
 
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 //===================================================
@@ -564,7 +609,7 @@ list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
 //Save clinican approved codelist
-gsort /**/antipsychotic_medication/**/ -drugissues dmdid
+gsort /**/antihypertensive_medication/**/ -drugissues dmdid
 drop `clinician'
 compress
 save `filename', replace*/
