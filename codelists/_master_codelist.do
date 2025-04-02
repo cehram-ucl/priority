@@ -183,3 +183,16 @@ save "compact/smi(pop def)_snomed_6_PWS_v2", replace
 //Combined master codelist
 merge 1:1 medcodeid using _master_codelist, nogenerate
 save _master_codelist, replace
+
+
+// DEMENTIA
+use "dementia", clear
+
+keep medcodeid dementia
+
+//Compact version
+save "compact/dementia", replace
+
+//Combined master codelist
+merge 1:1 medcodeid using _master_codelist, nogenerate
+save _master_codelist, replace
