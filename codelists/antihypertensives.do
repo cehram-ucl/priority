@@ -387,6 +387,7 @@ preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -394,7 +395,7 @@ preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -408,6 +409,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -415,7 +417,7 @@ restore, preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -429,6 +431,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -436,7 +439,7 @@ restore, preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -449,6 +452,7 @@ restore, preserve
 	local name "lshtm_3590"
 	
 	rename termfromemis termfromemis_ext
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -456,7 +460,7 @@ restore, preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -475,6 +479,7 @@ preserve
 	local name "hdruk_1595"
 	
 	rename description description_ext
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -482,7 +487,7 @@ preserve
 	merge 1:m bnfcode using `product'
 	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -504,6 +509,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename dmdid_ext dmdid
+	generate byte antihypertensive = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -513,7 +519,7 @@ restore, preserve
 	keep if _merge == 3
 	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
-	keep prodcodeid external_codelist `name'
+	keep prodcodeid antihypertensive external_codelist `name'
 
 	tempfile `name'
 	save ``name''

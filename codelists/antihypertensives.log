@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\antihypertensives.log
   log type:  text
- opened on:   2 Apr 2025, 21:07:03
+ opened on:   3 Apr 2025, 03:52:19
 
 . 
 . 
@@ -2488,7 +2488,7 @@ Drug: diazoxide
      +----------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                     termfromemis   drugsub~e   routeofad~n   bnfchapt |
      |----------------------------------------------------------------------------------------------------------------------------------------|
- 58. | 4119841000033113                              Diazoxide  Oral Suspension (Sugar-Free)  50 mg/5 ml                                      |
+ 19. | 4119841000033113                              Diazoxide  Oral Suspension (Sugar-Free)  50 mg/5 ml                                      |
  96. | 8182141000033114                                             Diazoxide 12.5mg/5ml oral suspension   Diazoxide          Oral   06010400 |
 160. | 7859441000033119                   Proglycem 250mg/5ml oral suspension (Imported (United States))   Diazoxide                 06010400 |
 358. |  464441000033117                                                           Diazoxide 50mg tablets                                      |
@@ -2516,9 +2516,9 @@ hydralazine |      Freq.     Percent        Cum.
      +-----------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                 termfromemis           drugsubstancename   routeofad~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-  4. |  3940641000033114                        Hydralazine Hydrochloride  Dispersible tablets  10 mg                                                      |
-  8. |    74441000033115                                                   Apresoline  Tablets  50 mg                                                      |
- 18. |  1618441000033111                                  Hydralazine Hydrochloride  Tablets  12.5 mg                                                      |
+ 10. |  3940641000033114                        Hydralazine Hydrochloride  Dispersible tablets  10 mg                                                      |
+ 62. |  1618441000033111                                  Hydralazine Hydrochloride  Tablets  12.5 mg                                                      |
+ 68. |    74441000033115                                                   Apresoline  Tablets  50 mg                                                      |
 276. |   741941000033113                                                     Hydralazine 25mg tablets   Hydralazine hydrochloride          Oral   02050100 |
 277. |   742041000033119                                                     Hydralazine 50mg tablets   Hydralazine hydrochloride          Oral   02050100 |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2747,9 +2747,9 @@ Drug: clonidine
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                     termfromemis             drugsubstancename   routeofad~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 19. |   177441000033116                                                      Catapres  Capsules  0.25 mg                                                        |
- 45. |  2776441000033110   Clonidine Hydrochloride  Transdermal patches (7 days)  2.5 mg (0.1mg/24 hours)                                                        |
- 48. |   177641000033119                                Catapres Perlongets  M/R capsules  250 micrograms                                                        |
+ 20. |   177441000033116                                                      Catapres  Capsules  0.25 mg                                                        |
+ 36. |  2776441000033110   Clonidine Hydrochloride  Transdermal patches (7 days)  2.5 mg (0.1mg/24 hours)                                                        |
+ 49. |   177641000033119                                Catapres Perlongets  M/R capsules  250 micrograms                                                        |
  75. | 12106941000033117                              Clonidine 100micrograms/24hours transdermal patches                     Clonidine   Transdermal   02050200 |
  76. | 12107141000033117                                      Catapres TTS 1 patches (Imported (Germany))                     Clonidine                 02050200 |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2791,7 +2791,7 @@ Drug: guanfacine
      +-------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                               termfromemis          drugsubstancename   routeo~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------|
- 52. |   635541000033114                                       Glutenex  Biscuits                                                    |
+ 26. |   635541000033114                                       Glutenex  Biscuits                                                    |
 247. | 10741241000033110       Intuniv 1mg modified-release tablets (Takeda UK Ltd)   Guanfacine hydrochloride       Oral   04040000 |
 248. | 10741341000033117       Intuniv 2mg modified-release tablets (Takeda UK Ltd)   Guanfacine hydrochloride       Oral   04040000 |
 249. | 10741441000033111       Intuniv 3mg modified-release tablets (Takeda UK Ltd)   Guanfacine hydrochloride       Oral   04040000 |
@@ -2815,10 +2815,10 @@ Drug: methyldopa
      +-----------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                       termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------|
- 10. |  36841000033113                   Aldomet  Suspension  250 mg/5 ml                                              |
- 14. | 878541000033112                    Methyldopa  Injection  50 mg/ml                                              |
- 24. | 873941000033114                       Methyldopa  Capsules  250 mg                                              |
- 67. |  40841000033114                           Aldomet  Tablets  125 mg                                              |
+ 12. |  40841000033114                           Aldomet  Tablets  125 mg                                              |
+ 22. | 873941000033114                       Methyldopa  Capsules  250 mg                                              |
+ 55. |  36841000033113                   Aldomet  Suspension  250 mg/5 ml                                              |
+ 61. | 878541000033112                    Methyldopa  Injection  50 mg/ml                                              |
 236. |  40941000033118   Aldomet 250mg tablets (Aspen Pharma Trading Ltd)   Methyldopa anhydrous       Oral   02050200 |
      |-----------------------------------------------------------------------------------------------------------------|
 283. | 897341000033110                           Methyldopa 125mg tablets   Methyldopa anhydrous       Oral   02050200 |
@@ -2860,7 +2860,7 @@ debrisoquin |
      +---------------------------------------------------------------------------------------------+
      |      prodcodeid                   termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------|
- 51. | 430741000033111   Debrisoquine  Tablets  20 mg                                              |
+ 43. | 430741000033111   Debrisoquine  Tablets  20 mg                                              |
 288. | 430641000033119      Debrisoquine 10mg tablets   Debrisoquine sulfate       Oral   02050300 |
      +---------------------------------------------------------------------------------------------+
 Drug: guanethidine
@@ -2876,15 +2876,15 @@ guanethidin |
      +------------------------------------------------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                                       termfromemis                      drugsubstancename   routeofadmi~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
-  2. | 784841000033113                                            Ismelin  Tablets  10 mg                                                                   |
-  3. | 777541000033113                                            Ismelin  Eye drops  5 %                                                                   |
- 12. | 654741000033118                        Guanethidine Monosulfate 1+0.2  Eye drops                                                                     |
- 30. | 654641000033110                           Guanethidine Monosulfate  Eye drops  5 %                                                                   |
- 50. | 654841000033111                        Guanethidine Monosulfate 3+0.5  Eye drops                                                                     |
+  1. | 654641000033110                           Guanethidine Monosulfate  Eye drops  5 %                                                                   |
+  4. | 784941000033117                                            Ismelin  Tablets  25 mg                                                                   |
+  5. | 777541000033113                                            Ismelin  Eye drops  5 %                                                                   |
+ 41. | 655641000033114                           Guanethidine Monosulfate  Tablets  25 mg                                                                   |
+ 51. | 784841000033113                                            Ismelin  Tablets  10 mg                                                                   |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
- 53. | 655641000033114                           Guanethidine Monosulfate  Tablets  25 mg                                                                   |
- 57. | 655541000033113                           Guanethidine Monosulfate  Tablets  10 mg                                                                   |
- 62. | 784941000033117                                            Ismelin  Tablets  25 mg                                                                   |
+ 53. | 654841000033111                        Guanethidine Monosulfate 3+0.5  Eye drops                                                                     |
+ 54. | 654741000033118                        Guanethidine Monosulfate 1+0.2  Eye drops                                                                     |
+ 58. | 655541000033113                           Guanethidine Monosulfate  Tablets  10 mg                                                                   |
 388. | 655241000033111              Guanethidine 10mg/1ml solution for injection ampoules               Guanethidine monosulfate   Intramuscular   02050300 |
 498. | 780741000033110   Ismelin 10mg/1ml solution for injection ampoules (Amdipharm Plc)               Guanethidine monosulfate   Intramuscular   02050300 |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2903,8 +2903,8 @@ Drug: doxazosin
      +--------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                          termfromemis    drugsubstancename   routeo~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------|
- 34. |  4502341000033119                 Doxazosin  Oral suspension  1 mg/5 ml                                            |
- 37. |   216941000033117                                Cardura  Tablets  4 mg                                            |
+ 47. |   216941000033117                                Cardura  Tablets  4 mg                                            |
+ 69. |  4502341000033119                 Doxazosin  Oral suspension  1 mg/5 ml                                            |
  81. |  4021141000033118        Slocinx XL 4mg tablets (Zentiva Pharma UK Ltd)   Doxazosin mesilate       Oral   02050400 |
  89. |  4063741000033112           Doxadura XL 4mg tablets (Dexcel-Pharma Ltd)   Doxazosin mesilate       Oral   02050400 |
  98. |  5403641000033117                   Colixil XL 4mg tablets (Sandoz Ltd)   Doxazosin mesilate       Oral   02050400 |
@@ -2950,8 +2950,8 @@ Drug: indoramin
      +----------------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                         termfromemis         drugsubstancename   routeo~n   bnfchapt |
      |----------------------------------------------------------------------------------------------------------------------|
- 17. | 116841000033111                              Baratol  Tablets  50 mg                                                 |
- 60. | 768441000033115                            Indoramin  Tablets  25 mg                                                 |
+  8. | 768441000033115                            Indoramin  Tablets  25 mg                                                 |
+ 48. | 116841000033111                              Baratol  Tablets  50 mg                                                 |
  70. | 769941000033115              Indoramin Hydrochloride  Tablets  50 mg                                                 |
 372. | 480541000033110   Doralese Tiltab 20mg tablets (Chemidex Pharma Ltd)   Indoramin hydrochloride       Oral   07040100 |
 406. | 116741000033118                 Baratol 25mg tablets (Amdipharm Plc)   Indoramin hydrochloride       Oral   02050400 |
@@ -2972,7 +2972,7 @@ phenoxybenz |
      +-------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                          termfromemis                drugsubstancename   routeo~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------|
-  1. | 3940141000033116        Phenoxybenzamine Hydrochloride  Capsules  8 mg                                                        |
+ 39. | 3940141000033116        Phenoxybenzamine Hydrochloride  Capsules  8 mg                                                        |
 289. | 1070341000033119                        Phenoxybenzamine 10mg capsules                                                        |
 428. |  438441000033119   Dibenyline 10mg capsules (Mercury Pharma Group Ltd)   Phenoxybenzamine hydrochloride       Oral   02050400 |
 637. | 2757941000033118             Phenoxybenzamine 25mg/5ml oral suspension   Phenoxybenzamine hydrochloride       Oral   02050400 |
@@ -3046,11 +3046,11 @@ Drug: prazosin
      +------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                          termfromemis        drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------|
- 29. |  1128241000033117                Prazosin Hydrochloride  Starter pack                                                  |
- 41. |    37641000033110                Alphavase 0.5  Tablets  500 micrograms                                                |
- 55. |   743841000033116                               Hypovase  Tablets  5 mg                                                |
- 63. |  1128141000033112                Prazosin Hydrochloride  Starter pack                                                  |
- 68. |   745941000033111                      Hypovase Starter Pack  Tablets                                                  |
+  6. |  1128141000033112                Prazosin Hydrochloride  Starter pack                                                  |
+ 27. |   745941000033111                      Hypovase Starter Pack  Tablets                                                  |
+ 42. |   743841000033116                               Hypovase  Tablets  5 mg                                                |
+ 44. |    37641000033110                Alphavase 0.5  Tablets  500 micrograms                                                |
+ 56. |  1128241000033117                Prazosin Hydrochloride  Starter pack                                                  |
      |------------------------------------------------------------------------------------------------------------------------|
 105. | 11567441000033119              Prazosin 500micrograms/5ml oral solution   Prazosin hydrochloride       Oral   02050400 |
 143. |   743741000033114                     Hypovase 2mg tablets (Pfizer Ltd)   Prazosin hydrochloride       Oral   02050400 |
@@ -3078,13 +3078,13 @@ Drug: terazosin
      +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                           termfromemis         drugsubstancename                    routeofadministration   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  9. |   743941000033112                                             Hytrin Bph  Tablets  10 mg                                                                               |
- 11. |   744041000033114                                              Hytrin Bph  Tablets  2 mg                                                                               |
- 23. |  1423741000033117              Terazosin Hydrochloride  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
- 25. |  1423841000033110   Terazosin Hydrochloride  Starter pack  7 x 1 mg, 14 x 2 mg, 7 x 5 mg                                                                               |
- 28. |   744141000033113                                              Hytrin Bph  Tablets  5 mg                                                                               |
+  2. |  1423741000033117              Terazosin Hydrochloride  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 15. |  1423841000033110   Terazosin Hydrochloride  Starter pack  7 x 1 mg, 14 x 2 mg, 7 x 5 mg                                                                               |
+ 17. |   740941000033119                           Hytrin Bph  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 18. |   744141000033113                                              Hytrin Bph  Tablets  5 mg                                                                               |
+ 28. |   743941000033112                                             Hytrin Bph  Tablets  10 mg                                                                               |
      |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 65. |   740941000033119                           Hytrin Bph  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 59. |   744041000033114                                              Hytrin Bph  Tablets  2 mg                                                                               |
 265. |   745741000033113                                     Hytrin 2mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
 266. |   745641000033116                                    Hytrin 10mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
 268. |   745841000033115                                     Hytrin 5mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
@@ -3110,9 +3110,9 @@ Drug: captopril
      +------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                 termfromemis                drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
- 16. | 5595341000033117                               Captopril  Oral Suspension Sugar Free  2 mg/ml                                                        |
- 38. |  210541000033113                                                     Captopril  Tablets  1 mg                                                        |
- 39. |  210741000033117                                                     Captopril  Tablets  2 mg                                                        |
+  9. |  210741000033117                                                     Captopril  Tablets  2 mg                                                        |
+ 16. |  210541000033113                                                     Captopril  Tablets  1 mg                                                        |
+ 38. | 5595341000033117                               Captopril  Oral Suspension Sugar Free  2 mg/ml                                                        |
 116. |  214141000033113            Capoten 12.5mg tablets (Bristol-Myers Squibb Pharmaceuticals Ltd)                        Captopril       Oral   02050501 |
 158. |  216441000033110        Capozide 25mg/50mg tablets (Bristol-Myers Squibb Pharmaceuticals Ltd)   Captopril/ Hydrochlorothiazide       Oral   02050501 |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3176,8 +3176,8 @@ Drug: cilazapril
      +---------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                        termfromemis        drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------------------------------|
- 20. |  258341000033113                 Cilazapril  Tablets  250 micrograms                                                |
- 47. | 1504841000033113                    Vascace  Tablets  250 micrograms                                                |
+ 21. |  258341000033113                 Cilazapril  Tablets  250 micrograms                                                |
+ 32. | 1504841000033113                    Vascace  Tablets  250 micrograms                                                |
 402. | 1504641000033112            Vascace 1mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
 403. | 1503441000033113            Vascace 5mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
 404. | 1504741000033115          Vascace 2.5mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
@@ -3200,27 +3200,27 @@ Drug: enalapril
      +-------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                             termfromemis                        drugsubstancename   routeo~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
-  5. |   770441000033111                             Innovace Melt  Wafers  10 mg                                                                |
-  6. |   523941000033114                         Enalapril Maleate  Wafers  10 mg                                                                |
-  7. |   524041000033111                        Enalapril Maleate  Wafers  2.5 mg                                                                |
- 15. |   770841000033114                             Innovace Melt  Wafers  10 mg                                                                |
- 26. |   770541000033112                            Innovace Melt  Wafers  2.5 mg                                                                |
+  3. |   524341000033113                         Enalapril Maleate  Wafers  10 mg                                                                |
+ 11. |   523741000033111                        Enalapril Maleate  Titration pack                                                                |
+ 23. |   771041000033111                             Innovace Melt  Wafers  20 mg                                                                |
+ 25. |   770241000033110                                 Innovace  Titration pack                                                                |
+ 29. |   524041000033111                        Enalapril Maleate  Wafers  2.5 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 27. |   770241000033110                                 Innovace  Titration pack                                                                |
- 31. |   770941000033118                            Innovace Melt  Wafers  2.5 mg                                                                |
- 32. |   524341000033113                         Enalapril Maleate  Wafers  10 mg                                                                |
- 33. |   524541000033118                         Enalapril Maleate  Wafers  20 mg                                                                |
- 40. |   771141000033110                              Innovace Melt  Wafers  5 mg                                                                |
+ 30. |   524641000033117                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 31. |   524541000033118                         Enalapril Maleate  Wafers  20 mg                                                                |
+ 33. |   770541000033112                            Innovace Melt  Wafers  2.5 mg                                                                |
+ 34. |   524141000033110                         Enalapril Maleate  Wafers  20 mg                                                                |
+ 35. |   523941000033114                         Enalapril Maleate  Wafers  10 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 43. |   771041000033111                             Innovace Melt  Wafers  20 mg                                                                |
- 49. |   524641000033117                          Enalapril Maleate  Wafers  5 mg                                                                |
- 54. |   524141000033110                         Enalapril Maleate  Wafers  20 mg                                                                |
- 56. |   524441000033119                        Enalapril Maleate  Wafers  2.5 mg                                                                |
- 59. |   770641000033113                             Innovace Melt  Wafers  20 mg                                                                |
+ 37. |   770741000033116                              Innovace Melt  Wafers  5 mg                                                                |
+ 40. |   770641000033113                             Innovace Melt  Wafers  20 mg                                                                |
+ 45. |   770941000033118                            Innovace Melt  Wafers  2.5 mg                                                                |
+ 46. |   770841000033114                             Innovace Melt  Wafers  10 mg                                                                |
+ 63. |   524441000033119                        Enalapril Maleate  Wafers  2.5 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 61. |   523741000033111                        Enalapril Maleate  Titration pack                                                                |
- 64. |   770741000033116                              Innovace Melt  Wafers  5 mg                                                                |
- 69. |   524241000033115                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 64. |   524241000033115                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 65. |   771141000033110                              Innovace Melt  Wafers  5 mg                                                                |
+ 66. |   770441000033111                             Innovace Melt  Wafers  10 mg                                                                |
 138. |   770141000033115   Innozide 20mg/12.5mg tablets (Organon Pharma (UK) Ltd)   Enalapril maleate/ Hydrochlorothiazide       Oral   02050501 |
 178. |  3279241000033117             Enalapril 5mg/5ml oral suspension sugar free                        Enalapril maleate       Oral            |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3367,9 +3367,9 @@ perindopril |      Freq.     Percent        Cum.
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                           termfromemis                           drugsubstancename   routeo~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 21. | 5997541000033113                                  Perindopril  Oral solution  8 mg/5 ml                                                                   |
- 42. | 5888241000033116                                Perindopril  Oral suspension  4 mg/5 ml                                                                   |
- 66. | 4153041000033114                                Perindopril  Oral suspension  8 mg/5 ml                                                                   |
+ 24. | 4153041000033114                                Perindopril  Oral suspension  8 mg/5 ml                                                                   |
+ 60. | 5997541000033113                                  Perindopril  Oral solution  8 mg/5 ml                                                                   |
+ 67. | 5888241000033116                                Perindopril  Oral suspension  4 mg/5 ml                                                                   |
 109. | 4454641000033117   Coversyl Arginine Plus 5mg/1.25mg tablets (Servier Laboratories Ltd)            Indapamide/ Perindopril arginine       Oral   02050501 |
 110. | 4454441000033119              Coversyl Arginine 10mg tablets (Servier Laboratories Ltd)                        Perindopril arginine       Oral   02050501 |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -3443,9 +3443,9 @@ Drug: ramipril
      +--------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                          termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------------------------|
- 13. |  2724541000033115            Ramipril  Titration pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
- 36. |  3890041000033117   Ramipril  Powder For Oral Suspension With Diluent (Kit)  10 mg/5 ml                                              |
- 46. |  4521441000033112      Tritace  Tablet Titration Pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
+  7. |  3890041000033117   Ramipril  Powder For Oral Suspension With Diluent (Kit)  10 mg/5 ml                                              |
+ 52. |  2724541000033115            Ramipril  Titration pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
+ 57. |  4521441000033112      Tritace  Tablet Titration Pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
  86. |  1455541000033110                              Tritace 1.25mg capsules (Aventis Pharma)               Ramipril       Oral   02050501 |
 121. | 12090641000033119                               Tritace titration pack tablets (Sanofi)                                     02050501 |
      |--------------------------------------------------------------------------------------------------------------------------------------|
@@ -3501,9 +3501,9 @@ trandolapri |
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                     termfromemis                       drugsubstancename   routeofad~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 22. | 1511741000033119                                    Verapamil Hydrochloride  M/R capsules  240 mg                                                                  |
- 35. | 1513041000033118                                         Verapamil Hydrochloride  Tablets  240 mg                                                                  |
- 44. | 1508641000033116                                    Verapamil Hydrochloride  Injection  2.5 mg/ml                                                                  |
+ 13. | 1513041000033118                                         Verapamil Hydrochloride  Tablets  240 mg                                                                  |
+ 14. | 1511741000033119                                    Verapamil Hydrochloride  M/R capsules  240 mg                                                                  |
+ 50. | 1508641000033116                                    Verapamil Hydrochloride  Injection  2.5 mg/ml                                                                  |
 127. | 1274741000033119                                  Securon 120mg tablets (Abbott Laboratories Ltd)                 Verapamil hydrochloride          Oral   02060200 |
 128. |  998641000033111                                              Odrik 2mg capsules (Aventis Pharma)                            Trandolapril          Oral   02050501 |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4053,11 +4053,11 @@ Drug: ketanserin
      +------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                               termfromemis                      drugsubstancename   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------|
-  3. |   777541000033113                                                    Ismelin  Eye drops  5 %                                                   |
- 12. |   654741000033118                                Guanethidine Monosulfate 1+0.2  Eye drops                                                     |
- 30. |   654641000033110                                   Guanethidine Monosulfate  Eye drops  5 %                                                   |
- 50. |   654841000033111                                Guanethidine Monosulfate 3+0.5  Eye drops                                                     |
- 52. |   635541000033114                                                       Glutenex  Biscuits                                                     |
+  1. |   654641000033110                                   Guanethidine Monosulfate  Eye drops  5 %                                                   |
+  5. |   777541000033113                                                    Ismelin  Eye drops  5 %                                                   |
+ 26. |   635541000033114                                                       Glutenex  Biscuits                                                     |
+ 53. |   654841000033111                                Guanethidine Monosulfate 3+0.5  Eye drops                                                     |
+ 54. |   654741000033118                                Guanethidine Monosulfate 1+0.2  Eye drops                                                     |
      |------------------------------------------------------------------------------------------------------------------------------------------------|
  94. |  4125341000033111                               Regaine for Men 2% gel (McNeil Products Ltd)                              Minoxidil   13090000 |
  95. |  4125241000033118                                                           Minoxidil 2% gel                              Minoxidil   13090000 |
@@ -4152,7 +4152,7 @@ Drug: diazoxide
      +----------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                     termfromemis   drugsub~e   routeofad~n   bnfchapt |
      |----------------------------------------------------------------------------------------------------------------------------------------|
- 53. | 4119841000033113                              Diazoxide  Oral Suspension (Sugar-Free)  50 mg/5 ml                                      |
+ 17. | 4119841000033113                              Diazoxide  Oral Suspension (Sugar-Free)  50 mg/5 ml                                      |
  89. | 8182141000033114                                             Diazoxide 12.5mg/5ml oral suspension   Diazoxide          Oral   06010400 |
 153. | 7859441000033119                   Proglycem 250mg/5ml oral suspension (Imported (United States))   Diazoxide                 06010400 |
 349. |  464441000033117                                                           Diazoxide 50mg tablets                                      |
@@ -4180,9 +4180,9 @@ hydralazine |      Freq.     Percent        Cum.
      +-----------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                 termfromemis           drugsubstancename   routeofad~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------|
-  3. |  3940641000033114                        Hydralazine Hydrochloride  Dispersible tablets  10 mg                                                      |
-  7. |    74441000033115                                                   Apresoline  Tablets  50 mg                                                      |
- 16. |  1618441000033111                                  Hydralazine Hydrochloride  Tablets  12.5 mg                                                      |
+  8. |  3940641000033114                        Hydralazine Hydrochloride  Dispersible tablets  10 mg                                                      |
+ 57. |  1618441000033111                                  Hydralazine Hydrochloride  Tablets  12.5 mg                                                      |
+ 63. |    74441000033115                                                   Apresoline  Tablets  50 mg                                                      |
 268. |   741941000033113                                                     Hydralazine 25mg tablets   Hydralazine hydrochloride          Oral   02050100 |
 269. |   742041000033119                                                     Hydralazine 50mg tablets   Hydralazine hydrochloride          Oral   02050100 |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4399,9 +4399,9 @@ Drug: clonidine
      +-------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                     termfromemis         drugsubstancename   routeofad~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------------------------------|
- 17. |   177441000033116                                                      Catapres  Capsules  0.25 mg                                                    |
- 42. |  2776441000033110   Clonidine Hydrochloride  Transdermal patches (7 days)  2.5 mg (0.1mg/24 hours)                                                    |
- 45. |   177641000033119                                Catapres Perlongets  M/R capsules  250 micrograms                                                    |
+ 18. |   177441000033116                                                      Catapres  Capsules  0.25 mg                                                    |
+ 33. |  2776441000033110   Clonidine Hydrochloride  Transdermal patches (7 days)  2.5 mg (0.1mg/24 hours)                                                    |
+ 46. |   177641000033119                                Catapres Perlongets  M/R capsules  250 micrograms                                                    |
  70. | 12106941000033117                              Clonidine 100micrograms/24hours transdermal patches                 Clonidine   Transdermal   02050200 |
  71. | 12107141000033117                                      Catapres TTS 1 patches (Imported (Germany))                 Clonidine                 02050200 |
      |-------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4460,10 +4460,10 @@ Drug: methyldopa
      +-----------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                       termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------|
-  9. |  36841000033113                   Aldomet  Suspension  250 mg/5 ml                                              |
- 12. | 878541000033112                    Methyldopa  Injection  50 mg/ml                                              |
- 22. | 873941000033114                       Methyldopa  Capsules  250 mg                                              |
- 62. |  40841000033114                           Aldomet  Tablets  125 mg                                              |
+ 10. |  40841000033114                           Aldomet  Tablets  125 mg                                              |
+ 20. | 873941000033114                       Methyldopa  Capsules  250 mg                                              |
+ 50. |  36841000033113                   Aldomet  Suspension  250 mg/5 ml                                              |
+ 56. | 878541000033112                    Methyldopa  Injection  50 mg/ml                                              |
 228. |  40941000033118   Aldomet 250mg tablets (Aspen Pharma Trading Ltd)   Methyldopa anhydrous       Oral   02050200 |
      |-----------------------------------------------------------------------------------------------------------------|
 275. | 897341000033110                           Methyldopa 125mg tablets   Methyldopa anhydrous       Oral   02050200 |
@@ -4505,7 +4505,7 @@ debrisoquin |
      +---------------------------------------------------------------------------------------------+
      |      prodcodeid                   termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------|
- 47. | 430741000033111   Debrisoquine  Tablets  20 mg                                              |
+ 40. | 430741000033111   Debrisoquine  Tablets  20 mg                                              |
 280. | 430641000033119      Debrisoquine 10mg tablets   Debrisoquine sulfate       Oral   02050300 |
      +---------------------------------------------------------------------------------------------+
 Drug: guanethidine
@@ -4521,10 +4521,10 @@ guanethidin |
      +------------------------------------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                                       termfromemis          drugsubstancename   routeofadmi~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------|
-  2. | 784841000033113                                            Ismelin  Tablets  10 mg                                                       |
- 48. | 655641000033114                           Guanethidine Monosulfate  Tablets  25 mg                                                       |
- 52. | 655541000033113                           Guanethidine Monosulfate  Tablets  10 mg                                                       |
- 57. | 784941000033117                                            Ismelin  Tablets  25 mg                                                       |
+  3. | 784941000033117                                            Ismelin  Tablets  25 mg                                                       |
+ 38. | 655641000033114                           Guanethidine Monosulfate  Tablets  25 mg                                                       |
+ 48. | 784841000033113                                            Ismelin  Tablets  10 mg                                                       |
+ 53. | 655541000033113                           Guanethidine Monosulfate  Tablets  10 mg                                                       |
 376. | 655241000033111              Guanethidine 10mg/1ml solution for injection ampoules   Guanethidine monosulfate   Intramuscular   02050300 |
      |------------------------------------------------------------------------------------------------------------------------------------------|
 481. | 780741000033110   Ismelin 10mg/1ml solution for injection ampoules (Amdipharm Plc)   Guanethidine monosulfate   Intramuscular   02050300 |
@@ -4541,8 +4541,8 @@ Drug: doxazosin
      +--------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                          termfromemis    drugsubstancename   routeo~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------|
- 31. |  4502341000033119                 Doxazosin  Oral suspension  1 mg/5 ml                                            |
- 34. |   216941000033117                                Cardura  Tablets  4 mg                                            |
+ 44. |   216941000033117                                Cardura  Tablets  4 mg                                            |
+ 64. |  4502341000033119                 Doxazosin  Oral suspension  1 mg/5 ml                                            |
  76. |  4021141000033118        Slocinx XL 4mg tablets (Zentiva Pharma UK Ltd)   Doxazosin mesilate       Oral   02050400 |
  84. |  4063741000033112           Doxadura XL 4mg tablets (Dexcel-Pharma Ltd)   Doxazosin mesilate       Oral   02050400 |
  91. |  5403641000033117                   Colixil XL 4mg tablets (Sandoz Ltd)   Doxazosin mesilate       Oral   02050400 |
@@ -4588,8 +4588,8 @@ Drug: indoramin
      +----------------------------------------------------------------------------------------------------------------------+
      |      prodcodeid                                         termfromemis         drugsubstancename   routeo~n   bnfchapt |
      |----------------------------------------------------------------------------------------------------------------------|
- 15. | 116841000033111                              Baratol  Tablets  50 mg                                                 |
- 55. | 768441000033115                            Indoramin  Tablets  25 mg                                                 |
+  6. | 768441000033115                            Indoramin  Tablets  25 mg                                                 |
+ 45. | 116841000033111                              Baratol  Tablets  50 mg                                                 |
  65. | 769941000033115              Indoramin Hydrochloride  Tablets  50 mg                                                 |
 362. | 480541000033110   Doralese Tiltab 20mg tablets (Chemidex Pharma Ltd)   Indoramin hydrochloride       Oral   07040100 |
 394. | 116741000033118                 Baratol 25mg tablets (Amdipharm Plc)   Indoramin hydrochloride       Oral   02050400 |
@@ -4610,7 +4610,7 @@ phenoxybenz |
      +-------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                          termfromemis                drugsubstancename   routeo~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------|
-  1. | 3940141000033116        Phenoxybenzamine Hydrochloride  Capsules  8 mg                                                        |
+ 36. | 3940141000033116        Phenoxybenzamine Hydrochloride  Capsules  8 mg                                                        |
 281. | 1070341000033119                        Phenoxybenzamine 10mg capsules                                                        |
 415. |  438441000033119   Dibenyline 10mg capsules (Mercury Pharma Group Ltd)   Phenoxybenzamine hydrochloride       Oral   02050400 |
 618. | 2757941000033118             Phenoxybenzamine 25mg/5ml oral suspension   Phenoxybenzamine hydrochloride       Oral   02050400 |
@@ -4684,11 +4684,11 @@ Drug: prazosin
      +------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                          termfromemis        drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------|
- 27. |  1128241000033117                Prazosin Hydrochloride  Starter pack                                                  |
- 38. |    37641000033110                Alphavase 0.5  Tablets  500 micrograms                                                |
- 50. |   743841000033116                               Hypovase  Tablets  5 mg                                                |
- 58. |  1128141000033112                Prazosin Hydrochloride  Starter pack                                                  |
- 63. |   745941000033111                      Hypovase Starter Pack  Tablets                                                  |
+  4. |  1128141000033112                Prazosin Hydrochloride  Starter pack                                                  |
+ 24. |   745941000033111                      Hypovase Starter Pack  Tablets                                                  |
+ 39. |   743841000033116                               Hypovase  Tablets  5 mg                                                |
+ 41. |    37641000033110                Alphavase 0.5  Tablets  500 micrograms                                                |
+ 51. |  1128241000033117                Prazosin Hydrochloride  Starter pack                                                  |
      |------------------------------------------------------------------------------------------------------------------------|
  98. | 11567441000033119              Prazosin 500micrograms/5ml oral solution   Prazosin hydrochloride       Oral   02050400 |
 136. |   743741000033114                     Hypovase 2mg tablets (Pfizer Ltd)   Prazosin hydrochloride       Oral   02050400 |
@@ -4716,13 +4716,13 @@ Drug: terazosin
      +------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                           termfromemis         drugsubstancename                    routeofadministration   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  8. |   743941000033112                                             Hytrin Bph  Tablets  10 mg                                                                               |
- 10. |   744041000033114                                              Hytrin Bph  Tablets  2 mg                                                                               |
- 21. |  1423741000033117              Terazosin Hydrochloride  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
- 23. |  1423841000033110   Terazosin Hydrochloride  Starter pack  7 x 1 mg, 14 x 2 mg, 7 x 5 mg                                                                               |
- 26. |   744141000033113                                              Hytrin Bph  Tablets  5 mg                                                                               |
+  1. |  1423741000033117              Terazosin Hydrochloride  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 13. |  1423841000033110   Terazosin Hydrochloride  Starter pack  7 x 1 mg, 14 x 2 mg, 7 x 5 mg                                                                               |
+ 15. |   740941000033119                           Hytrin Bph  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 16. |   744141000033113                                              Hytrin Bph  Tablets  5 mg                                                                               |
+ 25. |   743941000033112                                             Hytrin Bph  Tablets  10 mg                                                                               |
      |------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 60. |   740941000033119                           Hytrin Bph  Starter pack  7 x 1 mg, 7 x 2 mg                                                                               |
+ 54. |   744041000033114                                              Hytrin Bph  Tablets  2 mg                                                                               |
 257. |   745741000033113                                     Hytrin 2mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
 258. |   745641000033116                                    Hytrin 10mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
 260. |   745841000033115                                     Hytrin 5mg tablets (Advanz Pharma)   Terazosin hydrochloride                                     Oral   02050400 |
@@ -4748,9 +4748,9 @@ Drug: captopril
      +------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                 termfromemis                drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
- 14. | 5595341000033117                               Captopril  Oral Suspension Sugar Free  2 mg/ml                                                        |
- 35. |  210541000033113                                                     Captopril  Tablets  1 mg                                                        |
- 36. |  210741000033117                                                     Captopril  Tablets  2 mg                                                        |
+  7. |  210741000033117                                                     Captopril  Tablets  2 mg                                                        |
+ 14. |  210541000033113                                                     Captopril  Tablets  1 mg                                                        |
+ 35. | 5595341000033117                               Captopril  Oral Suspension Sugar Free  2 mg/ml                                                        |
 109. |  214141000033113            Capoten 12.5mg tablets (Bristol-Myers Squibb Pharmaceuticals Ltd)                        Captopril       Oral   02050501 |
 151. |  216441000033110        Capozide 25mg/50mg tablets (Bristol-Myers Squibb Pharmaceuticals Ltd)   Captopril/ Hydrochlorothiazide       Oral   02050501 |
      |------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4814,8 +4814,8 @@ Drug: cilazapril
      +---------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                        termfromemis        drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------------------------------|
- 18. |  258341000033113                 Cilazapril  Tablets  250 micrograms                                                |
- 44. | 1504841000033113                    Vascace  Tablets  250 micrograms                                                |
+ 19. |  258341000033113                 Cilazapril  Tablets  250 micrograms                                                |
+ 29. | 1504841000033113                    Vascace  Tablets  250 micrograms                                                |
 390. | 1504641000033112            Vascace 1mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
 391. | 1503441000033113            Vascace 5mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
 392. | 1504741000033115          Vascace 2.5mg tablets (Roche Products Ltd)   Cilazapril monohydrate       Oral   02050501 |
@@ -4838,27 +4838,27 @@ Drug: enalapril
      +-------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                             termfromemis                        drugsubstancename   routeo~n   bnfchapt |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
-  4. |   770441000033111                             Innovace Melt  Wafers  10 mg                                                                |
-  5. |   523941000033114                         Enalapril Maleate  Wafers  10 mg                                                                |
-  6. |   524041000033111                        Enalapril Maleate  Wafers  2.5 mg                                                                |
- 13. |   770841000033114                             Innovace Melt  Wafers  10 mg                                                                |
- 24. |   770541000033112                            Innovace Melt  Wafers  2.5 mg                                                                |
+  2. |   524341000033113                         Enalapril Maleate  Wafers  10 mg                                                                |
+  9. |   523741000033111                        Enalapril Maleate  Titration pack                                                                |
+ 21. |   771041000033111                             Innovace Melt  Wafers  20 mg                                                                |
+ 23. |   770241000033110                                 Innovace  Titration pack                                                                |
+ 26. |   524041000033111                        Enalapril Maleate  Wafers  2.5 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 25. |   770241000033110                                 Innovace  Titration pack                                                                |
- 28. |   770941000033118                            Innovace Melt  Wafers  2.5 mg                                                                |
- 29. |   524341000033113                         Enalapril Maleate  Wafers  10 mg                                                                |
- 30. |   524541000033118                         Enalapril Maleate  Wafers  20 mg                                                                |
- 37. |   771141000033110                              Innovace Melt  Wafers  5 mg                                                                |
+ 27. |   524641000033117                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 28. |   524541000033118                         Enalapril Maleate  Wafers  20 mg                                                                |
+ 30. |   770541000033112                            Innovace Melt  Wafers  2.5 mg                                                                |
+ 31. |   524141000033110                         Enalapril Maleate  Wafers  20 mg                                                                |
+ 32. |   523941000033114                         Enalapril Maleate  Wafers  10 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 40. |   771041000033111                             Innovace Melt  Wafers  20 mg                                                                |
- 46. |   524641000033117                          Enalapril Maleate  Wafers  5 mg                                                                |
- 49. |   524141000033110                         Enalapril Maleate  Wafers  20 mg                                                                |
- 51. |   524441000033119                        Enalapril Maleate  Wafers  2.5 mg                                                                |
- 54. |   770641000033113                             Innovace Melt  Wafers  20 mg                                                                |
+ 34. |   770741000033116                              Innovace Melt  Wafers  5 mg                                                                |
+ 37. |   770641000033113                             Innovace Melt  Wafers  20 mg                                                                |
+ 42. |   770941000033118                            Innovace Melt  Wafers  2.5 mg                                                                |
+ 43. |   770841000033114                             Innovace Melt  Wafers  10 mg                                                                |
+ 58. |   524441000033119                        Enalapril Maleate  Wafers  2.5 mg                                                                |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
- 56. |   523741000033111                        Enalapril Maleate  Titration pack                                                                |
- 59. |   770741000033116                              Innovace Melt  Wafers  5 mg                                                                |
- 64. |   524241000033115                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 59. |   524241000033115                          Enalapril Maleate  Wafers  5 mg                                                                |
+ 60. |   771141000033110                              Innovace Melt  Wafers  5 mg                                                                |
+ 61. |   770441000033111                             Innovace Melt  Wafers  10 mg                                                                |
 131. |   770141000033115   Innozide 20mg/12.5mg tablets (Organon Pharma (UK) Ltd)   Enalapril maleate/ Hydrochlorothiazide       Oral   02050501 |
 170. |  3279241000033117             Enalapril 5mg/5ml oral suspension sugar free                        Enalapril maleate       Oral            |
      |-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -5005,9 +5005,9 @@ perindopril |      Freq.     Percent        Cum.
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                           termfromemis                           drugsubstancename   routeo~n   bnfchapt |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 19. | 5997541000033113                                  Perindopril  Oral solution  8 mg/5 ml                                                                   |
- 39. | 5888241000033116                                Perindopril  Oral suspension  4 mg/5 ml                                                                   |
- 61. | 4153041000033114                                Perindopril  Oral suspension  8 mg/5 ml                                                                   |
+ 22. | 4153041000033114                                Perindopril  Oral suspension  8 mg/5 ml                                                                   |
+ 55. | 5997541000033113                                  Perindopril  Oral solution  8 mg/5 ml                                                                   |
+ 62. | 5888241000033116                                Perindopril  Oral suspension  4 mg/5 ml                                                                   |
 102. | 4454641000033117   Coversyl Arginine Plus 5mg/1.25mg tablets (Servier Laboratories Ltd)            Indapamide/ Perindopril arginine       Oral   02050501 |
 103. | 4454441000033119              Coversyl Arginine 10mg tablets (Servier Laboratories Ltd)                        Perindopril arginine       Oral   02050501 |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -5081,9 +5081,9 @@ Drug: ramipril
      +--------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                          termfromemis      drugsubstancename   routeo~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------------------------|
- 11. |  2724541000033115            Ramipril  Titration pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
- 33. |  3890041000033117   Ramipril  Powder For Oral Suspension With Diluent (Kit)  10 mg/5 ml                                              |
- 43. |  4521441000033112      Tritace  Tablet Titration Pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
+  5. |  3890041000033117   Ramipril  Powder For Oral Suspension With Diluent (Kit)  10 mg/5 ml                                              |
+ 49. |  2724541000033115            Ramipril  Titration pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
+ 52. |  4521441000033112      Tritace  Tablet Titration Pack  7 x 2.5 mg, 21 x 5 mg, 7 x 10 mg                                              |
  81. |  1455541000033110                              Tritace 1.25mg capsules (Aventis Pharma)               Ramipril       Oral   02050501 |
 114. | 12090641000033119                               Tritace titration pack tablets (Sanofi)                                     02050501 |
      |--------------------------------------------------------------------------------------------------------------------------------------|
@@ -5139,9 +5139,9 @@ trandolapri |
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                     termfromemis                       drugsubstancename   routeofad~n   bnfchapt |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 20. | 1511741000033119                                    Verapamil Hydrochloride  M/R capsules  240 mg                                                                  |
- 32. | 1513041000033118                                         Verapamil Hydrochloride  Tablets  240 mg                                                                  |
- 41. | 1508641000033116                                    Verapamil Hydrochloride  Injection  2.5 mg/ml                                                                  |
+ 11. | 1513041000033118                                         Verapamil Hydrochloride  Tablets  240 mg                                                                  |
+ 12. | 1511741000033119                                    Verapamil Hydrochloride  M/R capsules  240 mg                                                                  |
+ 47. | 1508641000033116                                    Verapamil Hydrochloride  Injection  2.5 mg/ml                                                                  |
 120. | 1274741000033119                                  Securon 120mg tablets (Abbott Laboratories Ltd)                 Verapamil hydrochloride          Oral   02060200 |
 121. |  998641000033111                                              Odrik 2mg capsules (Aventis Pharma)                            Trandolapril          Oral   02050501 |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -7249,6 +7249,8 @@ Phenoxybenzamine |          4        0.62       30.22
 
 .         rename prodcodeid_ext prodcodeid
 
+.         generate byte antihypertensive = 1
+
 .         generate byte external_codelist = 1
 
 .         generate byte `name' = 1
@@ -7280,7 +7282,7 @@ Phenoxybenzamine |          4        0.62       30.22
 .         keep if _merge == 3
 (73,164 observations deleted)
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -7308,6 +7310,8 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta for
 
 .         rename prodcodeid_ext prodcodeid
 
+.         generate byte antihypertensive = 1
+
 .         generate byte external_codelist = 1
 
 .         generate byte `name' = 1
@@ -7339,7 +7343,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta for
 .         keep if _merge == 3
 (73,164 observations deleted)
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -7366,6 +7370,8 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta for
 .         rename * *_ext
 
 .         rename prodcodeid_ext prodcodeid
+
+.         generate byte antihypertensive = 1
 
 .         generate byte external_codelist = 1
 
@@ -7398,7 +7404,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta for
 .         keep if _merge == 3
 (73,164 observations deleted)
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -7423,6 +7429,8 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000006.tmp saved as .dta for
 
 .         
 .         rename termfromemis termfromemis_ext
+
+.         generate byte antihypertensive = 1
 
 .         generate byte external_codelist = 1
 
@@ -7515,7 +7523,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000006.tmp saved as .dta for
 .         keep if _merge == 3
 (72,356 observations deleted)
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -7562,6 +7570,8 @@ bnfcode                                                                         
 
 .         
 .         rename description description_ext
+
+.         generate byte antihypertensive = 1
 
 .         generate byte external_codelist = 1
 
@@ -8301,7 +8311,7 @@ bnfcode                                                                         
 .         keep if _merge == 3
 (73,327 observations deleted)
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -8349,6 +8359,8 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000009.tmp saved as .dta for
 .         rename * *_ext
 
 .         rename dmdid_ext dmdid
+
+.         generate byte antihypertensive = 1
 
 .         generate byte external_codelist = 1
 
@@ -8744,7 +8756,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000009.tmp saved as .dta for
 .         list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 >                 if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
 
-.         keep prodcodeid external_codelist `name'
+.         keep prodcodeid antihypertensive external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -9092,5 +9104,5 @@ file antihypertensives.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\antihypertensives.log
   log type:  text
- closed on:   2 Apr 2025, 21:07:54
+ closed on:   3 Apr 2025, 03:53:08
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
