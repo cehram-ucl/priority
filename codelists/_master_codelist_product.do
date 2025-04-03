@@ -22,7 +22,7 @@ save _master_codelist_product, replace
 // ANTIHYPERTENSIVES
 use antihypertensives, clear
 
-keep prodcodeid antihypertensive
+keep prodcodeid antihypertensive antihypertensive_medication
 
 //Compact version
 save compact/antihypertensives, replace
