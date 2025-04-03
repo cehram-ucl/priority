@@ -540,7 +540,9 @@ foreach repocodelist in lshtm_2102 lshtm_2187 lshtm_2814 lshtm_3590 ///
 merge 1:1 prodcodeid using `product', update replace
 drop if _merge == 2
 drop _merge
-tab external_codelist, missing  //lots of extras
+tab external_codelist, missing
+tab external_codelist if antihypertensive_medication != ., missing
+tab external_codelist if antihypertensive_medication == ., missing  //lots of extras
 
 //Clinician input needed on whether these should be included
 //Would require adding extra terms to search if these should be included
@@ -549,7 +551,7 @@ tab external_codelist, missing  //lots of extras
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 //===================================================
 
-gsort /*antihypertensive_medication*/ -drugissues dmdid
+gsort antihypertensive_medication -drugissues dmdid
 compress
 save `filename', replace
 export excel `filename'_raw.xlsx, firstrow(variables) replace
