@@ -132,7 +132,7 @@ local inclisiran "inclisiran leqvio"
 //local ispaghula "ispaghula"
 local lomitapide "lomitapide"  //not listed on OpenPrescribing
 local nicotinic "nicotinic tredaptive"
-local omega "omega eicosapentaenoic docosahexaenoic omeg omacor teromeg prestylon nebbaro dualtis"
+local omega "omega eicosapentaenoic docosahexaenoic omacor teromeg prestylon nebbaro dualtis"
 local policosanol "policosanol"
 local pravastatin "pravastatin lipostat"
 local rosuvastatin "rosuvastatin crestor"
@@ -192,6 +192,13 @@ list prodcodeid termfromemis drugsubstancename bnfchapt ///
 keep if statin == 1
 compress
 count
+
+//Fix erroneous labelling of Eicosapentaenoic acid as Icosapent
+list termfromemis drugsubstancename icosapent omega ///
+	if icosapent == 1 & omega == 1
+replace icosapent = 0 if icosapent == 1 & omega == 1
+list termfromemis drugsubstancename icosapent omega ///
+	if icosapent == 1 & omega == 1
 
 //Check included products for each drug
 //(Also use this to go back and add any brand names that may have been missed)
@@ -254,13 +261,13 @@ foreach bnf_section of local statins {
 
 // (OPTIONAL) STEP 5. CATEGORISE DRUGS
 //=====================================
-/*
+
 //Check for any products containing multiple drugs (categorisation won't work otherwise)
-egen ap_count = rowtotal(amisulpride aripiprazole benperidol cariprazine chlorpromazine chlorprothixene clozapine droperidol flupentixol fluphenazine haloperidol levomepromazine loxapine lurasidone melperone olanzapine oxypertine paliperidone pericyazine perphenazine pimozide promazine quetiapine risperidone sertindole sulpiride thioridazine trifluoperazine ziprasidone zotepine zuclopenthixol pipotiazine asenapine)
+egen statin_count = rowtotal(acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofibrate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin)
 
-tab ap_count, missing
-drop ap_count
-
+tab statin_count, missing
+//drop statin_count
+/* NOT POSSIBLE TO CATEGORISE
 generate byte statin_medication = 0
 label define statin_medication, replace
 label values statin_medication statin_medication
@@ -283,27 +290,72 @@ tab1 statin_medication, missing
 
 // (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LISTS
 //=======================================================
-/*
+
 //Import repository codelists
 
 //MedCodeID codelists (LSHTM Data Compass)
 preserve
-	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2796/2/statins_aurum_feb21.txt, stringcols(1 2) favorstrfixed clear
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2102/49/statins_aurum_mar20.txt, stringcols(1) favorstrfixed clear
 	
-	tab1 bnfchapter drugsubstancename, missing
-	keep prodcodeid termfromemis drugsubstancename
+	keep prodcodeid termfromemis
 	
-	local name "lshtm_2796"
+	local name "lshtm_2102"
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
+	generate byte statin = 1
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
 	merge 1:1 prodcodeid using `product'
-	list prodcodeid termfromemis_ext drugsubstancename_ext if _merge == 1
+	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	keep prodcodeid statin external_codelist `name'
+
+	tempfile `name'
+	compress
+	save ``name''
+restore, preserve
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2199/1/statins_aurum_mar20.csv, stringcols(1) favorstrfixed clear
+	
+	keep prodcodeid termfromemis
+	
+	local name "lshtm_2199"
+	
+	rename * *_ext
+	rename prodcodeid_ext prodcodeid
+	generate byte statin = 1
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:1 prodcodeid using `product'
+	list prodcodeid termfromemis_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid statin external_codelist `name'
+
+	tempfile `name'
+	compress
+	save ``name''
+restore, preserve
+	import delimited https://datacompass.lshtm.ac.uk/id/eprint/2470/1/statins_aurum_feb21.txt, stringcols(1) favorstrfixed clear
+	
+	keep prodcodeid termfromemis
+	
+	local name "lshtm_2470"
+	
+	rename * *_ext
+	rename prodcodeid_ext prodcodeid
+	generate byte statin = 1
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:1 prodcodeid using `product'
+	list prodcodeid termfromemis_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid statin external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -312,106 +364,159 @@ restore
 
 //SNOMED CT codelists (HDR UK Phenotype Library and OpenCodelists)
 preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/first-generation-statins-excluding-long-acting-depots-dmd/1e9b227c/download.csv, stringcols(1 3) favorstrfixed clear
+	import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH972/version/2150/export/codes, stringcols(1) favorstrfixed clear
 	
-	rename dmd_id dmdid
+	keep code description
+	rename code bnfcode
 	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
+	codebook bnfcode
 	
-	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
-	tab bnf_short, missing  //also includes 4.3.4
+	local name "hdruk_972"
 	
-	local name "oc_opensafely_1stgenAP"
-	
-	rename * *_ext
-	rename dmdid_ext dmdid
+	rename description description_ext
+	generate byte statin = 1
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
-	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	merge 1:m bnfcode using `product'
+	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	keep prodcodeid statin external_codelist `name'
 
 	tempfile `name'
 	save ``name''
 restore, preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/second-generation-statins-excluding-long-acting-injections/6c7c3c11/download.csv, stringcols(1 3) favorstrfixed clear
+	import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH1013/version/2191/export/codes, stringcols(1) favorstrfixed clear
 	
-	rename dmd_id dmdid
+	keep code description
+	rename code bnfcode
 	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
+	codebook bnfcode
 	
-	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
-	tab bnf_short, missing
+	local name "hdruk_1013"
 	
-	local name "oc_opensafely_2ndgenAP"
-	
-	rename * *_ext
-	rename dmdid_ext dmdid
+	rename description description_ext
+	generate byte statin = 1
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
-	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	merge 1:m bnfcode using `product'
+	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	keep prodcodeid statin external_codelist `name'
 
 	tempfile `name'
 	save ``name''
 restore, preserve
-	import delimited https://www.opencodelists.org/codelist/opensafely/long-acting-injectable-and-depot-statins-dmd/536cc8dc/download.csv, stringcols(1 3) favorstrfixed clear
+	import delimited https://phenotypes.healthdatagateway.org/phenotypes/PH1600/version/3013/export/codes, stringcols(1) favorstrfixed clear
+	
+	keep code description
+	rename code bnfcode
+	
+	codebook bnfcode
+	
+	local name "hdruk_1600"
+	
+	rename description description_ext
+	generate byte statin = 1
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:m bnfcode using `product'
+	list bnfcode description_ext if _merge == 1
+	keep if _merge == 3
+	keep prodcodeid statin external_codelist `name'
+
+	tempfile `name'
+	save ``name''
+restore, preserve
+	import delimited https://www.opencodelists.org/codelist/openprescribing/all-statins/542a136e/dmd-download.csv, stringcols(1 2) favorstrfixed clear
 	
 	rename dmd_id dmdid
-	
-	//Check code and dmdid are the same
-	count if code != dmdid
-	drop code
+	rename dmd_name term
+	rename bnf_code bnfcode
 	
 	//Check which BNF codes are included
-	generate bnf_short = substr(bnf_code, 1, 6)
+	generate bnf_short = substr(bnfcode, 1, 6)
 	tab bnf_short, missing
 	
-	local name "oc_opensafely_depotAP"
+	local name "oc_openpresc_allstatins"
 	
 	rename * *_ext
 	rename dmdid_ext dmdid
+	generate byte statin = 1
+	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
 	count
 	merge 1:m dmdid using `product'
-	list prodcodeid term_ext bnf_code_ext if _merge == 1
+	list dmdid term_ext bnfcode_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid `name'
+	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
+		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
+	keep prodcodeid statin external_codelist `name'
+
+	tempfile `name'
+	save ``name''
+restore, preserve
+	import delimited https://www.opencodelists.org/codelist/openprescribing/low-and-medium-intensity-statins/6d3986a3/dmd-download.csv, stringcols(1 2) favorstrfixed clear
+	
+	rename dmd_id dmdid
+	rename dmd_name term
+	rename bnf_code bnfcode
+	
+	//Check which BNF codes are included
+	generate bnf_short = substr(bnfcode, 1, 6)
+	tab bnf_short, missing
+	
+	local name "oc_openpresc_lowmedstatins"
+	
+	rename * *_ext
+	rename dmdid_ext dmdid
+	generate byte statin = 1
+	generate byte external_codelist = 1
+	generate byte `name' = 1
+	
+	count
+	merge 1:m dmdid using `product'
+	list dmdid term_ext bnfcode_ext if _merge == 1
+	keep if _merge == 3
+	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
+		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
+	keep prodcodeid statin external_codelist `name'
 
 	tempfile `name'
 	save ``name''
 restore
 
 //Merge in repository codelists
-foreach repocodelist in lshtm_2796 oc_opensafely_1stgenAP ///
-	oc_opensafely_2ndgenAP oc_opensafely_depotAP {
+foreach repocodelist in lshtm_2102 lshtm_2199 lshtm_2470 ///
+	hdruk_972 hdruk_1013 hdruk_1600 ///
+	oc_openpresc_allstatins oc_openpresc_lowmedstatins {
 	
 	display "Codelist: `repocodelist'"
-	merge 1:1 prodcodeid using ``repocodelist''
+	merge 1:1 prodcodeid using ``repocodelist'', update replace
 	quietly count if _merge == 2
 	display "`repocodelist' codes that didn't match: " r(N)
-	list prodcodeid termfromemis drugsubstancename bnfcode if _merge == 2
-	drop if _merge == 2
+	//drop if _merge == 2
 	drop _merge
 }
-*/
+
+merge 1:1 prodcodeid using `product', update replace
+drop if _merge == 2
+drop _merge
+tab external_codelist, missing
+tab external_codelist if statin_count != ., missing
+tab external_codelist if statin_count == ., missing  //just one extra code
+
 
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 //===================================================
 
-gsort /*statin_medication*/ -drugissues dmdid
+gsort /**/bnf0212/**/ -drugissues dmdid
 compress
 save `filename', replace
 export excel `filename'_raw.xlsx, firstrow(variables) replace
