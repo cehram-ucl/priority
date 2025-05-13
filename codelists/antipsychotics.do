@@ -397,84 +397,7 @@ foreach repocodelist in lshtm_2796 oc_opensafely_1stgenAP ///
 }
 
 
-// STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
-//===================================================
-
-drop bnf0402*  //these only label the codes with BNF codes so aren't perfect
-gsort /**/antipsychotic_medication/**/ -drugissues dmdid
-compress
-save `filename', replace
-export excel `filename'_raw.xlsx, firstrow(variables) replace
-
-//Format Excel file using Python
-python:
-from openpyxl import load_workbook, Workbook
-
-excel_file = "`filename'_raw.xlsx"
-
-wb = load_workbook(excel_file)
-ws = wb.active
-
-# Freeze top row
-ws.freeze_panes = 'A2'
-
-# Auto-size column widths
-for column in ws.columns:
-	max_length = 0
-	column_letter = column[0].column_letter
-
-	for cell in column:
-		try:
-			if len(str(cell.value)) > max_length:
-				max_length = len(cell.value)
-		except:
-			pass
-
-	adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
-	ws.column_dimensions[column_letter].width = adjusted_width
-
-wb.save(excel_file)
-end
-/*
-Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
-
-e.g. codelist_raw_ABC.xlsx
-*/
-
-
-// STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
-//===================================================================
-
-//Load clinician classifications
-local clinician "CCG"
-/* CLINICIAN HAPPY WITH CODELIST AS IS
-import excel `filename'_raw_`clinician', firstrow clear
-
-//Remerge with original in case of any formatting issues with Excel spreadsheet
-keep medcodeid `clinician'
-
-tempfile `clinician'_classification
-save ``clinician'_classification'
-
-use `filename', clear
-
-merge 1:1 medcodeid using ``clinician'_classification', nogenerate
-recode `clinician' (. = 0)
-
-//Remove codes marked for exclusion by clinician
-display "Terms excluded by clinician..."
-list medcodeid snomedctconceptid term if `clinician' == 0
-drop if `clinician' == 0
-
-//Save clinican approved codelist
-gsort /**/antipsychotic_medication/**/ -drugissues dmdid
-drop `clinician'
-compress
-save `filename', replace*/
-export delimited `filename', replace quote
-
-
-// STEP 9. GENERATE DRUG STRENGTH VARIABLES
+// STEP 7. GENERATE DRUG STRENGTH VARIABLES
 //==========================================
 
 //Label injected medicines
@@ -553,6 +476,83 @@ drop strength_per_x_ml
 //generate combined variable
 generate double ap_strength = strength_mg
 replace ap_strength = strength_mg_per_ml if solution == 1
+
+
+// STEP 8. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
+//===================================================
+
+drop bnf0402*  //these only label the codes with BNF codes so aren't perfect
+gsort /**/antipsychotic_medication/**/ -drugissues dmdid
+compress
+save `filename', replace
+export excel `filename'_raw.xlsx, firstrow(variables) replace
+
+//Format Excel file using Python
+python:
+from openpyxl import load_workbook, Workbook
+
+excel_file = "`filename'_raw.xlsx"
+
+wb = load_workbook(excel_file)
+ws = wb.active
+
+# Freeze top row
+ws.freeze_panes = 'A2'
+
+# Auto-size column widths
+for column in ws.columns:
+	max_length = 0
+	column_letter = column[0].column_letter
+
+	for cell in column:
+		try:
+			if len(str(cell.value)) > max_length:
+				max_length = len(cell.value)
+		except:
+			pass
+
+	adjusted_width = (max_length + 2) * 0.92   # this is a bit arbitrary
+	ws.column_dimensions[column_letter].width = adjusted_width
+
+wb.save(excel_file)
+end
+/*
+Make sure that reviewing clinician's initials are appended to the end of the file name after reviewing.
+
+e.g. codelist_raw_ABC.xlsx
+*/
+
+
+// STEP 9. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
+//===================================================================
+
+//Load clinician classifications
+local clinician "CCG"
+/* CLINICIAN HAPPY WITH CODELIST AS IS
+import excel `filename'_raw_`clinician', firstrow clear
+
+//Remerge with original in case of any formatting issues with Excel spreadsheet
+keep medcodeid `clinician'
+
+tempfile `clinician'_classification
+save ``clinician'_classification'
+
+use `filename', clear
+
+merge 1:1 medcodeid using ``clinician'_classification', nogenerate
+recode `clinician' (. = 0)
+
+//Remove codes marked for exclusion by clinician
+display "Terms excluded by clinician..."
+list medcodeid snomedctconceptid term if `clinician' == 0
+drop if `clinician' == 0
+
+//Save clinican approved codelist
+gsort /**/antipsychotic_medication/**/ -drugissues dmdid
+drop `clinician'
+compress
+save `filename', replace*/
+export delimited `filename', replace quote
 
 
 // STEP 10. GENERATE METADATA FILE
