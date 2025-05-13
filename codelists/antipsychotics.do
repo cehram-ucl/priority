@@ -474,8 +474,89 @@ save `filename', replace*/
 export delimited `filename', replace quote
 
 
-// STEP 9. GENERATE METADATA FILE
-//================================
+// STEP 9. GENERATE DRUG STRENGTH VARIABLES
+//==========================================
+
+//Label injected medicines
+tab routeofadministration, sort missing
+tab routeofadministration ///
+	if inlist(routeofadministration, "Oral", "", "Sublingual", "Rectal")
+generate byte injected = 1 ///
+	if !inlist(routeofadministration, "Oral", "", "Sublingual", "Rectal")
+replace injected = 1 ///
+	if routeofadministration == "" & strpos(lower(termfromemis), "injection")
+tab routeofadministration injected, missing
+
+//Some "liquid" drugs could be oral or intramuscular
+list prodcodeid termfromemis injected ///
+	if routeofadministration == "" ///
+	& (strpos(lower(termfromemis), "liquid") | strpos(lower(termfromemis), "elixir"))
+
+
+//Search for drugs in solution
+generate byte solution = 1 if strpos(substancestrength, "/")
+
+//Use regex to search term to find missing info; basically a search for "mg/ml"
+replace solution = 1 ///
+	if solution == . ///
+	& regexm(lower(termfromemis), "[0-9]*[.]*[0-9]* ?(mg|micrograms?)/[0-9]*[.]*[0-9]* ?ml")
+
+
+//Search for products containing multiple drugs or multiple doses
+generate byte multiple = 1 if strpos(substancestrength, "+")
+replace multiple = 1 ///
+	if multiple != 1 ///
+	& regexm(lower(termfromemis), "(mg|microgram).*(mg|microgram)")
+
+
+//Extract dose
+generate strength_mg = regexs(0) ///
+	if multiple != 1 ///
+	& regexm(substancestrength, "[0-9]*[.][0-9]* ?(mg|microgram)")
+
+replace strength_mg = regexs(0) ///
+	if strength_mg == "" & multiple != 1 ///
+	& regexm(lower(termfromemis), "[0-9]*[.]*[0-9]* ?(mg|microgram)")
+	
+//Extract dose for products containing multiple drugs (theres only one)
+replace strength_mg = regexs(0) ///
+	if multiple == 1 ///
+	& drugsubstancename == "Amitriptyline hydrochloride/ Perphenazine" ///
+	& regexm(substancestrength, "[+] [0-9]*[.][0-9]* ?mg")
+
+replace strength_mg = subinstr(strength_mg, "+ ", "", 1)
+replace strength_mg = subinstr(strength_mg, "mg", "", 1)
+replace strength_mg = subinstr(strength_mg, "microgram", "", 1)
+destring strength_mg, replace
+
+
+//Extract dose per ml for solutions
+generate strength_per_x_ml = regexs(0) ///
+	if solution == 1 ///
+	& regexm(substancestrength, "/[0-9]*[.][0-9]* ?ml")
+
+replace strength_per_x_ml = regexs(0) ///
+	if strength_per_x_ml == "" & solution == 1 ///
+	& regexm(lower(termfromemis), "/[0-9]*[.]*[0-9]* ?ml")
+
+replace strength_per_x_ml = subinstr(strength_per_x_ml, "/ml", "1", 1)
+replace strength_per_x_ml = subinstr(strength_per_x_ml, "/", "", 1)
+replace strength_per_x_ml = subinstr(strength_per_x_ml, "ml", "", 1)
+destring strength_per_x_ml, replace
+
+generate double strength_mg_per_ml = strength_mg / strength_per_x_ml
+
+//tidy up
+replace strength_mg = . if solution == 1
+drop strength_per_x_ml
+
+//generate combined variable
+generate double ap_strength = strength_mg
+replace ap_strength = strength_mg_per_ml if solution == 1
+
+
+// STEP 10. GENERATE METADATA FILE
+//=================================
 
 //=**Update details here, everything else is automated**========================
 local description "Antipsychotics"
