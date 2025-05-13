@@ -147,6 +147,7 @@ local asenapine "asenapine sycrest"
 
 //Removed from old list (not an antipsychotic): isopropamide, tranylcypromine
 //Removed from old list (not in any BNF lists): remoxipride, thiopropazate, thioproperazine, trifluperidol
+//Clinician (CCG) happy with these exclusions
 
 
 // STEP 3. CREATE MACRO CONTAINING ALL DRUG MACROS CREATED IN STEP 2
@@ -205,7 +206,7 @@ foreach antipsychotic of local antipsychotics {
 //Comment out this section if not required.
 
 // **Exclusion terms**
-
+//Clinician (CCG) happy with these exclusions
 local exclude " "*nortriptyline*" "*motival*" "*motipress*" "*chloraprep*" "*novorapid*" "
 
 //Search for codes to exclude
@@ -443,10 +444,10 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
 //===================================================================
-/*
-//Load clinician classifications
-local clinician "ABC"
 
+//Load clinician classifications
+local clinician "CCG"
+/* CLINICIAN HAPPY WITH CODELIST AS IS
 import excel `filename'_raw_`clinician', firstrow clear
 
 //Remerge with original in case of any formatting issues with Excel spreadsheet
@@ -484,8 +485,8 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 							real(substr("`aurum_build'", 5, 2)))
 local author "Philip Stone"
 local date = ym(2025, 3)  //year, month
-local clinical_reviewer ""
-local date_approved = . //ym(2025, 3)  //year, month
+local clinical_reviewer "Carolyn Chew-Graham"
+local date_approved = ym(2025, 4)  //year, month
 local notes "Created for PRIORITY study"
 local keywords "amisulpride aripiprazole benperidol cariprazine chlorpromazine chlorprothixene clozapine droperidol flupentixol fluphenazine haloperidol levomepromazine loxapine lurasidone melperone olanzapine oxypertine paliperidone pericyazine perphenazine pimozide promazine quetiapine risperidone sertindole sulpiride thioridazine trifluoperazine ziprasidone zotepine zuclopenthixol pipotiazine asenapine"
 //==============================================================================
