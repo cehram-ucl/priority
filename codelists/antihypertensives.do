@@ -146,15 +146,12 @@ local diazoxide "diazoxide proglycem eudemine" //maybe exclude?
 local hydralazine "hydralazine apresoline"
 local iloprost "iloprost ilomedin ventavis"
 local macitentan "macitentan opsumit"
-local minoxidil "minoxidil loniten"
 local riociguat "riociguat adempas"
 local selexipag "selexipag uptravi"  //not listed on OpenPrescribing
-local sildenafil "sildenafil granpidam revatio"
 local sitaxentan "sitaxentan"
-local tadalafil "tadalafil adcirca"
 local vericiguat "vericiguat verquvo"
 
-local bnf020501 "ambrisentan bosentan diazoxide hydralazine iloprost macitentan minoxidil riociguat selexipag sildenafil sitaxentan tadalafil vericiguat"
+local bnf020501 "ambrisentan bosentan diazoxide hydralazine iloprost macitentan riociguat selexipag sitaxentan vericiguat"
 
 //BNF Chapter 2.5.2: Centrally-acting antihypertensive drugs
 local clonidine "clonidine catapres"
@@ -303,7 +300,7 @@ foreach bnf_section of local antihypertensives {
 
 // **Exclusion terms**
 
-local exclude " "*regaine*" "*minoxidil*%*solution*" "* gel" "* gel *" "*foam*" "*apraclonidine*" "*eye*drops*" "*glutenex*" "
+local exclude " "*apraclonidine*" "*eye*drops*" "*glutenex*" "
 
 //Search for codes to exclude
 foreach excludeterm in exclude {
@@ -344,7 +341,7 @@ foreach bnf_section of local antihypertensives {
 //=====================================
 
 //Check for any products containing multiple drugs (categorisation won't work otherwise)
-egen aht_count = rowtotal(ambrisentan bosentan diazoxide hydralazine iloprost macitentan minoxidil riociguat selexipag sildenafil sitaxentan tadalafil vericiguat clonidine guanfacine methyldopa moxonidine debrisoquine guanethidine doxazosin indoramin phenoxybenzamine phentolamine prazosin terazosin captopril cilazapril enalapril fosinopril imidapril lisinopril moexipril perindopril quinapril ramipril trandolapril azilsartan candesartan eprosartan irbesartan losartan olmesartan telmisartan valsartan aliskiren ketanserin)
+egen aht_count = rowtotal(ambrisentan bosentan diazoxide hydralazine iloprost macitentan riociguat selexipag sitaxentan vericiguat clonidine guanfacine methyldopa moxonidine debrisoquine guanethidine doxazosin indoramin phenoxybenzamine phentolamine prazosin terazosin captopril cilazapril enalapril fosinopril imidapril lisinopril moexipril perindopril quinapril ramipril trandolapril azilsartan candesartan eprosartan irbesartan losartan olmesartan telmisartan valsartan aliskiren ketanserin)
 
 tab aht_count, missing
 drop aht_count
@@ -547,6 +544,12 @@ tab external_codelist if antihypertensive_medication == ., missing  //lots of ex
 //Clinician input needed on whether these should be included
 //Would require adding extra terms to search if these should be included
 
+//Should I include calcium-channel blockers or any diuretics?
+
+//For now remove all codes found from external lists
+drop if external_codelist == 1 & antihypertensive_medication == .
+drop external_codelist lshtm_* hdruk_* oc_*
+
 
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 //===================================================
@@ -594,10 +597,10 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
 //===================================================================
-/*
-//Load clinician classifications
-local clinician "ABC"
 
+//Load clinician classifications
+local clinician "CCG"
+/* DO FILE MODIFIED IN RESPONSE TO CLINICIAN COMMENTS
 import excel `filename'_raw_`clinician', firstrow clear
 
 //Remerge with original in case of any formatting issues with Excel spreadsheet
@@ -635,10 +638,10 @@ local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 							real(substr("`aurum_build'", 5, 2)))
 local author "Philip Stone"
 local date = ym(2025, 3)  //year, month
-local clinical_reviewer ""
-local date_approved = . //ym(2025, 3)  //year, month
+local clinical_reviewer "Carolyn Chew-Graham"
+local date_approved = ym(2025, 4)  //year, month
 local notes "Created for PRIORITY study"
-local keywords "ambrisentan bosentan diazoxide hydralazine iloprost macitentan minoxidil riociguat selexipag sildenafil sitaxentan tadalafil vericiguat clonidine guanfacine methyldopa moxonidine debrisoquine guanethidine doxazosin indoramin phenoxybenzamine phentolamine prazosin terazosin captopril cilazapril enalapril fosinopril imidapril lisinopril moexipril perindopril quinapril ramipril trandolapril azilsartan candesartan eprosartan irbesartan losartan olmesartan telmisartan valsartan aliskiren ketanserin"
+local keywords "ambrisentan bosentan diazoxide hydralazine iloprost macitentan riociguat selexipag sitaxentan vericiguat clonidine guanfacine methyldopa moxonidine debrisoquine guanethidine doxazosin indoramin phenoxybenzamine phentolamine prazosin terazosin captopril cilazapril enalapril fosinopril imidapril lisinopril moexipril perindopril quinapril ramipril trandolapril azilsartan candesartan eprosartan irbesartan losartan olmesartan telmisartan valsartan aliskiren ketanserin"
 //==============================================================================
 
 clear
