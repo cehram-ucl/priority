@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\antipsychotics.log
   log type:  text
- opened on:  13 May 2025, 18:36:12
+ opened on:  13 May 2025, 20:54:29
 
 . 
 . 
@@ -1253,9 +1253,9 @@ pipotiazine |      Freq.     Percent        Cum.
      +----------------------------------------------------------------------------------------------------------------------------------+
      |                                                    termfromemis               drugsubstancename   promaz~e   chlo~ine   levome~e |
      |----------------------------------------------------------------------------------------------------------------------------------|
- 30. |            Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                          1          1          0 |
- 31. |             Chlorpromazine Hydrochloride  Suppositories  100 mg                                          1          1          0 |
- 37. |                                 Chlorpromazine  Capsules  10 mg                                          1          1          0 |
+  7. |            Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                          1          1          0 |
+ 16. |             Chlorpromazine Hydrochloride  Suppositories  100 mg                                          1          1          0 |
+ 20. |                                 Chlorpromazine  Capsules  10 mg                                          1          1          0 |
  43. |               Chlorpromazine Hydrochloride  Injection  25 mg/ml                                          1          1          0 |
  74. |                         Levomepromazine 6mg/5ml oral suspension         Levomepromazine maleate          1          0          1 |
      |----------------------------------------------------------------------------------------------------------------------------------|
@@ -1591,10 +1591,10 @@ chlorpromaz |
      +---------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                  termfromemis              drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------|
- 14. |   813341000033115                              Largactil  Suppositories  100 mg                                                             |
- 30. |   242241000033115          Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                                             |
- 31. |   246541000033119           Chlorpromazine Hydrochloride  Suppositories  100 mg                                                             |
- 37. |  4148441000033110                               Chlorpromazine  Capsules  10 mg                                                             |
+  7. |   242241000033115          Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                                             |
+ 16. |   246541000033119           Chlorpromazine Hydrochloride  Suppositories  100 mg                                                             |
+ 20. |  4148441000033110                               Chlorpromazine  Capsules  10 mg                                                             |
+ 39. |   813341000033115                              Largactil  Suppositories  100 mg                                                             |
  43. |   242341000033113             Chlorpromazine Hydrochloride  Injection  25 mg/ml                                                             |
      |---------------------------------------------------------------------------------------------------------------------------------------------|
 123. | 11876741000033116              Chlorpromazine 25mg/5ml oral solution sugar free   Chlorpromazine hydrochloride    4020100   0402010D0AAAVAV |
@@ -1687,9 +1687,9 @@ Drug: droperidol
      +-----------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                           termfromemis   drugsubs~e   bnfcha~r   bnfcode |
      |-----------------------------------------------------------------------------------------------------------|
-  6. |  483141000033112                          Droperidol  Injection  5mg/ml                                   |
- 33. |  483541000033115                             Droperidol  Liquid  1mg/ml                                   |
- 41. |  485041000033112                             Droperidol  Tablets  10 mg                                   |
+ 10. |  485041000033112                             Droperidol  Tablets  10 mg                                   |
+ 32. |  483541000033115                             Droperidol  Liquid  1mg/ml                                   |
+ 41. |  483141000033112                          Droperidol  Injection  5mg/ml                                   |
 102. | 5055241000033117   Droperidol 2.5mg/1ml solution for injection ampoules   Droperidol    4020100           |
      +-----------------------------------------------------------------------------------------------------------+
 Drug: flupentixol
@@ -1706,10 +1706,10 @@ flupentixol |      Freq.     Percent        Cum.
      +---------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                      termfromemis             drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 16. |  420241000033115                                          Depixol  Injection (syringe)  20 mg/1 ml                                                            |
- 17. |  420541000033118                                             Depixol Conc.  Injection  500 mg/5 ml                                                            |
- 29. |  420041000033111                                                  Depixol  Injection  200 mg/10 ml                                                            |
+ 25. |  420541000033118                                             Depixol Conc.  Injection  500 mg/5 ml                                                            |
  34. |  420341000033113                                          Depixol  Injection (syringe)  40 mg/2 ml                                                            |
+ 37. |  420041000033111                                                  Depixol  Injection  200 mg/10 ml                                                            |
+ 40. |  420241000033115                                          Depixol  Injection (syringe)  20 mg/1 ml                                                            |
 210. |  420441000033119            Depixol Conc 50mg/0.5ml solution for injection ampoules (Lundbeck Ltd)         Flupentixol decanoate              0402020G0BBAFAH |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 211. |  423041000033115             Depixol Conc 100mg/1ml solution for injection ampoules (Lundbeck Ltd)         Flupentixol decanoate              0402020G0BBADAB |
@@ -1745,7 +1745,7 @@ fluphenazin |
       Total |        531      100.00
 
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  5. |        prodcodeid |                                                                         termfromemis |                                       drugsubstancename |
+ 15. |        prodcodeid |                                                                         termfromemis |                                       drugsubstancename |
      |   926041000033110 |                                               Moditen Enanthate  Injection  25 mg/ml |                                                         |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                   bnfcha~r                                   |                                           bnfcode                                   |
@@ -1753,7 +1753,7 @@ fluphenazin |
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  7. |        prodcodeid |                                                                         termfromemis |                                       drugsubstancename |
+ 24. |        prodcodeid |                                                                         termfromemis |                                       drugsubstancename |
      |   584741000033119 |                                          Fluphenazine Enanthate  Injection  25 mg/ml |                                                         |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                   bnfcha~r                                   |                                           bnfcode                                   |
@@ -1989,15 +1989,15 @@ haloperidol |      Freq.     Percent        Cum.
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                      termfromemis       drugsubstancename   bnfcha~r           bnfcode |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  4. |   661441000033118                                          Haloperidol  Oral liquid conc.  10 mg/ml                                                      |
- 13. |   660041000033118                                                        Haldol  Injection  5 mg/ml                                                      |
+ 12. |   660041000033118                                                        Haldol  Injection  5 mg/ml                                                      |
+ 13. |   659241000033113                                                    Haloperidol  Elixir  2 mg/5 ml                                                      |
  19. |  1269641000033115                                                       Serenace  Elixir  2 mg/5 ml                                                      |
- 24. |   476641000033118                                                             Dozic  Liquid  2mg/ml                                                      |
- 27. |   661641000033116                                               Haldol  Oral liquid conc.  10 mg/ml                                                      |
+ 23. |   661441000033118                                          Haloperidol  Oral liquid conc.  10 mg/ml                                                      |
+ 26. |   659941000033116                                                   Haloperidol  Injection  5 mg/ml                                                      |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 38. |   659941000033116                                                   Haloperidol  Injection  5 mg/ml                                                      |
- 40. |   660441000033110                                                       Haloperidol  Liquid  2mg/ml                                                      |
- 42. |   659241000033113                                                    Haloperidol  Elixir  2 mg/5 ml                                                      |
+ 27. |   661641000033116                                               Haldol  Oral liquid conc.  10 mg/ml                                                      |
+ 42. |   660441000033110                                                       Haloperidol  Liquid  2mg/ml                                                      |
+ 46. |   476641000033118                                                             Dozic  Liquid  2mg/ml                                                      |
  58. |  1276041000033113                                               Serenace 10mg tablets (Teva UK Ltd)             Haloperidol              0402010J0BEADAL |
  65. |   661541000033117                                   Haldol 2mg/ml oral solution (Janssen-Cilag Ltd)             Haloperidol              0402010J0BDACAG |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -2528,7 +2528,7 @@ Drug: oxypertine
      +---------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                 termfromemis   drugsubs~e   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------|
- 22. |  769641000033110                     Integrin  Tablets  40 mg                                           |
+ 11. |  769641000033110                     Integrin  Tablets  40 mg                                           |
 236. | 1022741000033116                     Oxypertine 10mg capsules   Oxypertine    4020100                   |
 237. | 1026941000033117                      Oxypertine 40mg tablets   Oxypertine    4020100                   |
 449. |  757541000033111   Integrin 10mg capsules (Sterling-Winthrop)   Oxypertine              0402010N0BBAAAA |
@@ -2750,8 +2750,8 @@ pericyazine |      Freq.     Percent        Cum.
      +--------------------------------------------------------------------------------------------------+
      |       prodcodeid                         termfromemis   drugsubst~e   bnfcha~r           bnfcode |
      |--------------------------------------------------------------------------------------------------|
- 25. |  965741000033110            Neulactil  Tablets  25 mg                                            |
- 39. | 1067141000033114          Pericyazine  Tablets  25 mg                                            |
+ 30. |  965741000033110            Neulactil  Tablets  25 mg                                            |
+ 44. | 1067141000033114          Pericyazine  Tablets  25 mg                                            |
 238. | 1067041000033110            Pericyazine 2.5mg tablets   Pericyazine    4020100                   |
 239. | 1066741000033111             Pericyazine 10mg tablets   Pericyazine    4020100                   |
 307. |  965541000033119      Neulactil 10mg tablets (Sanofi)   Pericyazine              0402010P0BBABAE |
@@ -2775,10 +2775,10 @@ perphenazin |
      +--------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                     termfromemis                           drugsubstancename   bnfcha~r           bnfcode |
      |--------------------------------------------------------------------------------------------------------------------------------------------|
-  3. | 1065341000033119                      Perphenazine  Tablets  8 mg                                                                          |
- 20. |  571141000033114                          Fentazin  Tablets  8 mg                                                                          |
- 21. |  567141000033111                     Fentazin  Injection  5 mg/ml                                                                          |
- 45. | 1052041000033118                 Perphenazine  Injection  5 mg/ml                                                                          |
+  3. |  571141000033114                          Fentazin  Tablets  8 mg                                                                          |
+  4. | 1065341000033119                      Perphenazine  Tablets  8 mg                                                                          |
+  6. |  567141000033111                     Fentazin  Injection  5 mg/ml                                                                          |
+ 29. | 1052041000033118                 Perphenazine  Injection  5 mg/ml                                                                          |
 240. | 1065141000033117                         Perphenazine 2mg tablets                                Perphenazine    4020100                   |
      |--------------------------------------------------------------------------------------------------------------------------------------------|
 241. | 1065241000033112                         Perphenazine 4mg tablets                                Perphenazine    4020100                   |
@@ -2803,15 +2803,15 @@ Drug: pimozide
 
      +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
   8. |        prodcodeid |                                                                                  termfromemis |                          drugsubstancename |
-     |  1016341000033111 |                                                                          Orap  Tablets  10 mg |                                            |
+     |  1090841000033118 |                                                                      Pimozide  Tablets  10 mg |                                            |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                  bnfcha~r                                  |                                          bnfcode                                  |
      |                                                                            |                                                                                   |
      +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
      +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
- 36. |        prodcodeid |                                                                                  termfromemis |                          drugsubstancename |
-     |  1090841000033118 |                                                                      Pimozide  Tablets  10 mg |                                            |
+ 17. |        prodcodeid |                                                                                  termfromemis |                          drugsubstancename |
+     |  1016341000033111 |                                                                          Orap  Tablets  10 mg |                                            |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                  bnfcha~r                                  |                                          bnfcode                                  |
      |                                                                            |                                                                                   |
@@ -2982,10 +2982,10 @@ Drug: promazine
      +---------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                      termfromemis         drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------|
- 10. | 2730641000033111        Promazine Hydrochloride  Syrup  50 mg/5 ml                                                        |
- 23. | 1129141000033118   Promazine Hydrochloride  Suspension  50 mg/5 ml                                                        |
- 26. | 1134241000033114          Promazine Hydrochloride  Tablets  100 mg                                                        |
- 28. | 1117541000033112      Promazine Hydrochloride  Injection  50 mg/ml                                                        |
+ 14. | 2730641000033111        Promazine Hydrochloride  Syrup  50 mg/5 ml                                                        |
+ 21. | 1129141000033118   Promazine Hydrochloride  Suspension  50 mg/5 ml                                                        |
+ 31. | 1117541000033112      Promazine Hydrochloride  Injection  50 mg/ml                                                        |
+ 36. | 1134241000033114          Promazine Hydrochloride  Tablets  100 mg                                                        |
 244. | 1134341000033116                            Promazine 25mg tablets   Promazine hydrochloride    4020100                   |
      |---------------------------------------------------------------------------------------------------------------------------|
 245. | 1134441000033110                            Promazine 50mg tablets   Promazine hydrochloride    4020100                   |
@@ -3006,11 +3006,11 @@ Drug: quetiapine
      +-------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                               termfromemis     drugsubstancename   bnfcha~r           bnfcode |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
-  9. |  1150341000033113         Quetiapine Fumarate  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
- 11. |  1832941000033117              Seroquel  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
- 12. |  1832841000033113   Quetiapine Fumarate  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
- 44. |  4133841000033118                       Quetiapine  Oral Suspension Sugar Free  12.5 mg/5 ml                                                    |
- 46. |  1277941000033111                    Seroquel  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
+  1. |  1832941000033117              Seroquel  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
+  2. |  4133841000033118                       Quetiapine  Oral Suspension Sugar Free  12.5 mg/5 ml                                                    |
+ 22. |  1832841000033113   Quetiapine Fumarate  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
+ 28. |  1277941000033111                    Seroquel  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
+ 45. |  1150341000033113         Quetiapine Fumarate  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
  80. |  5889741000033118                                        Quetiapine 12.5mg/5ml oral solution   Quetiapine fumarate    4020100   0402010ABAAAIAI |
  81. |  5889841000033111                                      Quetiapine 12.5mg/5ml oral suspension   Quetiapine fumarate    4020100   0402010ABAABBBB |
@@ -3434,8 +3434,8 @@ thioridazin |
      +---------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                           termfromemis            drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------------|
-  1. |  894141000033116                                             Melleril  Syrup  3mg/10 ml                                                           |
- 18. | 1432741000033112                                       Thioridazine  Syrup  12.5mg/5 ml                                                           |
+  5. | 1432741000033112                                       Thioridazine  Syrup  12.5mg/5 ml                                                           |
+ 35. |  894141000033116                                             Melleril  Syrup  3mg/10 ml                                                           |
 110. |  896041000033111                Melleril 25mg tablets (Novartis Pharmaceuticals UK Ltd)   Thioridazine hydrochloride              0402010W0BBABAF |
 248. | 1433641000033111                                              Thioridazine 10mg tablets   Thioridazine hydrochloride    4020100                   |
 249. | 1433841000033112                                              Thioridazine 25mg tablets   Thioridazine hydrochloride    4020100                   |
@@ -3469,10 +3469,10 @@ trifluopera |
      +-------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                      termfromemis               drugsubstancename   bnfcha~r           bnfcode |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
-  2. | 1459841000033114                               Trifluoperazine  Injection  1 mg/ml                                                              |
- 15. | 1462041000033119                                  Trifluoperazine  Liquid  10mg/ml                                                              |
- 32. | 1381441000033113                                        Stelazine  Liquid  10mg/ml                                                              |
- 35. | 1379241000033117                                     Stelazine  Injection  1 mg/ml                                                              |
+  9. | 1459841000033114                               Trifluoperazine  Injection  1 mg/ml                                                              |
+ 18. | 1379241000033117                                     Stelazine  Injection  1 mg/ml                                                              |
+ 33. | 1462041000033119                                  Trifluoperazine  Liquid  10mg/ml                                                              |
+ 38. | 1381441000033113                                        Stelazine  Liquid  10mg/ml                                                              |
 162. | 1385341000033116               Stelazine 10mg Spansules (Mercury Pharma Group Ltd)   Trifluoperazine hydrochloride              0402010X0BBADAB |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
 285. | 1386341000033112                  Stelazine 1mg tablets (Mercury Pharma Group Ltd)   Trifluoperazine hydrochloride              0402010X0BBAAAH |
@@ -4071,10 +4071,10 @@ chlorpromaz |
      +---------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                  termfromemis              drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------|
- 14. |   813341000033115                              Largactil  Suppositories  100 mg                                                             |
- 30. |   242241000033115          Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                                             |
- 31. |   246541000033119           Chlorpromazine Hydrochloride  Suppositories  100 mg                                                             |
- 37. |  4148441000033110                               Chlorpromazine  Capsules  10 mg                                                             |
+  7. |   242241000033115          Chlorpromazine Hydrochloride  Injection  100 mg/5 ml                                                             |
+ 16. |   246541000033119           Chlorpromazine Hydrochloride  Suppositories  100 mg                                                             |
+ 20. |  4148441000033110                               Chlorpromazine  Capsules  10 mg                                                             |
+ 39. |   813341000033115                              Largactil  Suppositories  100 mg                                                             |
  43. |   242341000033113             Chlorpromazine Hydrochloride  Injection  25 mg/ml                                                             |
      |---------------------------------------------------------------------------------------------------------------------------------------------|
 114. | 11876741000033116              Chlorpromazine 25mg/5ml oral solution sugar free   Chlorpromazine hydrochloride    4020100   0402010D0AAAVAV |
@@ -4167,9 +4167,9 @@ Drug: droperidol
      +-----------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                           termfromemis   drugsubs~e   bnfcha~r   bnfcode |
      |-----------------------------------------------------------------------------------------------------------|
-  6. |  483141000033112                          Droperidol  Injection  5mg/ml                                   |
- 33. |  483541000033115                             Droperidol  Liquid  1mg/ml                                   |
- 41. |  485041000033112                             Droperidol  Tablets  10 mg                                   |
+ 10. |  485041000033112                             Droperidol  Tablets  10 mg                                   |
+ 32. |  483541000033115                             Droperidol  Liquid  1mg/ml                                   |
+ 41. |  483141000033112                          Droperidol  Injection  5mg/ml                                   |
  96. | 5055241000033117   Droperidol 2.5mg/1ml solution for injection ampoules   Droperidol    4020100           |
      +-----------------------------------------------------------------------------------------------------------+
 Drug: flupentixol
@@ -4186,10 +4186,10 @@ flupentixol |      Freq.     Percent        Cum.
      +---------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                      termfromemis             drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
- 16. |  420241000033115                                          Depixol  Injection (syringe)  20 mg/1 ml                                                            |
- 17. |  420541000033118                                             Depixol Conc.  Injection  500 mg/5 ml                                                            |
- 29. |  420041000033111                                                  Depixol  Injection  200 mg/10 ml                                                            |
+ 25. |  420541000033118                                             Depixol Conc.  Injection  500 mg/5 ml                                                            |
  34. |  420341000033113                                          Depixol  Injection (syringe)  40 mg/2 ml                                                            |
+ 37. |  420041000033111                                                  Depixol  Injection  200 mg/10 ml                                                            |
+ 40. |  420241000033115                                          Depixol  Injection (syringe)  20 mg/1 ml                                                            |
 199. |  420441000033119            Depixol Conc 50mg/0.5ml solution for injection ampoules (Lundbeck Ltd)         Flupentixol decanoate              0402020G0BBAFAH |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 200. |  423041000033115             Depixol Conc 100mg/1ml solution for injection ampoules (Lundbeck Ltd)         Flupentixol decanoate              0402020G0BBADAB |
@@ -4227,8 +4227,8 @@ fluphenazin |
      +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                           termfromemis            drugsubstancename   bnfcha~r           bnfcode |
      |--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  5. |   926041000033110                                                 Moditen Enanthate  Injection  25 mg/ml                                                           |
-  7. |   584741000033119                                            Fluphenazine Enanthate  Injection  25 mg/ml                                                           |
+ 15. |   926041000033110                                                 Moditen Enanthate  Injection  25 mg/ml                                                           |
+ 24. |   584741000033119                                            Fluphenazine Enanthate  Injection  25 mg/ml                                                           |
  65. |   925341000033116                             Modecate 50mg/2ml solution for injection ampoules (Sanofi)       Fluphenazine decanoate              0402020L0BBACAD |
  94. |   924341000033117   Modecate 50mg/2ml solution for injection pre-filled syringes (Sanofi-Synthelabo Ltd)       Fluphenazine decanoate              0402020L0BBAEAH |
 213. |   595441000033112                                                               Fluphenazine 1mg tablets   Fluphenazine hydrochloride    4020100                   |
@@ -4273,15 +4273,15 @@ haloperidol |      Freq.     Percent        Cum.
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                                      termfromemis       drugsubstancename   bnfcha~r           bnfcode |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
-  4. |   661441000033118                                          Haloperidol  Oral liquid conc.  10 mg/ml                                                      |
- 13. |   660041000033118                                                        Haldol  Injection  5 mg/ml                                                      |
+ 12. |   660041000033118                                                        Haldol  Injection  5 mg/ml                                                      |
+ 13. |   659241000033113                                                    Haloperidol  Elixir  2 mg/5 ml                                                      |
  19. |  1269641000033115                                                       Serenace  Elixir  2 mg/5 ml                                                      |
- 24. |   476641000033118                                                             Dozic  Liquid  2mg/ml                                                      |
- 27. |   661641000033116                                               Haldol  Oral liquid conc.  10 mg/ml                                                      |
+ 23. |   661441000033118                                          Haloperidol  Oral liquid conc.  10 mg/ml                                                      |
+ 26. |   659941000033116                                                   Haloperidol  Injection  5 mg/ml                                                      |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
- 38. |   659941000033116                                                   Haloperidol  Injection  5 mg/ml                                                      |
- 40. |   660441000033110                                                       Haloperidol  Liquid  2mg/ml                                                      |
- 42. |   659241000033113                                                    Haloperidol  Elixir  2 mg/5 ml                                                      |
+ 27. |   661641000033116                                               Haldol  Oral liquid conc.  10 mg/ml                                                      |
+ 42. |   660441000033110                                                       Haloperidol  Liquid  2mg/ml                                                      |
+ 46. |   476641000033118                                                             Dozic  Liquid  2mg/ml                                                      |
  57. |  1276041000033113                                               Serenace 10mg tablets (Teva UK Ltd)             Haloperidol              0402010J0BEADAL |
  64. |   661541000033117                                   Haldol 2mg/ml oral solution (Janssen-Cilag Ltd)             Haloperidol              0402010J0BDACAG |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -4812,7 +4812,7 @@ Drug: oxypertine
      +---------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                 termfromemis   drugsubs~e   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------|
- 22. |  769641000033110                     Integrin  Tablets  40 mg                                           |
+ 11. |  769641000033110                     Integrin  Tablets  40 mg                                           |
 225. | 1022741000033116                     Oxypertine 10mg capsules   Oxypertine    4020100                   |
 226. | 1026941000033117                      Oxypertine 40mg tablets   Oxypertine    4020100                   |
 433. |  757541000033111   Integrin 10mg capsules (Sterling-Winthrop)   Oxypertine              0402010N0BBAAAA |
@@ -5034,8 +5034,8 @@ pericyazine |      Freq.     Percent        Cum.
      +--------------------------------------------------------------------------------------------------+
      |       prodcodeid                         termfromemis   drugsubst~e   bnfcha~r           bnfcode |
      |--------------------------------------------------------------------------------------------------|
- 25. |  965741000033110            Neulactil  Tablets  25 mg                                            |
- 39. | 1067141000033114          Pericyazine  Tablets  25 mg                                            |
+ 30. |  965741000033110            Neulactil  Tablets  25 mg                                            |
+ 44. | 1067141000033114          Pericyazine  Tablets  25 mg                                            |
 227. | 1067041000033110            Pericyazine 2.5mg tablets   Pericyazine    4020100                   |
 228. | 1066741000033111             Pericyazine 10mg tablets   Pericyazine    4020100                   |
 292. |  965541000033119      Neulactil 10mg tablets (Sanofi)   Pericyazine              0402010P0BBABAE |
@@ -5059,10 +5059,10 @@ perphenazin |
      +--------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                     termfromemis                           drugsubstancename   bnfcha~r           bnfcode |
      |--------------------------------------------------------------------------------------------------------------------------------------------|
-  3. | 1065341000033119                      Perphenazine  Tablets  8 mg                                                                          |
- 20. |  571141000033114                          Fentazin  Tablets  8 mg                                                                          |
- 21. |  567141000033111                     Fentazin  Injection  5 mg/ml                                                                          |
- 45. | 1052041000033118                 Perphenazine  Injection  5 mg/ml                                                                          |
+  3. |  571141000033114                          Fentazin  Tablets  8 mg                                                                          |
+  4. | 1065341000033119                      Perphenazine  Tablets  8 mg                                                                          |
+  6. |  567141000033111                     Fentazin  Injection  5 mg/ml                                                                          |
+ 29. | 1052041000033118                 Perphenazine  Injection  5 mg/ml                                                                          |
 229. | 1065141000033117                         Perphenazine 2mg tablets                                Perphenazine    4020100                   |
      |--------------------------------------------------------------------------------------------------------------------------------------------|
 230. | 1065241000033112                         Perphenazine 4mg tablets                                Perphenazine    4020100                   |
@@ -5088,8 +5088,8 @@ Drug: pimozide
      +----------------------------------------------------------------------------------------------------+
      |        prodcodeid                             termfromemis   drugsu~e   bnfcha~r           bnfcode |
      |----------------------------------------------------------------------------------------------------|
-  8. |  1016341000033111                     Orap  Tablets  10 mg                                         |
- 36. |  1090841000033118                 Pimozide  Tablets  10 mg                                         |
+  8. |  1090841000033118                 Pimozide  Tablets  10 mg                                         |
+ 17. |  1016341000033111                     Orap  Tablets  10 mg                                         |
  78. | 11798841000033118         Pimozide 2mg/5ml oral suspension   Pimozide    4020100   0402010R0AAAHAH |
 231. |  1090941000033114                     Pimozide 2mg tablets   Pimozide    4020100                   |
 232. |  1091041000033116                     Pimozide 4mg tablets   Pimozide    4020100                   |
@@ -5111,10 +5111,10 @@ Drug: promazine
      +---------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                      termfromemis         drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------|
- 10. | 2730641000033111        Promazine Hydrochloride  Syrup  50 mg/5 ml                                                        |
- 23. | 1129141000033118   Promazine Hydrochloride  Suspension  50 mg/5 ml                                                        |
- 26. | 1134241000033114          Promazine Hydrochloride  Tablets  100 mg                                                        |
- 28. | 1117541000033112      Promazine Hydrochloride  Injection  50 mg/ml                                                        |
+ 14. | 2730641000033111        Promazine Hydrochloride  Syrup  50 mg/5 ml                                                        |
+ 21. | 1129141000033118   Promazine Hydrochloride  Suspension  50 mg/5 ml                                                        |
+ 31. | 1117541000033112      Promazine Hydrochloride  Injection  50 mg/ml                                                        |
+ 36. | 1134241000033114          Promazine Hydrochloride  Tablets  100 mg                                                        |
 233. | 1134341000033116                            Promazine 25mg tablets   Promazine hydrochloride    4020100                   |
      |---------------------------------------------------------------------------------------------------------------------------|
 234. | 1134441000033110                            Promazine 50mg tablets   Promazine hydrochloride    4020100                   |
@@ -5135,11 +5135,11 @@ Drug: quetiapine
      +-------------------------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                               termfromemis     drugsubstancename   bnfcha~r           bnfcode |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
-  9. |  1150341000033113         Quetiapine Fumarate  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
- 11. |  1832941000033117              Seroquel  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
- 12. |  1832841000033113   Quetiapine Fumarate  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
- 44. |  4133841000033118                       Quetiapine  Oral Suspension Sugar Free  12.5 mg/5 ml                                                    |
- 46. |  1277941000033111                    Seroquel  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
+  1. |  1832941000033117              Seroquel  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
+  2. |  4133841000033118                       Quetiapine  Oral Suspension Sugar Free  12.5 mg/5 ml                                                    |
+ 22. |  1832841000033113   Quetiapine Fumarate  Tablets (starter pack)  6x25 mg, 2x100 mg, 2x150 mg                                                    |
+ 28. |  1277941000033111                    Seroquel  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
+ 45. |  1150341000033113         Quetiapine Fumarate  Tablets (starter pack)  6 x 25 mg, 2 x 100 mg                                                    |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
  74. |  5889741000033118                                        Quetiapine 12.5mg/5ml oral solution   Quetiapine fumarate    4020100   0402010ABAAAIAI |
  75. |  5889841000033111                                      Quetiapine 12.5mg/5ml oral suspension   Quetiapine fumarate    4020100   0402010ABAABBBB |
@@ -5563,8 +5563,8 @@ thioridazin |
      +---------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                           termfromemis            drugsubstancename   bnfcha~r           bnfcode |
      |---------------------------------------------------------------------------------------------------------------------------------------------------|
-  1. |  894141000033116                                             Melleril  Syrup  3mg/10 ml                                                           |
- 18. | 1432741000033112                                       Thioridazine  Syrup  12.5mg/5 ml                                                           |
+  5. | 1432741000033112                                       Thioridazine  Syrup  12.5mg/5 ml                                                           |
+ 35. |  894141000033116                                             Melleril  Syrup  3mg/10 ml                                                           |
 104. |  896041000033111                Melleril 25mg tablets (Novartis Pharmaceuticals UK Ltd)   Thioridazine hydrochloride              0402010W0BBABAF |
 237. | 1433641000033111                                              Thioridazine 10mg tablets   Thioridazine hydrochloride    4020100                   |
 238. | 1433841000033112                                              Thioridazine 25mg tablets   Thioridazine hydrochloride    4020100                   |
@@ -5598,10 +5598,10 @@ trifluopera |
      +-------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                      termfromemis               drugsubstancename   bnfcha~r           bnfcode |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
-  2. | 1459841000033114                               Trifluoperazine  Injection  1 mg/ml                                                              |
- 15. | 1462041000033119                                  Trifluoperazine  Liquid  10mg/ml                                                              |
- 32. | 1381441000033113                                        Stelazine  Liquid  10mg/ml                                                              |
- 35. | 1379241000033117                                     Stelazine  Injection  1 mg/ml                                                              |
+  9. | 1459841000033114                               Trifluoperazine  Injection  1 mg/ml                                                              |
+ 18. | 1379241000033117                                     Stelazine  Injection  1 mg/ml                                                              |
+ 33. | 1462041000033119                                  Trifluoperazine  Liquid  10mg/ml                                                              |
+ 38. | 1381441000033113                                        Stelazine  Liquid  10mg/ml                                                              |
 152. | 1385341000033116               Stelazine 10mg Spansules (Mercury Pharma Group Ltd)   Trifluoperazine hydrochloride              0402010X0BBADAB |
      |-------------------------------------------------------------------------------------------------------------------------------------------------|
 274. | 1386341000033112                  Stelazine 1mg tablets (Mercury Pharma Group Ltd)   Trifluoperazine hydrochloride              0402010X0BBAAAH |
@@ -8887,7 +8887,195 @@ oc_opensafely_depotAP codes that didn't match: 0
 
 . 
 . 
-. // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
+. // STEP 7. GENERATE DRUG STRENGTH VARIABLES
+. //==========================================
+. 
+. //Label injected medicines
+. tab routeofadministration, sort missing
+
+                  RouteOfAdministration |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                                   Oral |        365       71.01       71.01
+                          Intramuscular |         83       16.15       87.16
+                                        |         52       10.12       97.28
+                             Sublingual |          4        0.78       98.05
+             Intravenous/ Intramuscular |          3        0.58       98.64
+             Intramuscular/ Intravenous |          2        0.39       99.03
+                                 Rectal |          2        0.39       99.42
+                            Intravenous |          1        0.19       99.61
+Subcutaneous/ Intramuscular/ Intraven.. |          1        0.19       99.81
+Subcutaneous/ Intravenous/ Intramuscu.. |          1        0.19      100.00
+----------------------------------------+-----------------------------------
+                                  Total |        514      100.00
+
+. tab routeofadministration ///
+>         if inlist(routeofadministration, "Oral", "", "Sublingual", "Rectal")
+
+                  RouteOfAdministration |      Freq.     Percent        Cum.
+----------------------------------------+-----------------------------------
+                                   Oral |        365       98.38       98.38
+                                 Rectal |          2        0.54       98.92
+                             Sublingual |          4        1.08      100.00
+----------------------------------------+-----------------------------------
+                                  Total |        371      100.00
+
+. generate byte injected = 1 ///
+>         if !inlist(routeofadministration, "Oral", "", "Sublingual", "Rectal")
+(423 missing values generated)
+
+. replace injected = 1 ///
+>         if routeofadministration == "" & strpos(lower(termfromemis), "injection")
+(18 real changes made)
+
+. tab routeofadministration injected, missing
+
+                      |       injected
+RouteOfAdministration |         1          . |     Total
+----------------------+----------------------+----------
+                      |        18         34 |        52 
+        Intramuscular |        83          0 |        83 
+Intramuscular/ Intr.. |         2          0 |         2 
+          Intravenous |         1          0 |         1 
+Intravenous/ Intram.. |         3          0 |         3 
+                 Oral |         0        365 |       365 
+               Rectal |         0          2 |         2 
+Subcutaneous/ Intra.. |         1          0 |         1 
+Subcutaneous/ Intra.. |         1          0 |         1 
+           Sublingual |         0          4 |         4 
+----------------------+----------------------+----------
+                Total |       109        405 |       514 
+
+. 
+. //Some "liquid" drugs could be oral or intramuscular
+. list prodcodeid termfromemis injected ///
+>         if routeofadministration == "" ///
+>         & (strpos(lower(termfromemis), "liquid") | strpos(lower(termfromemis), "elixir"))
+
+     +------------------------------------------------------------------------+
+     |       prodcodeid                               termfromemis   injected |
+     |------------------------------------------------------------------------|
+ 99. | 1269641000033115                Serenace  Elixir  2 mg/5 ml          . |
+142. | 1381441000033113                 Stelazine  Liquid  10mg/ml          . |
+166. | 1462041000033119           Trifluoperazine  Liquid  10mg/ml          . |
+336. |  476641000033118                      Dozic  Liquid  2mg/ml          . |
+340. |  483541000033115                 Droperidol  Liquid  1mg/ml          . |
+     |------------------------------------------------------------------------|
+421. |  659241000033113             Haloperidol  Elixir  2 mg/5 ml          . |
+430. |  660441000033110                Haloperidol  Liquid  2mg/ml          . |
+432. |  661441000033118   Haloperidol  Oral liquid conc.  10 mg/ml          . |
+434. |  661641000033116        Haldol  Oral liquid conc.  10 mg/ml          . |
+     +------------------------------------------------------------------------+
+
+. 
+. 
+. //Search for drugs in solution
+. generate byte solution = 1 if strpos(substancestrength, "/")
+(370 missing values generated)
+
+. 
+. //Use regex to search term to find missing info; basically a search for "mg/ml"
+. replace solution = 1 ///
+>         if solution == . ///
+>         & regexm(lower(termfromemis), "[0-9]*[.]*[0-9]* ?(mg|micrograms?)/[0-9]*[.]*[0-9]* ?ml")
+(30 real changes made)
+
+. 
+. 
+. //Search for products containing multiple drugs or multiple doses
+. generate byte multiple = 1 if strpos(substancestrength, "+")
+(510 missing values generated)
+
+. replace multiple = 1 ///
+>         if multiple != 1 ///
+>         & regexm(lower(termfromemis), "(mg|microgram).*(mg|microgram)")
+(4 real changes made)
+
+. 
+. 
+. //Extract dose
+. generate strength_mg = regexs(0) ///
+>         if multiple != 1 ///
+>         & regexm(substancestrength, "[0-9]*[.][0-9]* ?(mg|microgram)")
+(50 missing values generated)
+
+. 
+. replace strength_mg = regexs(0) ///
+>         if strength_mg == "" & multiple != 1 ///
+>         & regexm(lower(termfromemis), "[0-9]*[.]*[0-9]* ?(mg|microgram)")
+(42 real changes made)
+
+.         
+. //Extract dose for products containing multiple drugs (theres only one)
+. replace strength_mg = regexs(0) ///
+>         if multiple == 1 ///
+>         & drugsubstancename == "Amitriptyline hydrochloride/ Perphenazine" ///
+>         & regexm(substancestrength, "[+] [0-9]*[.][0-9]* ?mg")
+(4 real changes made)
+
+. 
+. replace strength_mg = subinstr(strength_mg, "+ ", "", 1)
+(4 real changes made)
+
+. replace strength_mg = subinstr(strength_mg, "mg", "", 1)
+(482 real changes made)
+
+. replace strength_mg = subinstr(strength_mg, "microgram", "", 1)
+(28 real changes made)
+
+. destring strength_mg, replace
+strength_mg: all characters numeric; replaced as double
+(4 missing values generated)
+
+. 
+. 
+. //Extract dose per ml for solutions
+. generate strength_per_x_ml = regexs(0) ///
+>         if solution == 1 ///
+>         & regexm(substancestrength, "/[0-9]*[.][0-9]* ?ml")
+(370 missing values generated)
+
+. 
+. replace strength_per_x_ml = regexs(0) ///
+>         if strength_per_x_ml == "" & solution == 1 ///
+>         & regexm(lower(termfromemis), "/[0-9]*[.]*[0-9]* ?ml")
+(30 real changes made)
+
+. 
+. replace strength_per_x_ml = subinstr(strength_per_x_ml, "/ml", "1", 1)
+(18 real changes made)
+
+. replace strength_per_x_ml = subinstr(strength_per_x_ml, "/", "", 1)
+(156 real changes made)
+
+. replace strength_per_x_ml = subinstr(strength_per_x_ml, "ml", "", 1)
+(156 real changes made)
+
+. destring strength_per_x_ml, replace
+strength_per_x_ml: all characters numeric; replaced as byte
+(340 missing values generated)
+
+. 
+. generate double strength_mg_per_ml = strength_mg / strength_per_x_ml
+(340 missing values generated)
+
+. 
+. //tidy up
+. replace strength_mg = . if solution == 1
+(174 real changes made, 174 to missing)
+
+. drop strength_per_x_ml
+
+. 
+. //generate combined variable
+. generate double ap_strength = strength_mg
+(178 missing values generated)
+
+. replace ap_strength = strength_mg_per_ml if solution == 1
+(174 real changes made)
+
+. 
+. 
+. // STEP 8. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 . //===================================================
 . 
 . drop bnf0402*  //these only label the codes with BNF codes so aren't perfect
@@ -8943,7 +9131,7 @@ file antipsychotics_raw.xlsx saved
 > */
 . 
 . 
-. // STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
+. // STEP 9. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
 . //===================================================================
 . 
 . //Load clinician classifications
@@ -8978,8 +9166,8 @@ file antipsychotics.csv saved
 
 . 
 . 
-. // STEP 9. GENERATE METADATA FILE
-. //================================
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
 . 
 . //=**Update details here, everything else is automated**========================
 . local description "Antipsychotics"
@@ -9082,5 +9270,5 @@ file antipsychotics.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\antipsychotics.log
   log type:  text
- closed on:  13 May 2025, 18:36:54
+ closed on:  13 May 2025, 20:54:57
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
