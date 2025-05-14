@@ -1,7 +1,7 @@
 //==============================================================================
-// 2025-03-1804 PWS drug codelist creation template
+// 2025-03-04 PWS drug codelist creation template
 //
-// STATINS
+// STATINS (and other lipid-lowering medicines)
 //
 // Lines with 2 asterisks (**) at the beginning and end require modification
 // Lines with 1 asterisk (*) at the beginning and end MAY require modification
@@ -145,11 +145,11 @@ local bnf0212 "acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastat
 //         AND SEARCH THE PRODUCT DICTIONARY FOR EACH DRUG
 //===================================================================
 
-local statins "bnf0212"
+local lipid_lowering "bnf0212"
 
-generate byte statin = 0
+generate byte lipid_lowering = 0
 
-foreach bnf_section of local statins {
+foreach bnf_section of local lipid_lowering {
 	
 	display "`bnf_section'"
 	
@@ -164,7 +164,7 @@ foreach bnf_section of local statins {
 			
 			foreach scan_var of varlist termfromemis drugsubstancename bnfname {
 				
-				foreach label_var of varlist statin `drug' ///
+				foreach label_var of varlist lipid_lowering `drug' ///
 					`bnf_section' {
 					
 					replace `label_var' = 1 if strpos(lower(`scan_var'), "`term'")
@@ -174,8 +174,8 @@ foreach bnf_section of local statins {
 	}
 }
 
-tab1 statin, missing
-foreach bnf_section of local statins {
+tab1 lipid_lowering, missing
+foreach bnf_section of local lipid_lowering {
 	
 	tab `bnf_section', missing
 	
@@ -185,11 +185,11 @@ foreach bnf_section of local statins {
 	}
 }
 
-tab bnf0212 statin, missing
+tab bnf0212 lipid_lowering, missing
 list prodcodeid termfromemis drugsubstancename bnfchapt ///
-	if bnf0212 == 1 & statin == 0  //keep or remove?
+	if bnf0212 == 1 & lipid_lowering == 0
 
-keep if statin == 1
+keep if lipid_lowering == 1
 compress
 count
 
@@ -202,7 +202,7 @@ list termfromemis drugsubstancename icosapent omega ///
 
 //Check included products for each drug
 //(Also use this to go back and add any brand names that may have been missed)
-foreach bnf_section of local statins {
+foreach bnf_section of local lipid_lowering {
 	
 	foreach drug of local `bnf_section' {
 		
@@ -210,6 +210,18 @@ foreach bnf_section of local statins {
 		tab `drug', missing
 		list prodcodeid termfromemis drugsubstancename routeofadministration ///
 			bnfchapt if `drug' == 1
+	}
+}
+
+generate byte statin = (atorvastatin == 1 | cerivastatin == 1 ///
+	| fluvastatin == 1 | pravastatin == 1 | rosuvastatin == 1 ///
+	| simvastatin == 1)
+	
+foreach bnf_section of local lipid_lowering {
+	
+	foreach drug of local `bnf_section' {
+		
+		tab `drug' statin, missing
 	}
 }
 
@@ -247,7 +259,7 @@ compress
 
 //Check included products for each drug
 //(Also use this to go back and add any brand names that may have been missed)
-foreach bnf_section of local statins {
+foreach bnf_section of local lipid_lowering {
 	
 	foreach drug of local `bnf_section' {
 		
@@ -263,29 +275,29 @@ foreach bnf_section of local statins {
 //=====================================
 
 //Check for any products containing multiple drugs (categorisation won't work otherwise)
-egen statin_count = rowtotal(acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofibrate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin)
+egen lipid_lowering_count = rowtotal(acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofibrate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin)
 
-tab statin_count, missing
-//drop statin_count
+tab lipid_lowering_count, missing
+//drop lipid_lowering_count
 /* NOT POSSIBLE TO CATEGORISE
-generate byte statin_medication = 0
-label define statin_medication, replace
-label values statin_medication statin_medication
+generate byte lipid_lowering_medication = 0
+label define lipid_lowering_medication, replace
+label values lipid_lowering_medication lipid_lowering_medication
 local count = 0
-foreach drug of local statins {
+foreach drug of local lipid_lowering {
 	
 	local count = `count'+1
 	local capitalise = strproper("`drug'")  //makes first letter upper case
 	
-	label define statin_medication `count' "`capitalise'", add
+	label define lipid_lowering_medication `count' "`capitalise'", add
 	
-	replace statin_medication = `count' if `drug' == 1
+	replace lipid_lowering_medication = `count' if `drug' == 1
 	
-	tab statin_medication `drug', missing
+	tab lipid_lowering_medication `drug', missing
 	drop `drug'
 }
-recode statin_medication (0 = .)
-tab1 statin_medication, missing
+recode lipid_lowering_medication (0 = .)
+tab1 lipid_lowering_medication, missing
 */
 
 // (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LISTS
@@ -303,7 +315,7 @@ preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -311,7 +323,7 @@ preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -325,7 +337,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -333,7 +345,7 @@ restore, preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -347,7 +359,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename prodcodeid_ext prodcodeid
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -355,7 +367,7 @@ restore, preserve
 	merge 1:1 prodcodeid using `product'
 	list prodcodeid termfromemis_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	compress
@@ -374,7 +386,7 @@ preserve
 	local name "hdruk_972"
 	
 	rename description description_ext
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -382,7 +394,7 @@ preserve
 	merge 1:m bnfcode using `product'
 	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -397,7 +409,7 @@ restore, preserve
 	local name "hdruk_1013"
 	
 	rename description description_ext
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -405,7 +417,7 @@ restore, preserve
 	merge 1:m bnfcode using `product'
 	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -420,7 +432,7 @@ restore, preserve
 	local name "hdruk_1600"
 	
 	rename description description_ext
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -428,7 +440,7 @@ restore, preserve
 	merge 1:m bnfcode using `product'
 	list bnfcode description_ext if _merge == 1
 	keep if _merge == 3
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -447,7 +459,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename dmdid_ext dmdid
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -457,7 +469,7 @@ restore, preserve
 	keep if _merge == 3
 	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -476,7 +488,7 @@ restore, preserve
 	
 	rename * *_ext
 	rename dmdid_ext dmdid
-	generate byte statin = 1
+	generate byte lipid_lowering = 1
 	generate byte external_codelist = 1
 	generate byte `name' = 1
 	
@@ -486,7 +498,7 @@ restore, preserve
 	keep if _merge == 3
 	list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 		if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
-	keep prodcodeid statin external_codelist `name'
+	keep prodcodeid lipid_lowering external_codelist `name'
 
 	tempfile `name'
 	save ``name''
@@ -509,8 +521,9 @@ merge 1:1 prodcodeid using `product', update replace
 drop if _merge == 2
 drop _merge
 tab external_codelist, missing
-tab external_codelist if statin_count != ., missing
-tab external_codelist if statin_count == ., missing  //just one extra code
+tab external_codelist if lipid_lowering_count != ., missing
+tab external_codelist if lipid_lowering_count == ., missing  //just one extra code
+list prodcodeid termfromemis if lipid_lowering_count == .
 
 
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
@@ -559,10 +572,10 @@ e.g. codelist_raw_ABC.xlsx
 
 // STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
 //===================================================================
-/*
-//Load clinician classifications
-local clinician "ABC"
 
+//Load clinician classifications
+local clinician "CCG"
+/*  STATINS HAVE BEEN LABELLED SEPARATELY IN RESPONSE TO CLINICIAN REVIEW
 import excel `filename'_raw_`clinician', firstrow clear
 
 //Remerge with original in case of any formatting issues with Excel spreadsheet
@@ -582,7 +595,7 @@ list medcodeid snomedctconceptid term if `clinician' == 0
 drop if `clinician' == 0
 
 //Save clinican approved codelist
-gsort /**/statin_medication/**/ -drugissues dmdid
+gsort /**/lipid_lowering_medication/**/ -drugissues dmdid
 drop `clinician'
 compress
 save `filename', replace*/
@@ -593,16 +606,16 @@ export delimited `filename', replace quote
 //================================
 
 //=**Update details here, everything else is automated**========================
-local description "Statins"
+local description "Statins (and other lipid-lowering medicines)"
 local code_type "prodcodeid (dm+d / SNOMED CT)"
 local database "CPRD Aurum"
 local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
 							real(substr("`aurum_build'", 5, 2)))
 local author "Philip Stone"
 local date = ym(2025, 3)  //year, month
-local clinical_reviewer ""
-local date_approved = . //ym(2025, 3)  //year, month
-local notes "Created for PRIORITY study"
+local clinical_reviewer "Carolyn Chew-Graham"
+local date_approved = ym(2025, 4)  //year, month
+local notes "Includes other lipid-lowering medicines. Created for PRIORITY study"
 local keywords "acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofibrate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin"
 //==============================================================================
 

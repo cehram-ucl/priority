@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\statins.log
   log type:  text
- opened on:   3 Apr 2025, 04:50:35
+ opened on:  14 May 2025, 02:12:04
 
 . 
 . 
@@ -34,7 +34,7 @@
 . tempfile bnf_snomed_map
 
 . save `bnf_snomed_map'
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000001.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000001.tmp saved as .dta format
 
 . 
 . 
@@ -116,7 +116,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000001.tmp saved as .dta for
 . tempfile product
 
 . save `product'
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000002.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000002.tmp saved as .dta format
 
 . 
 . 
@@ -241,13 +241,13 @@ Docosahexaenoic acid/ Eicosapentaenoi.. |          9        5.33       41.42
 . //         AND SEARCH THE PRODUCT DICTIONARY FOR EACH DRUG
 . //===================================================================
 . 
-. local statins "bnf0212"
+. local lipid_lowering "bnf0212"
 
 . 
-. generate byte statin = 0
+. generate byte lipid_lowering = 0
 
 . 
-. foreach bnf_section of local statins {
+. foreach bnf_section of local lipid_lowering {
   2.         
 .         display "`bnf_section'"
   3.         
@@ -262,7 +262,7 @@ Docosahexaenoic acid/ Eicosapentaenoi.. |          9        5.33       41.42
   8.                         
 .                         foreach scan_var of varlist termfromemis drugsubstancename bnfname {
   9.                                 
-.                                 foreach label_var of varlist statin `drug' ///
+.                                 foreach label_var of varlist lipid_lowering `drug' ///
 >                                         `bnf_section' {
  10.                                         
 .                                         replace `label_var' = 1 if strpos(lower(`scan_var'), "`term'")
@@ -988,18 +988,19 @@ Term: cholib
 (0 real changes made)
 
 . 
-. tab1 statin, missing
+. tab1 lipid_lowering, missing
 
--> tabulation of statin  
+-> tabulation of lipid_lowering  
 
-     statin |      Freq.     Percent        Cum.
+lipid_lower |
+        ing |      Freq.     Percent        Cum.
 ------------+-----------------------------------
           0 |     73,233       99.65       99.65
           1 |        257        0.35      100.00
 ------------+-----------------------------------
       Total |     73,490      100.00
 
-. foreach bnf_section of local statins {
+. foreach bnf_section of local lipid_lowering {
   2.         
 .         tab `bnf_section', missing
   3.         
@@ -1190,9 +1191,9 @@ simvastatin |      Freq.     Percent        Cum.
       Total |     73,490      100.00
 
 . 
-. tab bnf0212 statin, missing
+. tab bnf0212 lipid_lowering, missing
 
-           |        statin
+           |    lipid_lowering
    bnf0212 |         0          1 |     Total
 -----------+----------------------+----------
          1 |         3        257 |       260 
@@ -1201,7 +1202,7 @@ simvastatin |      Freq.     Percent        Cum.
      Total |    73,233        257 |    73,490 
 
 . list prodcodeid termfromemis drugsubstancename bnfchapt ///
->         if bnf0212 == 1 & statin == 0  //keep or remove?
+>         if bnf0212 == 1 & lipid_lowering == 0
 
        +-----------------------------------------------------------------------------------------------------------------------------------+
        |       prodcodeid                                                                         termfromemis   drugsubstanc~e   bnfchapt |
@@ -1212,7 +1213,7 @@ simvastatin |      Freq.     Percent        Cum.
        +-----------------------------------------------------------------------------------------------------------------------------------+
 
 . 
-. keep if statin == 1
+. keep if lipid_lowering == 1
 (73,233 observations deleted)
 
 . compress
@@ -1258,7 +1259,7 @@ simvastatin |      Freq.     Percent        Cum.
 . 
 . //Check included products for each drug
 . //(Also use this to go back and add any brand names that may have been missed)
-. foreach bnf_section of local statins {
+. foreach bnf_section of local lipid_lowering {
   2.         
 .         foreach drug of local `bnf_section' {
   3.                 
@@ -1446,7 +1447,7 @@ Drug: colestipol
      +---------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                 termfromemis          drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------------------------------------------|
-  5. |   359541000033118   Colestipol Hydrochloride  Sachets (orange)  5 grams/sachet                                                  |
+  8. |   359541000033118   Colestipol Hydrochloride  Sachets (orange)  5 grams/sachet                                                  |
 149. | 12688241000033113                                        Colestipol 1g tablets   Colestipol hydrochloride       Oral   02120000 |
 182. |   328341000033119              Colestid 5g granules sachets plain (Pfizer Ltd)   Colestipol hydrochloride       Oral   02120000 |
 183. |   359441000033119             Colestid Orange 5g granules sachets (Pfizer Ltd)   Colestipol hydrochloride       Oral   02120000 |
@@ -1523,8 +1524,8 @@ fenofibrate |      Freq.     Percent        Cum.
      +------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                              termfromemis          drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------|
-  2. |   565741000033115                             Fenofibrate  Capsules  100 mg                                                  |
-  3. |   828041000033118                                Lipantil  Capsules  100 mg                                                  |
+  4. |   828041000033118                                Lipantil  Capsules  100 mg                                                  |
+  7. |   565741000033115                             Fenofibrate  Capsules  100 mg                                                  |
  85. |  2214841000033115        Supralip 160mg tablets (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
  86. |  1862741000033111   Lipantil Micro 200 capsules (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
  87. |   836941000033116    Lipantil Micro 67 capsules (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
@@ -1656,30 +1657,6 @@ Drug: nicotinic
 
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
   1. |                      prodcodeid                |                                                                                          termfromemis                |
-     |                 974741000033115                |                                                                        Nicotinic Acid  Tablets  25 mg                |
-     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
-     |                                                                                                                                                 |          |          |
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  4. |                      prodcodeid                |                                                                                          termfromemis                |
-     |                2667441000033112                |                                                                            *Nicotinic Acid  Tablets                  |
-     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
-     |                                                                                                                                                 |          |          |
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  6. |                      prodcodeid                |                                                                                          termfromemis                |
-     |                2994541000033117                |                Nicotinic Acid Titration Starter Pack  M/R tablets  7 x 375 mg, 7 x 500 mg, 7 x 750 mg                |
-     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
-     |                                                                                                                                                 |          |          |
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  8. |                      prodcodeid                |                                                                                          termfromemis                |
      |                 974641000033112                |                                                                       Nicotinic Acid  Tablets  100 mg                |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
@@ -1687,8 +1664,32 @@ Drug: nicotinic
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
      +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  9. |                      prodcodeid                |                                                                                          termfromemis                |
+  2. |                      prodcodeid                |                                                                                          termfromemis                |
+     |                2994541000033117                |                Nicotinic Acid Titration Starter Pack  M/R tablets  7 x 375 mg, 7 x 500 mg, 7 x 750 mg                |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
+     |                                                                                                                                                 |          |          |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+  5. |                      prodcodeid                |                                                                                          termfromemis                |
      |                2667841000033110                |                                                                    *Nicotinic Acid  Pills (Sucrose)                  |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
+     |                                                                                                                                                 |          |          |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+  6. |                      prodcodeid                |                                                                                          termfromemis                |
+     |                 974741000033115                |                                                                        Nicotinic Acid  Tablets  25 mg                |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
+     |                                                                                                                                                 |          |          |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+  9. |                      prodcodeid                |                                                                                          termfromemis                |
+     |                2667441000033112                |                                                                            *Nicotinic Acid  Tablets                  |
      |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                                               drugsubstancename | routeo~n | bnfchapt |
      |                                                                                                                                                 |          |          |
@@ -1791,7 +1792,7 @@ Drug: omega
       Total |        257      100.00
 
      +----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  7. |                          prodcodeid                   |                                                                               termfromemis                   |
+  3. |                          prodcodeid                   |                                                                               termfromemis                   |
      |                    5402441000033111                   |                                  Eucerin Dry Skin  Bath And Shower Therapy  20 % Omega Oil                   |
      |----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                                 drugsubstancename | routeofadministration | bnfchapt |
@@ -2484,6 +2485,212 @@ simvastatin |      Freq.     Percent        Cum.
      +----------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 . 
+. generate byte statin = (atorvastatin == 1 | cerivastatin == 1 ///
+>         | fluvastatin == 1 | pravastatin == 1 | rosuvastatin == 1 ///
+>         | simvastatin == 1)
+
+.         
+. foreach bnf_section of local lipid_lowering {
+  2.         
+.         foreach drug of local `bnf_section' {
+  3.                 
+.                 tab `drug' statin, missing
+  4.         }
+  5. }
+
+           |        statin
+  acipimox |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+alirocumab |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       156         95 |       251 
+         1 |         6          0 |         6 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+atorvastat |        statin
+        in |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         76 |       238 
+         1 |         0         19 |        19 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+ bempedoic |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       158         95 |       253 
+         1 |         4          0 |         4 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+bezafibrat |        statin
+         e |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       154         95 |       249 
+         1 |         8          0 |         8 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+cerivastat |        statin
+        in |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         85 |       247 
+         1 |         0         10 |        10 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+ciprofibra |        statin
+        te |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+colesevela |        statin
+         m |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+colestipol |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       157         95 |       252 
+         1 |         5          0 |         5 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+colestyram |        statin
+       ine |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       158         95 |       253 
+         1 |         4          0 |         4 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+evolocumab |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       158         95 |       253 
+         1 |         4          0 |         4 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+ ezetimibe |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       158         89 |       247 
+         1 |         4          6 |        10 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+fenofibrat |        statin
+         e |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       150         92 |       242 
+         1 |        12          3 |        15 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+fluvastati |        statin
+         n |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         83 |       245 
+         1 |         0         12 |        12 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+gemfibrozi |        statin
+         l |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       146         95 |       241 
+         1 |        16          0 |        16 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+ icosapent |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+inclisiran |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+lomitapide |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       160         95 |       255 
+         1 |         2          0 |         2 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+ nicotinic |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       146         95 |       241 
+         1 |        16          0 |        16 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+           |        statin
+     omega |         0          1 |     Total
+-----------+----------------------+----------
+         0 |        90         95 |       185 
+         1 |        72          0 |        72 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+policosano |        statin
+         l |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       161         95 |       256 
+         1 |         1          0 |         1 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+pravastati |        statin
+         n |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         86 |       248 
+         1 |         0          9 |         9 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+rosuvastat |        statin
+        in |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         81 |       243 
+         1 |         0         14 |        14 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+simvastati |        statin
+         n |         0          1 |     Total
+-----------+----------------------+----------
+         0 |       162         64 |       226 
+         1 |         0         31 |        31 
+-----------+----------------------+----------
+     Total |       162         95 |       257 
+
+. 
 . 
 . // (OPTIONAL) STEP 4. PERFORM SECOND SEARCH TO EXCLUDE UNDESIRED PRODUCTS
 . //========================================================================
@@ -2551,7 +2758,7 @@ simvastatin |      Freq.     Percent        Cum.
 . list /*prodcodeid*/ termfromemis drugsubstancename bnfchapt if exclude == 1
 
      +------------------------------------------------------------------------------------------------------------------------------------------------------------+
-  7. |                                                                                                     termfromemis                                           |
+  3. |                                                                                                     termfromemis                                           |
      |                                                        Eucerin Dry Skin  Bath And Shower Therapy  20 % Omega Oil                                           |
      |------------------------------------------------------------------------------------------------------------------------------------------------------------|
      |                                                                                                                               drugsubstancename | bnfchapt |
@@ -3198,7 +3405,7 @@ simvastatin |      Freq.     Percent        Cum.
 . 
 . //Check included products for each drug
 . //(Also use this to go back and add any brand names that may have been missed)
-. foreach bnf_section of local statins {
+. foreach bnf_section of local lipid_lowering {
   2.         
 .         foreach drug of local `bnf_section' {
   3.                 
@@ -3386,7 +3593,7 @@ Drug: colestipol
      +---------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                                 termfromemis          drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------------------------------------------|
-  5. |   359541000033118   Colestipol Hydrochloride  Sachets (orange)  5 grams/sachet                                                  |
+  7. |   359541000033118   Colestipol Hydrochloride  Sachets (orange)  5 grams/sachet                                                  |
  98. | 12688241000033113                                        Colestipol 1g tablets   Colestipol hydrochloride       Oral   02120000 |
 129. |   328341000033119              Colestid 5g granules sachets plain (Pfizer Ltd)   Colestipol hydrochloride       Oral   02120000 |
 130. |   359441000033119             Colestid Orange 5g granules sachets (Pfizer Ltd)   Colestipol hydrochloride       Oral   02120000 |
@@ -3463,8 +3670,8 @@ fenofibrate |      Freq.     Percent        Cum.
      +------------------------------------------------------------------------------------------------------------------------------+
      |        prodcodeid                                              termfromemis          drugsubstancename   routeo~n   bnfchapt |
      |------------------------------------------------------------------------------------------------------------------------------|
-  2. |   565741000033115                             Fenofibrate  Capsules  100 mg                                                  |
   3. |   828041000033118                                Lipantil  Capsules  100 mg                                                  |
+  6. |   565741000033115                             Fenofibrate  Capsules  100 mg                                                  |
  49. |  2214841000033115        Supralip 160mg tablets (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
  50. |  1862741000033111   Lipantil Micro 200 capsules (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
  51. |   836941000033116    Lipantil Micro 67 capsules (Viatris UK Healthcare Ltd)     Fenofibrate micronised       Oral   02120000 |
@@ -3578,11 +3785,11 @@ Drug: nicotinic
      +---------------------------------------------------------------------------------------------------------------------------------------------------------------+
      |       prodcodeid                                                                             termfromemis             drugsubstancename   routeo~n   bnfchapt |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-  1. |  974741000033115                                                           Nicotinic Acid  Tablets  25 mg                                                     |
-  4. | 2667441000033112                                                               *Nicotinic Acid  Tablets                                                       |
-  6. | 2994541000033117   Nicotinic Acid Titration Starter Pack  M/R tablets  7 x 375 mg, 7 x 500 mg, 7 x 750 mg                                                     |
-  7. |  974641000033112                                                          Nicotinic Acid  Tablets  100 mg                                                     |
-  8. | 2667841000033110                                                       *Nicotinic Acid  Pills (Sucrose)                                                       |
+  1. |  974641000033112                                                          Nicotinic Acid  Tablets  100 mg                                                     |
+  2. | 2994541000033117   Nicotinic Acid Titration Starter Pack  M/R tablets  7 x 375 mg, 7 x 500 mg, 7 x 750 mg                                                     |
+  4. | 2667841000033110                                                       *Nicotinic Acid  Pills (Sucrose)                                                       |
+  5. |  974741000033115                                                           Nicotinic Acid  Tablets  25 mg                                                     |
+  8. | 2667441000033112                                                               *Nicotinic Acid  Tablets                                                       |
      |---------------------------------------------------------------------------------------------------------------------------------------------------------------|
  26. | 5244841000033110                Tredaptive 1000mg/20mg modified-release tablets (Organon Pharma (UK) Ltd)   Laropiprant/ Nicotinic acid       Oral   02120000 |
  27. | 4805841000033118                            Nicotinic acid 1g / Laropiprant 20mg modified-release tablets   Laropiprant/ Nicotinic acid       Oral   02120000 |
@@ -3743,40 +3950,40 @@ simvastatin |      Freq.     Percent        Cum.
 . //=====================================
 . 
 . //Check for any products containing multiple drugs (categorisation won't work otherwise)
-. egen statin_count = rowtotal(acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofi
-> brate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin)
+. egen lipid_lowering_count = rowtotal(acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimib
+> e fenofibrate fluvastatin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin)
 
 . 
-. tab statin_count, missing
+. tab lipid_lowering_count, missing
 
-statin_coun |
-          t |      Freq.     Percent        Cum.
+lipid_lower |
+  ing_count |      Freq.     Percent        Cum.
 ------------+-----------------------------------
           1 |        167       93.82       93.82
           2 |         11        6.18      100.00
 ------------+-----------------------------------
       Total |        178      100.00
 
-. //drop statin_count
+. //drop lipid_lowering_count
 . /* NOT POSSIBLE TO CATEGORISE
-> generate byte statin_medication = 0
-> label define statin_medication, replace
-> label values statin_medication statin_medication
+> generate byte lipid_lowering_medication = 0
+> label define lipid_lowering_medication, replace
+> label values lipid_lowering_medication lipid_lowering_medication
 > local count = 0
-> foreach drug of local statins {
+> foreach drug of local lipid_lowering {
 >         
 >         local count = `count'+1
 >         local capitalise = strproper("`drug'")  //makes first letter upper case
 >         
->         label define statin_medication `count' "`capitalise'", add
+>         label define lipid_lowering_medication `count' "`capitalise'", add
 >         
->         replace statin_medication = `count' if `drug' == 1
+>         replace lipid_lowering_medication = `count' if `drug' == 1
 >         
->         tab statin_medication `drug', missing
+>         tab lipid_lowering_medication `drug', missing
 >         drop `drug'
 > }
-> recode statin_medication (0 = .)
-> tab1 statin_medication, missing
+> recode lipid_lowering_medication (0 = .)
+> tab1 lipid_lowering_medication, missing
 > */
 . 
 . // (OPTIONAL) STEP 6. COMPARE AGAINST PRE-EXISTING LISTS
@@ -3802,7 +4009,7 @@ statin_coun |
 
 .         rename prodcodeid_ext prodcodeid
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -3837,7 +4044,7 @@ statin_coun |
 .         keep if _merge == 3
 (73,409 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -3846,7 +4053,7 @@ statin_coun |
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000004.tmp saved as .dta format
 
 . restore, preserve
 
@@ -3865,7 +4072,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta for
 
 .         rename prodcodeid_ext prodcodeid
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -3900,7 +4107,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta for
 .         keep if _merge == 3
 (73,409 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -3909,7 +4116,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000004.tmp saved as .dta for
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000005.tmp saved as .dta format
 
 . restore, preserve
 
@@ -3928,7 +4135,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta for
 
 .         rename prodcodeid_ext prodcodeid
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -3963,7 +4170,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta for
 .         keep if _merge == 3
 (73,409 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
@@ -3972,7 +4179,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000005.tmp saved as .dta for
   (0 bytes saved)
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000006.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000006.tmp saved as .dta format
 
 . restore
 
@@ -4011,7 +4218,7 @@ bnfcode                                                                         
 .         
 .         rename description description_ext
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -4088,13 +4295,13 @@ bnfcode                                                                         
 .         keep if _merge == 3
 (73,436 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000008.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000008.tmp saved as .dta format
 
 . restore, preserve
 
@@ -4129,7 +4336,7 @@ bnfcode                                                                         
 .         
 .         rename description description_ext
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -4206,13 +4413,13 @@ bnfcode                                                                         
 .         keep if _merge == 3
 (73,436 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_000009.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000009.tmp saved as .dta format
 
 . restore, preserve
 
@@ -4247,7 +4454,7 @@ bnfcode                                                                         
 .         
 .         rename description description_ext
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -4352,13 +4559,13 @@ bnfcode                                                                         
 .         keep if _merge == 3
 (73,432 observations deleted)
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000a.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000a.tmp saved as .dta format
 
 . restore, preserve
 
@@ -4393,7 +4600,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000a.tmp saved as .dta for
 
 .         rename dmdid_ext dmdid
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -5048,13 +5255,13 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000a.tmp saved as .dta for
 .         list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 >                 if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000b.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000b.tmp saved as .dta format
 
 . restore, preserve
 
@@ -5090,7 +5297,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000b.tmp saved as .dta for
 
 .         rename dmdid_ext dmdid
 
-.         generate byte statin = 1
+.         generate byte lipid_lowering = 1
 
 .         generate byte external_codelist = 1
 
@@ -5464,13 +5671,13 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000b.tmp saved as .dta for
 .         list prodcodeid termfromemis dmdid bnfcode bnfcode_ext ///
 >                 if bnfcode != bnfcode_ext & bnfcode != "" & bnfcode_ext != ""
 
-.         keep prodcodeid statin external_codelist `name'
+.         keep prodcodeid lipid_lowering external_codelist `name'
 
 . 
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_10d0_00000c.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000c.tmp saved as .dta format
 
 . restore
 
@@ -5637,7 +5844,7 @@ external_co |
 ------------+-----------------------------------
       Total |        179      100.00
 
-. tab external_codelist if statin_count != ., missing
+. tab external_codelist if lipid_lowering_count != ., missing
 
 external_co |
      delist |      Freq.     Percent        Cum.
@@ -5647,7 +5854,7 @@ external_co |
 ------------+-----------------------------------
       Total |        178      100.00
 
-. tab external_codelist if statin_count == ., missing  //just one extra code
+. tab external_codelist if lipid_lowering_count == ., missing  //just one extra code
 
 external_co |
      delist |      Freq.     Percent        Cum.
@@ -5655,6 +5862,14 @@ external_co |
           1 |          1      100.00      100.00
 ------------+-----------------------------------
       Total |          1      100.00
+
+. list prodcodeid termfromemis if lipid_lowering_count == .
+
+     +---------------------------------------------------------------------+
+     |       prodcodeid                                       termfromemis |
+     |---------------------------------------------------------------------|
+ 94. | 2994641000033116   Niaspan titration pack (Abbott Laboratories Ltd) |
+     +---------------------------------------------------------------------+
 
 . 
 . 
@@ -5664,7 +5879,7 @@ external_co |
 . gsort /**/bnf0212/**/ -drugissues dmdid
 
 . compress
-  variable statin_count was float now byte
+  variable lipid_lowering_count was float now byte
   variable termfromemis was str211 now str95
   variable productname was str211 now str73
   variable formulation was str72 now str23
@@ -5722,10 +5937,11 @@ file statins_raw.xlsx saved
 . 
 . // STEP 8. RESTRICT CODELIST TO CODES APPROVED BY CLINICIAN AND SAVE
 . //===================================================================
-. /*
-> //Load clinician classifications
-> local clinician "ABC"
-> 
+. 
+. //Load clinician classifications
+. local clinician "CCG"
+
+. /*  STATINS HAVE BEEN LABELLED SEPARATELY IN RESPONSE TO CLINICIAN REVIEW
 > import excel `filename'_raw_`clinician', firstrow clear
 > 
 > //Remerge with original in case of any formatting issues with Excel spreadsheet
@@ -5745,7 +5961,7 @@ file statins_raw.xlsx saved
 > drop if `clinician' == 0
 > 
 > //Save clinican approved codelist
-> gsort /**/statin_medication/**/ -drugissues dmdid
+> gsort /**/lipid_lowering_medication/**/ -drugissues dmdid
 > drop `clinician'
 > compress
 > save `filename', replace*/
@@ -5758,7 +5974,7 @@ file statins.csv saved
 . //================================
 . 
 . //=**Update details here, everything else is automated**========================
-. local description "Statins"
+. local description "Statins (and other lipid-lowering medicines)"
 
 . local code_type "prodcodeid (dm+d / SNOMED CT)"
 
@@ -5771,11 +5987,11 @@ file statins.csv saved
 
 . local date = ym(2025, 3)  //year, month
 
-. local clinical_reviewer ""
+. local clinical_reviewer "Carolyn Chew-Graham"
 
-. local date_approved = . //ym(2025, 3)  //year, month
+. local date_approved = ym(2025, 4)  //year, month
 
-. local notes "Created for PRIORITY study"
+. local notes "Includes other lipid-lowering medicines. Created for PRIORITY study"
 
 . local keywords "acipimox alirocumab atorvastatin bempedoic bezafibrate cerivastatin ciprofibrate colesevelam colestipol colestyramine evolocumab ezetimibe fenofibrate fluvast
 > atin gemfibrozil icosapent inclisiran lomitapide nicotinic omega policosanol pravastatin rosuvastatin simvastatin"
@@ -5795,11 +6011,10 @@ Number of observations (_N) was 0, now 10.
 
 . 
 . replace v1 = "`description'" in 1
-variable v1 was str1 now str7
+variable v1 was str1 now str44
 (1 real change made)
 
 . replace v1 = "`code_type'" in 2
-variable v1 was str7 now str29
 (1 real change made)
 
 . replace v1 = "`database'" in 3
@@ -5815,16 +6030,17 @@ variable v1 was str7 now str29
 (1 real change made)
 
 . replace v1 = "`clinical_reviewer'" in 7
-(0 real changes made)
+(1 real change made)
 
 . replace v2 = `date_approved' in 8
-(0 real changes made)
+(1 real change made)
 
 . replace v1 = "`notes'" in 9
+variable v1 was str44 now str67
 (1 real change made)
 
 . replace v1 = "`keywords'" in 10
-variable v1 was str29 now str271
+variable v1 was str67 now str271
 (1 real change made)
 
 . 
@@ -5855,5 +6071,5 @@ file statins.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\statins.log
   log type:  text
- closed on:   3 Apr 2025, 04:51:17
+ closed on:  14 May 2025, 02:12:37
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
