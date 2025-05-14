@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\dementia.log
   log type:  text
- opened on:   1 Apr 2025, 21:53:18
+ opened on:  14 May 2025, 05:01:31
 
 . 
 . 
@@ -37,7 +37,7 @@
 . tempfile medical
 
 . save `medical'
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000001.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000001.tmp saved as .dta format
 
 . 
 . 
@@ -76,7 +76,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000001.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000003.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000003.tmp saved as .dta format
 
 . restore, preserve
 
@@ -105,7 +105,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000003.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000004.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000004.tmp saved as .dta format
 
 . restore, preserve
 
@@ -137,7 +137,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000004.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000005.tmp saved as .dta format
 
 . restore
 
@@ -174,7 +174,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000005.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000007.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000007.tmp saved as .dta format
 
 . restore, preserve
 
@@ -212,7 +212,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000007.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000008.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000008.tmp saved as .dta format
 
 . restore, preserve
 
@@ -250,7 +250,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000008.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000009.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000009.tmp saved as .dta format
 
 . restore, preserve
 
@@ -281,7 +281,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_000009.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000a.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000a.tmp saved as .dta format
 
 . restore, preserve
 
@@ -312,7 +312,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000a.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000b.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000b.tmp saved as .dta format
 
 . restore, preserve
 
@@ -343,7 +343,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000b.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000c.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000c.tmp saved as .dta format
 
 . restore, preserve
 
@@ -374,7 +374,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000c.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000d.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000d.tmp saved as .dta format
 
 . restore, preserve
 
@@ -405,7 +405,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000d.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000e.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000e.tmp saved as .dta format
 
 . restore, preserve
 
@@ -437,7 +437,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000e.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000f.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000f.tmp saved as .dta format
 
 . restore, preserve
 
@@ -468,7 +468,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000f.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000g.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000g.tmp saved as .dta format
 
 . restore, preserve
 
@@ -500,7 +500,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000g.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000h.tmp saved as .dta format
 
 . restore, preserve
 
@@ -532,7 +532,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000h.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000i.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000i.tmp saved as .dta format
 
 . restore, preserve
 
@@ -564,7 +564,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000i.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000j.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000j.tmp saved as .dta format
 
 . restore, preserve
 
@@ -595,7 +595,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000j.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000k.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000k.tmp saved as .dta format
 
 . restore, preserve
 
@@ -627,7 +627,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000k.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000l.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000l.tmp saved as .dta format
 
 . restore, preserve
 
@@ -658,7 +658,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000l.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000m.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000m.tmp saved as .dta format
 
 . restore, preserve
 
@@ -689,7 +689,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000m.tmp saved as .dta for
 .         tempfile `name'
 
 .         save ``name''
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000n.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000n.tmp saved as .dta format
 
 . restore
 
@@ -1209,7 +1209,9 @@ Conflicts...
 . //=============================================================
 . 
 . // **medcodeids to remove**
-. local initial_remove "2247561000000112"
+. local initial_remove "2247561000000112 483651010 295718011 97642017 294704013 612521000006115 481281019 376431000006118 403921000006119 295713019 7798761000006110 37365019 12
+> 3479016 394691000006116 119579013 119577010 7963891000006112 388761000006114 3670581000006118 2551451000006119 3454551000006117 7515071000006112 7963881000006114 285463100000
+> 6113 5548301000006119 7771441000006116 12106361000006116 2854601000006117 14195861000006111 7794741000006116 7798771000006115 376631000006115 5548281000006118"
 
 . 
 . gen byte remove = 0
@@ -1220,33 +1222,306 @@ Conflicts...
 .         replace remove = 1 if medcodeid == "`medcode'"
   3. }
 (1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(0 real changes made)
+(0 real changes made)
+(1 real change made)
+(0 real changes made)
+(0 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(0 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(0 real changes made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
+(1 real change made)
 
 . 
 . list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term  ///
 >         observations external_codelist if remove == 1
 
-     +------------------------------------------------------------------------------------------------------------------+
-     |        medcodeid   snomedctdescri~d   snomedctconce~d   origin~e                      term   observ~s   extern~t |
-     |------------------------------------------------------------------------------------------------------------------|
-  5. | 2247561000000112   2247561000000112   869561000000101      38C10   Assessment for dementia     500000          . |
-     +------------------------------------------------------------------------------------------------------------------+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+  5. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  2247561000000112 | 2247561000000112 | 869561000000101 |         38C10 |                                                    Assessment for dementia |   500000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   .                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+ 17. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         483651010 |        483651010 |         2776000 |          E030 |                                                    Acute confusional state |   100000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+ 18. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         295718011 |          5694012 |         2776000 |         Eu04z |                                                                   Delirium |   100000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+ 25. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |          97642017 |         97642017 |        58756001 |          F134 |                                                        Huntington's chorea |    60000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+ 53. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         294704013 |        483651010 |         2776000 |         E030z |                                                Acute confusional state NOS |    10000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+ 95. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |   612521000006115 |          5694012 |         2776000 |        E030-1 |                                                   Delirium - acute organic |     3000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+126. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         481281019 |        481281019 |        22255007 |          A413 |                                 Progressive multifocal leucoencephalopathy |     1000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+130. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |   376431000006118 |          5694012 |         2776000 |       Eu04y-1 |                                                [X]Delirium of mixed origin |     1000 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+155. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |   403921000006119 |          6563014 |         3298001 |          Eu03 |                                                          Amnestic disorder |      500 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+171. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         295713019 |          5694012 |         2776000 |         Eu040 |                     [X]Delirium not superimposed on dementia, so described |      400 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+178. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7798761000006110 |       3319758017 |       720204003 | ^ESCTCD779876 |                                       CDR (Clinical Dementia Rating) score |      400 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+183. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |          37365019 |        481280018 |        22255007 |        A413-1 |                           PML - Progressive multifocal leukoencephalopathy |      300 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+189. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |         123479016 |        123479016 |        74351001 |         F11y0 |                                                            Reye's syndrome |      300 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+199. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |   394691000006116 |          6563014 |         3298001 |        Eu03-1 |                                      [X]Korsakov's psychosis, nonalcoholic |      200 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+277. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7963891000006112 |       3482644018 |       734076008 | ^ESCTDL796389 | DLBCL (diffuse large B-cell lymphoma) associated with chronic inflammation |       30 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+338. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  2551451000006119 |        485380014 |         3298001 | ^ESCTAM255145 |                                                           Amnesic syndrome |        6 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+350. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |   376631000006115 |        119576018 |        71961003 |       Eu843-1 |                                                     [X]Dementia infantalis |        5 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+362. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  5548281000006118 |        408657014 |       273323004 | ^ESCTBL554828 |                                              Blessed dementia rating scale |        4 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   .                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+366. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  3454551000006117 |       2838433019 |        58756001 | ^ESCTHU345455 |                                                          Huntington chorea |        4 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+367. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7515071000006112 |       2981630018 |       698949001 | ^ESCTDE751507 |                                                      Dementia in remission |        4 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+386. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7963881000006114 |       3482645017 |       734076008 | ^ESCTDI796388 |         Diffuse large B-cell lymphoma associated with chronic inflammation |        3 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+406. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  2854631000006113 |        481282014 |        22255007 | ^ESCTMU285463 |                                             Multifocal leucoencephalopathy |        2 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+414. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7771441000006116 |       3310475018 |       718372000 | ^ESCTAS777144 |                            Assessment using CDR (Clinical Dementia Rating) |        2 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   .                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+422. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     | 12106361000006116 |       3672958017 |  10171000132106 |  ^ESCT1210636 |                                                  Neuropsychiatric symptoms |        1 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+451. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  2854601000006117 |         37365019 |        22255007 | ^ESCTPR285460 |                                 Progressive multifocal leukoencephalopathy |        1 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   1                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+475. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7794741000006116 |       3315873017 |       720021000 | ^ESCTSH779474 |                     Shared care prescribing protocol of drugs for dementia |        1 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   .                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+476. |         medcodeid | snomedctdescri~d | snomedctconce~d | originalrea~e |                                                                       term | observ~s |
+     |  7798771000006115 |       3319757010 |       720204003 | ^ESCTCL779877 |                                             Clinical Dementia Rating score |        1 |
+     |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                                                            extern~t                                                                            |
+     |                                                                                   .                                                                            |
+     +----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 . drop if remove == 1 & external_codelist != 1
-(1 observation deleted)
+(5 observations deleted)
 
 . 
 . //List disagreements between my list and external lists
 . replace exclude = 1 if remove == 1
-(0 real changes made)
+(22 real changes made)
 
-. list term /*lshtm_* oc_**/ if exclude == 1 & external_codelist == 1
+. list observations term /*lshtm_* oc_**/ if exclude == 1 & external_codelist == 1
+
+     +---------------------------------------------------------------------------------------+
+     | observ~s                                                                         term |
+     |---------------------------------------------------------------------------------------|
+ 16. |   100000                                                      Acute confusional state |
+ 17. |   100000                                                                     Delirium |
+ 24. |    60000                                                          Huntington's chorea |
+ 52. |    10000                                                  Acute confusional state NOS |
+ 94. |     3000                                                     Delirium - acute organic |
+     |---------------------------------------------------------------------------------------|
+125. |     1000                                   Progressive multifocal leucoencephalopathy |
+129. |     1000                                                  [X]Delirium of mixed origin |
+154. |      500                                                            Amnestic disorder |
+170. |      400                       [X]Delirium not superimposed on dementia, so described |
+177. |      400                                         CDR (Clinical Dementia Rating) score |
+     |---------------------------------------------------------------------------------------|
+182. |      300                             PML - Progressive multifocal leukoencephalopathy |
+188. |      300                                                              Reye's syndrome |
+198. |      200                                        [X]Korsakov's psychosis, nonalcoholic |
+276. |       30   DLBCL (diffuse large B-cell lymphoma) associated with chronic inflammation |
+337. |        6                                                             Amnesic syndrome |
+     |---------------------------------------------------------------------------------------|
+349. |        5                                                       [X]Dementia infantalis |
+364. |        4                                                            Huntington chorea |
+365. |        4                                                        Dementia in remission |
+384. |        3           Diffuse large B-cell lymphoma associated with chronic inflammation |
+404. |        2                                               Multifocal leucoencephalopathy |
+     |---------------------------------------------------------------------------------------|
+419. |        1                                                    Neuropsychiatric symptoms |
+448. |        1                                   Progressive multifocal leukoencephalopathy |
+     +---------------------------------------------------------------------------------------+
 
 . 
 . // COMMENT HERE
-. // No disagreements.
+. // They can go, but need to be aware that external list codes have been removed.
 . 
 . drop if exclude == 1
-(0 observations deleted)
+(22 observations deleted)
 
 . drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/ remove
 
@@ -1268,9 +1543,9 @@ Conflicts...
 
    dementia |      Freq.     Percent        Cum.
 ------------+-----------------------------------
-          1 |        483      100.00      100.00
+          1 |        457      100.00      100.00
 ------------+-----------------------------------
-      Total |        483      100.00
+      Total |        457      100.00
 
 . 
 . 
@@ -1313,18 +1588,18 @@ snomedctconceptid                                                               
 
                   Type: String (str17)
 
-         Unique values: 334                       Missing "": 0/483
+         Unique values: 323                       Missing "": 0/457
 
               Examples: "192794001"
-                        "1974271000006103"
-                        "3298001"
-                        "715881000000108"
+                        "1973221000006102"
+                        "312991009"
+                        "715284000"
 
 . assert !missing(snomedctconceptid)
 
 . 
 . count
-  483
+  457
 
 . 
 . //Make a note of current list
@@ -1338,7 +1613,7 @@ snomedctconceptid                                                               
 .         tempfile original
 
 .         save `original'
-file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta format
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_00000p.tmp saved as .dta format
 
 . restore
 
@@ -1347,7 +1622,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta for
 . keep snomedctconceptid /**/dementia/**/
 
 . bysort snomedctconceptid: keep if _n == 1
-(149 observations deleted)
+(134 observations deleted)
 
 . 
 . merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
@@ -1356,7 +1631,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta for
     Result                      Number of obs
     -----------------------------------------
     Not matched                             0
-    Matched                               490  
+    Matched                               464  
     -----------------------------------------
 
 . compress
@@ -1365,7 +1640,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta for
   variable originalreadcode was str19 now str15
   variable snomedctdescriptionid was str18 now str16
   variable term was str233 now str127
-  (55,860 bytes saved)
+  (52,896 bytes saved)
 
 . 
 . //Merge with original search results
@@ -1377,7 +1652,7 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta for
         from master                         7  
         from using                          0  
 
-    Matched                               483  
+    Matched                               457  
     -----------------------------------------
 
 . order medcodeid observations originalreadcode cleansedreadcode ///
@@ -1400,34 +1675,34 @@ file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_5244_00000p.tmp saved as .dta for
   4. }
 New terms found for: dementia
 
-     +---------------------------------------------------------------+
-     | snome~tid   originalrea~e                                term |
-     |---------------------------------------------------------------|
- 85. |  71961003            E141            Disintegrative psychosis |
- 86. |  71961003          E141-1                   Heller's syndrome |
- 87. |  71961003           E141z        Disintegrative psychosis NOS |
-240. |  71961003         Eu843-3                [X]Heller's syndrome |
-322. |  58756001    ^ESCT1419586                  Huntington disease |
-     |---------------------------------------------------------------|
-356. |  71961003   ^ESCTCH367058   Childhood disintegrative disorder |
-433. | 273323004   ^ESCTME554830           Memory concentration test |
-     +---------------------------------------------------------------+
+     +----------------------------------------------------------------------------------------+
+     | snomedctconc~d   originalre~e                                                     term |
+     |----------------------------------------------------------------------------------------|
+ 79. |        2776000           E030                                  Acute confusional state |
+ 80. |        2776000         E030-1                                 Delirium - acute organic |
+ 81. |        2776000          E030z                              Acute confusional state NOS |
+225. |        2776000          Eu040   [X]Delirium not superimposed on dementia, so described |
+228. |        2776000        Eu04y-1                              [X]Delirium of mixed origin |
+     |----------------------------------------------------------------------------------------|
+229. |        2776000          Eu04z                                                 Delirium |
+290. | 10171000132106   ^ESCT1210636                                Neuropsychiatric symptoms |
+     +----------------------------------------------------------------------------------------+
 
 . 
 . //Check new codes in the context of originally included SNOMED CT Concept ID codes
 . preserve
 
 .         keep if new_snomedct_synonym == 1
-(483 observations deleted)
+(457 observations deleted)
 
 .         keep snomedctconceptid
 
 .         bysort snomedctconceptid: keep if _n == 1
-(4 observations deleted)
+(5 observations deleted)
 
 . 
 .         count
-  3
+  2
 
 .         local obs = r(N)
 
@@ -1454,36 +1729,65 @@ New terms found for: dementia
 .         list medcodeid originalreadcode term new_snomedct_synonym dementia ///
 >                 external_codelist if snomedctconceptid == "`expanded_id'"
   4. }
-SNOMED CT Concept ID for which additional terms where found: 273323004
+SNOMED CT Concept ID for which additional terms where found: 10171000132106
 
-     +---------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                            term   new_sn~m   dementia   extern~t |
-     |---------------------------------------------------------------------------------------------------|
-352. | 5548281000006118   ^ESCTBL554828   Blessed dementia rating scale          0          1          . |
-433. | 5548301000006119   ^ESCTME554830       Memory concentration test          1          1          . |
-     +---------------------------------------------------------------------------------------------------+
-SNOMED CT Concept ID for which additional terms where found: 58756001
+     +-------------------------------------------------------------------------------------------------------------------------------+
+     |         medcodeid   originalre~e                                                        term   new_sn~m   dementia   extern~t |
+     |-------------------------------------------------------------------------------------------------------------------------------|
+289. | 12106351000006118   ^ESCT1210635          Behavioural and psychological symptoms of dementia          0          1          1 |
+290. | 12106361000006116   ^ESCT1210636                                   Neuropsychiatric symptoms          1          1          . |
+291. | 12106371000006111   ^ESCT1210637    BPSD - behavioral and psychological symptoms of dementia          0          1          1 |
+292. | 12106381000006114   ^ESCT1210638   BPSD - behavioural and psychological symptoms of dementia          0          1          1 |
+293. | 12106391000006112   ^ESCT1210639           Behavioral and psychological symptoms of dementia          0          1          1 |
+     +-------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 2776000
 
-     +------------------------------------------------------------------------------------------+
-     |         medcodeid   originalrea~e                  term   new_sn~m   dementia   extern~t |
-     |------------------------------------------------------------------------------------------|
-283. |          97642017            F134   Huntington's chorea          0          1          1 |
-322. | 14195861000006111    ^ESCT1419586    Huntington disease          1          1          . |
-423. |  3454551000006117   ^ESCTHU345455     Huntington chorea          0          1          1 |
-     +------------------------------------------------------------------------------------------+
-SNOMED CT Concept ID for which additional terms where found: 71961003
+     +----------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid   originalrea~e                                                     term   new_sn~m   dementia   extern~t |
+     |----------------------------------------------------------------------------------------------------------------------------|
+ 79. |        483651010            E030                                  Acute confusional state          1          1          . |
+ 80. |  612521000006115          E030-1                                 Delirium - acute organic          1          1          . |
+ 81. |        294704013           E030z                              Acute confusional state NOS          1          1          . |
+223. |  362201000006116          Eu04-1                       [X]Acute / subacute brain syndrome          0          1          1 |
+224. |  362231000006112          Eu04-4                                   Acute organic reaction          0          1          1 |
+     |----------------------------------------------------------------------------------------------------------------------------|
+225. |        295713019           Eu040   [X]Delirium not superimposed on dementia, so described          1          1          . |
+226. |        295714013           Eu041                     [X]Delirium superimposed on dementia          0          1          1 |
+227. |        401831017           Eu04y                                        [X]Other delirium          0          1          1 |
+228. |  376431000006118         Eu04y-1                              [X]Delirium of mixed origin          1          1          . |
+229. |        295718011           Eu04z                                                 Delirium          1          1          . |
+     |----------------------------------------------------------------------------------------------------------------------------|
+316. | 2543161000006110   ^ESCTAC254316                            Acute psycho-organic syndrome          0          1          1 |
+317. | 2543191000006119   ^ESCTAC254319                                     Acute brain syndrome          0          1          1 |
+424. | 2543131000006118   ^ESCTOR254313                                   Organic brain syndrome          0          1          1 |
+     +----------------------------------------------------------------------------------------------------------------------------+
 
-     +-------------------------------------------------------------------------------------------------------+
-     |        medcodeid   originalrea~e                                term   new_sn~m   dementia   extern~t |
-     |-------------------------------------------------------------------------------------------------------|
- 85. |        119579013            E141            Disintegrative psychosis          1          1          . |
- 86. |        119577010          E141-1                   Heller's syndrome          1          1          . |
- 87. |        294941015           E141z        Disintegrative psychosis NOS          1          1          . |
-239. |  376631000006115         Eu843-1              [X]Dementia infantalis          0          1          1 |
-240. |  388761000006114         Eu843-3                [X]Heller's syndrome          1          1          . |
-     |-------------------------------------------------------------------------------------------------------|
-356. | 3670581000006118   ^ESCTCH367058   Childhood disintegrative disorder          1          1          . |
-     +-------------------------------------------------------------------------------------------------------+
+. 
+. //these don't seem quite right
+. list medcodeid term if snomedctconceptid == "2776000"
+
+     +---------------------------------------------------------------------------+
+     |        medcodeid                                                     term |
+     |---------------------------------------------------------------------------|
+ 79. |        483651010                                  Acute confusional state |
+ 80. |  612521000006115                                 Delirium - acute organic |
+ 81. |        294704013                              Acute confusional state NOS |
+223. |  362201000006116                       [X]Acute / subacute brain syndrome |
+224. |  362231000006112                                   Acute organic reaction |
+     |---------------------------------------------------------------------------|
+225. |        295713019   [X]Delirium not superimposed on dementia, so described |
+226. |        295714013                     [X]Delirium superimposed on dementia |
+227. |        401831017                                        [X]Other delirium |
+228. |  376431000006118                              [X]Delirium of mixed origin |
+229. |        295718011                                                 Delirium |
+     |---------------------------------------------------------------------------|
+316. | 2543161000006110                            Acute psycho-organic syndrome |
+317. | 2543191000006119                                     Acute brain syndrome |
+424. | 2543131000006118                                   Organic brain syndrome |
+     +---------------------------------------------------------------------------+
+
+. drop if snomedctconceptid == "2776000"
+(13 observations deleted)
 
 . 
 . 
@@ -1500,10 +1804,9 @@ SNOMED CT Concept ID for which additional terms where found: 71961003
 
 . compress
   variable new_snomedct_synonym was float now byte
-  (1,470 bytes saved)
+  (1,353 bytes saved)
 
 . save `filename', replace
-(file dementia.dta not found)
 file dementia.dta saved
 
 . export excel `filename'_raw.xlsx, firstrow(variables) replace
@@ -1586,7 +1889,6 @@ file dementia_raw.xlsx saved
 file dementia.dta saved
 
 . export delimited `filename', replace quote
-(file dementia.csv not found)
 file dementia.csv saved
 
 . 
@@ -1681,7 +1983,6 @@ v2 was forced to string; some loss of information
 
 . 
 . export delimited "`filename'.meta", replace novarnames delimiter(tab)
-(file dementia.meta not found)
 file dementia.meta saved
 
 . 
@@ -1694,5 +1995,5 @@ file dementia.meta saved
       name:  <unnamed>
        log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\dementia.log
   log type:  text
- closed on:   1 Apr 2025, 21:53:27
+ closed on:  14 May 2025, 05:01:42
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

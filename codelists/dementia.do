@@ -524,7 +524,7 @@ compress
 //=============================================================
 
 // **medcodeids to remove**
-local initial_remove "2247561000000112"
+local initial_remove "2247561000000112 483651010 295718011 97642017 294704013 612521000006115 481281019 376431000006118 403921000006119 295713019 7798761000006110 37365019 123479016 394691000006116 119579013 119577010 7963891000006112 388761000006114 3670581000006118 2551451000006119 3454551000006117 7515071000006112 7963881000006114 2854631000006113 5548301000006119 7771441000006116 12106361000006116 2854601000006117 14195861000006111 7794741000006116 7798771000006115 376631000006115 5548281000006118"
 
 gen byte remove = 0
 
@@ -539,10 +539,10 @@ drop if remove == 1 & external_codelist != 1
 
 //List disagreements between my list and external lists
 replace exclude = 1 if remove == 1
-list term /*lshtm_* oc_**/ if exclude == 1 & external_codelist == 1
+list observations term /*lshtm_* oc_**/ if exclude == 1 & external_codelist == 1
 
 // COMMENT HERE
-// No disagreements.
+// They can go, but need to be aware that external list codes have been removed.
 
 drop if exclude == 1
 drop exclude /**/ /*ANY OTHER EXCLUSION CATEGORIES*/ /**/ remove
@@ -656,6 +656,10 @@ foreach expanded_id of local expanded_ids {
 	list medcodeid originalreadcode term new_snomedct_synonym dementia ///
 		external_codelist if snomedctconceptid == "`expanded_id'"
 }
+
+//these don't seem quite right
+list medcodeid term if snomedctconceptid == "2776000"
+drop if snomedctconceptid == "2776000"
 
 
 // STEP 7. COMPARE LIST WITH PREVIOUS CODELIST
