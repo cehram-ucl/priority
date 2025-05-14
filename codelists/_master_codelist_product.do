@@ -35,7 +35,7 @@ save _master_codelist_product, replace
 // STATINS
 use statins, clear
 
-keep prodcodeid statin
+keep prodcodeid lipid_lowering statin
 
 //Compact version
 save compact/statins, replace
