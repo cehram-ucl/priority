@@ -10,7 +10,8 @@ cd "C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists"
 // ANTIPSYCHOTICS
 use antipsychotics, clear
 
-keep prodcodeid antipsychotic antipsychotic_medication
+keep prodcodeid antipsychotic antipsychotic_medication injected solution ///
+	multiple ap_strength
 
 //Compact version
 save compact/antipsychotics, replace
