@@ -173,12 +173,12 @@ save _master_codelist, replace
 
 
 // SEVERE MENTAL ILLNESS (SMI)
-use "smi(pop def)_snomed_6_PWS_v2", clear
+use "smi(pop def)_snomed_6_PWS_v3", clear
 
-keep medcodeid smi subtype_agreed family_history resolved_remission
+keep medcodeid smi subtype_agreed
 
 //Compact version
-save "compact/smi(pop def)_snomed_6_PWS_v2", replace
+save "compact/smi(pop def)_snomed_6_PWS_v3", replace
 
 //Combined master codelist
 merge 1:1 medcodeid using _master_codelist, nogenerate
