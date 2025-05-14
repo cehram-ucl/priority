@@ -39,6 +39,6 @@ drop family_history resolved_remission
 compress
 save "`filename'", replace
 export delimited "`filename'", replace quote
-
+export excel "`filename'", firstrow(variables) replace
 
 log close
