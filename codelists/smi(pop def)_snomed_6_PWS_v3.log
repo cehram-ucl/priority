@@ -1,0 +1,581 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\smi(pop def)_snomed_6_PWS_v3.log
+  log type:  text
+ opened on:  14 May 2025, 02:40:27
+
+. 
+. 
+. //Import Excel sheet with clinician/my classifications
+. import excel "smi(pop def)_snomed_6_PWS_v2_CCG_PWS_CCG_PWS", firstrow clear
+(14 vars, 1,117 obs)
+
+. 
+. keep medcodeid PWS_2
+
+. 
+. tempfile smi_v3
+
+. save `smi_v3'
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_16f8_000001.tmp saved as .dta format
+
+. 
+. 
+. //Open original DTA file
+. use "smi(pop def)_snomed_6_PWS_v2", clear
+
+. 
+. merge 1:1 medcodeid using `smi_v3'
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                             1,117  (_merge==3)
+    -----------------------------------------
+
+. drop _merge
+
+. 
+. tab PWS_2, missing
+
+      PWS_2 |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |        396       35.45       35.45
+          1 |        721       64.55      100.00
+------------+-----------------------------------
+      Total |      1,117      100.00
+
+. list medcodeid term if PWS_2 != 1
+
+      +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+      |         medcodeid                                                                                                                                              term |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   4. |         105029017                                                                                                               Paranoid schizophrenia in remission |
+   6. |   109941000006110                                                                                                                            Test request : Lithium |
+   7. |  1141911000000113                                                                                                                   Lithium monitoring first letter |
+   8. |  1141951000000112                                                                                                                  Lithium monitoring second letter |
+   9. |  1141991000000116                                                                                                                   Lithium monitoring third letter |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  22. |        1221500015                                                                                                                   Non-alcoholic amnestic syndrome |
+  23. |        1222256015                                                                                                                                          Neurosis |
+  24. |        1222267019                                                                                                                                    Mental illness |
+  25. |        1222549013                                                                                                                                       [D]Senility |
+  31. |         130538010                                                                                                                                 Nervous breakdown |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  40. | 14440551000006110                                                                                                       Bipolar transurethral resection of prostate |
+  44. | 14612951000006111                                                                                                         Organic mental disorder caused by cocaine |
+  45. |        1476267017                                                                                                             Mental Health Care Programme Approach |
+  48. |        1485177010                                                                                                                         At risk of harming others |
+  52. |   155151000006119                                                                                                        Schizoaffective schizophrenia in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  54. |   155281000006119                                                                                                                           Schizotypal personality |
+  56. |    16251000006117                                                                                          Other specific mental disorder post-organic brain damage |
+  57. |  1626591000006114                                                                                                               Family history of psychotic illness |
+  58. |  1658491000000117                                                                                                                             Lithium annual review |
+  59. |  1662121000000117                                                                                                      Lithium level checked at 3 monthly intervals |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  60. |  1667581000000114                                                                                                                    [X]Paranoid state in remission |
+  61. |  1667591000000111                                                                                                              [X]Nonorganic psychosis in remission |
+  63. |  1704631000006116                                                                                                                           Mental health care plan |
+  65. |  1715781000006110                                                                                                Severe major depression without psychotic features |
+  67. |  1755901000006112                                                                [X]Single major depressive episode, severe, with psychosis, psychosis in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  68. |  1755911000006110                                                            [X]Recurrent major depressive episodes, severe, with psychosis, psychosis in remission |
+  70. |        1780266016                                                                                                                              Mental health review |
+  71. |        1780461012                                                                                                                  Under care of mental health team |
+  72. |        1780465015                                                                                                                         Mental health crisis plan |
+  73. |        1780466019                                                                                                           Completion of mental health crisis plan |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  77. |         178723016                                                                                                              Catatonic schizophrenia in remission |
+  81. |   182721000006111                                                                                                               Recurrent major depressive episodes |
+  82. |   182771000006112                                                                                                       Recurrent major depressive episodes, severe |
+  91. |  1971541000006114                                                        Dementia in Alzheimer's disease with early onset, other symptoms, predominantly delusional |
+  99. |  1972041000006114                                                                                    Unspecified dementia, other symptoms, predominantly delusional |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 103. |  1972181000006119                                                         Dementia in Alzheimer's disease with late onset, other symptoms, predominantly delusional |
+ 104. |  1972251000006119                                                     Dementia in Alzheimer's dis, atypical or mixed type, other symptoms, predominantly delusional |
+ 112. |  1972401000006117                                                            Dementia in Alzheimer's disease, unspecified, other symptoms, predominantly delusional |
+ 114. |  1972501000006116                                                                        Vascular dementia of acute onset, other symptoms, predominantly delusional |
+ 115. |  1972731000006119                                                                           Subcortical vascular dementia, other symptoms, predominantly delusional |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 116. |  1972831000006110                                                        Mixed cortical and subcortical vascular dementia, other symptoms, predominantly delusional |
+ 135. |  1973141000006116                                                            Mental and behav dis due to vol solvents: resid & late-onset psychotic dis, flashbacks |
+ 136. |  1973151000006119                                     Mental and behav dis due to vol solvents: resid & late-onset psychotic dis, personality or behaviour disorder |
+ 137. |  1973161000006117                                           Mental and behav dis due to vol solvents: resid & late-onset psychotic dis, residual affective disorder |
+ 138. |  1973171000006112                                                              Mental and behav dis due to vol solvents: resid & late-onset psychotic dis, dementia |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 139. |  1973181000006110                                 Mental and behav dis due to vol solvents: resid & late-onset psychotic dis, other persisting cognitive impairment |
+ 141. |  1973271000006117                                                                                 Other vascular dementia, other symptoms, predominantly delusional |
+ 160. |  1974511000006113                                                                                                        Paranoid schizophrenia, complete remission |
+ 169. |  1974691000006116                                                                                                     Hebephrenic schizophrenia, complete remission |
+ 181. |  1974891000006117                                                                                                       Catatonic schizophrenia, complete remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 193. |  1975301000006116                                                                                                 Post-schizophrenic depression, complete remission |
+ 204. |  1975471000006119                                                                                                        Residual schizophrenia, complete remission |
+ 213. |  1975601000006110                                                                                                          Simple schizophrenia, complete remission |
+ 232. |  1975881000006119                                                                                                           Other schizophrenia, complete remission |
+ 243. |  1976151000006111                                                                                                    Schizophrenia, unspecified, complete remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 256. |   200051000006119                                                                                                                      Psychotropic agent poisoning |
+ 264. |         216611012                                                                                                       Has community mental health team key worker |
+ 265. |         216649011                                                                                              On national service framework mental health register |
+ 266. |   216991000006113                                                                                                                         Post-head injury syndrome |
+ 268. |   220741000006111                                                                                           Poisoning by oth & unspec antipsychotics & neuroleptics |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 271. |   223741000000112                                                                                                                                 Severe depression |
+ 272. |  2243251000000119                                                                                                               Agreeing on mental health care plan |
+ 273. |  2243291000000110                                                                                                                 Review of mental health care plan |
+ 274. |   225991000000117                                                                                                           Mental health monitoring administration |
+ 276. |  2284371000000110                                                                                      Assessment of psychotic and behavioural symptoms of dementia |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 278. |  2290431000000110                                                                                                           Antipsychotic drug therapy for dementia |
+ 279. |          23211011                                                                                                                     Paranoid personality disorder |
+ 283. |        2474691016                                                                                                                   Mental health medication review |
+ 284. |         249860010                                                                                                                                 FH: Schizophrenia |
+ 285. |         249867013                                                                                                                Family history of bipolar disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 286. |  2501991000006111                                                                                                                                 Paranoid reaction |
+ 297. |        2533393016                                                                                                             Mental health monitoring third letter |
+ 298. |        2533415013                                                                                                             Mental health monitoring first letter |
+ 299. |        2533423010                                                                                                            Mental health monitoring second letter |
+ 300. |        2534076017                                                                                                                Mental health personal health plan |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 301. |        2535850012                                                                                                                        Autistic spectrum disorder |
+ 306. |        2549419013                                                                                                        Mental health monitoring verbal invitation |
+ 309. |  2551451000006119                                                                                                                                  Amnesic syndrome |
+ 310. |        2579633010                                                                                                                                            Autism |
+ 312. |  2587491000006110                                                                                                                            Paranoid organic state |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 313. |         259417018                                                                                                                         Lithium level therapeutic |
+ 314. |         259418011                                                                                                                        Lithium level high - toxic |
+ 315. |         259419015                                                                                                                                 Lithium level low |
+ 316. |         264612016                                                                                                                                   Lithium stopped |
+ 320. |  2729731000000113                                                                                                                 Presenile dementia with psychosis |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 322. |  2729991000000112                                                                       Recurrent depression with current severe episode without psychotic features |
+ 327. |  2736701000000113                                                                                                                     CPA - Care Programme Approach |
+ 328. |  2744711000000115                                                                                                                           Care Programme Approach |
+ 332. |  2787801000006118                                                                                                                                Paranoid character |
+ 333. |  2789091000006111                                                                                                                                      Hypochondria |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 336. |         283557017                                                                                                                              Psychiatric day care |
+ 337. |         283787014                                                                                                                          Mental therapy follow-up |
+ 338. |         285228017                                                                                                                         Seen in psychiatry clinic |
+ 340. |  2875981000006116                                                                                                                               Asperger's disorder |
+ 342. |  2876011000006119                                                                                                                                 Asperger disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 343. |  2876021000006110                                                                                                                                Aspergers disorder |
+ 344. |  2885581000006116                                                                                                                                    Crisis therapy |
+ 345. |         294644014                                                                                              Senile dementia with depressive or paranoid features |
+ 346. |         294647019                                                                                          Senile dementia with depressive or paranoid features NOS |
+ 347. |         294660013                                                                                                                 Senile or presenile psychoses NOS |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 357. |         294700016                                                                                                      Acute confusional state, of infective origin |
+ 359. |         294714016                                                                                                                              Postpartum psychosis |
+ 380. |         294740010                                                                                                            Hebephrenic schizophrenia in remission |
+ 398. |         294770017                                                                                                                 Latent schizophrenia in remission |
+ 411. |         294808019                                                                                                            Single manic episode in full remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 418. |         294817019                                                                                                       Recurrent manic episodes, in full remission |
+ 421. |         294836012                                                                                                  Recurrent major depressive episodes, unspecified |
+ 423. |         294845013                                                                                                            Recurrent major depressive episode NOS |
+ 439. |         294876019                                                                                               Mixed bipolar affective disorder, in full remission |
+ 445. |         294887010                                                                                                                Bipolar disorder in full remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 475. |         294964018                                                                                                                              Hysteria unspecified |
+ 476. |         294978017                                                                                                                 Dissociative reaction unspecified |
+ 477. |         295026012                                                                                                                          Other neurotic disorders |
+ 478. |         295031014                                                                                                                       Other occupational neurosis |
+ 479. |         295033012                                                                                                                       Other neurotic disorder NOS |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 480. |         295045015                                                                                                                    Hypomanic personality disorder |
+ 481. |         295049014                                                                                                         Unspecified schizoid personality disorder |
+ 482. |         295052018                                                                                                                 Schizoid personality disorder NOS |
+ 483. |         295478016                                                                                                                     Acute situational disturbance |
+ 484. |         295535012                                                                                                                               Depressive disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 485. |         295653010                                                                                                                    Psychic factor with disease EC |
+ 486. |         295667018                                                                                               [X]Organic, including symptomatic, mental disorders |
+ 488. |         295877018                                                                                                           Cocaine-induced organic mental disorder |
+ 489. |         295951010                                                                                                          Nicotine-induced organic mental disorder |
+ 500. |         296130018                                                                                                                     Bipolar disorder in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 502. |         296209016                                                                                                                 [X]Other mood affective disorders |
+ 503. |         296218019                                                                                                       [X]Other specified mood affective disorders |
+ 504. |         296273016                                                                                                            [X]Dissociative [conversion] disorders |
+ 505. |         296277015                                                                                                                [X]Trance and possession disorders |
+ 506. |         296289018                                                                                                      [X]Mixed dissociative [conversion] disorders |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 507. |         296298015                                                                                                                             Dissociative disorder |
+ 508. |         296341013                                                                                                                       [X]Other neurotic disorders |
+ 509. |         296358015                                                                                                                                          Neurosis |
+ 510. |         296443010                                                                                                         [X]Puerperal mental disorder, unspecified |
+ 511. |         296678017                                                                                                        [X]Other pervasive developmental disorders |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 512. |         296679013                                                                                                  [X]Pervasive developmental disorder, unspecified |
+ 513. |         296765014                                                                                                       [X]Mental disorder, not otherwise specified |
+ 514. |         296766010                                                                                                                  Other specified mental disorders |
+ 515. |         296767018                                                                                                                                   Mental disorder |
+ 519. |  3005591000006114                                                                                                           Disorganised schizophrenia in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 523. |   305391000000118                                                                                                         DNA - Did not attend mental health review |
+ 524. |         306152013                                                                                                Mental disorder in the puerperium - baby delivered |
+ 526. |  3071791000006111                                                                                                                                Depressive illness |
+ 527. |  3071801000006112                                                                                                                                         Depressed |
+ 528. |          30729012                                                                                                                                   Hypochondriasis |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 529. |  3078471000006111                                                                                                                  Pervasive developmental disorder |
+ 530. |  3087971000006112                                                                                      Severe recurrent major depression without psychotic features |
+ 533. |  3137261000006111                                                                                                       Undifferentiated schizophrenia in remission |
+ 534. |  3150771000006112                                                                                                                           Postconcussion syndrome |
+ 535. |  3150801000006114                                                                                                        Nonpsychotic post-traumatic brain syndrome |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 536. |  3150821000006116                                                                                                                         Post-contusional syndrome |
+ 546. |         317932013                                                                                                                [D]Senility, without psychosis NOS |
+ 552. |         324283014                                                                                                                     Other tranquilliser poisoning |
+ 553. |         324286018                                                                                                                       Tranquilliser poisoning NOS |
+ 554. |         324300011                                                                                                                   Poisoning by psychotropic agent |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 555. |         324301010                                                                                                                  Psychotropic agent poisoning NOS |
+ 556. |  3259291000006111                                                                                                                          Cocaine-related disorder |
+ 558. |         345102013                                                                                                                     Post-traumatic brain syndrome |
+ 559. |   345141000006111                                                                                                                          History of mood disorder |
+ 568. |        3515942013                                                                                                                 Postpartum psychosis in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 570. |  3527411000006119                                                                                                              Paranoid schizophrenia, in remission |
+ 572. |  3545241000006114                                                                                                                                     Seeing things |
+ 574. |   359091000006115                                                                                                                       [X] Presenile psychosis NOS |
+ 575. |   359151000006113                                                                                                   [X] Senile dementia, depressed or paranoid type |
+ 576. |   359161000006110                                                                                                                          [X] Senile psychosis NOS |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 578. |   362211000006118                                                                                               [X]Acute / subacute confusional state, nonalcoholic |
+ 590. |  3630091000006111                                                                                                                       Wernicke-Korsakoff syndrome |
+ 594. |  3630161000006116                                                                                                                   Amnesic syndrome due to alcohol |
+ 595. |  3630171000006111                                                                                                                       Alcoholic amnestic syndrome |
+ 597. |   363931000006110                                                                                                                               Asperger's syndrome |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 599. |   366531000006111                                                                                                                                   Atypical autism |
+ 604. |  3670581000006118                                                                                                                 Childhood disintegrative disorder |
+ 614. |   367931000006118                                                                                                                          Body dysmorphic disorder |
+ 621. |   368021000006119                                                                                                                             [X]Briquet's disorder |
+ 629. |  3714651000006118                                                                                                                               Psychiatric illness |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 630. |  3714661000006116                                                                                                                              Psychiatric disorder |
+ 631. |         373672018                                                                                                                              Lithium: blood level |
+ 632. |    37371000006114                                                                                         Other antipsychotics/neuroleptics/tranquilliser poisoning |
+ 633. |  3743451000006110                                                                               Severe major depression, single episode, without psychotic features |
+ 634. |   375721000006119                                                                                                                            [X]Conversion hysteria |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 635. |   375731000006116                                                                                                                            [X]Conversion reaction |
+ 639. |   376461000006110                                                                                       [X]Delirium, not induced by alcohol+other psychoactive subs |
+ 641. |   376631000006115                                                                                                                            [X]Dementia infantalis |
+ 642. |   376691000006116                                                                                                                                        Depression |
+ 643. |   376711000006118                                                                                                                        [X]Depressive disorder NOS |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 644. |   376721000006114                                                                                                                                Depressive episode |
+ 649. |   379411000006119                                                                                                                  [X]Dysmorphophobia nondelusional |
+ 651. |   379781000006118                                                                                               [X]Endogenous depression without psychotic symptoms |
+ 653. |   380231000006114                                                                                                        [X]Expansive paranoid personality disorder |
+ 655. |  3858511000006119                                                                                                                     Nondelusional dysmorphophobia |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 657. |   386711000006110                                                                                                          [X]Fanatic paranoid personality disorder |
+ 660. |  3886291000006119                                                                                                                    Bipolar disorder, in remission |
+ 662. |   388761000006114                                                                                                                              [X]Heller's syndrome |
+ 663. |   389371000006113                                                                                                                       [X]Hypochondriacal disorder |
+ 664. |   389381000006111                                                                                                                       [X]Hypochondriacal neurosis |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 665. |   389391000006114                                                                                                                                [X]Hypochondriasis |
+ 669. |  3894981000006119                                                                                                                Acute non-psychotic brain syndrome |
+ 674. |   391471000006117                               [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at industrial and construction area |
+ 675. |   391851000006113                                      [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at sports and athletics area |
+ 676. |   391861000006110                                          [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at other specified place |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 677. |   391871000006115       [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at school, other institution and public administrative area |
+ 678. |   392161000006112                                                           [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence on farm |
+ 679. |   393531000006117                                             [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence on street and highway |
+ 680. |   393541000006110                                         [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at trade and service area |
+ 681. |   393801000006110                                        [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence in residential institution |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 682. |   393811000006113                                              [X]Intentional self poisoning by and exposure to psychotropic drugs, occurrence at unspecified place |
+ 690. |   396081000006116                                                                                         [X]Major depression, recurrent without psychotic symptoms |
+ 701. |   397151000006113                                                   [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium |
+ 703. |   397171000006115                                                                                      [X]Men & beh dis due seds/hypns: withdrwl state wth delirium |
+ 706. |   397221000006114                                                                                      [X]Men & behav dis due cocaine: withdrawl state wth delirium |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 707. |   397231000006112                                                                                      [X]Men & behav dis due opioid: withdrawl state with delirium |
+ 708. |   397251000006117                                                                                        [X]Men & behav dis due to use cocaine: oth men & behav dis |
+ 709. |   397271000006110                                                 [X]Mental and behavioural disorders due to use of tobacco: other mental and behavioural disorders |
+ 710. |   397301000006112                                                                                       [X]Men/beh dis mlt drg use/oth psy sbs: oth men & behav dis |
+ 712. |   397331000006116                                                                                      [X]Men/behav dis due to use hallucinogens: oth men/behav dis |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 713. |   397341000006114                                                                                      [X]Men/behav dis due to use seds/hypntcs: oth men/behav disd |
+ 714. |   397351000006111                                                                                      [X]Men/behav dis due to use vol solvents: oth men/behav disd |
+ 715. |   397431000006111                                                                                        [X]Ment & behav dis due use alcohol: unsp ment & behav dis |
+ 716. |   397441000006118                                                                                        [X]Ment & behav dis due use cocaine: unsp ment & behav dis |
+ 717. |   397451000006116                                                                                        [X]Ment & behav dis due use opioids: unsp ment & behav dis |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 718. |   397461000006119                                            [X]Mental and behavioural disorders due to use of tobacco: unspecified mental and behavioural disorder |
+ 719. |   397471000006114                                                                                                                      Psychoactive substance abuse |
+ 720. |   397491000006110                                                                                      [X]Ment/behav dis due to use oth stims inc caff: harmful use |
+ 721. |   397511000006116                                                                                      [X]Ment/behav dis due use hallucinogens: unsp ment/behav dis |
+ 722. |   397521000006112                                                                                      [X]Ment/behav dis due use seds/hypntcs: unsp ment/behav disd |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 723. |   397531000006110                                                                                       [X]Ment/behav dis due use vol solvents: unsp ment/behav dis |
+ 725. |   397561000006118                                                                                         [X]Mental & behav dis due hallucinogens: acute intoxicatn |
+ 726. |   397571000006113                                                                                        [X]Mental & behav dis due seds/hypntcs: acute intoxication |
+ 731. |   397631000006114                                                                                      [X]Mental & behav dis due to use cocaine: acute intoxication |
+ 734. |   397671000006112                                                                     [X]Mental and behavioural disorders due to use of tobacco: acute intoxication |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 737. |   397711000006111                                                            [X]Mental and behavioural disorders due to use of other stimulants, including caffeine |
+ 738. |   397741000006110                                                                 [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state |
+ 739. |   397751000006112                                                                                        [X]Mental and behav dis due seds/hypntcs: withdrawal state |
+ 740. |         397798013                                                                                                                      Relative - psychotic illness |
+ 741. |   397821000006110                                                                                      [X]Mental and behav dis due to use cannabinoids: amnesic syn |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 742. |   397841000006115                                                                                      [X]Mental and behav dis due to use cocaine: amnesic syndrome |
+ 743. |   397861000006116                                                                                      [X]Mental and behav dis due to use cocaine: withdrawal state |
+ 744. |   397871000006111                                                                                      [X]Mental and behav dis due to use hallucinogens: harmfl use |
+ 745. |   397921000006118                                                                                      [X]Mental and behav dis due to use opioids: amnesic syndrome |
+ 746. |   397951000006110                                                                                      [X]Mental and behav dis due to use seds/hypntcs: amnesic syn |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 747. |   397961000006112                                                                                      [X]Mental and behav dis due to use seds/hypntcs: harmful use |
+ 748. |   397971000006117                                                                                      [X]Mental and behav dis due to use tobacco: amnesic syndrome |
+ 749. |   397981000006119                                                                                      [X]Mental and behav dis due to use tobacco: dependence syndr |
+ 750. |   398001000006114                                                                                      [X]Mental and behav dis due to use vol solvents: amnesic syn |
+ 751. |   398011000006112                                                                                      [X]Mental and behav dis due to vol solvents: dependence synd |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 752. |   398021000006116                                                                                      [X]Mental and behav dis due use hallucinogens: amnesic syndr |
+ 753. |   398041000006111                                                                                        [X]Mental and behav dis due volatile solvents: harmful use |
+ 754. |   398061000006110                                                                                      [X]Mental and behav dis mlti/oth psych sbs: dependence syndr |
+ 755. |   398071000006115                                                                                      [X]Mental and behav dis mlti/oth psychoa sbs: withdrwl state |
+ 756. |   398081000006117                                                                                      [X]Mental and behav dis oth stim inc caffein: dependnce synd |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 757. |   398091000006119                                                                                       [X]Mental and behav dis oth stims inc caffeine: amnesic syn |
+ 758. |   398101000006113                                                      [X]Mental and behavioural disorders associated with the puerperium, not elsewhere classified |
+ 759. |   398111000006111                                                                                         [X]Mental and behavioural dis due use sedatives/hypnotics |
+ 760. |   398161000006114                                                                                      [X]Mental and behavioural disorders due to use hallucinogens |
+ 761. |   398241000006118                                                                                                      [X]Mental retardation with autistic features |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 762. |   398271000006114                                                                                      [X]Mental/behav dis multi drg use/psychoac subs: acute intox |
+ 764. |   398421000006112                                                 [X]Mild mental and behavioural disorders associated with the puerperium, not elsewhere classified |
+ 766. |  3984651000006110                                                                                                            Psychoactive substance misuse disorder |
+ 769. |   398681000006114                                                                                      [X]Mnt/behav dis other stimlnts inc caffeine: withdrwl state |
+ 773. |   398721000006119                                                                                      [X]Mnt/bh dis mlti drg use/oth psy sbs: wthdr state + dlrium |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 774. |   398731000006116                                                                                      [X]Mnt/bh dis oth stims inc caffne: withdr state wt delirium |
+ 777. |   398841000006119                                                                                                                       [X]Monopolar depression NOS |
+ 778. |   398851000006117                                                                                                                                Affective disorder |
+ 780. |   399981000006111                                                                                              [X]Neurotic, stress-related and somatoform disorders |
+ 781. |   400201000006111                                                                                                                                     [X]Nosophobia |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 782. |         401757012                                                                                                 Senile and presenile organic psychotic conditions |
+ 783. |         401759010                                                                                                      Other senile and presenile organic psychoses |
+ 791. |         401779019                                                                                                                                      Hysteria NOS |
+ 792. |         401783019                                                                                                                             Neurotic disorder NOS |
+ 793. |         401838011                                                                                                                           Organic mental disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 803. |         401866015                                                                                           [X]Severe depressive episode without psychotic symptoms |
+ 805. |         401871010                                                                                                                      [X]Other depressive episodes |
+ 806. |         401872015                                                                                                                [X]Depressive episode, unspecified |
+ 807. |         401877014                                                                                                          [X]Other single mood affective disorders |
+ 808. |         401879012                                                                                                            [X]Unspecified mood affective disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 809. |         401885017                                                                                                      [X]Other dissociative [conversion] disorders |
+ 810. |         401888015                                                                                                             [X]Other specified neurotic disorders |
+ 811. |         401910019                                                                                                        [X]Other childhood disintegrative disorder |
+ 812. |         402397010                                                                                                                                          Senility |
+ 813. |         402503018                                                                                                               Neurotic condition, insight present |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 815. |         402505013                                                                                                              Poor insight into neurotic condition |
+ 817. |   403921000006119                                                                                                                                 Amnestic disorder |
+ 818. |   403941000006114                                                                                                                     [X]Organic brain syndrome NOS |
+ 822. |   404001000006114                                                                                                                    [X]Organic mental disorder NOS |
+ 825. |         404498017                                                                                                                               Serum lithium level |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 826. |   404831000006112                                                [X]Other mental and behavioural disorders associated with the puerperium, not elsewhere classified |
+ 827. |   404841000006119                                                                                      [X]Oth mental disorder brain damag/dysfunction/physical disr |
+ 828. |   404911000006113                                                                                       [X]Oth organ personality behav disorders brain dis dam dysf |
+ 829. |   405051000006114                                                                                      [X]Oth sp mental disord brain damag/dysfunction/physcal disd |
+ 830. |          40578019                                                                                                                               Crisis intervention |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 831. |   407141000000112                                                                                                         Mental health monitoring telephone invite |
+ 832. |   407421000000110                                                                                                                    Mental health review follow-up |
+ 834. |         411950013                                                                                                                     O/E - senility - no psychosis |
+ 836. |   417681000006116                                                                                       [X]Overactive disorder assoc mental retard/stereotype movts |
+ 839. |   418201000006111                                                                                                                  [X]Paranoid personality disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 844. |         418921010                                                                                                      History of schizophrenia in child of subject |
+ 845. |  4196071000006119                                                                                                                      Nonpsychotic mental disorder |
+ 846. |  4196201000006119                                                                                                        Mixed bipolar I disorder in full remission |
+ 848. |   420401000006115                                                                                        [X]Personal history/other mental and behavioural disorders |
+ 849. |   420411000006117                                                                                      [X]Personality and behav disorder brain dis dam and dysfunct |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 850. |   420581000006111                                                                                                                          Autism spectrum disorder |
+ 851. |   421321000006111                                  [X]Poisoning by and exposure to psychotropic drugs, occurrence at sports and athletics area, undetermined intent |
+ 852. |   421331000006114                           [X]Poisoning by and exposure to psychotropic drugs, occurrence at industrial and construction area, undetermined intent |
+ 853. |   421341000006116   [X]Poisoning by and exposure to psychotropic drugs, occurrence at school, other institution and public administrative area, undetermined intent |
+ 854. |   421471000006116                                      [X]Poisoning by and exposure to psychotropic drugs, occurrence at other specified place, undetermined intent |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 855. |   421751000006118                                         [X]Poisoning by and exposure to psychotropic drugs, occurrence on street and highway, undetermined intent |
+ 856. |   421761000006116                                     [X]Poisoning by and exposure to psychotropic drugs, occurrence at trade and service area, undetermined intent |
+ 858. |   422001000006111                                    [X]Poisoning by and exposure to psychotropic drugs, occurrence in residential institution, undetermined intent |
+ 860. |   422011000006114                                          [X]Poisoning by and exposure to psychotropic drugs, occurrence at unspecified place, undetermined intent |
+ 861. |   422321000006115                                                       [X]Poisoning by and exposure to psychotropic drugs, occurrence at home, undetermined intent |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 862. |   422331000006117                                                       [X]Poisoning by and exposure to psychotropic drugs, occurrence on farm, undetermined intent |
+ 863. |   422501000006115                                                                                        [X]Poisoning by oth & unspec antipsychotics & neuroleptics |
+ 864. |   422751000006113                                                                                                     [X]Poisoning by other psychotropic drugs, NEC |
+ 865. |   422891000006113                                                                           [X]Poisoning by and exposure to psychotropic drugs, undetermined intent |
+ 868. |   423061000006115                                                                                                                  [X]Post-traumatic brain syndrome |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 869. |   423091000006111                                                                                                                        Post-concussional syndrome |
+ 870. |   423101000006117                                                                                                                       [X]Postcontusional syndrome |
+ 875. |   423801000006114                                                                                                                         [X]Psychasthenia neurosis |
+ 879. |   424331000006112                                                                                                                 [X]Querulant personality disorder |
+ 881. |   424531000006118                                                                                      [X]Recurr depress disorder cur epi severe without psyc sympt |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 898. |   425591000006118                                                                                                                  [X]Schizoid personality disorder |
+ 909. |   425911000006118                                                                                                        [X]Sensitive paranoid personality disorder |
+ 913. |   426891000006114                                                                                 [X] Single episode agitated depression without psychotic symptoms |
+ 918. |   426991000006118                                                                                       [X]Single episode vital depression w'out psychotic symptoms |
+ 922. |   430341000006111                                                                                      [X]Unspec mental disorder brain damag/dysfunction/physcal dr |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 923. |   430371000006115                                                                                      [X]Unspec organ personality behav disorder brain dam dysfunc |
+ 924. |   432511000006119                                                                                         [X]Vital depression, recurrent without psychotic symptoms |
+ 926. |         441826016                                                                                                                             Endogenous depression |
+ 928. |         447957012                                                                                                                        Under care of psychiatrist |
+ 929. |         448203011                                                                                                                     Seen by forensic psychiatrist |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 930. |  4529581000006119                                                                                                                   Family history of schizophrenia |
+ 931. |  4529591000006116                                                                                                                     Family history: Schizophrenia |
+ 932. |  4529651000006111                                                                                                            Family history: Manic-depressive state |
+ 933. |  4539841000006112                                                                                                                 History of - psychiatric disorder |
+ 934. |  4539851000006114                                                                                                                   History of psychiatric disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 939. |         460272010                                                                                                            [V]Personal history of mental disorder |
+ 941. |         460274011                                                                                                                     History of affective disorder |
+ 942. |         460275012                                                                                                                   [V]Personal history of neurosis |
+ 943. |         460278014                                                                                            [V]Personal history of other specified mental disorder |
+ 944. |         460279018                                                                                                [V]Personal history of unspecified mental disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 945. |   473201000006114                                                                                                                                     Mood disorder |
+ 949. |   476361000006114                                                                                                                         Alcohol amnestic syndrome |
+ 954. |  4766731000006112                                                                                                                 Transient situational disturbance |
+ 955. |  4766741000006119                                                                                                          Brief situational non-psychotic disorder |
+ 960. |         492615014                                                                                                                          Post-concussion syndrome |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 961. |   492761000000114                                                                                                               Bipolar affective disorder resolved |
+ 962. |   492821000000113                                                                                                                            Schizophrenia resolved |
+ 963. |   492881000000114                                                                                                                                Psychosis resolved |
+ 966. |         493878012                                                                                                                                          Hysteria |
+ 978. |  5024421000006110                                                                                                                        Atypical autistic syndrome |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 991. |   513811000006110                                                                                    Bipolar affective disorder, currently manic, in full remission |
+ 992. |   513861000006113                                                                                Bipolar affective disorder, currently depressed, in full remission |
+ 998. |  5387561000006118                                                                                                                                 Bipolar diathermy |
+1013. |  5731271000006111                                                                                                                             Poisoning by CNS drug |
+1014. |   585791000006114                                                                                        Nonpsychotic mental disorder post-organic brain damage NOS |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1015. |   585801000006110                                                                             Specific nonpsychotic mental disorders following organic brain damage |
+1021. |    63241000000119                                                                                                             Referral to mental health crisis team |
+1022. |  6348061000006115                                                                                                                    Senile dementia with psychosis |
+1027. |   675731000006112                                                                                                             Neuroses or other mental disorder NOS |
+1028. |   675881000006115                                                                                                                                 Neurotic disorder |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1029. |   675921000006111                                                                                            Neurotic, personality and other nonpsychotic disorders |
+1034. |   698801000006112                                                                                                                            Mental health disorder |
+1038. |   707511000006117                                                                                                                        FH: Manic-depressive state |
+1039. |   712611000000110                                                                                                   Mental health care program approach crisis plan |
+1040. |   712631000000119                                                                                                 Mental health care programme approach crisis plan |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1045. |   741241000006115                                                                                                                         Lithium level therapeutic |
+1046. |  7515091000006113                                                                                                                  Delusional disorder in remission |
+1053. |  7826381000006113                                                                                 Hysteroscopic bipolar electrosurgical excision of uterine fibroid |
+1054. |  7849081000006116                                                                                               Bipolar type I disorder currently in full remission |
+1065. |   798571000006111                                                                                                                    Ganser's syndrome - hysterical |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1068. |  8060711000006119                                                                                                               Did not attend mental health review |
+1069. |  8079901000006116                                                                                                     Mental health monitoring telephone invitation |
+1075. |  8232521000006119                                                                                                                       Paranoid state in remission |
+1076. |  8232541000006114                                                                                                                Non-organic psychosis in remission |
+1077. |  8232571000006118                                                                   Single major depressive episode, severe, with psychosis, psychosis in remission |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1078. |  8232591000006117                                                               Recurrent major depressive episodes, severe, with psychosis, psychosis in remission |
+1080. |  8237821000006118                                                                                                            Recurrent manic episodes, in remission |
+1081. |  8237871000006117                                                                                                                 Single manic episode in remission |
+1082. |  8302181000006114                                                                                   Hysteroscopic bipolar electrosurgical excision of uterine polyp |
+1088. |  8466151000006114                                                                                                               Antipsychotic drug therapy declined |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1090. |   851701000006114                                                                                                                                          Paranoid |
+1091. |   853201000006116                                                                                                                  Obsessional compulsive psychosis |
+1092. |   853501000006119                                                                                                                       Schizophrenic mother in law |
+1093. |          88108012                                                                                                                     Schizoid personality disorder |
+1094. |   882171000006115                                                                                                                                          Dementia |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1095. |   882181000006117                                                                                                                    Other senile/presenile dement. |
+1096. |   882191000006119                                                                                                                    Senile and presenile dementias |
+1097. |   882251000006117                                                                                                                               Puerperal psychosis |
+1104. |   882341000006114                                                                                                                            Other mental disorders |
+1105. |   882351000006111                                                                                                                                          Neuroses |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1106. |   882661000006117                                                                                                                        Post concussional syndrome |
+1107. |   882751000006112                                                                                                                        Other mental disorders NOS |
+1110. |           9225016                                                                                                                        Schizophrenia in remission |
+1112. |     9331000006113                                                                                                Other specified neuroses or other mental disorders |
+1115. |   980101000006116                                                                                      [X]Mental behav disorders due use crack cocaine: harmful use |
+      |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+1117. |   996171000006114                                                                                  Psychosis, schizophrenia and bipolar affective disorder resolved |
+      +---------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. keep if PWS_2 == 1
+(396 observations deleted)
+
+. drop PWS_2
+
+. 
+. tab1 family_history resolved_remission, missing
+
+-> tabulation of family_history  
+
+family_hist |
+        ory |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          . |        721      100.00      100.00
+------------+-----------------------------------
+      Total |        721      100.00
+
+-> tabulation of resolved_remission  
+
+resolved_re |
+    mission |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         16        2.22        2.22
+          . |        705       97.78      100.00
+------------+-----------------------------------
+      Total |        721      100.00
+
+. drop family_history resolved_remission
+
+. 
+. 
+. //Save updated version of SMI codelist
+. compress
+  variable originalreadcode was str19 now str15
+  variable subtype_agreed was str39 now str25
+  variable term was strL now str130
+  (13,587 bytes saved)
+
+. save "`filename'", replace
+file smi(pop def)_snomed_6_PWS_v3.dta saved
+
+. export delimited "`filename'", replace quote
+file smi(pop def)_snomed_6_PWS_v3.csv saved
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\smi(pop def)_snomed_6_PWS_v3.log
+  log type:  text
+ closed on:  14 May 2025, 02:40:27
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
