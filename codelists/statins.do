@@ -213,9 +213,9 @@ foreach bnf_section of local lipid_lowering {
 	}
 }
 
-generate byte statin = (atorvastatin == 1 | cerivastatin == 1 ///
-	| fluvastatin == 1 | pravastatin == 1 | rosuvastatin == 1 ///
-	| simvastatin == 1)
+generate byte statin = 1 ///
+	if atorvastatin == 1 | cerivastatin == 1 | fluvastatin == 1 ///
+		| pravastatin == 1 | rosuvastatin == 1 | simvastatin == 1
 	
 foreach bnf_section of local lipid_lowering {
 	
@@ -529,7 +529,7 @@ list prodcodeid termfromemis if lipid_lowering_count == .
 // STEP 7. EXPORT CODELIST FOR REVIEW BY A CLINICIAN
 //===================================================
 
-gsort /**/bnf0212/**/ -drugissues dmdid
+gsort /**/statin/**/ -drugissues dmdid
 compress
 save `filename', replace
 export excel `filename'_raw.xlsx, firstrow(variables) replace
