@@ -1,0 +1,1614 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\alcohol_consumption.log
+  log type:  text
+ opened on:  25 Jun 2025, 21:05:16
+
+. 
+. 
+. //= CPRD LOOKUP LOCATION - would be good to get this in a shared location ======
+. 
+. //*Directory of medical dictionary*
+. local browser_dir "C:/Users/rmjlton.AD/OneDrive - University College London/CPRD/CPRD Aurum/Lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //*Directory of label lookups*
+. local lookup_dir "C:/Users/rmjlton.AD/OneDrive - University College London/CPRD/CPRD Aurum/Lookups/`aurum_build'_Lookups_CPRDAurum"
+
+. 
+. //==============================================================================
+. 
+. //Import latest medical browser; force medcodeid, SNOMED CT Description ID, and SNOMED CT Concept ID to be string
+. //import delimited "`browser_dir'/CPRDAurumMedical.txt", stringcols(1 6 7) favorstrfixed
+. import delimited "`browser_dir'/`aurum_build'_EMISMedicalDictionary.txt", stringcols(1 6 7) favorstrfixed
+(encoding automatically selected: UTF-8)
+(9 vars, 240,999 obs)
+
+. 
+. //Drop useless variables
+. drop release emiscodecategoryid
+
+. 
+. order medcodeid observations originalreadcode cleansedreadcode ///
+>         snomedctconceptid snomedctdescriptionid term
+
+. 
+. //Save medical code browser to a tempfile
+. tempfile medical
+
+. save `medical'
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_2e2c_000001.tmp saved as .dta format
+
+. 
+. 
+. // SKIP STEPS 1 & 2, USE PRE-EXISTING CODELIST INSTEAD
+. //=====================================================
+. 
+. //Use pre-existing codelist
+. import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/37/covariate_alcohol_aurum.txt, stringcols(1) favorstrfixed clear
+(encoding automatically selected: ISO-8859-1)
+(4 vars, 470 obs)
+
+. 
+. tab1 alcstatus alclevel, missing
+
+-> tabulation of alcstatus  
+
+  alcstatus |      Freq.     Percent        Cum.
+------------+-----------------------------------
+       curr |        408       86.81       86.81
+         ex |         22        4.68       91.49
+        non |         14        2.98       94.47
+    unknown |         26        5.53      100.00
+------------+-----------------------------------
+      Total |        470      100.00
+
+-> tabulation of alclevel  
+
+   alclevel |      Freq.     Percent        Cum.
+------------+-----------------------------------
+            |        126       26.81       26.81
+          H |        332       70.64       97.45
+          L |         10        2.13       99.57
+          M |          2        0.43      100.00
+------------+-----------------------------------
+      Total |        470      100.00
+
+. 
+. //Generate tidier variables
+. label define alcstatus 1 "Non-drinker" 2 "Ex-drinker" 3 "Current drinker" ///
+>         99 "Unknown"
+
+. replace alcstatus = "1" if alcstatus == "non"
+(14 real changes made)
+
+. replace alcstatus = "2" if alcstatus == "ex"
+(22 real changes made)
+
+. replace alcstatus = "3" if alcstatus == "curr"
+(408 real changes made)
+
+. replace alcstatus = "99" if alcstatus == "unknown"
+(26 real changes made)
+
+. destring alcstatus, replace
+alcstatus: all characters numeric; replaced as byte
+
+. label values alcstatus alcstatus
+
+. 
+. label define alclevel 1 "Light drinker" 2 "Moderate drinker" 3 "Heavy drinker"
+
+. replace alclevel = "1" if alclevel == "L"
+(10 real changes made)
+
+. replace alclevel = "2" if alclevel == "M"
+(2 real changes made)
+
+. replace alclevel = "3" if alclevel == "H"
+(332 real changes made)
+
+. destring alclevel, replace
+alclevel: all characters numeric; replaced as byte
+(126 missing values generated)
+
+. label values alclevel alclevel
+
+. 
+. rename term term_old
+
+. 
+. //Merge with version of CPRD medical dictionary used for study
+. merge 1:1 medcodeid using `medical', update replace
+(variable medcodeid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,539
+        from master                         5  (_merge==1)
+        from using                    240,534  (_merge==2)
+
+    Matched                               465
+        not updated                       465  (_merge==3)
+        missing updated                     0  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. drop if _merge == 2
+(240,534 observations deleted)
+
+. 
+. //List terms not in this version of the Aurum medical dictionary
+. list medcodeid term_old alcstatus alclevel if _merge == 1
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                             term_old         alcstatus        alclevel |
+     |-----------------------------------------------------------------------------------------------------------------------------------------|
+ 27. | 1662551000006113                                                dental recall - excessive alcohol use   Current drinker   Heavy drinker |
+ 42. | 1808601000006116                                          oatp - outpatient alcohol treatment program   Current drinker   Heavy drinker |
+ 45. | 1894171000006111                                                          alcohol dependence resolved   Current drinker               . |
+ 84. | 2008681000006113   mhip clinical assess. - patient under influence of alcohol and/or other substances   Current drinker               . |
+401. | 6881361000006110                                                              suspected alcohol abuse   Current drinker   Heavy drinker |
+     +-----------------------------------------------------------------------------------------------------------------------------------------+
+
+. drop if _merge == 1
+(5 observations deleted)
+
+. drop _merge
+
+. 
+. //Compare codelist and dictionary terms
+. list medcodeid term term_old if lower(term) != lower(term_old)
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                        term                                                       term_old |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  3. |  117761000006116                                                        Denies alcohol abuse                                 suspect alcohol abuse - denied |
+ 18. |         14103017                                              Alcohol-induced polyneuropathy                                       alcoholic polyneuropathy |
+ 28. | 1680121000006110              Brief intervention for excessive alcohol consumption completed   brief intervention for excessive alcohol consumptn completed |
+ 29. | 1680131000006113           Extended intervention for excessive alcohol consumption completed   extended intervention for excessive alcohol consumptn complt |
+ 30. | 1704281000006117               Brief intervention for excessive alcohol consumption declined    brief intervention for excessive alcohol consumptn declined |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 37. | 1754191000006119            Extended intervention for excessive alcohol consumption declined   extended interven for excessive alcohol consumption declined |
+ 44. | 1926131000006117   Referral to mental health services deferred until alcohol misuse resolved    refer to mh services deferred until alcohol misuse resolved |
+ 82. |  217461000000118                                                               Non - drinker                                            current non drinker |
+ 83. |  223671000000110                                                       Hangover from alcohol                                             hangover (alcohol) |
+ 84. |  226571000000116                                   Alcohol misuse enhanced service completed                    alcohol misuse - enhanced service completed |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 87. |  236441000000113                             Alcohol misuse enhanced services administration              alcohol misuse - enhanced services administration |
+ 89. |  240741000006114                                         Education about alcohol consumption                                  patient advised about alcohol |
+162. |        295136019                                                          Alcohol dependence                                 unspecified chronic alcoholism |
+174. |        295765017                                     Alcohol-induced organic mental disorder      [x]mental and behavioural disorders due to use of alcohol |
+179. |        303399018                                                      Alcoholic liver damage                             alcoholic liver damage unspecified |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+183. |  315091000000117                                          Alcohol withdrawal-induced seizure                          [x]alcohol withdrawal-induced seizure |
+186. |        317636014                                                 High ethanol level in blood                               [d]alcohol blood level excessive |
+197. |  346501000006111                                                  History of substance abuse                   [v]problems related to lifestyle alcohol use |
+198. |        346929012                                                          Alcoholic dementia                                         alcoholic dementia nos |
+200. |        346931015                                                                 Drunkenness                                                drunkenness nos |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+213. |  362251000006117                                                        Alcohol intoxication                                 [x]acute alcoholic drunkenness |
+217. |  362951000006110                                                      Alcoholic hallucinosis                                      [x]alcoholic hallucinosis |
+238. |  380081000006115                                                 Finding of alcohol in blood    [x]eviden of alcohl involv blood alcohl level <20 mg/100 ml |
+251. |  394681000006119                                                       Korsakoff's psychosis                       [x]korsakov's psychosis, alcohol induced |
+257. |  397621000006111                                                   Alcohol-induced psychosis   [x]mental & behav dis due to use alcohol: psychotic disorder |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+259. |  397791000006118                                                   Alcohol amnestic disorder   [x]mental and behav dis due to use alcohol: amnesic syndrome |
+262. |  397881000006114                                                               Alcohol abuse     [x]mental and behav dis due to use of alcohol: harmful use |
+289. |        461112017                                                      Alcoholism counselling                  [v]alcohol abuse counselling and surveillance |
+290. |  464381000006118                                Alcohol metabolism modifier adverse reaction                         adverse reaction to alcohol deterrents |
+297. |  476701000006114                                                            Alcohol myopathy                                             alcoholic myopathy |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+298. |  476741000006111                                                   Alcohol-induced psychosis                                            alcoholic psychoses |
+367. |  556651000000116                                             Alcohol units consumed per week                                         alcohol units per week |
+391. |  629811000006113                                                          Occasional drinker                                            drinks occasionally |
+410. |  753331000006118                                                Korsakov alcoholic psychosis                                 korsakov's alcoholic psychosis |
+433. |  817981000006115                                                  Health education - alcohol                                           health ed. - alcohol |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+458. |  936001000006111                                      Advice relating to alcohol consumption                             lifestyle advice regarding alcohol |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //EVERYTHING LOOKS FINE
+. 
+. generate byte alcohol = 1
+
+. drop term_old
+
+. order alcstatus alclevel, last
+
+. 
+. gsort alcstatus alclevel
+
+. 
+. 
+. // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
+. //================================================================================
+. 
+. //Comment out this section if not required.
+. 
+. // **Exclusion terms**
+. 
+. local exclude " "*family*" "*maternal*care*" "
+
+. 
+. //Search for codes to exclude
+. foreach excludeterm in exclude /**/familyhistory/**/ {
+  2. 
+.         gen byte `excludeterm' = .
+  3. 
+.         foreach codeterm in lower(term) {
+  4.                 
+.                 foreach searchterm in ``excludeterm'' {         
+  5.                         
+.                         replace `excludeterm' = 1 if strmatch(`codeterm', "`searchterm'")
+  6.                 }
+  7.         }
+  8. }
+(465 missing values generated)
+(1 real change made)
+(1 real change made)
+(465 missing values generated)
+
+. 
+. //Check that nothing important is highlighted for exclusion before dropping
+. list observations term if exclude == 1
+
+     +-----------------------------------------------------------------------+
+     | observ~s                                                         term |
+     |-----------------------------------------------------------------------|
+ 66. |       30   Maternal care for (suspected) damage to fetus from alcohol |
+373. |        1                                         Alcoholism in family |
+     +-----------------------------------------------------------------------+
+
+. 
+. drop if exclude == 1
+(2 observations deleted)
+
+. 
+. drop exclude
+
+. count
+  463
+
+. compress
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str15
+  variable snomedctconceptid was str18 now str17
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str153
+  (40,744 bytes saved)
+
+. 
+. 
+. // STEP 4. MANUAL SCREEN OF CODELIST TO REMOVE UNDESIRED TERMS
+. //=============================================================
+. 
+. // **medcodeids to remove**
+. local initial_remove "5497631000006115 3367991000006112 346501000006111"
+
+. 
+. gen byte remove = 0
+
+. 
+. foreach medcode of local initial_remove {
+  2.         
+.         replace remove = 1 if medcodeid == "`medcode'"
+  3. }
+(1 real change made)
+(1 real change made)
+(1 real change made)
+
+. 
+. list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+
+     +----------------------------------------------------------------------------------------+
+     |        medcodeid   snomed~nid   snome~tid   originalrea~e                         term |
+     |----------------------------------------------------------------------------------------|
+107. |  346501000006111   1196720012   371422002         ZV113-1   History of substance abuse |
+121. | 5497631000006115    397871015   267026004   ^ESCTCA549763         Cannot stop drinking |
+393. | 3367991000006112     89002016    53527002   ^ESCTAL336799           Alcoholic beverage |
+     +----------------------------------------------------------------------------------------+
+
+. drop if remove == 1
+(3 observations deleted)
+
+. drop remove
+
+. 
+. compress
+  (0 bytes saved)
+
+. tab1 /**/alcohol alcstatus alclevel/**/
+
+-> tabulation of alcohol  
+
+    alcohol |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        460      100.00      100.00
+------------+-----------------------------------
+      Total |        460      100.00
+
+-> tabulation of alcstatus  
+
+      alcstatus |      Freq.     Percent        Cum.
+----------------+-----------------------------------
+    Non-drinker |         14        3.04        3.04
+     Ex-drinker |         22        4.78        7.83
+Current drinker |        398       86.52       94.35
+        Unknown |         26        5.65      100.00
+----------------+-----------------------------------
+          Total |        460      100.00
+
+-> tabulation of alclevel  
+
+        alclevel |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+   Light drinker |         10        2.97        2.97
+Moderate drinker |          2        0.59        3.56
+   Heavy drinker |        325       96.44      100.00
+-----------------+-----------------------------------
+           Total |        337      100.00
+
+. 
+. 
+. //Recode to "Current drinker" status
+. local current "4978411000006113 4978421000006117 451082013"
+
+. 
+. foreach medcode of local current {
+  2.         
+.         replace alcstatus = 3 if medcodeid == "`medcode'"
+  3.         display "Recoded to Current drinker"
+  4.         list term alcstatus if medcodeid == "`medcode'"
+  5. }
+(1 real change made)
+Recoded to Current drinker
+
+     +------------------------------------------------------+
+     |                               term         alcstatus |
+     |------------------------------------------------------|
+443. | Drinks alcohol evenly through week   Current drinker |
+     +------------------------------------------------------+
+(1 real change made)
+Recoded to Current drinker
+
+     +--------------------------------------------------------+
+     |                                 term         alcstatus |
+     |--------------------------------------------------------|
+448. | Drinks alcohol unevenly through week   Current drinker |
+     +--------------------------------------------------------+
+(1 real change made)
+Recoded to Current drinker
+
+     +-----------------------------------+
+     |            term         alcstatus |
+     |-----------------------------------|
+441. | [V] Alcohol use   Current drinker |
+     +-----------------------------------+
+
+. 
+. //Recode to "Unknown" status
+. local unknown "6289331000006118 6282101000006116 14147511000006111 476501000006115 14147521000006115"
+
+. 
+. foreach medcode of local unknown {
+  2.         
+.         replace alcstatus = 99 if medcodeid == "`medcode'"
+  3.         display "Recoded to Unknown"
+  4.         list term alcstatus if medcodeid == "`medcode'"
+  5. }
+(1 real change made)
+Recoded to Unknown
+
+     +-----------------------------------+
+     |                   term   alcsta~s |
+     |-----------------------------------|
+427. | Drink intake - finding    Unknown |
+     +-----------------------------------+
+(1 real change made)
+Recoded to Unknown
+
+     +-------------------------------------+
+     |                     term   alcsta~s |
+     |-------------------------------------|
+405. | Alcohol intake - finding    Unknown |
+     +-------------------------------------+
+(1 real change made)
+Recoded to Unknown
+
+     +--------------------------------------+
+     |                      term   alcsta~s |
+     |--------------------------------------|
+407. | Alcoholic beverage intake    Unknown |
+     +--------------------------------------+
+(1 real change made)
+Recoded to Unknown
+
+     +---------------------------+
+     |           term   alcsta~s |
+     |---------------------------|
+397. | Alcohol intake    Unknown |
+     +---------------------------+
+(1 real change made)
+Recoded to Unknown
+
+     +-----------------------------------+
+     |                   term   alcsta~s |
+     |-----------------------------------|
+395. | Alcoholic drink intake    Unknown |
+     +-----------------------------------+
+
+. 
+. //Recode to "Heavy drinker" level
+. local heavy "401797010"
+
+. 
+. foreach medcode of local heavy {
+  2.         
+.         replace alclevel = 3 if medcodeid == "`medcode'"
+  3.         display "Recoded to Heavy"
+  4.         list term alcstatus alclevel if medcodeid == "`medcode'"
+  5. }
+(1 real change made)
+Recoded to Heavy
+
+     +--------------------------------------------------------------+
+     |                       term         alcstatus        alclevel |
+     |--------------------------------------------------------------|
+376. | Nondependent alcohol abuse   Current drinker   Heavy drinker |
+     +--------------------------------------------------------------+
+
+. 
+. gsort alcstatus alclevel
+
+. 
+. 
+. // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
+. //==========================================================================
+. 
+. //Check for missing SNOMED CT Concepts
+. codebook snomedctconceptid
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+snomedctconceptid                                                                                                                                              SnomedCTConceptId
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: String (str17)
+
+         Unique values: 324                       Missing "": 0/460
+
+              Examples: "191812006"
+                        "228326007"
+                        "361267005"
+                        "67426006"
+
+. assert !missing(snomedctconceptid)
+
+. 
+. count
+  460
+
+. 
+. //Make a note of current list
+. preserve
+
+.         keep medcodeid /**/alcohol alcstatus alclevel/**/
+
+.         gen byte original = 1
+
+.         tempfile original
+
+.         save `original'
+file C:\Users\rmjlton.AD\AppData\Local\Temp\ST_2e2c_000003.tmp saved as .dta format
+
+. restore
+
+. 
+. //Merge SNOMED CT Concepts with medical dictionary
+. keep snomedctconceptid /**/alcohol alcstatus alclevel/**/
+
+. gsort /**/alcohol -alcstatus -alclevel/**/  //prioritise worst or missing
+
+. bysort snomedctconceptid: keep if _n == 1
+(136 observations deleted)
+
+. 
+. //Merge with original search results
+. merge 1:m snomedctconceptid using `medical', nogenerate keep(match)
+(variable snomedctconceptid was str17, now str18 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             0
+    Matched                               569  
+    -----------------------------------------
+
+. compress
+  variable snomedctconceptid was str18 now str17
+  variable medcodeid was str18 now str17
+  variable originalreadcode was str19 now str15
+  variable snomedctdescriptionid was str18 now str16
+  variable term was str233 now str153
+  (50,072 bytes saved)
+
+. merge 1:1 medcodeid using `original', update replace
+(label alclevel already defined)
+(label alcstatus already defined)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                           109
+        from master                       109  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                               460
+        not updated                       458  (_merge==3)
+        missing updated                     2  (_merge==4)
+        nonmissing conflict                 0  (_merge==5)
+    -----------------------------------------
+
+. list medcodeid term alcstatus alclevel if _merge > 3  //conflicts
+
+     +-----------------------------------------------------------------------------------------+
+     |        medcodeid                                 term         alcstatus        alclevel |
+     |-----------------------------------------------------------------------------------------|
+194. |        317636014          High ethanol level in blood   Current drinker   Heavy drinker |
+494. | 6769921000006111   Alcohol abuse prevention education   Current drinker   Heavy drinker |
+     +-----------------------------------------------------------------------------------------+
+
+. drop _merge
+
+. order snomedctconceptid, before(snomedctdescriptionid)
+
+. order /**/alcohol alcstatus alclevel/**/, last
+
+. gsort /**/alcohol alcstatus alclevel/**/ originalreadcode
+
+. 
+. //Label new codes
+. gen new_snomedct_synonym = (original != 1)
+
+. drop original
+
+. 
+. //Show new codes
+. foreach category of varlist /**/alcohol/**/ {
+  2.         
+.         display "New terms found for: `category'"
+  3.         list snomedctconceptid term if new_snomedct_synonym == 1
+  4. }
+New terms found for: alcohol
+
+     +--------------------------------------------------------------------------------------------------------------------------------------------------+
+     | snome~tid                                                                                                                                   term |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+  6. | 105542008                                                                                                                              Abstinent |
+ 23. | 371422002                                                                                                            History of substance misuse |
+ 31. | 371422002                                                                                                             History of substance abuse |
+ 32. | 371422002                                                                                    [V]Personal history of psychoactive substance abuse |
+ 33. | 371422002                                                                                                             History of substance abuse |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+229. |  91388009                                                                           [X]Men & behav dis due opioid: withdrawl state with delirium |
+230. |  91388009                                                                           [X]Mental and behav dis due to use opioids: amnesic syndrome |
+231. |  91388009                                                                             [X]Ment & behav dis due use opioids: unsp ment & behav dis |
+232. |  91388009                                                                           [X]Mental and behav dis due to use cannabinoids: amnesic syn |
+233. |  91388009                                                                           [X]Mnt/bh dis due cannabinds: resid & late-onset psychot dis |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+234. |  91388009                                                                              [X]Mental and behavioural dis due use sedatives/hypnotics |
+235. |  91388009                                                                             [X]Mental & behav dis due seds/hypntcs: acute intoxication |
+236. |  91388009                                                                           [X]Mental and behav dis due to use seds/hypntcs: harmful use |
+237. |  91388009                                                                             [X]Mental and behav dis due seds/hypntcs: withdrawal state |
+238. |  91388009                                                                           [X]Men & beh dis due seds/hypns: withdrwl state wth delirium |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+239. |  91388009                                                                           [X]Mental and behav dis due to use seds/hypntcs: amnesic syn |
+240. |  91388009                                                                           [X]Mnt/bh dis due seds/hypns: resid & late-onset psychot dis |
+241. |  91388009                                                                           [X]Men/behav dis due to use seds/hypntcs: oth men/behav disd |
+242. |  91388009                                                                           [X]Ment/behav dis due use seds/hypntcs: unsp ment/behav disd |
+243. |  91388009                                                                           [X]Mental & behav dis due to use cocaine: acute intoxication |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+244. |  91388009                                                                           [X]Mental and behav dis due to use cocaine: withdrawal state |
+245. |  91388009                                                                           [X]Men & behav dis due cocaine: withdrawl state wth delirium |
+246. |  91388009                                                                           [X]Mental and behav dis due to use cocaine: amnesic syndrome |
+247. |  91388009                                                                           [X]Men & beh dis due cocaine: resid & late-onset psychot dis |
+248. |  91388009                                                                             [X]Ment & behav dis due use cocaine: unsp ment & behav dis |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+249. |  91388009                                                 [X]Mental and behavioural disorders due to use of other stimulants, including caffeine |
+250. |  91388009                                                                           [X]Ment/behav dis due to use oth stims inc caff: harmful use |
+251. |  91388009                                                                           [X]Mental and behav dis oth stim inc caffein: dependnce synd |
+252. |  91388009                                                                           [X]Mnt/behav dis other stimlnts inc caffeine: withdrwl state |
+253. |  91388009                                                                           [X]Mnt/bh dis oth stims inc caffne: withdr state wt delirium |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+254. |  91388009                                                                            [X]Mental and behav dis oth stims inc caffeine: amnesic syn |
+255. |  91388009                                                                           [X]Mental and behavioural disorders due to use hallucinogens |
+256. |  91388009                                                                              [X]Mental & behav dis due hallucinogens: acute intoxicatn |
+257. |  91388009                                                                           [X]Mental and behav dis due to use hallucinogens: harmfl use |
+258. |  91388009                                                      [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+259. |  91388009                                        [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium |
+260. |  91388009                                                                           [X]Mental and behav dis due use hallucinogens: amnesic syndr |
+261. |  91388009                                                                           [X]Mnt/bh dis due hallucngns: resid & late-onset psychot dis |
+262. |  91388009                                                                                               [X]Post hallucinogen perception disorder |
+263. |  91388009                                                                           [X]Men/behav dis due to use hallucinogens: oth men/behav dis |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+264. |  91388009                                                                           [X]Ment/behav dis due use hallucinogens: unsp ment/behav dis |
+265. |  91388009                                                                             [X]Mental and behav dis due volatile solvents: harmful use |
+266. |  91388009                                                                           [X]Mental and behav dis due to vol solvents: dependence synd |
+267. |  91388009                                                                           [X]Mental and behav dis due to use vol solvents: amnesic syn |
+268. |  91388009                                                                           [X]Mnt/bh dis vol solvents: resid & late-onset psychotic dis |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+269. |  91388009                                                                           [X]Men/behav dis due to use vol solvents: oth men/behav disd |
+270. |  91388009                                                                            [X]Ment/behav dis due use vol solvents: unsp ment/behav dis |
+271. |  91388009                                                                           [X]Mental/behav dis multi drg use/psychoac subs: acute intox |
+272. |  91388009                                                                           [X]Mental and behav dis mlti/oth psych sbs: dependence syndr |
+273. |  91388009                                                                           [X]Mental and behav dis mlti/oth psychoa sbs: withdrwl state |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+274. |  91388009                                                                           [X]Mnt/bh dis mlti drg use/oth psy sbs: wthdr state + dlrium |
+275. |  91388009                                                                            [X]Men/beh dis mlt drg use/oth subs: resid/late psychot dis |
+276. |  91388009                                                                            [X]Men/beh dis mlt drg use/oth psy sbs: oth men & behav dis |
+277. |  91388009                                                                                                           Psychoactive substance abuse |
+307. |  82782008                                                                                                          Toxic effect of ethyl alcohol |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+308. |  82782008                                                                                                           Ethyl alcohol - toxic effect |
+309. |  82782008                                                                                                           Ethanol causing toxic effect |
+310. |  82782008                                                                                                 Ethyl alcohol causing toxic effect NOS |
+311. |  67426006                                                                                                     Other alcohol causing toxic effect |
+312. |  67426006                                                                                                       Alcohol causing toxic effect NOS |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+314. |  67426006                                                                                                                Toxic effect of alcohol |
+317. |  67426006                                                           [X]Intentional self poisoning by and exposure to alcohol, occurrence at home |
+318. |  67426006                                        [X]Intentional self poisoning by and exposure to alcohol, occurrence in residential institution |
+319. |  67426006       [X]Intentional self poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area |
+320. |  67426006                                      [X]Intentional self poisoning by and exposure to alcohol, occurrence at sports and athletics area |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+321. |  67426006                                             [X]Intentional self poisoning by and exposure to alcohol, occurrence on street and highway |
+322. |  67426006                                         [X]Intentional self poisoning by and exposure to alcohol, occurrence at trade and service area |
+323. |  67426006                               [X]Intentional self poisoning by and exposure to alcohol, occurrence at industrial and construction area |
+324. |  67426006                                                           [X]Intentional self poisoning by and exposure to alcohol, occurrence on farm |
+325. |  67426006                                          [X]Intentional self poisoning by and exposure to alcohol, occurrence at other specified place |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+326. |  67426006                                              [X]Intentional self poisoning by and exposure to alcohol, occurrence at unspecified place |
+327. |  67426006                                                                           [X]Poisoning by and exposure to alcohol, undetermined intent |
+328. |  67426006                                                       [X]Poisoning by and exposure to alcohol, occurrence at home, undetermined intent |
+329. |  67426006                                    [X]Poisoning by and exposure to alcohol, occurrence in residential institution, undetermined intent |
+330. |  67426006   [X]Poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area, undetermined intent |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+331. |  67426006                                  [X]Poisoning by and exposure to alcohol, occurrence at sports and athletics area, undetermined intent |
+332. |  67426006                                         [X]Poisoning by and exposure to alcohol, occurrence on street and highway, undetermined intent |
+333. |  67426006                                     [X]Poisoning by and exposure to alcohol, occurrence at trade and service area, undetermined intent |
+334. |  67426006                           [X]Poisoning by and exposure to alcohol, occurrence at industrial and construction area, undetermined intent |
+335. |  67426006                                                       [X]Poisoning by and exposure to alcohol, occurrence on farm, undetermined intent |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+336. |  67426006                                      [X]Poisoning by and exposure to alcohol, occurrence at other specified place, undetermined intent |
+337. |  67426006                                          [X]Poisoning by and exposure to alcohol, occurrence at unspecified place, undetermined intent |
+345. |  25702006                                                                           [X]Evid alcoh invol detrm by pres alcoh in bld levl not spec |
+364. |  25702006                                                                                                                       Acute alcoholism |
+366. | 445452008                                            Addiction Research Foundation CIWA-A (Clinical Institute Withdrawal Assessment for Alcohol) |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+367. |    281004                                                                                                    Alcohol-induced persisting dementia |
+374. |  29212009                                                                                                               Alcohol-related disorder |
+378. |  42344001                                                                                                              Alcohol induced psychosis |
+399. | 361273006                                                                                             Alcoholic cerebellar degeneration syndrome |
+432. |  91388009                                                                                             Disorder due to psychoactive substance use |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+433. |  25702006                                                                                                                                  Drunk |
+439. | 228354000                                                                                                                          Drunk driving |
+441. |  15167005                                                                                                                          Ethanol abuse |
+442. | 442669008                                                                  Ethanol in blood specimen above legal threshold for operating vehicle |
+443. | 160592001                                                                                                          Excessive ethanol consumption |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+451. |  69482004                                                                                                                    Korsakoff psychosis |
+452. |  69482004                                                                                                          Korsakov syndrome - alcoholic |
+453. |  69482004                                                                                                                     Korsakov psychosis |
+459. |  27134008                                                                                                         Poisoning by alcohol deterrent |
+461. |  91388009                                                                                                 Psychoactive substance misuse disorder |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+477. |  69482004                                                                                                            Wernicke-Korsakoff syndrome |
+489. | 419442005                                                                                                                                Ethanol |
+524. | 419442005                                                                                                                                Ethanol |
+525. | 419442005                                                                                                                          Ethyl alcohol |
+527. | 419442005                                                                                                                         EtOH - Ethanol |
+     |--------------------------------------------------------------------------------------------------------------------------------------------------|
+530. | 228273003                                                                                         Finding relating to alcohol drinking behaviour |
+532. |  32553006                                                                                                                               Hangover |
+534. | 228285006                                                                                                                           Home drinker |
+564. | 160573003                                                                                                                         Ethanol intake |
+     +--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. //Check new codes in the context of originally included SNOMED CT Concept ID codes
+. preserve
+
+.         keep if new_snomedct_synonym == 1
+(460 observations deleted)
+
+.         keep snomedctconceptid
+
+.         bysort snomedctconceptid: keep if _n == 1
+(87 observations deleted)
+
+. 
+.         count
+  22
+
+.         local obs = r(N)
+
+. 
+.         forvalues i = 1/`obs' {
+  2.                 
+.                 if `i' == 1 {
+  3.                         
+.                         local expanded_ids = snomedctconceptid in `i'
+  4.                 }
+  5.                 else {
+  6.                         
+.                         local expanded_ids = "`expanded_ids' " + snomedctconceptid in `i'
+  7.                 }
+  8.         }
+
+. restore
+
+. 
+. foreach expanded_id of local expanded_ids {
+  2.         
+.         display "SNOMED CT Concept ID for which additional terms where found: `expanded_id'"
+  3.         
+.         list medcodeid term new_snomedct_synonym alcstatus alclevel ///
+>                 if snomedctconceptid == "`expanded_id'"
+  4. }
+SNOMED CT Concept ID for which additional terms where found: 105542008
+
+     +---------------------------------------------------------------------------------------+
+     |        medcodeid                             term   new_sn~m     alcstatus   alclevel |
+     |---------------------------------------------------------------------------------------|
+  1. |        291355016                      Teetotaller          0   Non-drinker          . |
+  2. |  587231000006111              Non drinker alcohol          0   Non-drinker          . |
+  3. |        291352018              Non-drinker alcohol          0   Non-drinker          . |
+  4. |  217461000000118                    Non - drinker          0   Non-drinker          . |
+  6. | 4120321000006111                        Abstinent          1   Non-drinker          . |
+     |---------------------------------------------------------------------------------------|
+  8. | 4120381000006110   Current non-drinker of alcohol          0   Non-drinker          . |
+  9. | 4120351000006119           Does not drink alcohol          0   Non-drinker          . |
+ 13. | 4120341000006116                     Never drinks          0   Non-drinker          . |
+ 14. | 4120371000006112            Non - drinker alcohol          0   Non-drinker          . |
+     +---------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 15167005
+
+     +------------------------------------------------------------------------------------+
+     |        medcodeid                 term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------|
+ 63. |  606991000000117       Alcohol misuse          0   Current drinker   Heavy drinker |
+208. |  397881000006114        Alcohol abuse          0   Current drinker   Heavy drinker |
+362. | 2740361000006119   AA - Alcohol abuse          0   Current drinker   Heavy drinker |
+441. | 2740351000006116        Ethanol abuse          1   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 160573003
+
+     +-----------------------------------------------------------------------------+
+     |        medcodeid                      term   new_sn~m   alcsta~s   alclevel |
+     |-----------------------------------------------------------------------------|
+541. |       1221271018       Alcohol consumption          0    Unknown          . |
+543. |  476411000006118   Alcohol consumption NOS          0    Unknown          . |
+550. | 4533151000006116       AI - Alcohol intake          0    Unknown          . |
+553. | 4533141000006118            Alcohol intake          0    Unknown          . |
+554. | 4533191000006110    Alcoholic drink intake          0    Unknown          . |
+     |-----------------------------------------------------------------------------|
+564. | 4533161000006119            Ethanol intake          1    Unknown          . |
+565. | 4533171000006114     ETOH - Alcohol intake          0    Unknown          . |
+     +-----------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 160592001
+
+     +------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                               term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------------------------------------|
+ 57. |        250335018   Alcohol intake above recommended sensible limits          0   Current drinker   Heavy drinker |
+443. | 4533431000006118                      Excessive ethanol consumption          1   Current drinker   Heavy drinker |
+444. | 4533451000006113                      Excessive alcohol consumption          0   Current drinker   Heavy drinker |
+445. | 4533461000006110                              Excessive alcohol use          0   Current drinker   Heavy drinker |
+479. | 4533441000006111                 XS - Excessive alcohol consumption          0   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 228273003
+
+     +-----------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                             term   new_sn~m         alcstatus   alclevel |
+     |-----------------------------------------------------------------------------------------------------------|
+504. | 4977891000006117                       Alcohol drinking behaviour          0   Current drinker          . |
+505. | 4977901000006118                        Alcohol drinking behavior          0   Current drinker          . |
+530. | 4977871000006118   Finding relating to alcohol drinking behaviour          1   Current drinker          . |
+     +-----------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 228285006
+
+     +---------------------------------------------------------------------------+
+     |        medcodeid             term   new_sn~m         alcstatus   alclevel |
+     |---------------------------------------------------------------------------|
+514. | 4978121000006114   Drinks at home          0   Current drinker          . |
+534. | 4978131000006112     Home drinker          1   Current drinker          . |
+     +---------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 228354000
+
+     +-------------------------------------------------------------------------------+
+     |        medcodeid            term   new_sn~m         alcstatus        alclevel |
+     |-------------------------------------------------------------------------------|
+438. | 4978911000006116   Drink driving          0   Current drinker   Heavy drinker |
+439. | 4978921000006112   Drunk driving          1   Current drinker   Heavy drinker |
+     +-------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 25702006
+
+     +------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                           term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------------------------------------------------|
+147. |        346931015                                                    Drunkenness          0   Current drinker   Heavy drinker |
+148. |        346930019                                                  Inebriety NOS          0   Current drinker   Heavy drinker |
+149. |  769451000006111                                         Intoxication - alcohol          0   Current drinker   Heavy drinker |
+206. |  397611000006115   [X]Mental & behav dis due to use alcohol: acute intoxication          0   Current drinker   Heavy drinker |
+207. |  362251000006117                                           Alcohol intoxication          0   Current drinker   Heavy drinker |
+     |------------------------------------------------------------------------------------------------------------------------------|
+345. |  380021000006119   [X]Evid alcoh invol detrm by pres alcoh in bld levl not spec          1   Current drinker   Heavy drinker |
+346. |  380031000006116   [X]Evid of alcohol involv determind by level of intoxication          0   Current drinker   Heavy drinker |
+347. |  380011000006110   [X]Evid alcoh invol determ by levl of intox mild alcoh intox          0   Current drinker   Heavy drinker |
+348. |  379991000006118   [X]Evid alcoh invol determ by level of intox mod alcoh intox          0   Current drinker   Heavy drinker |
+349. |  380001000006112   [X]Evid alcoh invol determ by level of intox sev alcoh intox          0   Current drinker   Heavy drinker |
+     |------------------------------------------------------------------------------------------------------------------------------|
+350. |  379981000006116   [X]Evid alcoh invl determ by levl intox very sev alcoh intox          0   Current drinker   Heavy drinker |
+351. |  379971000006119   [X]Evid alch invl detrm by levl intox alch invl not oth spec          0   Current drinker   Heavy drinker |
+364. | 2911271000006113                                               Acute alcoholism          1   Current drinker   Heavy drinker |
+365. | 2911291000006114                                     Acute alcohol intoxication          0   Current drinker   Heavy drinker |
+433. | 2911301000006110                                                          Drunk          1   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 27134008
+
+     +------------------------------------------------------------------------------------------------+
+     |        medcodeid                             term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------------------|
+303. |       1225183017      Alcohol deterrent poisoning          0   Current drinker   Heavy drinker |
+459. | 2934661000006111   Poisoning by alcohol deterrent          1   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 281004
+
+     +-----------------------------------------------------------------------------------------------------+
+     |        medcodeid                                  term   new_sn~m         alcstatus        alclevel |
+     |-----------------------------------------------------------------------------------------------------|
+117. |        401760017              Other alcoholic dementia          0   Current drinker   Heavy drinker |
+118. |        346929012                    Alcoholic dementia          0   Current drinker   Heavy drinker |
+224. |  362941000006113             [X]Alcoholic dementia NOS          0   Current drinker   Heavy drinker |
+367. | 2502981000006117   Alcohol-induced persisting dementia          1   Current drinker   Heavy drinker |
+426. | 2502971000006115   Dementia associated with alcoholism          0   Current drinker   Heavy drinker |
+     +-----------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 29212009
+
+     +----------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                         term   new_sn~m         alcstatus        alclevel |
+     |----------------------------------------------------------------------------------------------------------------------------|
+205. |        295765017                      Alcohol-induced organic mental disorder          0   Current drinker   Heavy drinker |
+227. |  397241000006119   [X]Men & behav dis due to use alcohol: oth men & behav dis          0   Current drinker   Heavy drinker |
+374. | 2969641000006116                                     Alcohol-related disorder          1   Current drinker   Heavy drinker |
+     +----------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 32553006
+
+     +----------------------------------------------------------------------------------+
+     |        medcodeid                    term   new_sn~m         alcstatus   alclevel |
+     |----------------------------------------------------------------------------------|
+490. |  223671000000110   Hangover from alcohol          0   Current drinker          . |
+532. | 3024491000006118                Hangover          1   Current drinker          . |
+     +----------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 361273006
+
+     +------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                         term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------------------------------|
+398. | 6221531000006118            Alcoholic cerebellar degeneration          0   Current drinker   Heavy drinker |
+399. | 6221541000006111   Alcoholic cerebellar degeneration syndrome          1   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 371422002
+
+     +------------------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                  term   new_sn~m    alcstatus   alclevel |
+     |------------------------------------------------------------------------------------------------------------|
+ 23. |   497451000000119                           History of substance misuse          1   Ex-drinker          . |
+ 30. |         460276013                     [V]Personal history of alcoholism          0   Ex-drinker          . |
+ 31. |   346501000006111                            History of substance abuse          1   Ex-drinker          . |
+ 32. |         460277016   [V]Personal history of psychoactive substance abuse          1   Ex-drinker          . |
+ 33. | 12703401000006113                            History of substance abuse          1   Ex-drinker          . |
+     +------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 419442005
+
+     +---------------------------------------------------------------------------+
+     |        medcodeid             term   new_sn~m         alcstatus   alclevel |
+     |---------------------------------------------------------------------------|
+489. |  419221000033114          Ethanol          1   Current drinker          . |
+524. | 6937391000006117          Ethanol          1   Current drinker          . |
+525. | 6937401000006115    Ethyl alcohol          1   Current drinker          . |
+526. | 6937411000006117   EtOH - Alcohol          0   Current drinker          . |
+527. | 6937421000006113   EtOH - Ethanol          1   Current drinker          . |
+     +---------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 42344001
+
+     +------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                           term   new_sn~m         alcstatus        alclevel |
+     |------------------------------------------------------------------------------------------------------------------------------|
+108. |  476741000006111                                      Alcohol-induced psychosis          0   Current drinker   Heavy drinker |
+124. |        294673012                                      Other alcoholic psychosis          0   Current drinker   Heavy drinker |
+127. |        294675017                                  Other alcoholic psychosis NOS          0   Current drinker   Heavy drinker |
+128. |        294676016                                        Alcoholic psychosis NOS          0   Current drinker   Heavy drinker |
+216. |  397621000006111                                      Alcohol-induced psychosis          0   Current drinker   Heavy drinker |
+     |------------------------------------------------------------------------------------------------------------------------------|
+218. |  362961000006112                                          [X]Alcoholic jealousy          0   Current drinker   Heavy drinker |
+219. |  362971000006117                                          [X]Alcoholic paranoia          0   Current drinker   Heavy drinker |
+220. |  362981000006119                                     [X]Alcoholic psychosis NOS          0   Current drinker   Heavy drinker |
+223. |  397201000006116   [X]Men & behav dis due alcoh: resid & late-onset psychot dis          0   Current drinker   Heavy drinker |
+378. | 3182591000006114                                      Alcohol induced psychosis          1   Current drinker   Heavy drinker |
+     +------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 442669008
+
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                    term   new_sn~m         alcstatus        alclevel |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+340. |  380121000006118             [X]Eviden of alcohl involv blood alcohl level 80-99mg/100ml          0   Current drinker   Heavy drinker |
+341. |  380051000006111             [X]Eviden of alcoh involv blood alcoh level 100-119mg/100ml          0   Current drinker   Heavy drinker |
+342. |  380061000006113             [X]Eviden of alcoh involv blood alcoh level 120-199mg/100ml          0   Current drinker   Heavy drinker |
+343. |  380071000006118             [X]Eviden of alcoh involv blood alcoh level 200-239mg/100ml          0   Current drinker   Heavy drinker |
+344. |  380041000006114            [X]Eviden alcoh involv blood alcoh level 240mg/100ml or more          0   Current drinker   Heavy drinker |
+     |---------------------------------------------------------------------------------------------------------------------------------------|
+442. | 7266731000006111   Ethanol in blood specimen above legal threshold for operating vehicle          1   Current drinker   Heavy drinker |
+     +---------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 445452008
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                                          term   new_sn~m         alcstatus        alclevel |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ 73. | 1901211000006117            Addiction Research Foundation Clinical Institute Withdrawal Assessment for Alcohol          0   Current drinker   Heavy drinker |
+366. | 7308391000006116   Addiction Research Foundation CIWA-A (Clinical Institute Withdrawal Assessment for Alcohol)          1   Current drinker   Heavy drinker |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 67426006
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+304. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     |       500729017 |                                                                                                         Alcohol causing toxic effect |        0 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+305. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 991151000006114 |                                                                                                           Alcohol NOS - toxic effect |        0 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+306. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 899411000006110 |                                                                                                             Toxic effects of alcohol |        0 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+311. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     |       324488015 |                                                                                                   Other alcohol causing toxic effect |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+312. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     |       324489011 |                                                                                                     Alcohol causing toxic effect NOS |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+314. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     |       325596018 |                                                                                                              Toxic effect of alcohol |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+317. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391941000006118 |                                                         [X]Intentional self poisoning by and exposure to alcohol, occurrence at home |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+318. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 393591000006118 |                                      [X]Intentional self poisoning by and exposure to alcohol, occurrence in residential institution |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+319. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391521000006119 |     [X]Intentional self poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+320. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391501000006112 |                                    [X]Intentional self poisoning by and exposure to alcohol, occurrence at sports and athletics area |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+321. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 393311000006117 |                                           [X]Intentional self poisoning by and exposure to alcohol, occurrence on street and highway |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+322. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 393321000006113 |                                       [X]Intentional self poisoning by and exposure to alcohol, occurrence at trade and service area |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+323. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391351000006115 |                             [X]Intentional self poisoning by and exposure to alcohol, occurrence at industrial and construction area |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+324. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391951000006116 |                                                         [X]Intentional self poisoning by and exposure to alcohol, occurrence on farm |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+325. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 391511000006110 |                                        [X]Intentional self poisoning by and exposure to alcohol, occurrence at other specified place |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+326. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 393601000006114 |                                            [X]Intentional self poisoning by and exposure to alcohol, occurrence at unspecified place |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+327. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 422801000006118 |                                                                         [X]Poisoning by and exposure to alcohol, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+328. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 422121000006117 |                                                     [X]Poisoning by and exposure to alcohol, occurrence at home, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+329. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 421791000006112 |                                  [X]Poisoning by and exposure to alcohol, occurrence in residential institution, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+330. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 420991000006116 | [X]Poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+331. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 420981000006119 |                                [X]Poisoning by and exposure to alcohol, occurrence at sports and athletics area, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+332. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 421521000006118 |                                       [X]Poisoning by and exposure to alcohol, occurrence on street and highway, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+333. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 421531000006115 |                                   [X]Poisoning by and exposure to alcohol, occurrence at trade and service area, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+334. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 422381000006116 |                         [X]Poisoning by and exposure to alcohol, occurrence at industrial and construction area, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+335. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 422131000006119 |                                                     [X]Poisoning by and exposure to alcohol, occurrence on farm, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+336. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 421381000006110 |                                    [X]Poisoning by and exposure to alcohol, occurrence at other specified place, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+337. |       medcodeid |                                                                                                                                 term | new_sn~m |
+     | 421801000006113 |                                        [X]Poisoning by and exposure to alcohol, occurrence at unspecified place, undetermined intent |        1 |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     |                                       alcstatus                                  |                                      alclevel                                  |
+     |                                 Current drinker                                  |                                 Heavy drinker                                  |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 69482004
+
+     +-------------------------------------------------------------------------------------------------+
+     |        medcodeid                              term   new_sn~m         alcstatus        alclevel |
+     |-------------------------------------------------------------------------------------------------|
+112. |  476361000006114         Alcohol amnestic syndrome          0   Current drinker   Heavy drinker |
+113. |  753331000006118      Korsakov alcoholic psychosis          0   Current drinker   Heavy drinker |
+115. |        501294012        Wernicke-Korsakov syndrome          0   Current drinker   Heavy drinker |
+222. |  394681000006119             Korsakoff's psychosis          0   Current drinker   Heavy drinker |
+382. | 3630171000006111       Alcoholic amnestic syndrome          0   Current drinker   Heavy drinker |
+     |-------------------------------------------------------------------------------------------------|
+415. | 3630161000006116   Amnesic syndrome due to alcohol          0   Current drinker   Heavy drinker |
+451. | 3630121000006110               Korsakoff psychosis          1   Current drinker   Heavy drinker |
+452. | 3630141000006115     Korsakov syndrome - alcoholic          1   Current drinker   Heavy drinker |
+453. | 3630151000006118                Korsakov psychosis          1   Current drinker   Heavy drinker |
+477. | 3630091000006111       Wernicke-Korsakoff syndrome          1   Current drinker   Heavy drinker |
+     +-------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 82782008
+
+     +--------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                     term   new_sn~m         alcstatus        alclevel |
+     |--------------------------------------------------------------------------------------------------------|
+307. |  649311000006115            Toxic effect of ethyl alcohol          1   Current drinker   Heavy drinker |
+308. |  899421000006119             Ethyl alcohol - toxic effect          1   Current drinker   Heavy drinker |
+309. |       1234742013             Ethanol causing toxic effect          1   Current drinker   Heavy drinker |
+310. |        324467012   Ethyl alcohol causing toxic effect NOS          1   Current drinker   Heavy drinker |
+383. | 3846821000006114                        Alcohol poisoning          0   Current drinker   Heavy drinker |
+     +--------------------------------------------------------------------------------------------------------+
+SNOMED CT Concept ID for which additional terms where found: 91388009
+
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                                              term   new_sn~m         alcstatus        alclevel |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+228. |  397431000006111                                        [X]Ment & behav dis due use alcohol: unsp ment & behav dis          0   Current drinker   Heavy drinker |
+229. |  397231000006112                                      [X]Men & behav dis due opioid: withdrawl state with delirium          1   Current drinker   Heavy drinker |
+230. |  397921000006118                                      [X]Mental and behav dis due to use opioids: amnesic syndrome          1   Current drinker   Heavy drinker |
+231. |  397451000006116                                        [X]Ment & behav dis due use opioids: unsp ment & behav dis          1   Current drinker   Heavy drinker |
+232. |  397821000006110                                      [X]Mental and behav dis due to use cannabinoids: amnesic syn          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+233. |  398691000006112                                      [X]Mnt/bh dis due cannabinds: resid & late-onset psychot dis          1   Current drinker   Heavy drinker |
+234. |  398111000006111                                         [X]Mental and behavioural dis due use sedatives/hypnotics          1   Current drinker   Heavy drinker |
+235. |  397571000006113                                        [X]Mental & behav dis due seds/hypntcs: acute intoxication          1   Current drinker   Heavy drinker |
+236. |  397961000006112                                      [X]Mental and behav dis due to use seds/hypntcs: harmful use          1   Current drinker   Heavy drinker |
+237. |  397751000006112                                        [X]Mental and behav dis due seds/hypntcs: withdrawal state          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+238. |  397171000006115                                      [X]Men & beh dis due seds/hypns: withdrwl state wth delirium          1   Current drinker   Heavy drinker |
+239. |  397951000006110                                      [X]Mental and behav dis due to use seds/hypntcs: amnesic syn          1   Current drinker   Heavy drinker |
+240. |  398711000006110                                      [X]Mnt/bh dis due seds/hypns: resid & late-onset psychot dis          1   Current drinker   Heavy drinker |
+241. |  397341000006114                                      [X]Men/behav dis due to use seds/hypntcs: oth men/behav disd          1   Current drinker   Heavy drinker |
+242. |  397521000006112                                      [X]Ment/behav dis due use seds/hypntcs: unsp ment/behav disd          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+243. |  397631000006114                                      [X]Mental & behav dis due to use cocaine: acute intoxication          1   Current drinker   Heavy drinker |
+244. |  397861000006116                                      [X]Mental and behav dis due to use cocaine: withdrawal state          1   Current drinker   Heavy drinker |
+245. |  397221000006114                                      [X]Men & behav dis due cocaine: withdrawl state wth delirium          1   Current drinker   Heavy drinker |
+246. |  397841000006115                                      [X]Mental and behav dis due to use cocaine: amnesic syndrome          1   Current drinker   Heavy drinker |
+247. |  397141000006111                                      [X]Men & beh dis due cocaine: resid & late-onset psychot dis          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+248. |  397441000006118                                        [X]Ment & behav dis due use cocaine: unsp ment & behav dis          1   Current drinker   Heavy drinker |
+249. |  397711000006111            [X]Mental and behavioural disorders due to use of other stimulants, including caffeine          1   Current drinker   Heavy drinker |
+250. |  397491000006110                                      [X]Ment/behav dis due to use oth stims inc caff: harmful use          1   Current drinker   Heavy drinker |
+251. |  398081000006117                                      [X]Mental and behav dis oth stim inc caffein: dependnce synd          1   Current drinker   Heavy drinker |
+252. |  398681000006114                                      [X]Mnt/behav dis other stimlnts inc caffeine: withdrwl state          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+253. |  398731000006116                                      [X]Mnt/bh dis oth stims inc caffne: withdr state wt delirium          1   Current drinker   Heavy drinker |
+254. |  398091000006119                                       [X]Mental and behav dis oth stims inc caffeine: amnesic syn          1   Current drinker   Heavy drinker |
+255. |  398161000006114                                      [X]Mental and behavioural disorders due to use hallucinogens          1   Current drinker   Heavy drinker |
+256. |  397561000006118                                         [X]Mental & behav dis due hallucinogens: acute intoxicatn          1   Current drinker   Heavy drinker |
+257. |  397871000006111                                      [X]Mental and behav dis due to use hallucinogens: harmfl use          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+258. |  397741000006110                 [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state          1   Current drinker   Heavy drinker |
+259. |  397151000006113   [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium          1   Current drinker   Heavy drinker |
+260. |  398021000006116                                      [X]Mental and behav dis due use hallucinogens: amnesic syndr          1   Current drinker   Heavy drinker |
+261. |  398701000006112                                      [X]Mnt/bh dis due hallucngns: resid & late-onset psychot dis          1   Current drinker   Heavy drinker |
+262. |  423031000006112                                                          [X]Post hallucinogen perception disorder          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+263. |  397331000006116                                      [X]Men/behav dis due to use hallucinogens: oth men/behav dis          1   Current drinker   Heavy drinker |
+264. |  397511000006116                                      [X]Ment/behav dis due use hallucinogens: unsp ment/behav dis          1   Current drinker   Heavy drinker |
+265. |  398041000006111                                        [X]Mental and behav dis due volatile solvents: harmful use          1   Current drinker   Heavy drinker |
+266. |  398011000006112                                      [X]Mental and behav dis due to vol solvents: dependence synd          1   Current drinker   Heavy drinker |
+267. |  398001000006114                                      [X]Mental and behav dis due to use vol solvents: amnesic syn          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+268. |  398751000006111                                      [X]Mnt/bh dis vol solvents: resid & late-onset psychotic dis          1   Current drinker   Heavy drinker |
+269. |  397351000006111                                      [X]Men/behav dis due to use vol solvents: oth men/behav disd          1   Current drinker   Heavy drinker |
+270. |  397531000006110                                       [X]Ment/behav dis due use vol solvents: unsp ment/behav dis          1   Current drinker   Heavy drinker |
+271. |  398271000006114                                      [X]Mental/behav dis multi drg use/psychoac subs: acute intox          1   Current drinker   Heavy drinker |
+272. |  398061000006110                                      [X]Mental and behav dis mlti/oth psych sbs: dependence syndr          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+273. |  398071000006115                                      [X]Mental and behav dis mlti/oth psychoa sbs: withdrwl state          1   Current drinker   Heavy drinker |
+274. |  398721000006119                                      [X]Mnt/bh dis mlti drg use/oth psy sbs: wthdr state + dlrium          1   Current drinker   Heavy drinker |
+275. |  397311000006110                                       [X]Men/beh dis mlt drg use/oth subs: resid/late psychot dis          1   Current drinker   Heavy drinker |
+276. |  397301000006112                                       [X]Men/beh dis mlt drg use/oth psy sbs: oth men & behav dis          1   Current drinker   Heavy drinker |
+277. |  397471000006114                                                                      Psychoactive substance abuse          1   Current drinker   Heavy drinker |
+     |-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+432. | 3984641000006113                                                        Disorder due to psychoactive substance use          1   Current drinker   Heavy drinker |
+461. | 3984651000006110                                                            Psychoactive substance misuse disorder          1   Current drinker   Heavy drinker |
+     +-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+. 
+. 
+. //Remove substance abuse codes
+. local snomed_remove "371422002 91388009"
+
+. 
+. foreach conceptid of local snomed_remove {
+  2.         
+.         list medcodeid term new_snomedct_synonym alcstatus ///
+>                 if snomedctconceptid == "`conceptid'"
+  3.         
+.         list medcodeid term new_snomedct_synonym alcstatus ///
+>                 if snomedctconceptid == "`conceptid'" & new_snomedct_synonym == 1
+  4.                 
+.         drop if snomedctconceptid == "`conceptid'" & new_snomedct_synonym == 1
+  5. }
+
+     +-------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                  term   new_sn~m    alcstatus |
+     |-------------------------------------------------------------------------------------------------|
+ 23. |   497451000000119                           History of substance misuse          1   Ex-drinker |
+ 30. |         460276013                     [V]Personal history of alcoholism          0   Ex-drinker |
+ 31. |   346501000006111                            History of substance abuse          1   Ex-drinker |
+ 32. |         460277016   [V]Personal history of psychoactive substance abuse          1   Ex-drinker |
+ 33. | 12703401000006113                            History of substance abuse          1   Ex-drinker |
+     +-------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------+
+     |         medcodeid                                                  term   new_sn~m    alcstatus |
+     |-------------------------------------------------------------------------------------------------|
+ 23. |   497451000000119                           History of substance misuse          1   Ex-drinker |
+ 31. |   346501000006111                            History of substance abuse          1   Ex-drinker |
+ 32. |         460277016   [V]Personal history of psychoactive substance abuse          1   Ex-drinker |
+ 33. | 12703401000006113                            History of substance abuse          1   Ex-drinker |
+     +-------------------------------------------------------------------------------------------------+
+(4 observations deleted)
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                                              term   new_sn~m         alcstatus |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+224. |  397431000006111                                        [X]Ment & behav dis due use alcohol: unsp ment & behav dis          0   Current drinker |
+225. |  397231000006112                                      [X]Men & behav dis due opioid: withdrawl state with delirium          1   Current drinker |
+226. |  397921000006118                                      [X]Mental and behav dis due to use opioids: amnesic syndrome          1   Current drinker |
+227. |  397451000006116                                        [X]Ment & behav dis due use opioids: unsp ment & behav dis          1   Current drinker |
+228. |  397821000006110                                      [X]Mental and behav dis due to use cannabinoids: amnesic syn          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+229. |  398691000006112                                      [X]Mnt/bh dis due cannabinds: resid & late-onset psychot dis          1   Current drinker |
+230. |  398111000006111                                         [X]Mental and behavioural dis due use sedatives/hypnotics          1   Current drinker |
+231. |  397571000006113                                        [X]Mental & behav dis due seds/hypntcs: acute intoxication          1   Current drinker |
+232. |  397961000006112                                      [X]Mental and behav dis due to use seds/hypntcs: harmful use          1   Current drinker |
+233. |  397751000006112                                        [X]Mental and behav dis due seds/hypntcs: withdrawal state          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+234. |  397171000006115                                      [X]Men & beh dis due seds/hypns: withdrwl state wth delirium          1   Current drinker |
+235. |  397951000006110                                      [X]Mental and behav dis due to use seds/hypntcs: amnesic syn          1   Current drinker |
+236. |  398711000006110                                      [X]Mnt/bh dis due seds/hypns: resid & late-onset psychot dis          1   Current drinker |
+237. |  397341000006114                                      [X]Men/behav dis due to use seds/hypntcs: oth men/behav disd          1   Current drinker |
+238. |  397521000006112                                      [X]Ment/behav dis due use seds/hypntcs: unsp ment/behav disd          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+239. |  397631000006114                                      [X]Mental & behav dis due to use cocaine: acute intoxication          1   Current drinker |
+240. |  397861000006116                                      [X]Mental and behav dis due to use cocaine: withdrawal state          1   Current drinker |
+241. |  397221000006114                                      [X]Men & behav dis due cocaine: withdrawl state wth delirium          1   Current drinker |
+242. |  397841000006115                                      [X]Mental and behav dis due to use cocaine: amnesic syndrome          1   Current drinker |
+243. |  397141000006111                                      [X]Men & beh dis due cocaine: resid & late-onset psychot dis          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+244. |  397441000006118                                        [X]Ment & behav dis due use cocaine: unsp ment & behav dis          1   Current drinker |
+245. |  397711000006111            [X]Mental and behavioural disorders due to use of other stimulants, including caffeine          1   Current drinker |
+246. |  397491000006110                                      [X]Ment/behav dis due to use oth stims inc caff: harmful use          1   Current drinker |
+247. |  398081000006117                                      [X]Mental and behav dis oth stim inc caffein: dependnce synd          1   Current drinker |
+248. |  398681000006114                                      [X]Mnt/behav dis other stimlnts inc caffeine: withdrwl state          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+249. |  398731000006116                                      [X]Mnt/bh dis oth stims inc caffne: withdr state wt delirium          1   Current drinker |
+250. |  398091000006119                                       [X]Mental and behav dis oth stims inc caffeine: amnesic syn          1   Current drinker |
+251. |  398161000006114                                      [X]Mental and behavioural disorders due to use hallucinogens          1   Current drinker |
+252. |  397561000006118                                         [X]Mental & behav dis due hallucinogens: acute intoxicatn          1   Current drinker |
+253. |  397871000006111                                      [X]Mental and behav dis due to use hallucinogens: harmfl use          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+254. |  397741000006110                 [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state          1   Current drinker |
+255. |  397151000006113   [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium          1   Current drinker |
+256. |  398021000006116                                      [X]Mental and behav dis due use hallucinogens: amnesic syndr          1   Current drinker |
+257. |  398701000006112                                      [X]Mnt/bh dis due hallucngns: resid & late-onset psychot dis          1   Current drinker |
+258. |  423031000006112                                                          [X]Post hallucinogen perception disorder          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+259. |  397331000006116                                      [X]Men/behav dis due to use hallucinogens: oth men/behav dis          1   Current drinker |
+260. |  397511000006116                                      [X]Ment/behav dis due use hallucinogens: unsp ment/behav dis          1   Current drinker |
+261. |  398041000006111                                        [X]Mental and behav dis due volatile solvents: harmful use          1   Current drinker |
+262. |  398011000006112                                      [X]Mental and behav dis due to vol solvents: dependence synd          1   Current drinker |
+263. |  398001000006114                                      [X]Mental and behav dis due to use vol solvents: amnesic syn          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+264. |  398751000006111                                      [X]Mnt/bh dis vol solvents: resid & late-onset psychotic dis          1   Current drinker |
+265. |  397351000006111                                      [X]Men/behav dis due to use vol solvents: oth men/behav disd          1   Current drinker |
+266. |  397531000006110                                       [X]Ment/behav dis due use vol solvents: unsp ment/behav dis          1   Current drinker |
+267. |  398271000006114                                      [X]Mental/behav dis multi drg use/psychoac subs: acute intox          1   Current drinker |
+268. |  398061000006110                                      [X]Mental and behav dis mlti/oth psych sbs: dependence syndr          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+269. |  398071000006115                                      [X]Mental and behav dis mlti/oth psychoa sbs: withdrwl state          1   Current drinker |
+270. |  398721000006119                                      [X]Mnt/bh dis mlti drg use/oth psy sbs: wthdr state + dlrium          1   Current drinker |
+271. |  397311000006110                                       [X]Men/beh dis mlt drg use/oth subs: resid/late psychot dis          1   Current drinker |
+272. |  397301000006112                                       [X]Men/beh dis mlt drg use/oth psy sbs: oth men & behav dis          1   Current drinker |
+273. |  397471000006114                                                                      Psychoactive substance abuse          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+428. | 3984641000006113                                                        Disorder due to psychoactive substance use          1   Current drinker |
+457. | 3984651000006110                                                            Psychoactive substance misuse disorder          1   Current drinker |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+     |        medcodeid                                                                                              term   new_sn~m         alcstatus |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+225. |  397231000006112                                      [X]Men & behav dis due opioid: withdrawl state with delirium          1   Current drinker |
+226. |  397921000006118                                      [X]Mental and behav dis due to use opioids: amnesic syndrome          1   Current drinker |
+227. |  397451000006116                                        [X]Ment & behav dis due use opioids: unsp ment & behav dis          1   Current drinker |
+228. |  397821000006110                                      [X]Mental and behav dis due to use cannabinoids: amnesic syn          1   Current drinker |
+229. |  398691000006112                                      [X]Mnt/bh dis due cannabinds: resid & late-onset psychot dis          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+230. |  398111000006111                                         [X]Mental and behavioural dis due use sedatives/hypnotics          1   Current drinker |
+231. |  397571000006113                                        [X]Mental & behav dis due seds/hypntcs: acute intoxication          1   Current drinker |
+232. |  397961000006112                                      [X]Mental and behav dis due to use seds/hypntcs: harmful use          1   Current drinker |
+233. |  397751000006112                                        [X]Mental and behav dis due seds/hypntcs: withdrawal state          1   Current drinker |
+234. |  397171000006115                                      [X]Men & beh dis due seds/hypns: withdrwl state wth delirium          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+235. |  397951000006110                                      [X]Mental and behav dis due to use seds/hypntcs: amnesic syn          1   Current drinker |
+236. |  398711000006110                                      [X]Mnt/bh dis due seds/hypns: resid & late-onset psychot dis          1   Current drinker |
+237. |  397341000006114                                      [X]Men/behav dis due to use seds/hypntcs: oth men/behav disd          1   Current drinker |
+238. |  397521000006112                                      [X]Ment/behav dis due use seds/hypntcs: unsp ment/behav disd          1   Current drinker |
+239. |  397631000006114                                      [X]Mental & behav dis due to use cocaine: acute intoxication          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+240. |  397861000006116                                      [X]Mental and behav dis due to use cocaine: withdrawal state          1   Current drinker |
+241. |  397221000006114                                      [X]Men & behav dis due cocaine: withdrawl state wth delirium          1   Current drinker |
+242. |  397841000006115                                      [X]Mental and behav dis due to use cocaine: amnesic syndrome          1   Current drinker |
+243. |  397141000006111                                      [X]Men & beh dis due cocaine: resid & late-onset psychot dis          1   Current drinker |
+244. |  397441000006118                                        [X]Ment & behav dis due use cocaine: unsp ment & behav dis          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+245. |  397711000006111            [X]Mental and behavioural disorders due to use of other stimulants, including caffeine          1   Current drinker |
+246. |  397491000006110                                      [X]Ment/behav dis due to use oth stims inc caff: harmful use          1   Current drinker |
+247. |  398081000006117                                      [X]Mental and behav dis oth stim inc caffein: dependnce synd          1   Current drinker |
+248. |  398681000006114                                      [X]Mnt/behav dis other stimlnts inc caffeine: withdrwl state          1   Current drinker |
+249. |  398731000006116                                      [X]Mnt/bh dis oth stims inc caffne: withdr state wt delirium          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+250. |  398091000006119                                       [X]Mental and behav dis oth stims inc caffeine: amnesic syn          1   Current drinker |
+251. |  398161000006114                                      [X]Mental and behavioural disorders due to use hallucinogens          1   Current drinker |
+252. |  397561000006118                                         [X]Mental & behav dis due hallucinogens: acute intoxicatn          1   Current drinker |
+253. |  397871000006111                                      [X]Mental and behav dis due to use hallucinogens: harmfl use          1   Current drinker |
+254. |  397741000006110                 [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+255. |  397151000006113   [X]Mental and behavioural disorders due to use of hallucinogens: withdrawal state with delirium          1   Current drinker |
+256. |  398021000006116                                      [X]Mental and behav dis due use hallucinogens: amnesic syndr          1   Current drinker |
+257. |  398701000006112                                      [X]Mnt/bh dis due hallucngns: resid & late-onset psychot dis          1   Current drinker |
+258. |  423031000006112                                                          [X]Post hallucinogen perception disorder          1   Current drinker |
+259. |  397331000006116                                      [X]Men/behav dis due to use hallucinogens: oth men/behav dis          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+260. |  397511000006116                                      [X]Ment/behav dis due use hallucinogens: unsp ment/behav dis          1   Current drinker |
+261. |  398041000006111                                        [X]Mental and behav dis due volatile solvents: harmful use          1   Current drinker |
+262. |  398011000006112                                      [X]Mental and behav dis due to vol solvents: dependence synd          1   Current drinker |
+263. |  398001000006114                                      [X]Mental and behav dis due to use vol solvents: amnesic syn          1   Current drinker |
+264. |  398751000006111                                      [X]Mnt/bh dis vol solvents: resid & late-onset psychotic dis          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+265. |  397351000006111                                      [X]Men/behav dis due to use vol solvents: oth men/behav disd          1   Current drinker |
+266. |  397531000006110                                       [X]Ment/behav dis due use vol solvents: unsp ment/behav dis          1   Current drinker |
+267. |  398271000006114                                      [X]Mental/behav dis multi drg use/psychoac subs: acute intox          1   Current drinker |
+268. |  398061000006110                                      [X]Mental and behav dis mlti/oth psych sbs: dependence syndr          1   Current drinker |
+269. |  398071000006115                                      [X]Mental and behav dis mlti/oth psychoa sbs: withdrwl state          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+270. |  398721000006119                                      [X]Mnt/bh dis mlti drg use/oth psy sbs: wthdr state + dlrium          1   Current drinker |
+271. |  397311000006110                                       [X]Men/beh dis mlt drg use/oth subs: resid/late psychot dis          1   Current drinker |
+272. |  397301000006112                                       [X]Men/beh dis mlt drg use/oth psy sbs: oth men & behav dis          1   Current drinker |
+273. |  397471000006114                                                                      Psychoactive substance abuse          1   Current drinker |
+428. | 3984641000006113                                                        Disorder due to psychoactive substance use          1   Current drinker |
+     |-------------------------------------------------------------------------------------------------------------------------------------------------|
+457. | 3984651000006110                                                            Psychoactive substance misuse disorder          1   Current drinker |
+     +-------------------------------------------------------------------------------------------------------------------------------------------------+
+(51 observations deleted)
+
+. 
+. 
+. tab1 alcohol alcstatus alclevel, missing
+
+-> tabulation of alcohol  
+
+    alcohol |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |        514      100.00      100.00
+------------+-----------------------------------
+      Total |        514      100.00
+
+-> tabulation of alcstatus  
+
+      alcstatus |      Freq.     Percent        Cum.
+----------------+-----------------------------------
+    Non-drinker |         15        2.92        2.92
+     Ex-drinker |         22        4.28        7.20
+Current drinker |        448       87.16       94.36
+        Unknown |         29        5.64      100.00
+----------------+-----------------------------------
+          Total |        514      100.00
+
+-> tabulation of alclevel  
+
+        alclevel |      Freq.     Percent        Cum.
+-----------------+-----------------------------------
+   Light drinker |         10        1.95        1.95
+Moderate drinker |          2        0.39        2.33
+   Heavy drinker |        375       72.96       75.29
+               . |        127       24.71      100.00
+-----------------+-----------------------------------
+           Total |        514      100.00
+
+. 
+. 
+. //STEP 6 - not required; already categorised
+. 
+. 
+. //STEP 7 - not required; already using pre-existing list
+. 
+. 
+. //STEP 8 - clinical review not required at present
+. 
+. 
+. // STEP 9. SAVE CODELIST
+. //=======================
+. 
+. //Save clinician approved codelist
+. gsort alcstatus alclevel snomedctconceptid snomedctdescriptionid originalreadcode
+
+. drop new_snomedct_synonym
+
+. compress
+  (0 bytes saved)
+
+. save `filename', replace
+file alcohol_consumption.dta saved
+
+. export delimited `filename', replace quote
+file alcohol_consumption.csv saved
+
+. 
+. 
+. // STEP 10. GENERATE METADATA FILE
+. //=================================
+. 
+. //=**Update details here, everything else is automated**========================
+. local description "Alcohol consumption"
+
+. local code_type "medcodeid (SNOMED CT)"
+
+. local database "CPRD Aurum"
+
+. local database_version = ym(real(substr("`aurum_build'", 1, 4)), ///
+>                                                         real(substr("`aurum_build'", 5, 2)))
+
+. local author "Philip Stone"
+
+. local date = ym(2025, 6)  //year, month
+
+. local clinical_reviewer ""
+
+. local date_approved = . //ym(2025, 6)  //year, month
+
+. local notes "Created for PRIORITY study. Modified version of https://doi.org/10.17037/DATA.00004214 from LSHTM Data Compass"
+
+. local keywords ""
+
+. //==============================================================================
+. 
+. clear
+
+. gen v1 = ""
+
+. gen v2 = .
+
+. format %tmMon_CCYY v2
+
+. set obs 10
+Number of observations (_N) was 0, now 10.
+
+. 
+. replace v1 = "`description'" in 1
+variable v1 was str1 now str19
+(1 real change made)
+
+. replace v1 = "`code_type'" in 2
+variable v1 was str19 now str21
+(1 real change made)
+
+. replace v1 = "`database'" in 3
+(1 real change made)
+
+. replace v2 = `database_version' in 4
+(1 real change made)
+
+. replace v1 = "`author'" in 5
+(1 real change made)
+
+. replace v2 = `date' in 6
+(1 real change made)
+
+. replace v1 = "`clinical_reviewer'" in 7
+(0 real changes made)
+
+. replace v2 = `date_approved' in 8
+(0 real changes made)
+
+. replace v1 = "`notes'" in 9
+variable v1 was str21 now str110
+(1 real change made)
+
+. replace v1 = "`keywords'" in 10
+(0 real changes made)
+
+. 
+. tostring v2, replace usedisplayformat force
+v2 was float now str8
+v2 was forced to string; some loss of information
+
+. replace v1 = v2 in 4
+(1 real change made)
+
+. replace v1 = v2 in 6
+(1 real change made)
+
+. replace v1 = v2 in 8
+(1 real change made)
+
+. drop v2
+
+. 
+. export delimited "`filename'.meta", replace novarnames delimiter(tab)
+file alcohol_consumption.meta saved
+
+. 
+. 
+. use "`filename'", clear  //So that you can see results of search after do file run
+
+. 
+. 
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlton.AD\Documents\GitHub\priority\codelists\alcohol_consumption.log
+  log type:  text
+ closed on:  25 Jun 2025, 21:05:18
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

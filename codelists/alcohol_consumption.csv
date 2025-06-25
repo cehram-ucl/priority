@@ -1,0 +1,515 @@
+medcodeid,observations,originalreadcode,cleansedreadcode,snomedctconceptid,snomedctdescriptionid,term,alcohol,alcstatus,alclevel
+"4120371000006112",900,"^ESCTNO412037","","105542008","2659854017","Non - drinker alcohol",1,"Non-drinker",
+"4120381000006110",50,"^ESCTCU412038","","105542008","2659855016","Current non-drinker of alcohol",1,"Non-drinker",
+"217461000000118",1000000,"136M","136M.00","105542008","2659856015","Non - drinker",1,"Non-drinker",
+"4120321000006111",100,"^ESCTAB412032","","105542008","291351013","Abstinent",1,"Non-drinker",
+"587231000006111",600000,"1361-1","1361.11","105542008","291352018","Non drinker alcohol",1,"Non-drinker",
+"291352018",300000,"1361-2","1361.12","105542008","291352018","Non-drinker alcohol",1,"Non-drinker",
+"4120341000006116",1000,"^ESCTNE412034","","105542008","291353011","Never drinks",1,"Non-drinker",
+"4120351000006119",10000,"^ESCTDO412035","","105542008","291354017","Does not drink alcohol",1,"Non-drinker",
+"291355016",8000000,"1361","1361.00","105542008","291355016","Teetotaller",1,"Non-drinker",
+"4120391000006113",1,"^ESCTNO412039","","105543003","169641011","Non-drinker for personal reasons",1,"Non-drinker",
+"4951321000006115",20,"^ESCTAL495132","","226138001","339752015","Alcohol-free diet",1,"Non-drinker",
+"4977931000006114",60,"^ESCTLI497793","","228274009","342315016","Lifetime teetotaller",1,"Non-drinker",
+"4977911000006115",20000,"^ESCTLI497791","","228274009","342316015","Lifetime non-drinker",1,"Non-drinker",
+"5738341000006119",600,"^ESCTDO573834","","288856003","428602018","Does not drink",1,"Non-drinker",
+"13628811000006110",9000,"^ESCT1362881","","783261004","3758327018","Lifetime non-drinker of alcohol",1,"Non-drinker",
+"250317010",500000,"1367","1367.00","160579004","250317010","Stopped drinking alcohol",1,"Ex-drinker",
+"4533271000006119",2000,"^ESCTEX453327","","160582009","250320019","Ex-trivial drinker - less than 1 unit/day",1,"Ex-drinker",
+"250321015",10000,"136A","136A.00","160582009","250321015","Ex-trivial drinker (<1u/day)",1,"Ex-drinker",
+"250322010",7000,"136B","136B.00","160583004","250322010","Ex-light drinker - (1-2u/day)",1,"Ex-drinker",
+"250323017",6000,"136C","136C.00","160584005","250323017","Ex-moderate drinker - (3-6u/d)",1,"Ex-drinker",
+"250324011",8000,"136D","136D.00","160585006","250324011","Ex-heavy drinker - (7-9u/day)",1,"Ex-drinker",
+"250329018",9000,"136E","136E.00","160587003","250329018","Ex-very heavy drinker-(>9u/d)",1,"Ex-drinker",
+"4533331000006113",400,"^ESCTEX453333","","160587003","250330011","Ex-very heavy drinker - greater than 9 units/day",1,"Ex-drinker",
+"251626014",70000,"1462","1462.00","161466001","251626014","H/O: alcoholism",1,"Ex-drinker",
+"4539891000006115",4,"^ESCTHI453989","","161466001","2923447012","History of alcoholism",1,"Ex-drinker",
+"295142015",6000,"E2313","E231300","191813001","295142015","Chronic alcoholism in remission",1,"Ex-drinker",
+"1973701000006119",200,"EMISICD10|F1020","","1973701000006103","1973701000006119","Mental and behav dis due to use alcohol: dependence syndr, currently abstinent",1,"Ex-drinker",
+"1973811000006113",8,"EMISICD10|F1021","","1973811000006109","1973811000006113","Mental and behav dis due to use alcohol: dependence syndr, currently abstinent, but in a protected environment",1,"Ex-drinker",
+"1974021000006112",30,"EMISICD10|F1023","","1974021000006108","1974021000006112","Mental and behav dis due to use alcohol: dependence syndr, currently abstinent, but receiving treatment with aversive or blocking drugs",1,"Ex-drinker",
+"4978631000006116",300,"^ESCTTI497863","","228329000","342383017","Time since stopped drinking",1,"Ex-drinker",
+"5720641000006112",200,"^ESCTEX572064","","286857004","426335010","Ex-problem drinker",1,"Ex-drinker",
+"5886961000006112",2000,"^ESCTAB588696","","300939009","442138014","Abstinent alcoholic",1,"Ex-drinker",
+"460276013",4000,"ZV113","ZV11300","371422002","1196720012","[V]Personal history of alcoholism",1,"Ex-drinker",
+"6354581000006114",1000,"^ESCTHI635458","","371434005","1210092019","History of alcohol abuse",1,"Ex-drinker",
+"3843491000006118",5000,"^ESCTEX384349","","82581004","136989013","Ex-drinker",1,"Ex-drinker",
+"852381000006110",2000,"EMISQAL2","","852381000006106","852381000006110","Alcohol reduction-maintain abstinence",1,"Ex-drinker",
+"2467301000000111",600,"8BAs","8BAs.00","968891000000109","2467301000000111","Alcohol relapse prevention",1,"Ex-drinker",
+"250312016",2000000,"1363","1363.00","160575005","250312016","Light drinker - 1-2u/day",1,"Current drinker","Light drinker"
+"250340014",1000000,"136L","136L.00","160593006","250340014","Alcohol intake within recommended sensible limits",1,"Current drinker","Light drinker"
+"629811000006113",2000000,"1362-2","1362.12","228276006","342318019","Occasional drinker",1,"Current drinker","Light drinker"
+"4977971000006112",40,"^ESCTDR497797","","228276006","342319010","Drinks on special occasions",1,"Current drinker","Light drinker"
+"342320016",100000,"136N","136N.00","228277002","342320016","Light drinker",1,"Current drinker","Light drinker"
+"397729013",4000000,"1362","1362.00","266917007","397729013","Trivial drinker - <1u/day",1,"Current drinker","Light drinker"
+"629821000006117",1000000,"1362-1","1362.11","266917007","397729013","Drinks rarely",1,"Current drinker","Light drinker"
+"47085011",500000,"136J","136J.00","28127009","47085011","Social drinker",1,"Current drinker","Light drinker"
+"1738421000000111",100000,"136d","136d.00","777671000000105","1738421000000111","Lower risk drinking",1,"Current drinker","Light drinker"
+"855071000006115",20000,"EGTONGR6","","855071000006104","855071000006115","Grade A none drinker or rare",1,"Current drinker","Light drinker"
+"250313014",1000000,"1364","1364.00","160576006","250313014","Moderate drinker - 3-6u/day",1,"Current drinker","Moderate drinker"
+"73012011",40000,"136O","136O.00","43783005","73012011","Moderate drinker",1,"Current drinker","Moderate drinker"
+"8458711000006115",10,"^ESCTAS845871","","1082601000119104","3082322015","Ascites due to alcoholic cirrhosis",1,"Current drinker","Heavy drinker"
+"2716771000000111",1000,"ESCTSI66","","1084171000000100","2716771000000111","Signposting to alcohol misuse service",1,"Current drinker","Heavy drinker"
+"9344031000006110",2,"^ESCTUN934403","","10939881000119105","3322029013","Unhealthy alcohol drinking behavior",1,"Current drinker","Heavy drinker"
+"9344021000006112",200,"^ESCTUN934402","","10939881000119105","3322030015","Unhealthy alcohol drinking behaviour",1,"Current drinker","Heavy drinker"
+"2740831000000114",200,"^ESCT1172280","","1094151000000108","2740831000000114","Harmful use of alcohol",1,"Current drinker","Heavy drinker"
+"12117371000006112",40,"^ESCT1211737","","1099141000000106","2751801000000111","Referral to alcohol misuse service",1,"Current drinker","Heavy drinker"
+"251195015",3000,"13Y8","13Y8.00","1099951000000107","2753901000000119","Alcoholics anonymous",1,"Current drinker","Heavy drinker"
+"13996301000006113",60,"^ESCT1399630","","1325551000000109","2840571000000112","Seen by community alcohol team",1,"Current drinker","Heavy drinker"
+"216585018",20000,"9NN2","9NN2.00","135827004","216585018","Under care of community alcohol team",1,"Current drinker","Heavy drinker"
+"397881000006114",20000,"Eu101","Eu10100","15167005","25750014","Alcohol abuse",1,"Current drinker","Heavy drinker"
+"2740351000006116",10,"^ESCTET274035","","15167005","477198011","Ethanol abuse",1,"Current drinker","Heavy drinker"
+"2740361000006119",2,"^ESCTAA274036","","15167005","477199015","AA - Alcohol abuse",1,"Current drinker","Heavy drinker"
+"606991000000117",50000,"136W","136W.00","15167005","606991000000117","Alcohol misuse",1,"Current drinker","Heavy drinker"
+"1538911000006119",2,"PCSQI96","","1538911000006103","1538911000006119","Structured alcohol intervention",1,"Current drinker","Heavy drinker"
+"8048151000006113",20,"^ESCTCH804815","","154211000119108","3008826016","Chronic pancreatitis due to chronic alcoholism",1,"Current drinker","Heavy drinker"
+"250314015",200000,"1365","1365.00","160577002","250314015","Heavy drinker - 7-9u/day",1,"Current drinker","Heavy drinker"
+"4533231000006117",3000,"^ESCTVE453323","","160578007","250315019","Very heavy drinker - greater than 9 units/day",1,"Current drinker","Heavy drinker"
+"250316018",100000,"1366","1366.00","160578007","250316018","Very heavy drinker - >9u/day",1,"Current drinker","Heavy drinker"
+"250335018",200000,"136K","136K.00","160592001","250335018","Alcohol intake above recommended sensible limits",1,"Current drinker","Heavy drinker"
+"4533431000006118",40,"^ESCTEX453343","","160592001","250337014","Excessive ethanol consumption",1,"Current drinker","Heavy drinker"
+"4533441000006111",30,"^ESCTXS453344","","160592001","250338016","XS - Excessive alcohol consumption",1,"Current drinker","Heavy drinker"
+"4533451000006113",2000,"^ESCTEX453345","","160592001","250339012","Excessive alcohol consumption",1,"Current drinker","Heavy drinker"
+"4533461000006110",400,"^ESCTEX453346","","160592001","2923459011","Excessive alcohol use",1,"Current drinker","Heavy drinker"
+"254305017",9000,"2577","2577.00","163184002","254305017","O/E - breath - alcohol smell",1,"Current drinker","Heavy drinker"
+"254306016",4000,"2577-1","2577.11","163184002","254306016","O/E - alcoholic breath",1,"Current drinker","Heavy drinker"
+"236441000000113",100000,"9k1","9k1..00","166251000000100","1153251000000119","Alcohol misuse enhanced services administration",1,"Current drinker","Heavy drinker"
+"226571000000116",70000,"9k12","9k12.00","166471000000105","1154571000000110","Alcohol misuse enhanced service completed",1,"Current drinker","Heavy drinker"
+"1675391000006112",300,"EMISNQRE93","","1675391000006108","1675391000006112","Referral by community alcohol team",1,"Current drinker","Heavy drinker"
+"263572010",1000,"63C7","63C7.00","169942003","263572010","Maternal alcohol abuse",1,"Current drinker","Heavy drinker"
+"1745961000006111",20,"EMISNQEX11","","1745961000006107","1745961000006111","Extended intervention for excessive alcohol consumption declined",1,"Current drinker","Heavy drinker"
+"1779661000006118",200,"EMISNQAL12","","1779661000006102","1779661000006118","Alcohol detoxification declined",1,"Current drinker","Heavy drinker"
+"1806211000006115",70,"EMISNQUN23","","1806211000006104","1806211000006115","Unsuccessful attempts to reduce alcohol consumption",1,"Current drinker","Heavy drinker"
+"1808491000006113",1,"JHCAL2","","1808491000006109","1808491000006113","Alcohol-related legal or disciplinary problem",1,"Current drinker","Heavy drinker"
+"1808611000006118",1,"JHCAR24","","1808611000006102","1808611000006118","AREP - Alcohol rehabilitation education program",1,"Current drinker","Heavy drinker"
+"283028013",100000,"8CE1","8CE1.00","183098002","283028013","Alcohol leaflet given",1,"Current drinker","Heavy drinker"
+"283451018",1000,"8G32","8G32.00","183388004","283451018","Aversion therapy - alcoholism",1,"Current drinker","Heavy drinker"
+"4722771000006115",4,"^ESCTAL472277","","183388004","283452013","Alcohol aversion therapy",1,"Current drinker","Heavy drinker"
+"283559019",20000,"8H35","8H35.00","183486001","283559019","Admitted to alcohol detoxification centre",1,"Current drinker","Heavy drinker"
+"2796011000006111",60,"^ESCTAL279601","","18653004","31451012","Alcohol intoxication delirium",1,"Current drinker","Heavy drinker"
+"1878791000006112",1,"EMISNQIN186","","1878791000006108","1878791000006112","In-house alcohol detoxification",1,"Current drinker","Heavy drinker"
+"294662017",300,"E0111","E011100","191471000","294662017","Korsakov's alcoholic psychosis with peripheral neuritis",1,"Current drinker","Heavy drinker"
+"294668018",1000,"E0120","E012000","191475009","294668018","Chronic alcoholic brain syndrome",1,"Current drinker","Heavy drinker"
+"370961000006119",400,"Eu107-2","Eu10712","191475009","294668018","[X]Chronic alcoholic brain syndrome",1,"Current drinker","Heavy drinker"
+"294669014",1000,"E013","E013.00","191476005","294669014","Alcohol withdrawal hallucinosis",1,"Current drinker","Heavy drinker"
+"294670010",400,"E014-1","E014.11","191477001","294670010","Drunkenness - pathological",1,"Current drinker","Heavy drinker"
+"294671014",600,"E014","E014.00","191477001","294671014","Pathological alcohol intoxication",1,"Current drinker","Heavy drinker"
+"294672019",600,"E015","E015.00","191478006","294672019","Alcoholic paranoia",1,"Current drinker","Heavy drinker"
+"294674018",100000,"E01y0","E01y000","191480000","294674018","Alcohol withdrawal syndrome",1,"Current drinker","Heavy drinker"
+"397811000006119",700,"Eu103","Eu10300","191480000","294674018","[X]Mental and behav dis due to use alcohol: withdrawal state",1,"Current drinker","Heavy drinker"
+"295126010",500,"E230-1","E230.11","191802004","295126010","Alcohol dependence with acute alcoholic intoxication",1,"Current drinker","Heavy drinker"
+"295127018",10000,"E230","E230.00","191802004","295127018","Acute alcoholic intoxication in alcoholism",1,"Current drinker","Heavy drinker"
+"295128011",900,"E2300","E230000","191802004","295127018","Acute alcoholic intoxication, unspecified, in alcoholism",1,"Current drinker","Heavy drinker"
+"295132017",700,"E230z","E230z00","191802004","295127018","Acute alcoholic intoxication in alcoholism NOS",1,"Current drinker","Heavy drinker"
+"295129015",200,"E2301","E230100","191804003","295129015","Continuous acute alcoholic intoxication in alcoholism",1,"Current drinker","Heavy drinker"
+"295130013",600,"E2302","E230200","191805002","295130013","Episodic acute alcoholic intoxication in alcoholism",1,"Current drinker","Heavy drinker"
+"295131012",300,"E2303","E230300","191806001","295131012","Acute alcoholic intoxication in remission, in alcoholism",1,"Current drinker","Heavy drinker"
+"295139014",10000,"E2311","E231100","191811004","295139014","Continuous chronic alcoholism",1,"Current drinker","Heavy drinker"
+"295141010",5000,"E2312","E231200","191812006","295141010","Episodic chronic alcoholism",1,"Current drinker","Heavy drinker"
+"295252010",3000,"E2501","E250100","191882002","295252010","Nondependent alcohol abuse, continuous",1,"Current drinker","Heavy drinker"
+"295253017",5000,"E2502","E250200","191883007","295253017","Nondependent alcohol abuse, episodic",1,"Current drinker","Heavy drinker"
+"295254011",1000,"E2503","E250300","191884001","295254011","Nondependent alcohol abuse in remission",1,"Current drinker","Heavy drinker"
+"542611000006114",900,"F11x0","F11x000","192811002","297011014","Cerebral degeneration due to alcoholism",1,"Current drinker","Heavy drinker"
+"297011014",3000,"F11x0-1","F11x011","192811002","297011014","Alcoholic encephalopathy",1,"Current drinker","Heavy drinker"
+"476701000006114",1000,"F3941","F394100","19303008","32551012","Alcohol myopathy",1,"Current drinker","Heavy drinker"
+"1972151000006110",70,"EMISICD10|F1000","","1972151000006106","1972151000006110","Mental & behav dis due to use alcohol: acute intoxication, uncomplicated",1,"Current drinker","Heavy drinker"
+"1972161000006112",10,"EMISICD10|F1001","","1972161000006108","1972161000006112","Mental & behav dis due to use alcohol: acute intoxication, with trauma or other bodily injury",1,"Current drinker","Heavy drinker"
+"1972271000006112",7,"EMISICD10|F1002","","1972271000006108","1972271000006112","Mental & behav dis due to use alcohol: acute intoxication, with other medical complications",1,"Current drinker","Heavy drinker"
+"1973241000006113",7,"EMISICD10|F1003","","1973241000006109","1973241000006113","Mental & behav dis due to use alcohol: acute intoxication, with delirium",1,"Current drinker","Heavy drinker"
+"1973321000006113",2,"EMISICD10|F1004","","1973321000006109","1973321000006113","Mental & behav dis due to use alcohol: acute intoxication, with perceptual distortions",1,"Current drinker","Heavy drinker"
+"1973411000006110",6,"EMISICD10|F1005","","1973411000006106","1973411000006110","Mental & behav dis due to use alcohol: acute intoxication, with coma",1,"Current drinker","Heavy drinker"
+"1973441000006114",7,"EMISICD10|F1006","","1973441000006105","1973441000006114","Mental & behav dis due to use alcohol: acute intoxication, with convulsions",1,"Current drinker","Heavy drinker"
+"1973481000006115",6,"EMISICD10|F1007","","1973481000006104","1973481000006115","Mental & behav dis due to use alcohol: acute intoxication, pathological intoxication",1,"Current drinker","Heavy drinker"
+"1973871000006116",10,"EMISICD10|F1022","","1973871000006100","1973871000006116","Mental and behav dis due to use alcohol: dependence syndr, currently on a clinically supervised maintenance or replacement regime [controlled dependence]",1,"Current drinker","Heavy drinker"
+"1974071000006113",60,"EMISICD10|F1024","","1974071000006109","1974071000006113","Mental and behav dis due to use alcohol: dependence syndr, currently using the substance [active dependence]",1,"Current drinker","Heavy drinker"
+"1974111000006117",800,"EMISICD10|F1025","","1974111000006101","1974111000006117","Mental and behav dis due to use alcohol: dependence syndr, continuous use",1,"Current drinker","Heavy drinker"
+"1974141000006118",30,"EMISICD10|F1026","","1974141000006102","1974141000006118","Mental and behav dis due to use alcohol: dependence syndr, episodic use [dipsomania]",1,"Current drinker","Heavy drinker"
+"1974191000006110",100,"EMISICD10|F1030","","1974191000006106","1974191000006110","Mental and behav dis due to use alcohol: withdrawal state, uncomplicated",1,"Current drinker","Heavy drinker"
+"1974231000006117",9,"EMISICD10|F1031","","1974231000006101","1974231000006117","Mental and behav dis due to use alcohol: withdrawal state, with convulsions",1,"Current drinker","Heavy drinker"
+"1974301000006117",10,"EMISICD10|F1040","","1974301000006101","1974301000006117","Mental & behav dis due to use alcohol: withdrawl state with delirium, without convulsions",1,"Current drinker","Heavy drinker"
+"1974521000006117",7,"EMISICD10|F1041","","1974521000006101","1974521000006117","Mental & behav dis due to use alcohol: withdrawl state with delirium, with convulsions",1,"Current drinker","Heavy drinker"
+"1975141000006117",2,"EMISICD10|F1050","","1975141000006101","1975141000006117","Mental & behav dis due to use alcohol: psychotic disorder, schizophrenia-like",1,"Current drinker","Heavy drinker"
+"1975181000006111",6,"EMISICD10|F1051","","1975181000006107","1975181000006111","Mental & behav dis due to use alcohol: psychotic disorder, predominantly delusional",1,"Current drinker","Heavy drinker"
+"1975291000006117",20,"EMISICD10|F1052","","1975291000006101","1975291000006117","Mental & behav dis due to use alcohol: psychotic disorder, predominantly hallucinatory",1,"Current drinker","Heavy drinker"
+"1975341000006119",1,"EMISICD10|F1053","","1975341000006103","1975341000006119","Mental & behav dis due to use alcohol: psychotic disorder, predominantly polymorphic",1,"Current drinker","Heavy drinker"
+"1975371000006110",8,"EMISICD10|F1054","","1975371000006106","1975371000006110","Mental & behav dis due to use alcohol: psychotic disorder, predominantly depressive symptoms",1,"Current drinker","Heavy drinker"
+"1975411000006111",1,"EMISICD10|F1055","","1975411000006107","1975411000006111","Mental & behav dis due to use alcohol: psychotic disorder, predominantly manic symptoms",1,"Current drinker","Heavy drinker"
+"1975461000006114",200,"EMISICD10|F1056","","1975461000006105","1975461000006114","Mental & behav dis due to use alcohol: psychotic disorder, mixed",1,"Current drinker","Heavy drinker"
+"1975511000006112",1,"EMISICD10|F1070","","1975511000006108","1975511000006112","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, flashbacks",1,"Current drinker","Heavy drinker"
+"1975541000006111",40,"EMISICD10|F1071","","1975541000006107","1975541000006111","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, personality or behaviour disorder",1,"Current drinker","Heavy drinker"
+"1975591000006119",10,"EMISICD10|F1073","","1975591000006103","1975591000006119","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, dementia",1,"Current drinker","Heavy drinker"
+"1975661000006111",2,"EMISICD10|F1072","","1975661000006107","1975661000006111","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, residual affective disorder",1,"Current drinker","Heavy drinker"
+"1976071000006119",40,"EMISICD10|F1074","","1976071000006103","1976071000006119","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, other persisting cognitive impairment",1,"Current drinker","Heavy drinker"
+"1976111000006110",6,"EMISICD10|F1075","","1976111000006106","1976111000006110","Mental & behav dis due to use alcohol: resid & late-onset psychot dis, late-onset psychotic disorder",1,"Current drinker","Heavy drinker"
+"299061000000117",100000,"136S","136S.00","198421000000108","299061000000117","Hazardous alcohol use",1,"Current drinker","Heavy drinker"
+"299081000000114",90000,"136T","136T.00","198431000000105","299081000000114","Harmful alcohol use",1,"Current drinker","Heavy drinker"
+"2007461000006118",200,"EMISNQSR25","","2007461000006102","2007461000006118","SRH care activity - alcohol brief intervention",1,"Current drinker","Heavy drinker"
+"2819381000006112",50,"^ESCTAL281938","","20093000","33815017","Alcohol rehabilitation and detoxification",1,"Current drinker","Heavy drinker"
+"4525015",40000,"J153","J153.00","2043009","4525015","Alcoholic gastritis",1,"Current drinker","Heavy drinker"
+"4977991000006113",300,"^ESCTFA497799","","228278007","342321017","Fairly heavy drinker",1,"Current drinker","Heavy drinker"
+"342322012",6000,"136Q","136Q.00","228279004","342322012","Very heavy drinker",1,"Current drinker","Heavy drinker"
+"4978041000006118",100,"^ESCTAL497804","","228281002","342325014","Alcoholic",1,"Current drinker","Heavy drinker"
+"4978061000006119",7,"^ESCTDE497806","","228281002","342327018","Dependent drinker",1,"Current drinker","Heavy drinker"
+"4978031000006111",8000,"^ESCTPR497803","","228281002","342328011","Problem drinker",1,"Current drinker","Heavy drinker"
+"342361016",100,"136Y","136Y.00","228310006","342361016","Drinks in morning to get rid of hangover",1,"Current drinker","Heavy drinker"
+"342366014",50000,"136R","136R.00","228315001","342366014","Binge drinker",1,"Current drinker","Heavy drinker"
+"4978461000006111",1,"^ESCTEP497846","","228315001","342368010","Episodic drinker",1,"Current drinker","Heavy drinker"
+"4978471000006116",300,"^ESCTAL497847","","228316000","342370018","Alcoholic binges exceeding sensible amounts",1,"Current drinker","Heavy drinker"
+"4978481000006118",400,"^ESCTAL497848","","228317009","342371019","Alcoholic binges exceeding safe amounts",1,"Current drinker","Heavy drinker"
+"4978511000006114",60,"^ESCTHA497851","","228320001","342374010","Habitual drinker",1,"Current drinker","Heavy drinker"
+"4978531000006115",30,"^ESCTDR497853","","228322009","342376012","Drinking episode",1,"Current drinker","Heavy drinker"
+"4978541000006113",10,"^ESCTDR497854","","228323004","342377015","Drinking bout",1,"Current drinker","Heavy drinker"
+"4978561000006112",30,"^ESCTHE497856","","228325006","342379017","Heavy drinking session",1,"Current drinker","Heavy drinker"
+"4978581000006119",500,"^ESCTAL497858","","228326007","2475862011","Alcohol binge",1,"Current drinker","Heavy drinker"
+"4978591000006116",30,"^ESCTBI497859","","228326007","3013883018","Binge drinking",1,"Current drinker","Heavy drinker"
+"4978571000006117",800,"^ESCTDR497857","","228326007","342380019","Drinking binge",1,"Current drinker","Heavy drinker"
+"4978761000006116",7,"^ESCTUN497876","","228340008","342394018","Unable to control drinking",1,"Current drinker","Heavy drinker"
+"4978781000006114",20,"^ESCTUN497878","","228342000","342396016","Unable to control drinking once started",1,"Current drinker","Heavy drinker"
+"4978801000006113",8,"^ESCTUN497880","","228344004","342398015","Unable to stop drinking before intoxication",1,"Current drinker","Heavy drinker"
+"4978811000006111",10,"^ESCTUS497881","","228345003","342399011","Use of stratagems to control drinking",1,"Current drinker","Heavy drinker"
+"4978911000006116",50,"^ESCTDR497891","","228354000","342409015","Drink driving",1,"Current drinker","Heavy drinker"
+"4978921000006112",3,"^ESCTDR497892","","228354000","342410013","Drunk driving",1,"Current drinker","Heavy drinker"
+"4978931000006110",20,"^ESCTCH497893","","228355004","342411012","Charged with drink driving offence",1,"Current drinker","Heavy drinker"
+"4978951000006115",20,"^ESCTCO497895","","228356003","342414016","Convicted of drink driving",1,"Current drinker","Heavy drinker"
+"342421016",3000,"136b","136b.00","228362008","342421016","Feels should cut down drinking",1,"Current drinker","Heavy drinker"
+"4979041000006111",9,"^ESCTFE497904","","228363003","342422011","Feels drinking is out of control",1,"Current drinker","Heavy drinker"
+"4979061000006110",200,"^ESCTCR497906","","228365005","342424012","Craving for alcohol",1,"Current drinker","Heavy drinker"
+"371501000000110",800,"7P221","7P22100","231161000000109","371501000000110","Delivery of rehabilitation for alcohol addiction",1,"Current drinker","Heavy drinker"
+"5063221000006116",20,"^ESCTAL506322","","234341005","351066013","Alcohol-related macrocytosis",1,"Current drinker","Heavy drinker"
+"353587018",30000,"J617","J617.00","235875008","353587018","Alcoholic hepatitis",1,"Current drinker","Heavy drinker"
+"353594015",3000,"J6120","J612000","235880004","353594015","Alcoholic fibrosis and sclerosis of liver",1,"Current drinker","Heavy drinker"
+"353595019",4000,"J6130","J613000","235881000","353595019","Alcoholic hepatic failure",1,"Current drinker","Heavy drinker"
+"353687012",3000,"J6708","J670800","235942001","353687012","Alcohol-induced acute pancreatitis",1,"Current drinker","Heavy drinker"
+"353698013",10000,"J6710","J671000","235952002","353698013","Alcohol-induced chronic pancreatitis",1,"Current drinker","Heavy drinker"
+"5110231000006116",7,"^ESCTAL511023","","237641009","356162012","Alcohol-induced hypoglycaemia",1,"Current drinker","Heavy drinker"
+"5110241000006114",1,"^ESCTAL511024","","237641009","356163019","Alcohol-induced hypoglycemia",1,"Current drinker","Heavy drinker"
+"356292013",200,"C1505","C150500","237738005","356292013","Alcohol-induced pseudo-Cushing's syndrome",1,"Current drinker","Heavy drinker"
+"461112017",20000,"ZV6D6","ZV6D600","24165007","1206287010","Alcoholism counselling",1,"Current drinker","Heavy drinker"
+"405461000000114",10000,"66e0","66e0.00","247721000000109","405461000000114","Alcohol abuse monitoring",1,"Current drinker","Heavy drinker"
+"346930019",400,"E250-3","E250.13","25702006","43081018","Inebriety NOS",1,"Current drinker","Heavy drinker"
+"397611000006115",2000,"Eu100","Eu10000","25702006","43081018","[X]Mental & behav dis due to use alcohol: acute intoxication",1,"Current drinker","Heavy drinker"
+"362251000006117",60000,"Eu100-1","Eu10011","25702006","43081018","Alcohol intoxication",1,"Current drinker","Heavy drinker"
+"380021000006119",4,"U80z","U80z.00","25702006","43081018","[X]Evid alcoh invol detrm by pres alcoh in bld levl not spec",1,"Current drinker","Heavy drinker"
+"380031000006116",4000,"U81","U81..00","25702006","43081018","[X]Evid of alcohol involv determind by level of intoxication",1,"Current drinker","Heavy drinker"
+"380011000006110",4,"U810","U810.00","25702006","43081018","[X]Evid alcoh invol determ by levl of intox mild alcoh intox",1,"Current drinker","Heavy drinker"
+"379991000006118",6,"U811","U811.00","25702006","43081018","[X]Evid alcoh invol determ by level of intox mod alcoh intox",1,"Current drinker","Heavy drinker"
+"380001000006112",9,"U812","U812.00","25702006","43081018","[X]Evid alcoh invol determ by level of intox sev alcoh intox",1,"Current drinker","Heavy drinker"
+"379981000006116",5,"U813","U813.00","25702006","43081018","[X]Evid alcoh invl determ by levl intox very sev alcoh intox",1,"Current drinker","Heavy drinker"
+"379971000006119",300,"U814","U814.00","25702006","43081018","[X]Evid alch invl detrm by levl intox alch invl not oth spec",1,"Current drinker","Heavy drinker"
+"2911271000006113",1,"^ESCTAC291127","","25702006","43082013","Acute alcoholism",1,"Current drinker","Heavy drinker"
+"346931015",10000,"E250-1","E250.11","25702006","43083015","Drunkenness",1,"Current drinker","Heavy drinker"
+"769451000006111",200000,"E250-4","E250.14","25702006","43083015","Intoxication - alcohol",1,"Current drinker","Heavy drinker"
+"2911291000006114",40,"^ESCTAC291129","","25702006","483024013","Acute alcohol intoxication",1,"Current drinker","Heavy drinker"
+"2911301000006110",30,"^ESCTDR291130","","25702006","483025014","Drunk",1,"Current drinker","Heavy drinker"
+"401797010",100000,"E250","E250.00","268645007","401797010","Nondependent alcohol abuse",1,"Current drinker","Heavy drinker"
+"295251015",40000,"E2500","E250000","268645007","401797010","Nondependent alcohol abuse, unspecified",1,"Current drinker","Heavy drinker"
+"295255012",6000,"E250z","E250z00","268645007","401797010","Nondependent alcohol abuse NOS",1,"Current drinker","Heavy drinker"
+"882531000006110",5000,"E250-99","E250.99","268645007","882531000006110","Non-dependent abuse of alcohol",1,"Current drinker","Heavy drinker"
+"1225183017",100,"SLH3","SLH3.00","27134008","1225183017","Alcohol deterrent poisoning",1,"Current drinker","Heavy drinker"
+"2934661000006111",3,"^ESCTPO293466","","27134008","45382016","Poisoning by alcohol deterrent",1,"Current drinker","Heavy drinker"
+"5564291000006118",20,"^ESCTAL556429","","274517002","410336016","Alcoholism detoxication centre",1,"Current drinker","Heavy drinker"
+"5612351000006115",6,"^ESCTAL561235","","278363000","415240012","Alcoholic macrocytosis",1,"Current drinker","Heavy drinker"
+"480271000000113",1000,"13ZY","13ZY.00","279651000000104","480271000000113","Disqualified from driving due to excess alcohol",1,"Current drinker","Heavy drinker"
+"2950191000006118",40,"^ESCTSM295019","","28045007","483736014","Smell of alcohol on breath",1,"Current drinker","Heavy drinker"
+"401760017",2000,"E012","E012.00","281004","1225776018","Other alcoholic dementia",1,"Current drinker","Heavy drinker"
+"346929012",7000,"E012-1","E012.11","281004","1225776018","Alcoholic dementia",1,"Current drinker","Heavy drinker"
+"362941000006113",3000,"Eu107-1","Eu10711","281004","1225776018","[X]Alcoholic dementia NOS",1,"Current drinker","Heavy drinker"
+"2502971000006115",2000,"^ESCTDE250297","","281004","1557018","Dementia associated with alcoholism",1,"Current drinker","Heavy drinker"
+"2502981000006117",1,"^ESCTAL250298","","281004","1558011","Alcohol-induced persisting dementia",1,"Current drinker","Heavy drinker"
+"5689771000006115",200,"^ESCTPE568977","","284591009","423307016","Persistent alcohol abuse",1,"Current drinker","Heavy drinker"
+"5689781000006117",3,"^ESCTCH568978","","284591009","423308014","Chronic alcohol abuse",1,"Current drinker","Heavy drinker"
+"8088741000006119",5,"^ESCTAL808874","","288031000119105","3316455019","Alcohol induced disorder co-occurrent and due to alcohol dependence",1,"Current drinker","Heavy drinker"
+"8088751000006117",30,"^ESCTAL808875","","288031000119105","3316456018","Alcohol dependence with alcohol induced disorder",1,"Current drinker","Heavy drinker"
+"295765017",10000,"Eu10","Eu10.00","29212009","48886010","Alcohol-induced organic mental disorder",1,"Current drinker","Heavy drinker"
+"397241000006119",500,"Eu10y","Eu10y00","29212009","48886010","[X]Men & behav dis due to use alcohol: oth men & behav dis",1,"Current drinker","Heavy drinker"
+"2969641000006116",6,"^ESCTAL296964","","29212009","48889015","Alcohol-related disorder",1,"Current drinker","Heavy drinker"
+"464381000006118",30,"TJH3","TJH3.00","292416003","432554017","Alcohol metabolism modifier adverse reaction",1,"Current drinker","Heavy drinker"
+"362931000006115",10,"U60H3","U60H300","292416003","432554017","[X]Alcohol deterrents caus adverse effects in therapeut use",1,"Current drinker","Heavy drinker"
+"350971000006112",50,"U60H3-1","U60H311","292416003","432554017","[X] Adverse reaction to alcohol deterrents",1,"Current drinker","Heavy drinker"
+"5827361000006119",200,"^ESCTAL582736","","296295001","436692012","Alcohol deterrent overdose",1,"Current drinker","Heavy drinker"
+"451124014",1000,"J6170","J617000","307757001","451124014","Chronic alcoholic hepatitis",1,"Current drinker","Heavy drinker"
+"315091000000117",30000,"Eu108","Eu10800","308742005","452061016","Alcohol withdrawal-induced seizure",1,"Current drinker","Heavy drinker"
+"5981291000006110",6000,"^ESCTAL598129","","308742005","452062011","Alcohol withdrawal-induced convulsion",1,"Current drinker","Heavy drinker"
+"453265010",2000,"G8523","G852300","309783001","453265010","Oesophageal varices in alcoholic cirrhosis of the liver",1,"Current drinker","Heavy drinker"
+"6047161000006116",6,"^ESCTAL604716","","314539001","458914014","Alcohol related optic neuropathy",1,"Current drinker","Heavy drinker"
+"3073921000006112",900,"^ESCTAL307392","","35637008","59452011","Alcohol rehabilitation",1,"Current drinker","Heavy drinker"
+"6221451000006112",70,"^ESCTAL622145","","361267005","478018013","Alcohol-related fit",1,"Current drinker","Heavy drinker"
+"478024019",3000,"F25B","F25B.00","361268000","478024019","Alcohol-induced epilepsy",1,"Current drinker","Heavy drinker"
+"478046010",2000,"F1440","F144000","361272001","478046010","Cerebellar ataxia due to alcoholism",1,"Current drinker","Heavy drinker"
+"6221541000006111",1,"^ESCTAL622154","","361273006","1490764012","Alcoholic cerebellar degeneration syndrome",1,"Current drinker","Heavy drinker"
+"6221531000006118",100,"^ESCTAL622153","","361273006","478048011","Alcoholic cerebellar degeneration",1,"Current drinker","Heavy drinker"
+"1680121000006110",1000000,"9k1A","9k1A.00","366371000000105","691601000000110","Brief intervention for excessive alcohol consumption completed",1,"Current drinker","Heavy drinker"
+"1680131000006113",60000,"9k1B","9k1B.00","366421000000103","691701000000115","Extended intervention for excessive alcohol consumption completed",1,"Current drinker","Heavy drinker"
+"8121241000006115",700,"^ESCTSE812124","","372501000000100","732101000000112","Seen by counsellor for alcohol misuse",1,"Current drinker","Heavy drinker"
+"739501000000112",2000,"8CAv","8CAv.00","375941000000101","739501000000112","Advised to contact primary care alcohol worker",1,"Current drinker","Heavy drinker"
+"740641000000115",9000,"8HkJ","8HkJ.00","376401000000103","740641000000115","Referral to alcohol brief intervention service",1,"Current drinker","Heavy drinker"
+"1704281000006117",30000,"8IAF","8IAF.00","379411000000105","747421000000114","Brief intervention for excessive alcohol consumption declined",1,"Current drinker","Heavy drinker"
+"750531000000113",20000,"8IAJ","8IAJ.00","380861000000109","750531000000113","Declined referral to specialist alcohol treatment service",1,"Current drinker","Heavy drinker"
+"6455201000006114",3000,"^ESCTSU645520","","386449006","1480602019","Substance use treatment: alcohol withdrawal",1,"Current drinker","Heavy drinker"
+"3122331000006110",90,"^ESCTPA312233","","38670004","3122331000006110","Patient referral for alcoholism rehabilitation",1,"Current drinker","Heavy drinker"
+"13770661000006117",90,"^ESCT1377066","","38670004","3705390018","Referral to alcoholism rehabilitation service",1,"Current drinker","Heavy drinker"
+"1484890014",100000,"8H7p","8H7p.00","390857005","1484890014","Referral to community alcohol team",1,"Current drinker","Heavy drinker"
+"6769891000006117",1,"^ESCTAL676989","","408946003","2470784018","Alcohol abuse prevention assessment",1,"Current drinker","Heavy drinker"
+"6769921000006111",50000,"^ESCTAL676992","","408947007","2470785017","Alcohol abuse prevention education",1,"Current drinker","Heavy drinker"
+"3165691000006115",20,"^ESCTAL316569","","41309000","492959019","ALD - Alcoholic liver disease",1,"Current drinker","Heavy drinker"
+"303399018",100000,"J613","J613.00","41309000","68906017","Alcoholic liver damage",1,"Current drinker","Heavy drinker"
+"3165681000006118",300,"^ESCTAL316568","","41309000","68909012","Alcoholic liver disease",1,"Current drinker","Heavy drinker"
+"2474678017",20000,"66e","66e..00","413130000","2474678017","Alcohol disorder monitoring",1,"Current drinker","Heavy drinker"
+"2532939017",60000,"9k11","9k11.00","413473000","2532939017","Alcohol consumption counselling",1,"Current drinker","Heavy drinker"
+"117761000006116",7000,"1369","1369.00","413968004","2534341013","Denies alcohol abuse",1,"Current drinker","Heavy drinker"
+"2549646014",70000,"8HHe","8HHe.00","417096006","2549646014","Referral to community drug and alcohol team",1,"Current drinker","Heavy drinker"
+"2549849017",1000,"1B1c","1B1c.00","417633001","2549849017","Alcohol induced hallucinations",1,"Current drinker","Heavy drinker"
+"6947461000006115",20000,"^ESCTAL694746","","420054005","2576981019","Alcoholic cirrhosis",1,"Current drinker","Heavy drinker"
+"6947471000006110",100,"^ESCTAL694747","","420054005","2912539019","Alcoholic liver cirrhosis",1,"Current drinker","Heavy drinker"
+"476611000006116",100000,"J612","J612.00","420054005","2920441014","Alcoholic cirrhosis of liver",1,"Current drinker","Heavy drinker"
+"3182591000006114",1,"^ESCTAL318259","","42344001","2951763010","Alcohol induced psychosis",1,"Current drinker","Heavy drinker"
+"476741000006111",5000,"E01","E01..00","42344001","70655012","Alcohol-induced psychosis",1,"Current drinker","Heavy drinker"
+"294673012",4000,"E01y","E01y.00","42344001","70655012","Other alcoholic psychosis",1,"Current drinker","Heavy drinker"
+"294675017",40,"E01yz","E01yz00","42344001","70655012","Other alcoholic psychosis NOS",1,"Current drinker","Heavy drinker"
+"294676016",800,"E01z","E01z.00","42344001","70655012","Alcoholic psychosis NOS",1,"Current drinker","Heavy drinker"
+"397621000006111",1000,"Eu105","Eu10500","42344001","70655012","Alcohol-induced psychosis",1,"Current drinker","Heavy drinker"
+"362961000006112",40,"Eu105-2","Eu10512","42344001","70655012","[X]Alcoholic jealousy",1,"Current drinker","Heavy drinker"
+"362971000006117",200,"Eu105-3","Eu10513","42344001","70655012","[X]Alcoholic paranoia",1,"Current drinker","Heavy drinker"
+"362981000006119",1000,"Eu105-4","Eu10514","42344001","70655012","[X]Alcoholic psychosis NOS",1,"Current drinker","Heavy drinker"
+"397201000006116",200,"Eu107","Eu10700","42344001","70655012","[X]Men & behav dis due alcoh: resid & late-onset psychot dis",1,"Current drinker","Heavy drinker"
+"7108471000006117",3,"^ESCTAL710847","","429775004","2695747019","Alcohol intake exceeds recommended daily limit",1,"Current drinker","Heavy drinker"
+"622961000000116",30000,"8HkG","8HkG.00","431260004","2768649019","Referral to specialist alcohol treatment service",1,"Current drinker","Heavy drinker"
+"317636014",3000,"R103","R103.00","441685000","2817390013","High ethanol level in blood",1,"Current drinker","Heavy drinker"
+"7264381000006117",1000,"^ESCTRE726438","","442444001","2819225015","Referral to specialist alcohol treatment service declined by patient",1,"Current drinker","Heavy drinker"
+"380121000006118",10,"U804","U804.00","442669008","2817739010","[X]Eviden of alcohl involv blood alcohl level 80-99mg/100ml",1,"Current drinker","Heavy drinker"
+"380051000006111",7,"U805","U805.00","442669008","2817739010","[X]Eviden of alcoh involv blood alcoh level 100-119mg/100ml",1,"Current drinker","Heavy drinker"
+"380061000006113",100,"U806","U806.00","442669008","2817739010","[X]Eviden of alcoh involv blood alcoh level 120-199mg/100ml",1,"Current drinker","Heavy drinker"
+"380071000006118",30,"U807","U807.00","442669008","2817739010","[X]Eviden of alcoh involv blood alcoh level 200-239mg/100ml",1,"Current drinker","Heavy drinker"
+"380041000006114",20,"U808","U808.00","442669008","2817739010","[X]Eviden alcoh involv blood alcoh level 240mg/100ml or more",1,"Current drinker","Heavy drinker"
+"7266731000006111",1,"^ESCTET726673","","442669008","2817739010","Ethanol in blood specimen above legal threshold for operating vehicle",1,"Current drinker","Heavy drinker"
+"7308391000006116",20,"^ESCTAD730839","","445452008","2352771000000115","Addiction Research Foundation CIWA-A (Clinical Institute Withdrawal Assessment for Alcohol)",1,"Current drinker","Heavy drinker"
+"1901211000006117",600,"38QE","38QE.00","445452008","2870801010","Addiction Research Foundation Clinical Institute Withdrawal Assessment for Alcohol",1,"Current drinker","Heavy drinker"
+"7309181000006113",20,"^ESCTAL730918","","445507008","2870612012","Alcohol-induced pancreatitis",1,"Current drinker","Heavy drinker"
+"7309201000006114",30,"^ESCTAL730920","","445507008","2951751017","Alcoholic pancreatitis",1,"Current drinker","Heavy drinker"
+"460926018",9000,"ZV57A","ZV57A00","471691000000107","1001331000000118","[V]Alcohol rehabilitation",1,"Current drinker","Heavy drinker"
+"12456651000006117",100,"^ESCT1245665","","471691000000107","895711000000114","[V]Alcohol rehabilitation",1,"Current drinker","Heavy drinker"
+"3315041000006111",500,"^ESCTAL331504","","50325005","2306821000000116","Alcoholic steatosis",1,"Current drinker","Heavy drinker"
+"3315061000006110",30,"^ESCTAL331506","","50325005","3027285017","Alcoholic fatty liver disease",1,"Current drinker","Heavy drinker"
+"83834016",50000,"J610","J610.00","50325005","83834016","Alcoholic fatty liver",1,"Current drinker","Heavy drinker"
+"2534258017",3000,"9k14","9k14.00","527961000000108","1179611000000117","Alcohol counselling by other agencies",1,"Current drinker","Heavy drinker"
+"3402361000006113",5,"^ESCTAL340236","","55571001","92368012","Alcoholic ketoacidosis",1,"Current drinker","Heavy drinker"
+"886501000006115",2000,"J613-99","J613.99","589511000000102","886501000006115","Alcoholic liver damage NOS",1,"Current drinker","Heavy drinker"
+"899431000006116",100,"SM0z-99","SM0z.99","592581000000100","899431000006116","Alcohol NOS - toxic effect",1,"Current drinker","Heavy drinker"
+"3510721000006113",200,"^ESCTCO351072","","62213004","103391017","Combined alcohol and drug rehabilitation",1,"Current drinker","Heavy drinker"
+"882221000006114",200,"E01y-99","E01y.99","623961000000108","882221000006114","Other alcoholic psychoses",1,"Current drinker","Heavy drinker"
+"3545841000006113",5,"^ESCTDE354584","","64297001","106877013","Detoxication therapy for alcoholism",1,"Current drinker","Heavy drinker"
+"106878015",8000,"8BA8","8BA8.00","64297001","106878015","Alcohol detoxification",1,"Current drinker","Heavy drinker"
+"3545831000006115",4000,"^ESCTDE354583","","64297001","2160425017","Detoxication psychiatric therapy for alcoholism",1,"Current drinker","Heavy drinker"
+"295136019",100000,"E2310","E231000","66590003","110628016","Alcohol dependence",1,"Current drinker","Heavy drinker"
+"12878014",200000,"E23-1","E23..11","66590003","110629012","Alcoholism",1,"Current drinker","Heavy drinker"
+"110629012",70000,"E231","E231.00","66590003","110629012","Chronic alcoholism",1,"Current drinker","Heavy drinker"
+"295143013",7000,"E231z","E231z00","66590003","110629012","Chronic alcoholism NOS",1,"Current drinker","Heavy drinker"
+"370971000006114",7000,"Eu102-2","Eu10212","66590003","110629012","[X]Chronic alcoholism",1,"Current drinker","Heavy drinker"
+"500478011",1000000,"E23","E23..00","66590003","500478011","Alcohol dependence syndrome",1,"Current drinker","Heavy drinker"
+"295144019",100000,"E23z","E23z.00","66590003","500478011","Alcohol dependence syndrome NOS",1,"Current drinker","Heavy drinker"
+"397801000006117",10000,"Eu102","Eu10200","66590003","500478011","[X]Mental and behav dis due to use alcohol: dependence syndr",1,"Current drinker","Heavy drinker"
+"362921000006118",10000,"Eu102-1","Eu10211","66590003","500478011","[X]Alcohol addiction",1,"Current drinker","Heavy drinker"
+"377081000006114",8,"Eu102-3","Eu10213","66590003","500478011","[X]Dipsomania",1,"Current drinker","Heavy drinker"
+"324488015",100,"SM0y","SM0y.00","67426006","112060019","Other alcohol causing toxic effect",1,"Current drinker","Heavy drinker"
+"324489011",1000,"SM0z","SM0z.00","67426006","112060019","Alcohol causing toxic effect NOS",1,"Current drinker","Heavy drinker"
+"325596018",700,"SyuG0","SyuG000","67426006","112060019","Toxic effect of alcohol",1,"Current drinker","Heavy drinker"
+"391941000006118",200,"U2090","U209000","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at home",1,"Current drinker","Heavy drinker"
+"393591000006118",2,"U2091","U209100","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence in residential institution",1,"Current drinker","Heavy drinker"
+"391521000006119",7,"U2092","U209200","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area",1,"Current drinker","Heavy drinker"
+"391501000006112",1,"U2093","U209300","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at sports and athletics area",1,"Current drinker","Heavy drinker"
+"393311000006117",10,"U2094","U209400","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence on street and highway",1,"Current drinker","Heavy drinker"
+"393321000006113",2,"U2095","U209500","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at trade and service area",1,"Current drinker","Heavy drinker"
+"391351000006115",4,"U2096","U209600","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at industrial and construction area",1,"Current drinker","Heavy drinker"
+"391951000006116",2,"U2097","U209700","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence on farm",1,"Current drinker","Heavy drinker"
+"391511000006110",60,"U209y","U209y00","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at other specified place",1,"Current drinker","Heavy drinker"
+"393601000006114",200,"U209z","U209z00","67426006","112060019","[X]Intentional self poisoning by and exposure to alcohol, occurrence at unspecified place",1,"Current drinker","Heavy drinker"
+"422801000006118",300,"U409","U409.00","67426006","112060019","[X]Poisoning by and exposure to alcohol, undetermined intent",1,"Current drinker","Heavy drinker"
+"422121000006117",6,"U4090","U409000","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at home, undetermined intent",1,"Current drinker","Heavy drinker"
+"421791000006112",1,"U4091","U409100","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence in residential institution, undetermined intent",1,"Current drinker","Heavy drinker"
+"420991000006116",4,"U4092","U409200","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at school, other institution and public administrative area, undetermined intent",1,"Current drinker","Heavy drinker"
+"420981000006119",1,"U4093","U409300","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at sports and athletics area, undetermined intent",1,"Current drinker","Heavy drinker"
+"421521000006118",5,"U4094","U409400","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence on street and highway, undetermined intent",1,"Current drinker","Heavy drinker"
+"421531000006115",1,"U4095","U409500","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at trade and service area, undetermined intent",1,"Current drinker","Heavy drinker"
+"422381000006116",1,"U4096","U409600","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at industrial and construction area, undetermined intent",1,"Current drinker","Heavy drinker"
+"422131000006119",1,"U4097","U409700","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence on farm, undetermined intent",1,"Current drinker","Heavy drinker"
+"421381000006110",30,"U409y","U409y00","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at other specified place, undetermined intent",1,"Current drinker","Heavy drinker"
+"421801000006113",8,"U409z","U409z00","67426006","112060019","[X]Poisoning by and exposure to alcohol, occurrence at unspecified place, undetermined intent",1,"Current drinker","Heavy drinker"
+"500729017",5000,"SM0","SM0..00","67426006","500729017","Alcohol causing toxic effect",1,"Current drinker","Heavy drinker"
+"899411000006110",800,"SM0-99","SM0..99","67426006","899411000006110","Toxic effects of alcohol",1,"Current drinker","Heavy drinker"
+"991151000006114",1,"SM0-98","SM0..98","67426006","991151000006114","Alcohol NOS - toxic effect",1,"Current drinker","Heavy drinker"
+"394681000006119",7000,"Eu106-1","Eu10611","69482004","115434017","Korsakoff's psychosis",1,"Current drinker","Heavy drinker"
+"3630091000006111",9,"^ESCTWE363009","","69482004","115435016","Wernicke-Korsakoff syndrome",1,"Current drinker","Heavy drinker"
+"501294012",4000,"E0112","E011200","69482004","501294012","Wernicke-Korsakov syndrome",1,"Current drinker","Heavy drinker"
+"3630121000006110",4,"^ESCTKO363012","","69482004","501295013","Korsakoff psychosis",1,"Current drinker","Heavy drinker"
+"753331000006118",10000,"E0110","E011000","69482004","501296014","Korsakov alcoholic psychosis",1,"Current drinker","Heavy drinker"
+"3630141000006115",4,"^ESCTKO363014","","69482004","501297017","Korsakov syndrome - alcoholic",1,"Current drinker","Heavy drinker"
+"3630151000006118",2,"^ESCTKO363015","","69482004","501298010","Korsakov psychosis",1,"Current drinker","Heavy drinker"
+"3630161000006116",30,"^ESCTAM363016","","69482004","501299019","Amnesic syndrome due to alcohol",1,"Current drinker","Heavy drinker"
+"476361000006114",600,"E011","E011.00","69482004","501300010","Alcohol amnestic syndrome",1,"Current drinker","Heavy drinker"
+"3630171000006111",40,"^ESCTAL363017","","69482004","501300010","Alcoholic amnestic syndrome",1,"Current drinker","Heavy drinker"
+"7518451000006115",7,"^ESCTTH751845","","699208000","2988862012","Thrombocytopaenia due to alcohol",1,"Current drinker","Heavy drinker"
+"362951000006110",2000,"Eu105-1","Eu10511","7052005","1233279015","Alcoholic hallucinosis",1,"Current drinker","Heavy drinker"
+"2612481000006116",20,"^ESCTAL261248","","7052005","12634015","Alcohol hallucinosis",1,"Current drinker","Heavy drinker"
+"7613331000006116",3,"^ESCTAL761333","","707166002","3028923018","Alcohol reduction program",1,"Current drinker","Heavy drinker"
+"7613321000006119",3000,"^ESCTAL761332","","707166002","3028954019","Alcohol reduction programme",1,"Current drinker","Heavy drinker"
+"7700651000006119",10,"^ESCTCH770065","","713181003","3288362011","Chronic alcoholic liver disease",1,"Current drinker","Heavy drinker"
+"7706231000006114",40,"^ESCTMI770623","","713583005","3290336015","Mild alcohol dependence",1,"Current drinker","Heavy drinker"
+"7710581000006113",200,"^ESCTSE771058","","713862009","3297813018","Severe alcohol dependence",1,"Current drinker","Heavy drinker"
+"7725141000006111",100,"^ESCTMO772514","","714829008","3300567016","Moderate alcohol dependence",1,"Current drinker","Heavy drinker"
+"7785371000006113",1,"^ESCTWI778537","","719340007","3316031015","Withdrawn from alcohol detoxification program",1,"Current drinker","Heavy drinker"
+"2462911000000112",200,"9NgzH","9NgzH00","719340007","3316032010","Withdrawn from alcohol detoxification programme",1,"Current drinker","Heavy drinker"
+"7791901000006117",5,"^ESCTAL779190","","719848005","3318151010","Alcohol induced disorder",1,"Current drinker","Heavy drinker"
+"2614651000006115",20000,"^ESCTAL261465","","7200002","12878014","Alcoholism",1,"Current drinker","Heavy drinker"
+"502016018",40,"E231-1","E231.11","7200002","502016018","Dipsomania",1,"Current drinker","Heavy drinker"
+"502017010",1000000,"E23-2","E23..12","7200002","502017010","Alcohol problem drinking",1,"Current drinker","Heavy drinker"
+"2475831000000114",300,"8BAu","8BAu.00","720175009","3319643016","Alcohol harm reduction programme",1,"Current drinker","Heavy drinker"
+"2485391000000114",10,"8BAw","8BAw.00","720178006","3319659016","Alcohol twelve step programme",1,"Current drinker","Heavy drinker"
+"7821631000006114",4,"^ESCTFI782163","","721710005","3325822012","Fibrosis of liver caused by alcohol",1,"Current drinker","Heavy drinker"
+"7821641000006116",1,"^ESCTAL782164","","721710005","3325823019","Alcoholic fibrosis of liver",1,"Current drinker","Heavy drinker"
+"7849261000006118",1,"^ESCTPE784926","","723926008","3427876012","Perceptual disturbances and seizures co-occurrent and due to alcohol withdrawal",1,"Current drinker","Heavy drinker"
+"7849271000006113",10,"^ESCTAL784927","","723926008","3427877015","Alcohol withdrawal with perceptual disturbances and seizures",1,"Current drinker","Heavy drinker"
+"7858041000006119",3,"^ESCTAL785804","","724574008","3441485019","Alcohol-related neurological disorder",1,"Current drinker","Heavy drinker"
+"294664016",100,"E011z","E011z00","73097000","121405015","Alcohol amnestic syndrome NOS",1,"Current drinker","Heavy drinker"
+"397791000006118",600,"Eu106","Eu10600","73097000","121405015","Alcohol amnestic disorder",1,"Current drinker","Heavy drinker"
+"1754191000006119",8000,"8IAt","8IAt.00","754831000000102","1660641000000118","Extended intervention for excessive alcohol consumption declined",1,"Current drinker","Heavy drinker"
+"1738341000000110",10000,"136a","136a.00","777631000000108","1738341000000110","Increasing risk drinking",1,"Current drinker","Heavy drinker"
+"1738381000000119",5000,"136c","136c.00","777651000000101","1738381000000119","Higher risk drinking",1,"Current drinker","Heavy drinker"
+"1746481000000112",10000,"8IEA","8IEA.00","781191000000101","1746481000000112","Referral to community alcohol team declined",1,"Current drinker","Heavy drinker"
+"13667221000006114",4,"^ESCT1366722","","787768005","3776879017","Psychotic behaviour caused by ingestible alcohol",1,"Current drinker","Heavy drinker"
+"2626161000006111",700,"^ESCTAL262616","","7916009","1234320010","Alcoholic peripheral neuropathy",1,"Current drinker","Heavy drinker"
+"2626141000006112",50,"^ESCTAL262614","","7916009","14103017","Alcoholic polyneuropathy",1,"Current drinker","Heavy drinker"
+"14103017",5000,"F375","F375.00","7916009","14104011","Alcohol-induced polyneuropathy",1,"Current drinker","Heavy drinker"
+"8259601000006117",600,"^ESCTRE825960","","809401000000103","2112501000000115","Referral to alcohol misuse clinic",1,"Current drinker","Heavy drinker"
+"13929361000006112",200000,"^ESCT1392936","","827094004","3873802018","Alcohol detoxification",1,"Current drinker","Heavy drinker"
+"3846821000006114",100,"^ESCTAL384682","","82782008","1234741018","Alcohol poisoning",1,"Current drinker","Heavy drinker"
+"1234742013",800,"SM000","SM00000","82782008","1234742013","Ethanol causing toxic effect",1,"Current drinker","Heavy drinker"
+"649311000006115",900,"SM00","SM00.00","82782008","137325017","Toxic effect of ethyl alcohol",1,"Current drinker","Heavy drinker"
+"324467012",70,"SM00z","SM00z00","82782008","137325017","Ethyl alcohol causing toxic effect NOS",1,"Current drinker","Heavy drinker"
+"899421000006119",40,"SM00-99","SM00.99","82782008","899421000006119","Ethyl alcohol - toxic effect",1,"Current drinker","Heavy drinker"
+"831091000006115",8000,"EMISQRE1","","831091000006104","831091000006115","Referral to alcohol abuse team",1,"Current drinker","Heavy drinker"
+"831101000006114",5000,"EMISQRE2","","831101000006105","831101000006114","Referral to alcohol counsellor",1,"Current drinker","Heavy drinker"
+"3859091000006114",500,"^ESCTDI385909","","83521008","138526017","Dilated cardiomyopathy secondary to alcohol",1,"Current drinker","Heavy drinker"
+"138527014",10000,"G555","G555.00","83521008","138527014","Alcoholic cardiomyopathy",1,"Current drinker","Heavy drinker"
+"3859111000006117",1,"^ESCTDI385911","","83521008","3290572011","Dilated cardiomyopathy caused by alcohol",1,"Current drinker","Heavy drinker"
+"851931000006116",900,"EMISQRE24","","851931000006100","851931000006116","Referral to alcohol recovery project",1,"Current drinker","Heavy drinker"
+"852151000006117",4000,"EMISQAU2","","852151000006101","852151000006117","AUDIT score >5 alcohol dependence syndrome",1,"Current drinker","Heavy drinker"
+"852161000006115",10000,"EMISQAU3","","852161000006104","852161000006115","AUDIT score >5 alcohol problem drinker",1,"Current drinker","Heavy drinker"
+"852391000006113",30000,"EMISQNO6","","852391000006109","852391000006113","Not interested in reducing alcohol",1,"Current drinker","Heavy drinker"
+"852401000006110",3000,"EMISQRE13","","852401000006106","852401000006110","Ready to start reducing alcohol",1,"Current drinker","Heavy drinker"
+"852411000006113",9000,"EMISQTH4","","852411000006109","852411000006113","Thinking about reducing alcohol",1,"Current drinker","Heavy drinker"
+"854651000006117",20000,"EGTON59","","854651000006101","854651000006117","Alcohol overdose",1,"Current drinker","Heavy drinker"
+"3890681000006118",900,"^ESCTUN389068","","85561006","141818010","Uncomplicated alcohol withdrawal",1,"Current drinker","Heavy drinker"
+"15243013",5000,"E010","E010.00","8635005","15243013","Alcohol withdrawal delirium",1,"Current drinker","Heavy drinker"
+"397211000006118",300,"Eu104","Eu10400","8635005","15243013","[X]Men & behav dis due alcohl: withdrawl state with delirium",1,"Current drinker","Heavy drinker"
+"376451000006113",2000,"Eu104-1","Eu10411","8635005","15243013","[X]Delirium tremens, alcohol induced",1,"Current drinker","Heavy drinker"
+"15244019",3000,"E010-2","E010.12","8635005","15244019","Delirium tremens",1,"Current drinker","Heavy drinker"
+"507053019",2000,"E010-1","E010.11","8635005","507053019","DTs - delirium tremens",1,"Current drinker","Heavy drinker"
+"144179014",30000,"136P","136P.00","86933000","144179014","Heavy drinker",1,"Current drinker","Heavy drinker"
+"3913321000006111",30,"^ESCTDR391332","","86933000","507322014","Drinks heavily",1,"Current drinker","Heavy drinker"
+"3916281000006114",6,"^ESCTCO391628","","87106005","144444016","Combined alcohol and drug detoxification",1,"Current drinker","Heavy drinker"
+"2298341000000114",1000,"9NJz","9NJz.00","892631000000102","2298341000000114","In-house alcohol detoxification",1,"Current drinker","Heavy drinker"
+"14146421000006116",10,"^ESCT1414642","","897005004","4030032019","Oesophageal varices due to cirrhosis of liver caused by alcohol",1,"Current drinker","Heavy drinker"
+"397431000006111",1000,"Eu10z","Eu10z00","91388009","151411015","[X]Ment & behav dis due use alcohol: unsp ment & behav dis",1,"Current drinker","Heavy drinker"
+"2364891000000111",600,"9EVD","9EVD.00","921441000000103","2364891000000111","Hospital alcohol liaison team report received",1,"Current drinker","Heavy drinker"
+"1926131000006117",10,"8W2","8W2..00","933641000000103","2391941000000114","Referral to mental health services deferred until alcohol misuse resolved",1,"Current drinker","Heavy drinker"
+"940781000006116",1000,"HMPNQEV1","","940781000006100","940781000006116","Evidence of alcohol withdrawal",1,"Current drinker","Heavy drinker"
+"2419601000000110",2000,"8CdK","8CdK.00","946101000000100","2419601000000110","Specialist alcohol treatment service signposted",1,"Current drinker","Heavy drinker"
+"961571000006111",20000,"EMISCAB16","","961571000006107","961571000006111","Excessive use of alcohol",1,"Current drinker","Heavy drinker"
+"1947501000006118",1000,"9Nz9","9Nz9.00","963261000000108","2454241000000116","Emergency department attendance related to personal alcohol consumption",1,"Current drinker","Heavy drinker"
+"2454281000000112",700,"9NzA","9NzA.00","963281000000104","2454281000000112","Hospital attendance related to personal alcohol consumption",1,"Current drinker","Heavy drinker"
+"970391000006118",3000,"EMISNQND25","","970391000006102","970391000006118","Substance misuse of Alcohol",1,"Current drinker","Heavy drinker"
+"970401000006116",60,"EMISNQMI149","","970401000006100","970401000006116","Misuse of mixture of Alcohol",1,"Current drinker","Heavy drinker"
+"970411000006118",2000,"EMISNQMI150","","970411000006102","970411000006118","Misuse of Alcohol unspecified",1,"Current drinker","Heavy drinker"
+"973071000006111",1,"TRIQQZZ63","","973071000006107","973071000006111","** Responding to drug & alcohol problems in the community",1,"Current drinker","Heavy drinker"
+"2658601000006116",60,"^ESCTAC265860","","9953008","17389017","Acute alcoholic liver disease",1,"Current drinker","Heavy drinker"
+"17390014",10000,"J611","J611.00","9953008","17390014","Acute alcoholic hepatitis",1,"Current drinker","Heavy drinker"
+"7967731000006110",3,"^ESCTDE796773","","1161000175101","3037933018","Decreased alcohol consumption",1,"Current drinker",
+"250331010",50000,"136F","136F.00","160588008","250331010","Spirit drinker",1,"Current drinker",
+"250332015",200000,"136G","136G.00","160589000","250332015","Beer drinker",1,"Current drinker",
+"250333013",20000,"136H","136H.00","160590009","250333013","Drinks beer and spirits",1,"Current drinker",
+"250334019",200000,"136I","136I.00","160591008","250334019","Drinks wine",1,"Current drinker",
+"295421012",100,"E274A","E274A00","192003008","295421012","Sleep drunkenness",1,"Current drinker",
+"1957791000006115",3000,"EMISNQRE532","","1957791000006104","1957791000006115","Reduced alcohol intake",1,"Current drinker",
+"451082013",20000,"ZV4KC","ZV4KC00","219006","1460010","[V] Alcohol use",1,"Current drinker",
+"2502071000006119",20,"^ESCTAL250207","","219006","1462019","Alcohol user",1,"Current drinker",
+"2502091000006118",20,"^ESCTCU250209","","219006","2668982019","Current drinker of alcohol",1,"Current drinker",
+"2502061000006114",60000,"^ESCTCU250206","","219006","481157015","Current drinker",1,"Current drinker",
+"2502081000006116",3000,"^ESCTDR250208","","219006","481158013","Drinks alcohol",1,"Current drinker",
+"4957721000006112",3,"^ESCTHI495772","","226510001","340253019","High alcohol lager",1,"Current drinker",
+"4977871000006118",5000,"^ESCTFI497787","","228273003","1206283014","Finding relating to alcohol drinking behaviour",1,"Current drinker",
+"4977891000006117",600,"^ESCTAL497789","","228273003","1216142012","Alcohol drinking behaviour",1,"Current drinker",
+"4977901000006118",2,"^ESCTAL497790","","228273003","1217644015","Alcohol drinking behavior",1,"Current drinker",
+"4978121000006114",10,"^ESCTDR497812","","228285006","342333010","Drinks at home",1,"Current drinker",
+"4978131000006112",1,"^ESCTHO497813","","228285006","342334016","Home drinker",1,"Current drinker",
+"4978151000006117",5,"^ESCTDR497815","","228287003","342336019","Drinks in public places",1,"Current drinker",
+"4978171000006110",3,"^ESCTST497817","","228289000","342338018","Street drinker",1,"Current drinker",
+"4978241000006111",10,"^ESCTCO497824","","228296003","342345018","Company when drinking",1,"Current drinker",
+"4978281000006117",6,"^ESCTDR497828","","228298002","342349012","Drinks in company",1,"Current drinker",
+"4978321000006111",90,"^ESCTDR497832","","228302005","342353014","Drinks with friends",1,"Current drinker",
+"4978411000006113",20,"^ESCTDR497841","","228312003","342363018","Drinks alcohol evenly through week",1,"Current drinker",
+"4978421000006117",40,"^ESCTDR497842","","228313008","342364012","Drinks alcohol unevenly through week",1,"Current drinker",
+"4978431000006119",100,"^ESCTWE497843","","228314002","342365013","Weekend drinker",1,"Current drinker",
+"4978501000006111",50,"^ESCTDR497850","","228319007","2988881016","Drinks alcohol daily",1,"Current drinker",
+"4978491000006115",100,"^ESCTDA497849","","228319007","342373016","Daily drinker",1,"Current drinker",
+"4978651000006111",20,"^ESCTPR497865","","228331009","342385012","Priority of drink-related activities",1,"Current drinker",
+"4978681000006115",7,"^ESCTUN497868","","228334001","1489833011","Undue priority given to drink-related activities",1,"Current drinker",
+"4978731000006113",80,"^ESCTAB497873","","228338003","342392019","Ability to control drinking",1,"Current drinker",
+"4978751000006118",20,"^ESCTAB497875","","228339006","342393012","Able to control drinking",1,"Current drinker",
+"380081000006115",500,"U800","U800.00","274776000","410638011","Finding of alcohol in blood",1,"Current drinker",
+"936001000006111",1000000,"67H0","67H0.00","281078001","2575919017","Advice relating to alcohol consumption",1,"Current drinker",
+"240741000006114",10000000,"8CAM","8CAM.00","281078001","2871969016","Education about alcohol consumption",1,"Current drinker",
+"5738331000006112",4,"^ESCTDO573833","","288855004","428601013","Does drink",1,"Current drinker",
+"2998891000006117",20000,"^ESCTDR299889","","30953006","51828014","Drinking",1,"Current drinker",
+"6006211000006116",20,"^ESCTDR600621","","311492009","2579333017","Drinking alcohol",1,"Current drinker",
+"6006201000006119",6,"^ESCTIN600620","","311492009","455073013","Ingestible alcohol",1,"Current drinker",
+"459715013",70,"1D19","1D19.00","315226008","459715013","Pain in lymph nodes after alcohol consumption",1,"Current drinker",
+"8103541000006113",1,"^ESCTFE810354","","323231000000100","593381000000115","Feels alcohol consumption is not a problem",1,"Current drinker",
+"223671000000110",1000,"E250-2","E250.12","32553006","485256013","Hangover from alcohol",1,"Current drinker",
+"3024491000006118",100,"^ESCTHA302449","","32553006","54361013","Hangover",1,"Current drinker",
+"8106921000006119",1,"^ESCTFE810692","","334631000000103","619991000000110","Feels it is not necessary to reduce alcohol consumption",1,"Current drinker",
+"6260461000006110",300,"^ESCTFR626046","","364657008","487822014","Frequency of drinking",1,"Current drinker",
+"817981000006115",7000000,"6792","6792.00","408947007","2579616015","Health education - alcohol",1,"Current drinker",
+"6937401000006115",2,"^ESCTET693740","","419442005","2576569013","Ethyl alcohol",1,"Current drinker",
+"6937411000006117",70,"^ESCTET693741","","419442005","2579708017","EtOH - Alcohol",1,"Current drinker",
+"6937421000006113",10,"^ESCTET693742","","419442005","2579709013","EtOH - Ethanol",1,"Current drinker",
+"6937391000006117",40,"^ESCTET693739","","419442005","2579710015","Ethanol",1,"Current drinker",
+"419221000033114",10,"DRGC4446EMIS","","419442005","419221000033114","Ethanol",1,"Current drinker",
+"12112021000006111",2,"^ESCT1211202","","440671000124106","651791000124111","Management of alcohol intake",1,"Current drinker",
+"380131000006115",40,"U80","U80..00","441685000","2817389016","[X]Evidence of alcohl involv determin by blood alcohl level",1,"Current drinker",
+"380091000006117",20,"U801","U801.00","441685000","2817389016","[X]Eviden of alcohl involv blood alcohl level 20-39mg/100ml",1,"Current drinker",
+"380101000006111",6,"U802","U802.00","441685000","2817389016","[X]Eviden of alcohl involv blood alcohl level 40-59mg/100ml",1,"Current drinker",
+"380111000006114",6,"U803","U803.00","441685000","2817389016","[X]Eviden of alcohl involv blood alcohl level 60-79mg/100ml",1,"Current drinker",
+"7334601000006116",300,"^ESCTDR733460","","447087000","2881579018","Drinks alcoholic cider",1,"Current drinker",
+"3360071000006111",1000,"^ESCTAL336007","","53041004","88230018","Alcohol",1,"Current drinker",
+"8229891000006112",30,"^ESCTDR822989","","748381000000102","1638891000000115","Drinks real ale",1,"Current drinker",
+"2358251000000115",500,"2126C","2126C00","918321000000104","2358251000000115","Alcohol dependence resolved",1,"Current drinker",
+"8364771000006117",90,"^ESCTIN836477","","984801000000105","2504461000000116","Injury following alcohol use",1,"Current drinker",
+"8458781000006110",60000,"^ESCTAL845878","","1082631000000102","2712991000000112","Alcohol units consumed per day",1,"Unknown",
+"556651000000116",3000000,"136V","136V.00","1082641000000106","2713011000000113","Alcohol units consumed per week",1,"Unknown",
+"12619041000006111",7,"^ESCT1261904","","1104851000000107","2765571000000113","History of alcohol use",1,"Unknown",
+"4533151000006116",20,"^ESCTAI453315","","160573003","1221268014","AI - Alcohol intake",1,"Unknown",
+"4533161000006119",1,"^ESCTET453316","","160573003","1221269018","Ethanol intake",1,"Unknown",
+"4533171000006114",400,"^ESCTET453317","","160573003","1221270017","ETOH - Alcohol intake",1,"Unknown",
+"1221271018",70000000,"136","136..00","160573003","1221271018","Alcohol consumption",1,"Unknown",
+"476411000006118",800000,"136Z","136Z.00","160573003","1221271018","Alcohol consumption NOS",1,"Unknown",
+"4533191000006110",30,"^ESCTAL453319","","160573003","1221272013","Alcoholic drink intake",1,"Unknown",
+"4533141000006118",2000000,"^ESCTAL453314","","160573003","250307017","Alcohol intake",1,"Unknown",
+"1989851000006119",1,"TRIQQAL1","","1989851000006103","1989851000006119","Alcohol units consumed in last 48 hours",1,"Unknown",
+"4943491000006113",500,"^ESCTDR494349","","225578007","338989015","Drinking finding",1,"Unknown",
+"4978371000006112",80,"^ESCTPA497837","","228308009","342359013","Pattern of drinking",1,"Unknown",
+"4978401000006110",10,"^ESCTPA497840","","228311005","342362011","Pattern of alcohol consumption through week",1,"Unknown",
+"4987141000006114",300,"^ESCTAL498714","","228956008","343210015","Alcohol units",1,"Unknown",
+"4987151000006111",3000,"^ESCTAL498715","","228957004","343211016","alcohol units/day",1,"Unknown",
+"4987161000006113",30000,"^ESCTAL498716","","228958009","343212011","alcohol units/week",1,"Unknown",
+"11928671000006111",8,"^ESCT1192867","","228958009","556651000000116","Alcohol units per week",1,"Unknown",
+"5742041000006117",60,"^ESCTFI574204","","289151002","428963010","Finding of drinking pattern",1,"Unknown",
+"5742081000006111",20,"^ESCTFI574208","","289153004","428965015","Finding of quantity of drinking",1,"Unknown",
+"6260451000006113",1,"^ESCTDR626045","","364656004","487821019","Drinking pattern",1,"Unknown",
+"6282101000006116",5,"^ESCTAL628210","","365967005","489467015","Alcohol intake - finding",1,"Unknown",
+"6289331000006118",50,"^ESCTDR628933","","366357001","489876017","Drink intake - finding",1,"Unknown",
+"476501000006115",20,"EGTON418","","476501000006104","476501000006115","Alcohol intake",1,"Unknown",
+"3528891000006113",400,"^ESCTAL352889","","63267000","105170018","Alcohol measurement",1,"Unknown",
+"3528901000006112",2,"^ESCTAL352890","","63267000","1232446011","Alcohol level",1,"Unknown",
+"7700011000006113",20,"^ESCTAS770001","","713127001","3288173012","Assessment of alcohol use",1,"Unknown",
+"14147511000006111",40000,"^ESCT1414751","","897148007","4032656012","Alcoholic beverage intake",1,"Unknown",
+"14147521000006115",50,"^ESCT1414752","","897148007","4032658013","Alcoholic drink intake",1,"Unknown",
