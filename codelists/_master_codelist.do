@@ -196,3 +196,16 @@ save "compact/dementia", replace
 //Combined master codelist
 merge 1:1 medcodeid using _master_codelist, nogenerate
 save _master_codelist, replace
+
+
+// ALCOHOL CONSUMPTION
+use alcohol_consumption, clear
+
+keep medcodeid alcstatus alclevel
+
+//Compact version
+save compact/alcohol_consumption, replace
+
+//Combined master codelist
+merge 1:1 medcodeid using _master_codelist, nogenerate
+save _master_codelist, replace
