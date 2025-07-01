@@ -201,7 +201,7 @@ save _master_codelist, replace
 // ALCOHOL CONSUMPTION
 use alcohol_consumption, clear
 
-keep medcodeid alcstatus alclevel
+keep medcodeid alcstatus alclevel alcvalue
 
 //Compact version
 save compact/alcohol_consumption, replace
