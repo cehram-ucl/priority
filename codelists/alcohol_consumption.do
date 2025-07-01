@@ -57,8 +57,8 @@ tempfile medical
 save `medical'
 
 
-// SKIP STEPS 1 & 2, USE PRE-EXISTING CODELIST INSTEAD
-//=====================================================
+// STEP 0. COMBINE EXTERNAL CODELIST(S) TO USE AS A GUIDE
+//========================================================
 
 //Use pre-existing codelist
 import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/37/covariate_alcohol_aurum.txt, stringcols(1) favorstrfixed clear
@@ -66,12 +66,13 @@ import delimited https://datacompass.lshtm.ac.uk/id/eprint/4214/37/covariate_alc
 tab1 alcstatus alclevel, missing
 
 //Generate tidier variables
-label define alcstatus 1 "Non-drinker" 2 "Ex-drinker" 3 "Current drinker" ///
-	99 "Unknown"
+generate byte alcvalue = 1 if alcstatus == "unknown"
+replace alcstatus = "" if alcstatus == "unknown"
+
+label define alcstatus 1 "Non-drinker" 2 "Ex-drinker" 3 "Current drinker"
 replace alcstatus = "1" if alcstatus == "non"
 replace alcstatus = "2" if alcstatus == "ex"
 replace alcstatus = "3" if alcstatus == "curr"
-replace alcstatus = "99" if alcstatus == "unknown"
 destring alcstatus, replace
 label values alcstatus alcstatus
 
@@ -100,9 +101,57 @@ list medcodeid term term_old if lower(term) != lower(term_old)
 
 generate byte alcohol = 1
 drop term_old
-order alcstatus alclevel, last
+order alcstatus alclevel alcvalue, last
 
 gsort alcstatus alclevel
+
+keep medcodeid alcohol alcstatus alclevel alcvalue
+tempfile external
+save `external'
+
+use `medical', clear
+merge 1:1 medcodeid using `external'
+drop if _merge == 2  //shouldn't be any
+drop _merge
+
+
+// STEP 1. IDENTIFY SEARCH TERMS
+//===============================
+
+// **Define search terms below. Use multiple local macros if categorising
+//   desired codes in to multiple categories make more sense**
+
+// **If using repository codelists in Step 0, make sure macro has same name as
+//   variable created to identify condition in repository codelists**
+
+local alcohol " "*alcohol*consumption*" "*consumption*alcohol*" "*alcohol*intake*" "*intake*alcohol*" "*alcohol*units*" "*units*alcohol*" "*alcohol*use*disorder*identification*test*" "*fast*alcohol*screening*test*" "
+
+
+// STEP 2. SEARCH THE MEDICAL TERMINOLOGY DICTIONARY USING THE SEARCH TERMS
+//==========================================================================
+
+// **Add any additional local macros if you have used more than 1**
+//For each specified local macro...
+foreach termgroup in /**/alcohol/**/ {
+	
+	//For each SNOMED CT term description (converted to lower case)...
+	foreach codeterm in lower(term) {
+		
+		//For each individual search term in the local macro
+		foreach searchterm in ``termgroup'' {
+			
+			//Set the indicator variable to 1 if the SNOMED CT term description matches the search term from the local macro
+			replace `termgroup' = 1 if strmatch(`codeterm', "`searchterm'")
+		}
+	}
+}
+
+keep if /**/alcohol == 1/**/
+compress
+
+gsort /**/alcohol alcstatus alclevel alcvalue/**/ -observations snomedctconceptid snomedctdescriptionid originalreadcode
+
+tab1 /**/alcohol/**/, missing
 
 
 // (OPTIONAL) STEP 3. PERFORM A SECONDARY SEARCH TO EXCLUDE BROAD UNDESIRED TERMS
@@ -112,10 +161,10 @@ gsort alcstatus alclevel
 
 // **Exclusion terms**
 
-local exclude " "*family*" "*maternal*care*" "
+local exclude " "*family*" "*maternal*care*" "*energy*" "*recommended*intake*" "*unknown*" "*declines*to*state*" "*test*declined*" "*pregnancy*" "
 
 //Search for codes to exclude
-foreach excludeterm in exclude /**/familyhistory/**/ {
+foreach excludeterm in exclude /**//**/ {
 
 	gen byte `excludeterm' = .
 
@@ -129,7 +178,7 @@ foreach excludeterm in exclude /**/familyhistory/**/ {
 }
 
 //Check that nothing important is highlighted for exclusion before dropping
-list observations term if exclude == 1
+list observations term alcstatus alclevel alcvalue if exclude == 1
 
 drop if exclude == 1
 
@@ -151,7 +200,8 @@ foreach medcode of local initial_remove {
 	replace remove = 1 if medcodeid == "`medcode'"
 }
 
-list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term if remove == 1
+list medcodeid snomedctdescriptionid snomedctconceptid originalreadcode term ///
+	if remove == 1
 drop if remove == 1
 drop remove
 
@@ -160,7 +210,7 @@ tab1 /**/alcohol alcstatus alclevel/**/
 
 
 //Recode to "Current drinker" status
-local current "4978411000006113 4978421000006117 451082013"
+local current "4978411000006113 4978421000006117 451082013 7229341000006119 1724531000000116 7084901000006118"
 
 foreach medcode of local current {
 	
@@ -169,14 +219,15 @@ foreach medcode of local current {
 	list term alcstatus if medcodeid == "`medcode'"
 }
 
-//Recode to "Unknown" status
-local unknown "6289331000006118 6282101000006116 14147511000006111 476501000006115 14147521000006115"
+//Recode to value codes
+local value "6289331000006118 6282101000006116 14147511000006111 476501000006115 14147521000006115 11928751000006111 1899421000006119 855971000006116 1659811000006114 8461521000006117 11928611000006119 12490721000006114 476431000006112 7382961000006113 1590911000006113 408548014 1590881000006113 2723861000000110 8461501000006110 1660411000006112 940771000006119 7275011000006117 750721000000118 5547231000006118 7275551000006110 14146131000006111 11928741000006114 12002341000006114 1899521000006115 13530371000006117 538891000000111 12001651000006110 492591000000114 14146221000006115 476421000006114 1590901000006110"
 
-foreach medcode of local unknown {
+foreach medcode of local value {
 	
-	replace alcstatus = 99 if medcodeid == "`medcode'"
-	display "Recoded to Unknown"
-	list term alcstatus if medcodeid == "`medcode'"
+	replace alcstatus = . if medcodeid == "`medcode'"
+	replace alcvalue = 1 if medcodeid == "`medcode'"
+	display "Recoded to value code"
+	list term alcstatus alcvalue if medcodeid == "`medcode'"
 }
 
 //Recode to "Heavy drinker" level
@@ -189,7 +240,7 @@ foreach medcode of local heavy {
 	list term alcstatus alclevel if medcodeid == "`medcode'"
 }
 
-gsort alcstatus alclevel
+gsort alcstatus alclevel alcvalue
 
 
 // STEP 5. USE THE SNOMED CT CONCEPT ID TO FIND ADDITIONAL SYNONYMOUS TERMS
@@ -203,15 +254,15 @@ count
 
 //Make a note of current list
 preserve
-	keep medcodeid /**/alcohol alcstatus alclevel/**/
+	keep medcodeid /**/alcohol alcstatus alclevel alcvalue/**/
 	gen byte original = 1
 	tempfile original
 	save `original'
 restore
 
 //Merge SNOMED CT Concepts with medical dictionary
-keep snomedctconceptid /**/alcohol alcstatus alclevel/**/
-gsort /**/alcohol -alcstatus -alclevel/**/  //prioritise worst or missing
+keep snomedctconceptid /**/alcohol alcstatus alclevel alcvalue/**/
+gsort /**/alcohol -alcstatus -alclevel alcvalue/**/  //prioritise worst
 bysort snomedctconceptid: keep if _n == 1
 
 //Merge with original search results
@@ -221,8 +272,8 @@ merge 1:1 medcodeid using `original', update replace
 list medcodeid term alcstatus alclevel if _merge > 3  //conflicts
 drop _merge
 order snomedctconceptid, before(snomedctdescriptionid)
-order /**/alcohol alcstatus alclevel/**/, last
-gsort /**/alcohol alcstatus alclevel/**/ originalreadcode
+order /**/alcohol alcstatus alclevel alcvalue/**/, last
+gsort /**/alcohol alcstatus alclevel alcvalue/**/ originalreadcode
 
 //Label new codes
 gen new_snomedct_synonym = (original != 1)
@@ -281,7 +332,12 @@ foreach conceptid of local snomed_remove {
 }
 
 
-tab1 alcohol alcstatus alclevel, missing
+//Fix double-classification of codes
+list medcodeid term alcstatus alclevel alcvalue if alcvalue == 1 & alcstatus != .
+replace alcvalue = . if alcvalue == 1 & alcstatus != . 
+
+
+tab1 alcohol alcstatus alclevel alcvalue, missing
 
 
 //STEP 6 - not required; already categorised
@@ -297,7 +353,7 @@ tab1 alcohol alcstatus alclevel, missing
 //=======================
 
 //Save clinician approved codelist
-gsort alcstatus alclevel snomedctconceptid snomedctdescriptionid originalreadcode
+gsort alcstatus alclevel alcvalue snomedctconceptid snomedctdescriptionid originalreadcode
 drop new_snomedct_synonym
 compress
 save `filename', replace
