@@ -1,0 +1,600 @@
+prodcodeid,dmdid,termfromemis,productname,formulation,routeofadministration,drugsubstancename,substancestrength,bnfchapter,psychotropic,psychotropic_cat
+43441000033118,,amitriptyline sr  capsules  75 mg,,,,,,,Amitriptyline,Tricyclic Antidepressants
+43541000033117,,amitriptyline hydrochloride  capsules  25 mg,,,,,,,Amitriptyline,Tricyclic Antidepressants
+43641000033116,,amitriptyline hydrochloride  capsules  50 mg,,,,,,,Amitriptyline,Tricyclic Antidepressants
+43741000033113,,amitriptyline hydrochloride  capsules  75 mg,,,,,,,Amitriptyline,Tricyclic Antidepressants
+45841000033119,35901211000001108,amitriptyline 25mg modified-release capsules,amitriptyline 25mg modified-release capsules,modified-release capsule,oral,amitriptyline hydrochloride,25.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+45941000033110,35901511000001106,amitriptyline 50mg modified-release capsules,amitriptyline 50mg modified-release capsules,modified-release capsule,oral,amitriptyline hydrochloride,50.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+50041000033116,,amitriptyline hydrochloride  injection  10mg/ml,,,,,,,Amitriptyline,Tricyclic Antidepressants
+51941000033114,,amitriptyline hydrochloride  mixture  sugar free 10 mg/5 ml,,,,,,,Amitriptyline,Tricyclic Antidepressants
+55441000033119,35901411000001107,amitriptyline 25mg/5ml oral solution sugar free,amitriptyline 25mg/5ml oral solution sugar free,oral solution,oral,amitriptyline hydrochloride,5.000mg/1.000ml,4030100,Amitriptyline,Tricyclic Antidepressants
+55541000033118,35901611000001105,amitriptyline 50mg/5ml oral solution sugar free,amitriptyline 50mg/5ml oral solution sugar free,oral solution,oral,amitriptyline hydrochloride,10.000mg/1.000ml,4030100,Amitriptyline,Tricyclic Antidepressants
+60441000033116,42291111000001104,amitriptyline 10mg tablets,amitriptyline 10mg tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride,10.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+60541000033115,42291311000001102,amitriptyline 50mg tablets,amitriptyline 50mg tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride,50.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+60641000033119,42291211000001105,amitriptyline 25mg tablets,amitriptyline 25mg tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride,25.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+61941000033115,701211000001104,anafranil 10mg capsules (novartis pharmaceuticals uk ltd),anafranil 10mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,10.000mg,,Clomipramine,Tricyclic Antidepressants
+62041000033114,647111000001102,anafranil 25mg capsules (novartis pharmaceuticals uk ltd),anafranil 25mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,25.000mg,,Clomipramine,Tricyclic Antidepressants
+62141000033113,5511000001101,anafranil 50mg capsules (novartis pharmaceuticals uk ltd),anafranil 50mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,50.000mg,,Clomipramine,Tricyclic Antidepressants
+68641000033117,4534911000001107,anafranil 25mg/5ml syrup (novartis pharmaceuticals uk ltd),anafranil 25mg/5ml syrup,oral solution,oral,clomipramine hydrochloride,5.000mg/1.000ml,,Clomipramine,Tricyclic Antidepressants
+70241000033114,119411000001107,anafranil sr 75mg tablets (novartis pharmaceuticals uk ltd),anafranil sr 75mg tablets,modified-release tablet,oral,clomipramine hydrochloride,75.000mg,,Clomipramine,Tricyclic Antidepressants
+88941000033110,3925811000001106,ativan 4mg/1ml solution for injection ampoules (pfizer ltd),ativan 4mg/1ml solution for injection ampoules,solution for injection,intravenous/ intramuscular,lorazepam,4.000mg/1.000ml,,Lorazepam,Anxiolytics
+262041000033115,42269711000001101,clomipramine 10mg capsules,clomipramine 10mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,10.000mg,4030100,Clomipramine,Tricyclic Antidepressants
+262141000033116,42269811000001109,clomipramine 25mg capsules,clomipramine 25mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,25.000mg,4030100,Clomipramine,Tricyclic Antidepressants
+262241000033111,42269911000001104,clomipramine 50mg capsules,clomipramine 50mg capsules,capsule/ oral capsule,oral,clomipramine hydrochloride,50.000mg,4030100,Clomipramine,Tricyclic Antidepressants
+275441000033113,,clomipramine hydrochloride  injection  12.5mg/ml,,,,,,,Clomipramine,Tricyclic Antidepressants
+275541000033114,,"clonazepam  injection  1mg/ml, 1 ml ampoule",,,,,,,Clonazepam,Antiepileptics
+284741000033110,4557811000001105,clomipramine 25mg/5ml oral solution,clomipramine 25mg/5ml oral solution,oral solution,oral,clomipramine hydrochloride,5.000mg/1.000ml,4030100,Clomipramine,Tricyclic Antidepressants
+285741000033111,36089111000001109,clomipramine 75mg modified-release tablets,clomipramine 75mg modified-release tablets,modified-release tablet,oral,clomipramine hydrochloride,75.000mg,4030100,Clomipramine,Tricyclic Antidepressants
+286741000033118,42127411000001107,clonazepam 500microgram tablets,clonazepam 500microgram tablets,tablet/ oral tablet,oral,clonazepam,500.000microgram,4080100,Clonazepam,Antiepileptics
+286841000033111,42127311000001100,clonazepam 2mg tablets,clonazepam 2mg tablets,tablet/ oral tablet,oral,clonazepam,2.000mg,4080100,Clonazepam,Antiepileptics
+325841000033119,3920911000001105,convulex 150mg gastro-resistant capsules (g.l. pharma uk ltd),convulex 150mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,150.000mg,,Valproic acid,Antimanic
+325941000033110,3921311000001104,convulex 300mg gastro-resistant capsules (g.l. pharma uk ltd),convulex 300mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,300.000mg,,Valproic acid,Antimanic
+326041000033117,3921711000001100,convulex 500mg gastro-resistant capsules (g.l. pharma uk ltd),convulex 500mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,500.000mg,,Valproic acid,Antimanic
+430141000033112,,desipramine  tablets  25 mg,,,,,,,Desipramine,Tricyclic Antidepressants
+438241000033115,,diazepam  capsules  2 mg,,,,,,,Diazepam,Anxiolytics
+438341000033113,,diazepam  capsules  5 mg,,,,,,,Diazepam,Anxiolytics
+443641000033112,,diazepam  elixir  2 mg/5 ml,,,,,,,Diazepam,Anxiolytics
+446441000033119,3971111000001102,diazemuls 10mg/2ml emulsion for injection ampoules (accord-uk ltd),diazemuls 10mg/2ml emulsion for injection ampoules,emulsion for injection,intravenous,diazepam,5.000mg/1.000ml,,Diazepam,Anxiolytics
+446641000033117,,diazepam  injection  10 mg,,,,,,,Diazepam,Anxiolytics
+446741000033114,,diazepam  injection  5 mg/ml,,,,,,,Diazepam,Anxiolytics
+457741000033114,,diazepam  rectubes  10 mg,,,,,,,Diazepam,Anxiolytics
+457841000033116,,diazepam  rectubes  5 mg,,,,,,,Diazepam,Anxiolytics
+457941000033112,26811000001102,diazepam 10mg rectubes (wockhardt uk ltd),diazepam 10mg rectubes,enema,rectal,diazepam,4.000mg/1.000ml,,Diazepam,Anxiolytics
+458041000033110,283311000001103,diazepam 2.5mg rectubes (wockhardt uk ltd),diazepam 2.5mg rectubes,enema,rectal,diazepam,2.000mg/1.000ml,,Diazepam,Anxiolytics
+458141000033114,,diazepam rectubes  rectal tubes  20 mg,,,,,,,Diazepam,Anxiolytics
+458241000033119,603811000001108,diazepam 5mg rectubes (wockhardt uk ltd),diazepam 5mg rectubes, enema,rectal,diazepam,2.000mg/1.000ml,,Diazepam,Anxiolytics
+458341000033112,42127911000001104,diazepam 2.5mg/1.25ml rectal solution tube,diazepam 2.5mg/1.25ml rectal solution tube,enema,rectal,diazepam,2.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+458441000033118,,diazepam  rectal tubes  20 mg,,,,,,,Diazepam,Anxiolytics
+458541000033117,42127811000001109,diazepam 10mg/2.5ml rectal solution tube,diazepam 10mg/2.5ml rectal solution tube,enema,rectal,diazepam,4.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+458641000033116,39709411000001106,diazepam 5mg/2.5ml rectal solution tube,diazepam 5mg/2.5ml rectal solution tube, enema,rectal,diazepam,2.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+460041000033115,42127611000001105,diazepam 10mg suppositories,diazepam 10mg suppositories,suppository,rectal,diazepam,10.000mg,4010200,Diazepam,Anxiolytics
+460741000033117,,diazepam  syrup  2 mg/5 ml,,,,,,,Diazepam,Anxiolytics
+466741000033115,42127711000001101,diazepam 10mg tablets,diazepam 10mg tablets,tablet/ oral tablet,oral,diazepam,10.000mg,4010200,Diazepam,Anxiolytics
+466841000033113,42128111000001101,diazepam 2mg tablets,diazepam 2mg tablets,tablet/ oral tablet,oral,diazepam,2.000mg,4010200,Diazepam,Anxiolytics
+466941000033117,42128311000001104,diazepam 5mg tablets,diazepam 5mg tablets,tablet/ oral tablet,oral,diazepam,5.000mg,4010200,Diazepam,Anxiolytics
+472141000033110,14911000001107,dothapax 25 capsules (ashbourne pharmaceuticals ltd),dothapax 25 capsules,capsule/ oral capsule,oral,dosulepin hydrochloride,25.000mg,,Dosulepin,Tricyclic Antidepressants
+473041000033119,42270811000001106,doxepin 10mg capsules,doxepin 10mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,10.000mg,4030100,Doxepin,Tricyclic Antidepressants
+473141000033115,42270911000001101,doxepin 25mg capsules,doxepin 25mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,25.000mg,4030100,Doxepin,Tricyclic Antidepressants
+473241000033110,42271011000001109,doxepin 50mg capsules,doxepin 50mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,50.000mg,4030100,Doxepin,Tricyclic Antidepressants
+473341000033117,42271111000001105,doxepin 75mg capsules,doxepin 75mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,75.000mg,4030100,Doxepin,Tricyclic Antidepressants
+479641000033111,927011000001104,dothapax 75 tablets (ashbourne pharmaceuticals ltd),dothapax 75 tablets,tablet/ oral tablet,oral,dosulepin hydrochloride,75.000mg,,Dosulepin,Tricyclic Antidepressants
+496741000033118,576711000001106,edronax 4mg tablets (pfizer ltd),edronax 4mg tablets,tablet/ oral tablet,oral,reboxetine mesilate,4.000mg,,Reboxetine,Other Antidepressants
+498441000033112,651811000001100,efexor xl 75mg capsules (viatris uk healthcare ltd),efexor xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+498541000033113,413311000001104,efexor xl 150mg capsules (viatris uk healthcare ltd),efexor xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+499041000033111,281211000001107,efexor 37.5mg tablets (wyeth pharmaceuticals),efexor 37.5mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+499141000033110,237411000001109,efexor 75mg tablets (wyeth pharmaceuticals),efexor 75mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+499241000033115,628511000001107,efexor 50mg tablets (wyeth pharmaceuticals),efexor 50mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,50.000mg,,Venlafaxine,Other Antidepressants
+529541000033117,4351111000001108,epilim intravenous 400mg powder and solvent for solution for injection vials (sanofi),epilim intravenous 400mg powder and solvent for solution for injection vials,powder and solvent for solution for injection,intravenous,sodium valproate,400.000mg,,Valproate,Antiepileptics
+529641000033116,100011000001108,epilim 200mg/5ml liquid (sanofi),epilim 200mg/5ml liquid,oral solution,oral,sodium valproate,40.000mg/1.000ml,,Valproate,Antiepileptics
+529841000033115,489711000001100,epilim chrono 200 tablets (sanofi),epilim chrono 200 tablets,modified-release tablet,oral,sodium valproate,200.000mg,,Valproate,Antiepileptics
+529941000033111,789911000001106,epilim chrono 300 tablets (sanofi),epilim chrono 300 tablets,modified-release tablet,oral,sodium valproate,300.000mg,,Valproate,Antiepileptics
+530041000033115,739111000001100,epilim chrono 500 tablets (sanofi),epilim chrono 500 tablets,modified-release tablet,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+532141000033115,892411000001106,epilim 200mg/5ml syrup (sanofi),epilim 200mg/5ml syrup,oral solution,oral,sodium valproate,40.000mg/1.000ml,,Valproate,Antiepileptics
+532541000033112,552511000001100,epilim 100mg crushable tablets (sanofi),epilim 100mg crushable tablets,tablet/ oral tablet,oral,sodium valproate,100.000mg,,Valproate,Antiepileptics
+532641000033113,889311000001108,epilim 200 gastro-resistant tablets (sanofi),epilim 200 gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,200.000mg,,Valproate,Antiepileptics
+532741000033116,448711000001102,epilim 500 gastro-resistant tablets (sanofi),epilim 500 gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+561941000033115,595611000001101,faverin 100mg tablets (viatris uk healthcare ltd),faverin 100mg tablets,tablet/ oral tablet,oral,fluvoxamine maleate,100.000mg,,Fluvoxamine,SSRIs
+563341000033115,542511000001103,faverin 50mg tablets (viatris uk healthcare ltd),faverin 50mg tablets,tablet/ oral tablet,oral,fluvoxamine maleate,50.000mg,,Fluvoxamine,SSRIs
+577841000033114,42271711000001106,fluoxetine 20mg capsules,fluoxetine 20mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,20.000mg,4030300,Fluoxetine,SSRIs
+579041000033111,42272011000001101,fluoxetine 60mg capsules,fluoxetine 60mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,60.000mg,4030300,Fluoxetine,SSRIs
+592541000033118,,fluoxetine hydrochloride  liquid  20 mg/5 ml,,,,,,,Fluoxetine,SSRIs
+592841000033116,42272411000001105,fluvoxamine 100mg tablets,fluvoxamine 100mg tablets,tablet/ oral tablet,oral,fluvoxamine maleate,100.000mg,4030300,Fluvoxamine,SSRIs
+595541000033113,42272511000001109,fluvoxamine 50mg tablets,fluvoxamine 50mg tablets,tablet/ oral tablet,oral,fluvoxamine maleate,50.000mg,4030300,Fluvoxamine,SSRIs
+620641000033115,42129511000001104,gabapentin 100mg capsules,gabapentin 100mg capsules,capsule/ oral capsule,oral,gabapentin,100.000mg,4080100,Gabapentin,Antiepileptics
+620741000033112,42129711000001109,gabapentin 300mg capsules,gabapentin 300mg capsules,capsule/ oral capsule,oral,gabapentin,300.000mg,4080100,Gabapentin,Antiepileptics
+620841000033119,42129811000001101,gabapentin 400mg capsules,gabapentin 400mg capsules,capsule/ oral capsule,oral,gabapentin,400.000mg,4080100,Gabapentin,Antiepileptics
+809341000033116,3147211000001102,lamictal 100mg dispersible tablets (glaxosmithkline uk ltd),lamictal 100mg dispersible tablets,dispersible tablet,oral,lamotrigine,100.000mg,,Lamotrigine,Antiepileptics
+809441000033110,3146411000001100,lamictal 25mg dispersible tablets (glaxosmithkline uk ltd),lamictal 25mg dispersible tablets,dispersible tablet,oral,lamotrigine,25.000mg,,Lamotrigine,Antiepileptics
+809541000033111,3145811000001106,lamictal 5mg dispersible tablets (glaxosmithkline uk ltd),lamictal 5mg dispersible tablets,dispersible tablet/,oral,lamotrigine,5.000mg,,Lamotrigine,Antiepileptics
+809641000033112,42130511000001109,lamotrigine 100mg dispersible tablets sugar free,lamotrigine 100mg dispersible tablets sugar free,dispersible tablet,oral,lamotrigine,100.000mg,4080100,Lamotrigine,Antiepileptics
+809741000033115,42130811000001107,lamotrigine 25mg dispersible tablets sugar free,lamotrigine 25mg dispersible tablets sugar free,dispersible tablet,oral,lamotrigine,25.000mg,4080100,Lamotrigine,Antiepileptics
+809841000033113,36566611000001108,lamotrigine 5mg dispersible tablets sugar free,lamotrigine 5mg dispersible tablets sugar free,dispersible tablet/,oral,lamotrigine,5.000mg,4080100,Lamotrigine,Antiepileptics
+816841000033115,2928811000001105,lamictal 100mg tablets (glaxosmithkline uk ltd),lamictal 100mg tablets,tablet/ oral tablet,oral,lamotrigine,100.000mg,,Lamotrigine,Antiepileptics
+816941000033111,2927711000001103,lamictal 50mg tablets (glaxosmithkline uk ltd),lamictal 50mg tablets,tablet/ oral tablet,oral,lamotrigine,50.000mg,,Lamotrigine,Antiepileptics
+817041000033112,42130611000001108,lamotrigine 100mg tablets,lamotrigine 100mg tablets,tablet/ oral tablet,oral,lamotrigine,100.000mg,4080100,Lamotrigine,Antiepileptics
+817141000033111,42131011000001105,lamotrigine 50mg tablets,lamotrigine 50mg tablets,tablet/ oral tablet,oral,lamotrigine,50.000mg,4080100,Lamotrigine,Antiepileptics
+817341000033114,2925811000001101,lamictal 25mg tablets (glaxosmithkline uk ltd),lamictal 25mg tablets,tablet/ oral tablet,oral,lamotrigine,25.000mg,,Lamotrigine,Antiepileptics
+817441000033115,42130911000001102,lamotrigine 25mg tablets,lamotrigine 25mg tablets,tablet/ oral tablet,oral,lamotrigine,25.000mg,4080100,Lamotrigine,Antiepileptics
+817741000033110,3145211000001105,lamictal 200mg tablets (glaxosmithkline uk ltd),lamictal 200mg tablets,tablet/ oral tablet,oral,lamotrigine,200.000mg,,Lamotrigine,Antiepileptics
+817841000033117,42130711000001104,lamotrigine 200mg tablets,lamotrigine 200mg tablets,tablet/ oral tablet,oral,lamotrigine,200.000mg,4080100,Lamotrigine,Antiepileptics
+819741000033117,4534311000001106,lentizol 25mg modified-release capsules (pfizer ltd),lentizol 25mg modified-release capsules,modified-release capsule,oral,amitriptyline hydrochloride,25.000mg,,Amitriptyline,Tricyclic Antidepressants
+819841000033110,4533611000001104,lentizol 50mg modified-release capsules (pfizer ltd),lentizol 50mg modified-release capsules,modified-release capsule,oral,amitriptyline hydrochloride,50.000mg,,Amitriptyline,Tricyclic Antidepressants
+844141000033111,36040511000001101,lorazepam 4mg/1ml solution for injection ampoules,lorazepam 4mg/1ml solution for injection ampoules,solution for injection,intravenous/ intramuscular,lorazepam,4.000mg/1.000ml,4010200,Lorazepam,Anxiolytics
+851141000033111,42131511000001102,lorazepam 1mg tablets,lorazepam 1mg tablets,tablet/ oral tablet,oral,lorazepam,1.000mg,4010200,Lorazepam,Anxiolytics
+851241000033116,42131611000001103,lorazepam 2.5mg tablets,lorazepam 2.5mg tablets,tablet/ oral tablet,oral,lorazepam,2.500mg,4010200,Lorazepam,Anxiolytics
+854141000033113,687611000001102,lustral 100mg tablets (viatris uk healthcare ltd),lustral 100mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,100.000mg,,Sertraline,SSRIs
+854241000033118,936411000001108,lustral 50mg tablets (viatris uk healthcare ltd),lustral 50mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,50.000mg,,Sertraline,SSRIs
+873341000033110,11490311000001108,melatonin 2mg capsules,melatonin 2mg capsules,capsule/ oral capsule,oral,melatonin,2.000mg,4010100,Melatonin,Hyptonics
+873441000033116,7875911000001103,melatonin 5mg capsules,melatonin 5mg capsules,capsule/ oral capsule,oral,melatonin,5.000mg,4010100,Melatonin,Hyptonics
+917541000033110,42274111000001108,mianserin 10mg tablets,mianserin 10mg tablets,tablet/ oral tablet,oral,mianserin hydrochloride,10.000mg,4030100,Mianserin,Tricyclic Antidepressants
+917641000033111,42274211000001102,mianserin 20mg tablets,mianserin 20mg tablets,tablet/ oral tablet,oral,mianserin hydrochloride,20.000mg,4030100,Mianserin,Tricyclic Antidepressants
+917741000033119,42274311000001105,mianserin 30mg tablets,mianserin 30mg tablets,tablet/ oral tablet,oral,mianserin hydrochloride,30.000mg,4030100,Mianserin,Tricyclic Antidepressants
+919641000033115,42274711000001109,mirtazapine 30mg tablets,mirtazapine 30mg tablets,tablet/ oral tablet,oral,mirtazapine,30.000mg,4030400,Mirtazapine,Other Antidepressants
+923041000033117,369211000001100,molipaxin 50mg capsules (zentiva pharma uk ltd),molipaxin 50mg capsules,capsule/ oral capsule,oral,trazodone hydrochloride,50.000mg,,Trazodone,MOAIS
+923241000033113,75511000001108,molipaxin 100mg capsules (zentiva pharma uk ltd),molipaxin 100mg capsules,capsule/ oral capsule,oral,trazodone hydrochloride,100.000mg,,Trazodone,MOAIS
+929541000033113,3904511000001104,molipaxin 50mg/5ml oral liquid (sanofi),molipaxin 50mg/5ml oral liquid,oral solution,oral,trazodone hydrochloride,10.000mg/1.000ml,,Trazodone,MOAIS
+929841000033110,4549511000001102,molipaxin cr 150mg tablets (aventis pharma),molipaxin cr 150mg tablets,modified-release tablet,oral,trazodone hydrochloride,150.000mg,,Trazodone,MOAIS
+938741000033111,1811000001101,molipaxin 150mg tablets (zentiva pharma uk ltd),molipaxin 150mg tablets,tablet/ oral tablet,oral,trazodone hydrochloride,150.000mg,,Trazodone,MOAIS
+958041000033112,459211000001102,neurontin 100mg capsules (viatris uk healthcare ltd),neurontin 100mg capsules,capsule/ oral capsule,oral,gabapentin,100.000mg,,Gabapentin,Antiepileptics
+958141000033111,401511000001108,neurontin 300mg capsules (viatris uk healthcare ltd),neurontin 300mg capsules,capsule/ oral capsule,oral,gabapentin,300.000mg,,Gabapentin,Antiepileptics
+958241000033116,302911000001103,neurontin 400mg capsules (viatris uk healthcare ltd),neurontin 400mg capsules,capsule/ oral capsule,oral,gabapentin,400.000mg,,Gabapentin,Antiepileptics
+1042141000033117,42276511000001105,paroxetine 20mg tablets,paroxetine 20mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,20.000mg,4030300,Paroxetine,SSRIs
+1042241000033112,42276611000001109,paroxetine 30mg tablets,paroxetine 30mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,30.000mg,4030300,Paroxetine,SSRIs
+1111541000033117,208811000001101,prothiaden 25mg capsules (teofarma s.r.l.),prothiaden 25mg capsules,capsule/ oral capsule,oral,dosulepin hydrochloride,25.000mg,,Dosulepin,Tricyclic Antidepressants
+1111641000033116,397711000001101,prepadine 25mg capsules (teva uk ltd),prepadine 25mg capsules,capsule/ oral capsule,oral,dosulepin hydrochloride,25.000mg,,Dosulepin,Tricyclic Antidepressants
+1111941000033111,142311000001103,prozac 60mg capsules (eli lilly and company ltd),prozac 60mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,60.000mg,,Fluoxetine,SSRIs
+1112441000033114,573011000001101,prozac 20mg capsules (eli lilly and company ltd),prozac 20mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,20.000mg,,Fluoxetine,SSRIs
+1129541000033110,695811000001109,prozac 20mg/5ml liquid (eli lilly and company ltd),prozac 20mg/5ml liquid,oral solution,oral,fluoxetine hydrochloride,4.000mg/1.000ml,,Fluoxetine,SSRIs
+1135541000033110,733111000001103,prothiaden 75mg tablets (teofarma s.r.l.),prothiaden 75mg tablets,tablet/ oral tablet,oral,dosulepin hydrochloride,75.000mg,,Dosulepin,Tricyclic Antidepressants
+1135641000033111,,protriptyline hydrochloride  tablets  10 mg,,,,,,,Protriptyline,Tricyclic Antidepressants
+1135741000033119,,protriptyline hydrochloride  tablets  5 mg,,,,,,,Protriptyline,Tricyclic Antidepressants
+1135941000033116,329511000001107,prepadine 75mg tablets (teva uk ltd),prepadine 75mg tablets,tablet/ oral tablet,oral,dosulepin hydrochloride,75.000mg,,Dosulepin,Tricyclic Antidepressants
+1165641000033115,39703311000001102,reboxetine 4mg tablets,reboxetine 4mg tablets,tablet/ oral tablet,oral,reboxetine mesilate,4.000mg,4030400,Reboxetine,Other Antidepressants
+1177241000033117,233611000001104,rivotril 500microgram tablets (roche products ltd),rivotril 500microgram tablets,tablet/ oral tablet,oral,clonazepam,500.000microgram,,Clonazepam,Antiepileptics
+1177341000033110,291011000001103,rivotril 2mg tablets (roche products ltd),rivotril 2mg tablets,tablet/ oral tablet,oral,clonazepam,2.000mg,,Clonazepam,Antiepileptics
+1278341000033111,477511000001109,seroxat 20mg tablets (glaxosmithkline uk ltd),seroxat 20mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,20.000mg,,Paroxetine,SSRIs
+1278441000033117,738111000001107,seroxat 30mg tablets (glaxosmithkline uk ltd),seroxat 30mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,30.000mg,,Paroxetine,SSRIs
+1278741000033112,39704011000001103,sertraline 100mg tablets,sertraline 100mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,100.000mg,4030300,Sertraline,SSRIs
+1278841000033119,39704111000001102,sertraline 50mg tablets,sertraline 50mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,50.000mg,4030300,Sertraline,SSRIs
+1294541000033115,259211000001103,sinequan 10mg capsules (pfizer ltd),sinequan 10mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,10.000mg,,Doxepin,Tricyclic Antidepressants
+1294641000033119,400611000001102,sinequan 25mg capsules (pfizer ltd),sinequan 25mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,25.000mg,,Doxepin,Tricyclic Antidepressants
+1294741000033111,621711000001107,sinequan 50mg capsules (pfizer ltd),sinequan 50mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,50.000mg,,Doxepin,Tricyclic Antidepressants
+1294841000033118,276511000001108,sinequan 75mg capsules (pfizer ltd),sinequan 75mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,75.000mg,,Doxepin,Tricyclic Antidepressants
+1358241000033111,35928511000001107,sodium valproate 400mg powder and solvent for solution for injection vials,sodium valproate 400mg powder and solvent for solution for injection vials,powder and solvent for solution for injection,intravenous,sodium valproate,400.000mg,4080100,Valproate,Antiepileptics
+1358941000033119,,sodium valproate  sugar-free liquid  200 mg/5 ml,,,,,,,Valproate,Antiepileptics
+1359341000033113,39108211000001105,sodium valproate 200mg modified-release tablets,sodium valproate 200mg modified-release tablets,modified-release tablet,oral,sodium valproate,200.000mg,4080100,Valproate,Antiepileptics
+1359441000033119,39108311000001102,sodium valproate 300mg modified-release tablets,sodium valproate 300mg modified-release tablets,modified-release tablet,oral,sodium valproate,300.000mg,4080100,Valproate,Antiepileptics
+1359541000033118,39108411000001109,sodium valproate 500mg modified-release tablets,sodium valproate 500mg modified-release tablets,modified-release tablet,oral,sodium valproate,500.000mg,4080100,Valproate,Antiepileptics
+1361241000033114,35928211000001109,sodium valproate 200mg/5ml oral solution,sodium valproate 200mg/5ml oral solution,oral solution,oral,sodium valproate,40.000mg/1.000ml,4080100,Valproate,Antiepileptics
+1363641000033113,35928311000001101,sodium valproate 200mg/5ml oral solution sugar free,sodium valproate 200mg/5ml oral solution sugar free,oral solution,oral,sodium valproate,40.000mg/1.000ml,4080100,Valproate,Antiepileptics
+1363741000033116,,sodium valproate  syrup  200 mg/5 ml,,,,,,,Valproate,Antiepileptics
+1364941000033115,39107811000001107,sodium valproate 100mg tablets,sodium valproate 100mg tablets,tablet/ oral tablet,oral,sodium valproate,100.000mg,4080100,Valproate,Antiepileptics
+1365041000033115,42137011000001100,sodium valproate 200mg gastro-resistant tablets,sodium valproate 200mg gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,200.000mg,4080100,Valproate,Antiepileptics
+1365141000033116,42137111000001104,sodium valproate 500mg gastro-resistant tablets,sodium valproate 500mg gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,500.000mg,4080100,Valproate,Antiepileptics
+1383241000033113,142611000001108,stesolid 10mg rectal tube (accord-uk ltd),stesolid 10mg rectal tube,enema,rectal,diazepam,4.000mg/1.000ml,,Diazepam,Anxiolytics
+1383341000033115,82011000001104,stesolid 5mg rectal tube (accord-uk ltd),stesolid 5mg rectal tube, enema,rectal,diazepam,2.000mg/1.000ml,,Diazepam,Anxiolytics
+1386141000033114,3206111000001102,stilnoct 5mg tablets (sanofi),stilnoct 5mg tablets,tablet/ oral tablet,oral,zolpidem tartrate,5.000mg,,Zolpidem,Hyptonics
+1387141000033111,3199611000001102,stilnoct 10mg tablets (sanofi),stilnoct 10mg tablets,tablet/ oral tablet,oral,zolpidem tartrate,10.000mg,,Zolpidem,Hyptonics
+1413741000033113,,temazepam  capsules  10 mg,,,,,,,Temazepam,Hyptonics
+1413841000033115,,temazepam  capsules  15 mg,,,,,,,Temazepam,Hyptonics
+1413941000033111,,temazepam  capsules  20 mg,,,,,,,Temazepam,Hyptonics
+1414041000033113,,temazepam  capsules  30 mg,,,,,,,Temazepam,Hyptonics
+1416741000033119,,temazepam  elixir  10 mg/5 ml,,,,,,,Temazepam,Hyptonics
+1417541000033113,,temazepam gelthix  gel-filled capsules  15 mg,,,,,,,Temazepam,Hyptonics
+1417641000033114,,temazepam gelthix  gel-filled capsules  30 mg,,,,,,,Temazepam,Hyptonics
+1417741000033117,,temazepam gelthix  gel-filled capsules  10 mg,,,,,,,Temazepam,Hyptonics
+1417841000033110,,temazepam gelthix  gel-filled capsules  20 mg,,,,,,,Temazepam,Hyptonics
+1418041000033116,,temazepam  hard gelatin capsules  10 mg,,,,,,,Temazepam,Hyptonics
+1418141000033117,,temazepam  hard gelatin capsules  20 mg,,,,,,,Temazepam,Hyptonics
+1422141000033111,,temazepam  planpak  ,,,,,,,Temazepam,Hyptonics
+1423141000033116,,temazepam  single dose vials  10 mg/5 ml,,,,,,,Temazepam,Hyptonics
+1428241000033118,9107211000001109,tensium 2mg tablets (ddsa pharmaceuticals ltd),tensium 2mg tablets,tablet/ oral tablet,oral,diazepam,2.000mg,,Diazepam,Anxiolytics
+1428441000033117,42137211000001105,temazepam 10mg tablets,temazepam 10mg tablets,tablet/ oral tablet,oral,temazepam,10.000mg,4010100,Temazepam,Hyptonics
+1428541000033116,42137311000001102,temazepam 20mg tablets,temazepam 20mg tablets,tablet/ oral tablet,oral,temazepam,20.000mg,4010100,Temazepam,Hyptonics
+1454641000033112,42280711000001105,trazodone 50mg capsules,trazodone 50mg capsules,capsule/ oral capsule,oral,trazodone hydrochloride,50.000mg,4030100,Trazodone,MOAIS
+1455241000033113,42280411000001104,trazodone 100mg capsules,trazodone 100mg capsules,capsule/ oral capsule,oral,trazodone hydrochloride,100.000mg,4030100,Trazodone,MOAIS
+1461941000033113,3909411000001104,trazodone 50mg/5ml oral solution sugar free,trazodone 50mg/5ml oral solution sugar free,oral solution,oral,trazodone hydrochloride,10.000mg/1.000ml,4030100,Trazodone,MOAIS
+1462241000033110,4557211000001109,trazodone 150mg modified-release tablets,trazodone 150mg modified-release tablets,modified-release tablet,oral,trazodone hydrochloride,150.000mg,4030100,Trazodone,MOAIS
+1473341000033117,514611000001101,triptafen tablets (advanz pharma),triptafen tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride/ perphenazine,25.000mg + 2.000mg,,Amitriptyline,Tricyclic Antidepressants
+1473441000033111,479411000001101,triptafen-m tablets (mercury pharma group ltd),triptafen-m tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride/ perphenazine,10.000mg + 2.000mg,,Amitriptyline,Tricyclic Antidepressants
+1473641000033113,42280611000001101,trazodone 150mg tablets,trazodone 150mg tablets,tablet/ oral tablet,oral,trazodone hydrochloride,150.000mg,4030100,Trazodone,MOAIS
+1500041000033112,42137911000001101,valproic acid 150mg gastro-resistant capsules,valproic acid 150mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,150.000mg,4080100,Valproic acid,Antimanic
+1500141000033111,42138111000001103,valproic acid 300mg gastro-resistant capsules,valproic acid 300mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,300.000mg,4080100,Valproic acid,Antimanic
+1500241000033116,42138211000001109,valproic acid 500mg gastro-resistant capsules,valproic acid 500mg gastro-resistant capsules,gastro-resistant capsule,oral,valproic acid,500.000mg,4080100,Valproic acid,Antimanic
+1502941000033114,3824311000001107,valclair 10mg suppositories (durbin plc),valclair 10mg suppositories,suppository,rectal,diazepam,10.000mg,,Diazepam,Anxiolytics
+1509241000033110,38750411000001106,venlafaxine 150mg modified-release capsules,venlafaxine 150mg modified-release capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,4030400,Venlafaxine,Other Antidepressants
+1509341000033117,38750311000001104,venlafaxine 75mg modified-release capsules,venlafaxine 75mg modified-release capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,4030400,Venlafaxine,Other Antidepressants
+1512241000033119,39707611000001104,venlafaxine 37.5mg tablets,venlafaxine 37.5mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,37.500mg,4030400,Venlafaxine,Other Antidepressants
+1512341000033112,39707411000001102,venlafaxine 75mg tablets,venlafaxine 75mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,75.000mg,4030400,Venlafaxine,Other Antidepressants
+1512441000033118,39707311000001109,venlafaxine 50mg tablets,venlafaxine 50mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,50.000mg,4030400,Venlafaxine,Other Antidepressants
+1557941000033116,178011000001104,zimovane ls 3.75mg tablets (sanofi),zimovane ls 3.75mg tablets,tablet/ oral tablet,oral,zopiclone,3.750mg,,Zolpidem,Hyptonics
+1558041000033118,523611000001107,zispin 30mg tablets (organon laboratories ltd),zispin 30mg tablets,tablet/ oral tablet,oral,mirtazapine,30.000mg,,Mirtazapine,Other Antidepressants
+1558441000033110,810511000001108,zimovane 7.5mg tablets (sanofi),zimovane 7.5mg tablets,tablet/ oral tablet,oral,zopiclone,7.500mg,,Zolpidem,Hyptonics
+1562141000033113,42138911000001100,zolpidem 5mg tablets,zolpidem 5mg tablets,tablet/ oral tablet,oral,zolpidem tartrate,5.000mg,4010100,Zolpidem,Hyptonics
+1562341000033111,42139311000001107,zopiclone 3.75mg tablets,zopiclone 3.75mg tablets,tablet/ oral tablet,oral,zopiclone,3.750mg,4010100,Zolpidem,Hyptonics
+1562441000033117,42138811000001105,zolpidem 10mg tablets,zolpidem 10mg tablets,tablet/ oral tablet,oral,zolpidem tartrate,10.000mg,4010100,Zolpidem,Hyptonics
+1563241000033113,42139411000001100,zopiclone 7.5mg tablets,zopiclone 7.5mg tablets,tablet/ oral tablet,oral,zopiclone,7.500mg,4010100,Zolpidem,Hyptonics
+1603341000033112,41896411000001108,doxepin 5% cream,doxepin 5% cream,cream/ cutaneous cream,cutaneous,doxepin hydrochloride,50.000mg/1.000gram,13030000,Doxepin,Tricyclic Antidepressants
+1662441000033114,36565911000001109,paroxetine 10mg/5ml oral suspension sugar free,paroxetine 10mg/5ml oral suspension sugar free,oral suspension,oral,paroxetine hydrochloride,2.000mg/1.000ml,4030300,Paroxetine,SSRIs
+1686141000033119,16811000001109,seroxat 20mg/10ml liquid (glaxosmithkline uk ltd),seroxat 20mg/10ml liquid,oral suspension,oral,paroxetine hydrochloride,2.000mg/1.000ml,,Paroxetine,SSRIs
+1699841000033119,35915311000001101,temazepam 10mg/5ml oral solution sugar free,temazepam 10mg/5ml oral solution sugar free,oral solution,oral,temazepam,2.000mg/1.000ml,4010100,Temazepam,Hyptonics
+1712041000033111,3762111000001105,xepin 5% cream (cambridge healthcare supplies ltd),xepin 5% cream,cream/ cutaneous cream,cutaneous,doxepin hydrochloride,50.000mg/1.000gram,,Doxepin,Tricyclic Antidepressants
+1713541000033112,224011000001106,zileze 3.75 tablets (opus pharmaceuticals ltd),zileze 3.75 tablets,tablet/ oral tablet,oral,zopiclone,3.750mg,,Zolpidem,Hyptonics
+1713641000033113,562111000001100,zileze 7.5 tablets (opus pharmaceuticals ltd),zileze 7.5 tablets,tablet/ oral tablet,oral,zopiclone,7.500mg,,Zolpidem,Hyptonics
+1728141000033116,42128411000001106,diazepam 5mg/5ml oral solution,diazepam 5mg/5ml oral solution,oral solution,oral,diazepam,1.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+1747541000033114,872211000001104,orlept sf 200mg/5ml liquid (wockhardt uk ltd),orlept sf 200mg/5ml liquid,oral solution,oral,sodium valproate,40.000mg/1.000ml,,Valproate,Antiepileptics
+1747641000033110,504711000001108,orlept 200mg gastro-resistant tablets (wockhardt uk ltd),orlept 200mg gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,200.000mg,,Valproate,Antiepileptics
+1747741000033118,220011000001104,orlept 500mg gastro-resistant tablets (wockhardt uk ltd),orlept 500mg gastro-resistant tablets,gastro-resistant tablet,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+1850541000033113,7821311000001100,melatonin 3mg capsules,melatonin 3mg capsules,capsule/ oral capsule,oral,melatonin,3.000mg,4010100,Melatonin,Hyptonics
+1923141000033118,456311000001103,felicium 20mg capsules (opus pharmaceuticals ltd),felicium 20mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,20.000mg,,Fluoxetine,SSRIs
+2003741000033117,42138711000001102,zaleplon 5mg capsules,zaleplon 5mg capsules,capsule/ oral capsule,oral,zaleplon,5.000mg,4010100,Zaleplon,Hyptonics
+2003841000033110,42138611000001106,zaleplon 10mg capsules,zaleplon 10mg capsules,capsule/ oral capsule,oral,zaleplon,10.000mg,4010100,Zaleplon,Hyptonics
+2003941000033119,846011000001109,sonata 5mg capsules (meda pharmaceuticals ltd),sonata 5mg capsules,capsule/ oral capsule,oral,zaleplon,5.000mg,,Zaleplon,Hyptonics
+2004041000033117,435711000001108,sonata 10mg capsules (meda pharmaceuticals ltd),sonata 10mg capsules,capsule/ oral capsule,oral,zaleplon,10.000mg,,Zaleplon,Hyptonics
+2145941000033118,42129911000001106,gabapentin 600mg tablets,gabapentin 600mg tablets,tablet/ oral tablet,oral,gabapentin,600.000mg,4080100,Gabapentin,Antiepileptics
+2146041000033111,42130011000001101,gabapentin 800mg tablets,gabapentin 800mg tablets,tablet/ oral tablet,oral,gabapentin,800.000mg,4080100,Gabapentin,Antiepileptics
+2146141000033110,511611000001103,neurontin 600mg tablets (viatris uk healthcare ltd),neurontin 600mg tablets,tablet/ oral tablet,oral,gabapentin,600.000mg,,Gabapentin,Antiepileptics
+2146241000033115,159611000001104,neurontin 800mg tablets (viatris uk healthcare ltd),neurontin 800mg tablets,tablet/ oral tablet,oral,gabapentin,800.000mg,,Gabapentin,Antiepileptics
+2190241000033114,7877711000001106,melatonin 3mg tablets,melatonin 3mg tablets,tablet/ oral tablet,oral,melatonin,3.000mg,4010100,Melatonin,Hyptonics
+2190341000033116,7821111000001102,melatonin 2.5mg capsules,melatonin 2.5mg capsules,capsule/ oral capsule,oral,melatonin,2.500mg,4010100,Melatonin,Hyptonics
+2271441000033112,3846411000001106,depakote 250mg gastro-resistant tablets (sanofi),depakote 250mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,250.000mg,,Valproate,Antiepileptics
+2271541000033113,3847111000001103,depakote 500mg gastro-resistant tablets (sanofi),depakote 500mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,500.000mg,,Valproate,Antiepileptics
+2584441000033110,36037711000001108,lamotrigine 2mg dispersible tablets sugar free,lamotrigine 2mg dispersible tablets sugar free,dispersible tablet/,oral,lamotrigine,2.000mg,4080100,Lamotrigine,Antiepileptics
+2584541000033111,4021611000001103,lamictal 2mg dispersible tablets (glaxosmithkline uk ltd),lamictal 2mg dispersible tablets,dispersible tablet/,oral,lamotrigine,2.000mg,,Lamotrigine,Antiepileptics
+2601041000033112,7662511000001100,clonazepam 2.5mg/ml drops sugar free,clonazepam 2.5mg/ml drops sugar free,oral drops,oral,clonazepam,2.500mg/1.000ml,4080100,Clonazepam,Antiepileptics
+2601141000033111,7655011000001106,rivotril 2.5mg/1ml drops (imported (switzerland)),rivotril 2.5mg/1ml drops,oral drops,,clonazepam,2.500mg/1.000ml,,Clonazepam,Antiepileptics
+2602041000033119,689411000001109,oxactin 20mg capsules (discovery pharmaceuticals),oxactin 20mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,20.000mg,,Fluoxetine,SSRIs
+2640041000033113,11944711000001106,clonazepam 125micrograms/5ml oral suspension,clonazepam 125micrograms/5ml oral suspension,oral suspension,oral,clonazepam,25.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+2667941000033119,8397611000001100,clonazepam 625micrograms/5ml oral suspension,clonazepam 625micrograms/5ml oral suspension,oral suspension,oral,clonazepam,125.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+2710441000033119,683911000001104,ranflutin 20mg capsules (sun pharma uk ltd),ranflutin 20mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,20.000mg,,Fluoxetine,SSRIs
+2711241000033110,42138011000001104,valproic acid 250mg gastro-resistant tablets,valproic acid 250mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,250.000mg,4020300,Valproic acid,Antimanic
+2711341000033117,42138311000001101,valproic acid 500mg gastro-resistant tablets,valproic acid 500mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,500.000mg,4020300,Valproic acid,Antimanic
+2719441000033110,8397111000001108,clonazepam 500micrograms/5ml oral solution,clonazepam 500micrograms/5ml oral solution,oral solution,oral,clonazepam,100.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+2722341000033116,8397211000001102,clonazepam 500micrograms/5ml oral suspension,clonazepam 500micrograms/5ml oral suspension,oral suspension,oral,clonazepam,100.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+2749541000033116,42271211000001104,escitalopram 10mg tablets,escitalopram 10mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,10.000mg,4030300,Escitalopram,SSRIs
+2749641000033115,3388511000001100,cipralex 10mg tablets (lundbeck ltd),cipralex 10mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,10.000mg,,Escitalopram,SSRIs
+2752741000033119,8395911000001101,clonazepam 2mg/5ml oral solution,clonazepam 2mg/5ml oral solution,oral solution,oral,clonazepam,400.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+2758241000033111,7720811000001103,melatonin 1mg capsules,melatonin 1mg capsules,capsule/ oral capsule,oral,melatonin,1.000mg,4010100,Melatonin,Hyptonics
+2762341000033113,42128211000001107,diazepam 2mg/5ml oral solution,diazepam 2mg/5ml oral solution,oral solution,oral,diazepam,400.000microgram/1.000ml,4010200,Diazepam,Anxiolytics
+2762441000033119,13893211000001109,diazepam 10mg/5ml oral suspension,diazepam 10mg/5ml oral suspension,oral suspension,oral,diazepam,2.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+2770541000033113,10065611000001109,prozit 20mg/5ml oral solution (pinewood healthcare),prozit 20mg/5ml oral solution,oral solution,oral,fluoxetine hydrochloride,4.000mg/1.000ml,,Fluoxetine,SSRIs
+2770641000033114,42271811000001103,fluoxetine 20mg/5ml oral solution,fluoxetine 20mg/5ml oral solution,oral solution,oral,fluoxetine hydrochloride,4.000mg/1.000ml,4030300,Fluoxetine,SSRIs
+2796241000033118,42129611000001100,gabapentin 250mg/5ml oral solution,gabapentin 250mg/5ml oral solution,oral solution,oral,gabapentin,50.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+2796341000033111,21059411000001106,neurontin 250mg/5ml oral solution (imported (united states)),neurontin 250mg/5ml oral solution,oral solution,,gabapentin,50.000mg/1.000ml,,Gabapentin,Antiepileptics
+2799141000033115,4766111000001107,epival cr 500mg tablets (g.l. pharma uk ltd),epival cr 500mg tablets,modified-release tablet,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+2799241000033110,4765911000001103,epival cr 300mg tablets (g.l. pharma uk ltd),epival cr 300mg tablets,modified-release tablet,oral,sodium valproate,300.000mg,,Valproate,Antiepileptics
+2913641000033119,36061711000001108,gabapentin 600mg tablets and gabapentin 300mg capsules,gabapentin 600mg tablets and gabapentin 300mg capsules,not applicable,route of administration not applicable,,,4080100,Gabapentin,Antiepileptics
+2951341000033116,42271311000001107,escitalopram 20mg tablets,escitalopram 20mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,20.000mg,4030300,Escitalopram,SSRIs
+2951441000033110,4942511000001102,cipralex 20mg tablets (lundbeck ltd),cipralex 20mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,20.000mg,,Escitalopram,SSRIs
+2974841000033114,42274611000001100,mirtazapine 30mg orodispersible tablets,mirtazapine 30mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,30.000mg,4030400,Mirtazapine,Other Antidepressants
+3029641000033112,42274411000001103,mirtazapine 15mg orodispersible tablets,mirtazapine 15mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,15.000mg,4030400,Mirtazapine,Other Antidepressants
+3029741000033115,5627911000001100,mirtazapine 45mg orodispersible tablets,mirtazapine 45mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,45.000mg,4030400,Mirtazapine,Other Antidepressants
+3029841000033113,5608811000001102,zispin soltab 15mg orodispersible tablets (organon pharma (uk) ltd),zispin soltab 15mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,15.000mg,,Mirtazapine,Other Antidepressants
+3029941000033117,5595811000001101,zispin soltab 45mg orodispersible tablets (organon pharma (uk) ltd),zispin soltab 45mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,45.000mg,,Mirtazapine,Other Antidepressants
+3030341000033110,42271411000001100,escitalopram 5mg tablets,escitalopram 5mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,5.000mg,4030300,Escitalopram,SSRIs
+3030541000033115,7331811000001105,cipralex 5mg tablets (lundbeck ltd),cipralex 5mg tablets,tablet/ oral tablet,oral,escitalopram oxalate,5.000mg,,Escitalopram,SSRIs
+3033041000033117,36097511000001106,diazepam 10mg/2ml emulsion for injection ampoules,diazepam 10mg/2ml emulsion for injection ampoules,emulsion for injection,intravenous,diazepam,5.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+3033141000033118,36097611000001105,diazepam 10mg/2ml solution for injection ampoules,diazepam 10mg/2ml solution for injection ampoules,solution for injection,intravenous/ intramuscular,diazepam,5.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+3058741000033113,9103511000001102,mirtazapine 15mg/ml oral solution sugar free,mirtazapine 15mg/ml oral solution sugar free,oral solution,oral,mirtazapine,15.000mg/1.000ml,4030400,Mirtazapine,Other Antidepressants
+3078541000033115,4859711000001106,zispin soltab 30mg orodispersible tablets (organon pharma (uk) ltd),zispin soltab 30mg orodispersible tablets,orodispersible tablet,oral,mirtazapine,30.000mg,,Mirtazapine,Other Antidepressants
+3088941000033118,42270611000001107,dosulepin 25mg capsules,dosulepin 25mg capsules,capsule/ oral capsule,oral,dosulepin hydrochloride,25.000mg,4030100,Dosulepin,Tricyclic Antidepressants
+3089041000033110,42270711000001103,dosulepin 75mg tablets,dosulepin 75mg tablets,tablet/ oral tablet,oral,dosulepin hydrochloride,75.000mg,4030100,Dosulepin,Tricyclic Antidepressants
+3089141000033114,8454311000001101,dosulepin 25mg/5ml oral solution,dosulepin 25mg/5ml oral solution,oral solution,oral,dosulepin hydrochloride,5.000mg/1.000ml,4030100,Dosulepin,Tricyclic Antidepressants
+3089241000033119,8454111000001103,dosulepin 75mg/5ml oral solution,dosulepin 75mg/5ml oral solution,oral solution,oral,dosulepin hydrochloride,15.000mg/1.000ml,4030100,Dosulepin,Tricyclic Antidepressants
+3135541000033116,8397411000001103,clonazepam 5mg/5ml oral suspension,clonazepam 5mg/5ml oral suspension,oral suspension,oral,clonazepam,1.000mg/1.000ml,4080100,Clonazepam,Antiepileptics
+3152941000033118,8818511000001104,sodium valproate 300mg suppositories,sodium valproate 300mg suppositories,suppository,rectal,sodium valproate,300.000mg,4080100,Valproate,Antiepileptics
+3153041000033111,19964511000001101,sodium valproate 100mg suppositories,sodium valproate 100mg suppositories,suppository,rectal,sodium valproate,100.000mg,4080100,Valproate,Antiepileptics
+3153341000033113,42135411000001103,pregabalin 25mg capsules,pregabalin 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,4080100,Pregabalin,Antiepileptics
+3153441000033119,42135611000001100,pregabalin 50mg capsules,pregabalin 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,4080100,Pregabalin,Antiepileptics
+3153541000033118,42135711000001109,pregabalin 75mg capsules,pregabalin 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,4080100,Pregabalin,Antiepileptics
+3153641000033117,42135011000001107,pregabalin 100mg capsules,pregabalin 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,4080100,Pregabalin,Antiepileptics
+3153741000033114,42135111000001108,pregabalin 150mg capsules,pregabalin 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,4080100,Pregabalin,Antiepileptics
+3153841000033116,42135211000001102,pregabalin 200mg capsules,pregabalin 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,4080100,Pregabalin,Antiepileptics
+3153941000033112,42135511000001104,pregabalin 300mg capsules,pregabalin 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,4080100,Pregabalin,Antiepileptics
+3154041000033114,7889411000001104,lyrica 25mg capsules (viatris uk healthcare ltd),lyrica 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,,Pregabalin,Antiepileptics
+3154141000033113,7890211000001109,lyrica 50mg capsules (viatris uk healthcare ltd),lyrica 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,,Pregabalin,Antiepileptics
+3154241000033118,7890511000001107,lyrica 75mg capsules (viatris uk healthcare ltd),lyrica 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,,Pregabalin,Antiepileptics
+3154341000033111,7890811000001105,lyrica 100mg capsules (viatris uk healthcare ltd),lyrica 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,,Pregabalin,Antiepileptics
+3154441000033117,7891211000001103,lyrica 150mg capsules (viatris uk healthcare ltd),lyrica 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,,Pregabalin,Antiepileptics
+3154541000033116,7891611000001101,lyrica 200mg capsules (viatris uk healthcare ltd),lyrica 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,,Pregabalin,Antiepileptics
+3154641000033115,7892111000001104,lyrica 300mg capsules (viatris uk healthcare ltd),lyrica 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,,Pregabalin,Antiepileptics
+3177641000033112,8013111000001100,duloxetine 20mg gastro-resistant capsules,duloxetine 20mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,20.000mg,7040200,Duloxetine,Other Antidepressants
+3177741000033115,8013211000001106,duloxetine 40mg gastro-resistant capsules,duloxetine 40mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,40.000mg,7040200,Duloxetine,Other Antidepressants
+3177841000033113,8048811000001109,yentreve 20mg gastro-resistant capsules (eli lilly and company ltd),yentreve 20mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,20.000mg,,Duloxetine,Other Antidepressants
+3177941000033117,8049111000001109,yentreve 40mg gastro-resistant capsules (eli lilly and company ltd),yentreve 40mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,40.000mg,,Duloxetine,Other Antidepressants
+3180441000033118,39731811000001104,amitriptyline 25mg / perphenazine 2mg tablets,amitriptyline 25mg / perphenazine 2mg tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride/ perphenazine,25.000mg + 2.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+3180541000033117,39731711000001107,amitriptyline 10mg / perphenazine 2mg tablets,amitriptyline 10mg / perphenazine 2mg tablets,tablet/ oral tablet,oral,amitriptyline hydrochloride/ perphenazine,10.000mg + 2.000mg,4030100,Amitriptyline,Tricyclic Antidepressants
+3197841000033118,7821411000001107,melatonin 3mg modified-release capsules,melatonin 3mg modified-release capsules,modified-release capsule,oral,melatonin,3.000mg,4010100,Melatonin,Hyptonics
+3226641000033111,42294111000001101,duloxetine 30mg gastro-resistant capsules,duloxetine 30mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,30.000mg,4030400,Duloxetine,Other Antidepressants
+3226741000033119,42294211000001107,duloxetine 60mg gastro-resistant capsules,duloxetine 60mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,60.000mg,4030400,Duloxetine,Other Antidepressants
+3226841000033112,9038411000001109,cymbalta 30mg gastro-resistant capsules (eli lilly and company ltd),cymbalta 30mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,30.000mg,,Duloxetine,Other Antidepressants
+3226941000033116,9039311000001108,cymbalta 60mg gastro-resistant capsules (eli lilly and company ltd),cymbalta 60mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,60.000mg,,Duloxetine,Other Antidepressants
+3246441000033111,17996511000001100,klonopin 0.5mg oral lyophilisates (imported (united states)),klonopin 0.5mg oral lyophilisates,oral lyophilisate,,clonazepam,500.000microgram,,Clonazepam,Antiepileptics
+3246541000033112,,melatonin  liquid (orange)  1 mg/ml,,,,,,,Melatonin,Hyptonics
+3256741000033118,42274511000001104,mirtazapine 15mg tablets,mirtazapine 15mg tablets,tablet/ oral tablet,oral,mirtazapine,15.000mg,4030400,Mirtazapine,Other Antidepressants
+3256841000033111,42274811000001101,mirtazapine 45mg tablets,mirtazapine 45mg tablets,tablet/ oral tablet,oral,mirtazapine,45.000mg,4030400,Mirtazapine,Other Antidepressants
+3308041000033119,8659811000001106,lorazepam 500micrograms/5ml oral suspension,lorazepam 500micrograms/5ml oral suspension,oral suspension,oral,lorazepam,100.000microgram/1.000ml,4010200,Lorazepam,Anxiolytics
+3345241000033111,13893311000001101,diazepam 2.5mg/5ml oral suspension,diazepam 2.5mg/5ml oral suspension,oral suspension,oral,diazepam,500.000microgram/1.000ml,4010200,Diazepam,Anxiolytics
+3923841000033119,8624511000001105,lorazepam 1mg/5ml oral suspension,lorazepam 1mg/5ml oral suspension,oral suspension,oral,lorazepam,200.000microgram/1.000ml,4010200,Lorazepam,Anxiolytics
+3923941000033110,19977911000001108,sodium valproate 500mg/5ml oral suspension,sodium valproate 500mg/5ml oral suspension,oral suspension,oral,sodium valproate,100.000mg/1.000ml,4080100,Valproate,Antiepileptics
+3928841000033110,10364811000001108,escitalopram 10mg/ml oral drops sugar free,escitalopram 10mg/ml oral drops sugar free,oral drops,oral,escitalopram oxalate,10.000mg/1.000ml,4030300,Escitalopram,SSRIs
+3928941000033119,10364011000001102,cipralex 10mg/ml oral drops (lundbeck ltd),cipralex 10mg/ml oral drops,oral drops,oral,escitalopram oxalate,10.000mg/1.000ml,,Escitalopram,SSRIs
+3979041000033112,42128011000001102,diazepam 25mg/5ml oral solution,diazepam 25mg/5ml oral solution,oral solution,oral,diazepam,5.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+3993541000033113,14016811000001101,pregabalin 75mg/5ml oral suspension,pregabalin 75mg/5ml oral suspension,oral suspension,oral,pregabalin,15.000mg/1.000ml,4080100,Pregabalin,Antiepileptics
+3993641000033114,19677811000001102,diazepam 2mg/5ml oral suspension,diazepam 2mg/5ml oral suspension,oral suspension,oral,diazepam,400.000microgram/1.000ml,4010200,Diazepam,Anxiolytics
+4010441000033114,11044311000001104,sinepin 25mg capsules (marlborough pharmaceuticals ltd),sinepin 25mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,25.000mg,,Doxepin,Tricyclic Antidepressants
+4010541000033110,11044611000001109,sinepin 50mg capsules (marlborough pharmaceuticals ltd),sinepin 50mg capsules,capsule/ oral capsule,oral,doxepin hydrochloride,50.000mg,,Doxepin,Tricyclic Antidepressants
+4021241000033113,11089411000001104,sodium valproate 300mg/3ml solution for injection ampoules,sodium valproate 300mg/3ml solution for injection ampoules,solution for injection,intravenous,sodium valproate,100.000mg/1.000ml,4080100,Valproate,Antiepileptics
+4021341000033115,11072611000001100,episenta 300mg/3ml solution for injection ampoules (desitin pharma ltd),episenta 300mg/3ml solution for injection ampoules,solution for injection,intravenous,sodium valproate,100.000mg/1.000ml,,Valproate,Antiepileptics
+4042941000033114,7875811000001108,melatonin 1mg tablets,melatonin 1mg tablets,tablet/ oral tablet,oral,melatonin,1.000mg,4010100,Melatonin,Hyptonics
+4079041000033115,39701911000001102,paroxetine 10mg tablets,paroxetine 10mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,10.000mg,4030300,Paroxetine,SSRIs
+4079141000033116,11270611000001109,seroxat 10mg tablets (glaxosmithkline uk ltd),seroxat 10mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,10.000mg,,Paroxetine,SSRIs
+4148341000033116,8721911000001107,sertraline 50mg/5ml oral suspension,sertraline 50mg/5ml oral suspension,oral suspension,oral,sertraline hydrochloride,10.000mg/1.000ml,4030300,Sertraline,SSRIs
+4150241000033114,11475111000001108,sodium valproate 150mg modified-release capsules,sodium valproate 150mg modified-release capsules,modified-release capsule,oral,sodium valproate,150.000mg,4080100,Valproate,Antiepileptics
+4150341000033116,11475211000001102,sodium valproate 300mg modified-release capsules,sodium valproate 300mg modified-release capsules,modified-release capsule,oral,sodium valproate,300.000mg,4080100,Valproate,Antiepileptics
+4150441000033110,11475611000001100,episenta 150mg modified-release capsules (desitin pharma ltd),episenta 150mg modified-release capsules,modified-release capsule,oral,sodium valproate,150.000mg,,Valproate,Antiepileptics
+4150641000033112,11475911000001106,episenta 300mg modified-release capsules (desitin pharma ltd),episenta 300mg modified-release capsules,modified-release capsule,oral,sodium valproate,300.000mg,,Valproate,Antiepileptics
+4150941000033117,11475311000001105,sodium valproate 500mg modified-release granules sachets sugar free,sodium valproate 500mg modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,500.000mg,4080100,Valproate,Antiepileptics
+4151041000033110,11475411000001103,sodium valproate 1g modified-release granules sachets sugar free,sodium valproate 1g modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,1.000gram,4080100,Valproate,Antiepileptics
+4151141000033114,11476211000001108,episenta 500mg modified-release granules sachets (desitin pharma ltd),episenta 500mg modified-release granules sachets,modified-release granules,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+4151241000033119,11476511000001106,episenta 1000mg modified-release granules sachets (desitin pharma ltd),episenta 1000mg modified-release granules sachets,modified-release granules,oral,sodium valproate,1.000gram,,Valproate,Antiepileptics
+4267041000033112,,melatonin  liquid (strawberry)  1 mg/ml,,,,,,,Melatonin,Hyptonics
+4387641000033111,42135311000001105,pregabalin 225mg capsules,pregabalin 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,4080100,Pregabalin,Antiepileptics
+4387741000033119,13076011000001103,lyrica 225mg capsules (viatris uk healthcare ltd),lyrica 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,,Pregabalin,Antiepileptics
+4431541000033115,8377611000001108,clomipramine 50mg/5ml oral suspension,clomipramine 50mg/5ml oral suspension,oral suspension,oral,clomipramine hydrochloride,10.000mg/1.000ml,4030100,Clomipramine,Tricyclic Antidepressants
+4434741000033113,13117911000001104,sodium valproate 1g/10ml solution for injection ampoules,sodium valproate 1g/10ml solution for injection ampoules,solution for injection,intravenous,sodium valproate,100.000mg/1.000ml,4080100,Valproate,Antiepileptics
+4498541000033116,8722711000001103,venlafaxine 37.5mg/5ml oral suspension,venlafaxine 37.5mg/5ml oral suspension,oral suspension,oral,venlafaxine hydrochloride,7.500mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+4498641000033115,11581211000001101,prozep 20mg/5ml oral solution (rosemont pharmaceuticals ltd),prozep 20mg/5ml oral solution,oral solution,oral,fluoxetine hydrochloride,4.000mg/1.000ml,,Fluoxetine,SSRIs
+4518341000033115,8025411000001104,melatonin 2mg modified-release tablets,melatonin 2mg modified-release tablets,modified-release tablet,oral,melatonin,2.000mg,4010100,Melatonin,Hyptonics
+4518441000033114,13506111000001105,circadin 2mg modified-release tablets (flynn pharma ltd),circadin 2mg modified-release tablets,modified-release tablet,oral,melatonin,2.000mg,,Melatonin,Hyptonics
+4549841000033112,13718611000001103,sodium valproate 100mg modified-release granules sachets sugar free,sodium valproate 100mg modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,100.000mg,4080100,Valproate,Antiepileptics
+4549941000033116,13718711000001107,sodium valproate 250mg modified-release granules sachets sugar free,sodium valproate 250mg modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,250.000mg,4080100,Valproate,Antiepileptics
+4550041000033113,13718811000001104,sodium valproate 50mg modified-release granules sachets sugar free,sodium valproate 50mg modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,50.000mg,4080100,Valproate,Antiepileptics
+4550141000033112,13718911000001109,sodium valproate 750mg modified-release granules sachets sugar free,sodium valproate 750mg modified-release granules sachets sugar free,modified-release granules,oral,sodium valproate,750.000mg,4080100,Valproate,Antiepileptics
+4550241000033117,13666611000001108,epilim chronosphere mr 50mg granules sachets (sanofi),epilim chronosphere mr 50mg granules sachets,modified-release granules,oral,sodium valproate,50.000mg,,Valproate,Antiepileptics
+4550341000033110,13665411000001101,epilim chronosphere mr 100mg granules sachets (sanofi),epilim chronosphere mr 100mg granules sachets,modified-release granules,oral,sodium valproate,100.000mg,,Valproate,Antiepileptics
+4550441000033116,13665711000001107,epilim chronosphere mr 250mg granules sachets (sanofi),epilim chronosphere mr 250mg granules sachets,modified-release granules,oral,sodium valproate,250.000mg,,Valproate,Antiepileptics
+4550541000033115,13665911000001109,epilim chronosphere mr 500mg granules sachets (sanofi),epilim chronosphere mr 500mg granules sachets,modified-release granules,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+4550641000033119,13666311000001103,epilim chronosphere mr 750mg granules sachets (sanofi),epilim chronosphere mr 750mg granules sachets,modified-release granules,oral,sodium valproate,750.000mg,,Valproate,Antiepileptics
+4663341000033118,8659211000001105,lorazepam 250micrograms/5ml oral suspension,lorazepam 250micrograms/5ml oral suspension,oral suspension,oral,lorazepam,50.000microgram/1.000ml,4010200,Lorazepam,Anxiolytics
+4817341000033115,14934411000001108,rodomel xl 150mg capsules (teva uk ltd),rodomel xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4817441000033114,14934211000001109,rodomel xl 75mg capsules (teva uk ltd),rodomel xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4817641000033111,14981711000001107,tifaxin xl 150mg capsules (genus pharmaceuticals ltd),tifaxin xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4817741000033119,14981511000001102,tifaxin xl 75mg capsules (genus pharmaceuticals ltd),tifaxin xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4823541000033110,14985011000001107,venlafaxine 75mg modified-release tablets,venlafaxine 75mg modified-release tablets,modified-release tablet,oral,venlafaxine hydrochloride,75.000mg,4030400,Venlafaxine,Other Antidepressants
+4823641000033111,14984911000001107,venlafaxine 150mg modified-release tablets,venlafaxine 150mg modified-release tablets,modified-release tablet,oral,venlafaxine hydrochloride,150.000mg,4030400,Venlafaxine,Other Antidepressants
+4823741000033119,14980711000001104,viepax xl 75mg tablets (dexcel-pharma ltd),viepax xl 75mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4823841000033112,14981311000001108,viepax xl 150mg tablets (dexcel-pharma ltd),viepax xl 150mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4824641000033113,14954611000001107,winfex xl 75mg capsules (zentiva pharma uk ltd),winfex xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4896741000033115,14974711000001100,vexarin xl 150mg capsules (viatris uk healthcare ltd),vexarin xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4896841000033113,14974911000001103,vexarin xl 75mg capsules (viatris uk healthcare ltd),vexarin xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4896941000033117,14978911000001105,viepax 75mg tablets (dexcel-pharma ltd),viepax 75mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4897041000033116,14978711000001108,viepax 37.5mg tablets (dexcel-pharma ltd),viepax 37.5mg tablets,tablet/ oral tablet,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+4897141000033117,14967411000001106,tardcaps xl 75mg capsules (ixl pharma ltd),tardcaps xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4897241000033112,14967611000001109,tardcaps xl 150mg capsules (ixl pharma ltd),tardcaps xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4899541000033115,14975211000001108,vensir xl 75mg capsules (morningside healthcare ltd),vensir xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4899641000033119,14975411000001107,vensir xl 150mg capsules (morningside healthcare ltd),vensir xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4936641000033111,15068711000001102,venaxx xl 75mg capsules (advanz pharma),venaxx xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4936741000033119,15068911000001100,venaxx xl 150mg capsules (advanz pharma),venaxx xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4937041000033115,15011711000001108,vaxalin xl 75mg capsules (ratiopharm uk ltd),vaxalin xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4937141000033116,15012111000001102,vaxalin xl 150mg capsules (ratiopharm uk ltd),vaxalin xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+4954041000033114,8484811000001101,doxepin 50mg/5ml oral solution,doxepin 50mg/5ml oral solution,oral solution,oral,doxepin hydrochloride,10.000mg/1.000ml,4030100,Doxepin,Tricyclic Antidepressants
+4957241000033112,8799011000001104,zopiclone 3.75mg/5ml oral suspension,zopiclone 3.75mg/5ml oral suspension,oral suspension,oral,zopiclone,750.000microgram/1.000ml,4010100,Zolpidem,Hyptonics
+4957341000033119,15125411000001102,pregabalin 150mg/5ml oral suspension,pregabalin 150mg/5ml oral suspension,oral suspension,oral,pregabalin,30.000mg/1.000ml,4080100,Pregabalin,Antiepileptics
+4957841000033111,15116711000001109,politid xl 75mg capsules (accord-uk ltd),politid xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+4957941000033115,15116511000001104,politid xl 150mg capsules (accord-uk ltd),politid xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5008041000033112,14018011000001106,venlafaxine 75mg/5ml oral solution,venlafaxine 75mg/5ml oral solution,oral solution,oral,venlafaxine hydrochloride,15.000mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+5052741000033119,15439111000001107,venlafaxine 225mg modified-release tablets,venlafaxine 225mg modified-release tablets,modified-release tablet,oral,venlafaxine hydrochloride,225.000mg,4030400,Venlafaxine,Other Antidepressants
+5052841000033112,15376011000001109,venlalic xl 225mg tablets (ethypharm uk ltd),venlalic xl 225mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+5052941000033116,15375411000001109,venlalic xl 150mg tablets (ethypharm uk ltd),venlalic xl 150mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5053041000033114,15375711000001103,venlalic xl 75mg tablets (ethypharm uk ltd),venlalic xl 75mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5055041000033113,15439411000001102,epilim chronosphere mr 1000mg granules sachets (sanofi),epilim chronosphere mr 1000mg granules sachets,modified-release granules,oral,sodium valproate,1.000gram,,Valproate,Antiepileptics
+5077041000033116,15499111000001100,agomelatine 25mg tablets,agomelatine 25mg tablets,tablet/ oral tablet,oral,agomelatine,25.000mg,4030400,Agomelatine,Other Antidepressants
+5077141000033117,15457711000001104,valdoxan 25mg tablets (servier laboratories ltd),valdoxan 25mg tablets,tablet/ oral tablet,oral,agomelatine,25.000mg,,Agomelatine,Other Antidepressants
+5100341000033117,14010811000001103,gabapentin 400mg/5ml oral solution,gabapentin 400mg/5ml oral solution,oral solution,oral,gabapentin,80.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5128541000033119,15499311000001103,escitalopram 20mg/ml oral drops sugar free,escitalopram 20mg/ml oral drops sugar free,oral drops,oral,escitalopram oxalate,20.000mg/1.000ml,4030300,Escitalopram,SSRIs
+5128641000033118,15453311000001105,cipralex 20mg/ml oral drops (lundbeck ltd),cipralex 20mg/ml oral drops,oral drops,oral,escitalopram oxalate,20.000mg/1.000ml,,Escitalopram,SSRIs
+5234041000033119,15414911000001104,foraven xl 75mg capsules (forum products ltd),foraven xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5234141000033115,15414711000001101,foraven xl 150mg capsules (forum products ltd),foraven xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5328941000033119,16273411000001100,ranfaxine xl 75mg capsules (sun pharma uk ltd),ranfaxine xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5329041000033111,16274611000001104,ranfaxine xl 150mg capsules (sun pharma uk ltd),ranfaxine xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5490141000033118,13892411000001104,amitriptyline 10mg/5ml oral solution,amitriptyline 10mg/5ml oral solution,oral solution,oral,amitriptyline hydrochloride,2.000mg/1.000ml,4030100,Amitriptyline,Tricyclic Antidepressants
+5574641000033117,16455011000001106,tonpular xl 75mg capsules (wockhardt uk ltd),tonpular xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5574741000033114,16455211000001101,tonpular xl 150mg capsules (wockhardt uk ltd),tonpular xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5641241000033110,7720711000001106,melatonin 10mg capsules,melatonin 10mg capsules,capsule/ oral capsule,oral,melatonin,10.000mg,4010100,Melatonin,Hyptonics
+5748641000033110,38894311000001101,diazepam 2mg/5ml oral solution sugar free,diazepam 2mg/5ml oral solution sugar free,oral solution,oral,diazepam,400.000microgram/1.000ml,4010200,Diazepam,Anxiolytics
+5749441000033115,11590211000001106,fluoxetine 20mg/5ml oral solution sugar free,fluoxetine 20mg/5ml oral solution sugar free,oral solution,oral,fluoxetine hydrochloride,4.000mg/1.000ml,4030300,Fluoxetine,SSRIs
+5812541000033115,16421311000001106,venlablue xl 75mg capsules (zentiva pharma uk ltd),venlablue xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5812641000033119,16421511000001100,venlablue xl 150mg capsules (zentiva pharma uk ltd),venlablue xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5813141000033117,16492311000001109,alventa xl 150mg capsules (krka uk ltd),alventa xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5813341000033119,16492111000001107,alventa xl 75mg capsules (krka uk ltd),alventa xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5884041000033115,7311311000001108,bio-melatonin 3mg tablets (imported (denmark)),bio-melatonin 3mg tablets,tablet/ oral tablet,,melatonin,3.000mg,,Melatonin,Hyptonics
+5888641000033118,8277811000001102,amitriptyline 10mg/5ml oral suspension,amitriptyline 10mg/5ml oral suspension,oral suspension,oral,amitriptyline hydrochloride,2.000mg/1.000ml,4030100,Amitriptyline,Tricyclic Antidepressants
+5889641000033110,17662411000001103,mentaven xl 150mg capsules (arrow generics ltd),mentaven xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5890841000033118,8520411000001109,gabapentin 250mg/5ml oral suspension,gabapentin 250mg/5ml oral suspension,oral suspension,oral,gabapentin,50.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5891041000033116,8454211000001109,dosulepin 25mg/5ml oral suspension,dosulepin 25mg/5ml oral suspension,oral suspension,oral,dosulepin hydrochloride,5.000mg/1.000ml,4030100,Dosulepin,Tricyclic Antidepressants
+5892341000033111,8659611000001107,lorazepam 500micrograms/5ml oral solution,lorazepam 500micrograms/5ml oral solution,oral solution,oral,lorazepam,100.000microgram/1.000ml,4010200,Lorazepam,Anxiolytics
+5892441000033117,8624311000001104,lorazepam 1mg/5ml oral solution,lorazepam 1mg/5ml oral solution,oral solution,oral,lorazepam,200.000microgram/1.000ml,4010200,Lorazepam,Anxiolytics
+5896341000033112,17737211000001102,depefex xl 75mg capsules (chiesi ltd),depefex xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+5896441000033118,17737011000001107,depefex xl 150mg capsules (chiesi ltd),depefex xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+5901041000033114,11944211000001104,clonazepam 12.5mg/5ml oral solution,clonazepam 12.5mg/5ml oral solution,oral solution,oral,clonazepam,2.500mg/1.000ml,4080100,Clonazepam,Antiepileptics
+5901141000033113,11944311000001107,clonazepam 12.5mg/5ml oral suspension,clonazepam 12.5mg/5ml oral suspension,oral suspension,oral,clonazepam,2.500mg/1.000ml,4080100,Clonazepam,Antiepileptics
+5901241000033118,8395711000001103,clonazepam 250micrograms/5ml oral solution,clonazepam 250micrograms/5ml oral solution,oral solution,oral,clonazepam,50.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+5901341000033111,8395811000001106,clonazepam 250micrograms/5ml oral suspension,clonazepam 250micrograms/5ml oral suspension,oral suspension,oral,clonazepam,50.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+5968141000033119,8520111000001104,gabapentin 100mg/5ml oral solution,gabapentin 100mg/5ml oral solution,oral solution,oral,gabapentin,20.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5968241000033114,8520211000001105,gabapentin 100mg/5ml oral suspension,gabapentin 100mg/5ml oral suspension,oral suspension,oral,gabapentin,20.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5968341000033116,12089411000001100,gabapentin 200mg/5ml oral suspension,gabapentin 200mg/5ml oral suspension,oral suspension,oral,gabapentin,40.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5968441000033110,12089311000001107,gabapentin 200mg/5ml oral solution,gabapentin 200mg/5ml oral solution,oral solution,oral,gabapentin,40.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5968541000033111,8520511000001108,gabapentin 300mg/5ml oral solution,gabapentin 300mg/5ml oral solution,oral solution,oral,gabapentin,60.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5968641000033112,8523111000001106,gabapentin 300mg/5ml oral suspension,gabapentin 300mg/5ml oral suspension,oral suspension,oral,gabapentin,60.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5972141000033111,15242911000001102,melatonin 10mg/5ml oral solution,melatonin 10mg/5ml oral solution,oral solution,oral,melatonin,2.000mg/1.000ml,4010100,Melatonin,Hyptonics
+5972241000033116,15243011000001105,melatonin 10mg/5ml oral suspension,melatonin 10mg/5ml oral suspension,oral suspension,oral,melatonin,2.000mg/1.000ml,4010100,Melatonin,Hyptonics
+5972341000033114,8662911000001101,melatonin 2.5mg/5ml oral suspension,melatonin 2.5mg/5ml oral suspension,oral suspension,oral,melatonin,500.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+5972441000033115,12700111000001104,melatonin 2mg/5ml oral solution,melatonin 2mg/5ml oral solution,oral solution,oral,melatonin,400.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+5972541000033119,12700211000001105,melatonin 2mg/5ml oral suspension,melatonin 2mg/5ml oral suspension,oral suspension,oral,melatonin,400.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+5972641000033118,12700311000001102,melatonin 3mg/5ml oral solution,melatonin 3mg/5ml oral solution,oral solution,oral,melatonin,600.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+5972741000033110,12700411000001109,melatonin 3mg/5ml oral suspension,melatonin 3mg/5ml oral suspension,oral suspension,oral,melatonin,600.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+5975341000033119,8721711000001105,sertraline 100mg/5ml oral suspension,sertraline 100mg/5ml oral suspension,oral suspension,oral,sertraline hydrochloride,20.000mg/1.000ml,4030300,Sertraline,SSRIs
+5977641000033116,14056711000001101,melatonin 5mg/5ml oral solution,melatonin 5mg/5ml oral solution,oral solution,oral,melatonin,1.000mg/1.000ml,4010100,Melatonin,Hyptonics
+5978741000033112,8798911000001108,zopiclone 7.5mg/5ml oral suspension,zopiclone 7.5mg/5ml oral suspension,oral suspension,oral,zopiclone,1.500mg/1.000ml,4010100,Zolpidem,Hyptonics
+5991341000033113,8396011000001109,clonazepam 2mg/5ml oral suspension,clonazepam 2mg/5ml oral suspension,oral suspension,oral,clonazepam,400.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+5991641000033117,8792711000001108,diazepam 10mg/5ml oral solution,diazepam 10mg/5ml oral solution,oral solution,oral,diazepam,2.000mg/1.000ml,4010200,Diazepam,Anxiolytics
+5991741000033114,8792911000001105,diazepam 2.5mg/5ml oral solution,diazepam 2.5mg/5ml oral solution,oral solution,oral,diazepam,500.000microgram/1.000ml,4010200,Diazepam,Anxiolytics
+5992241000033114,8454011000001104,dosulepin 75mg/5ml oral suspension,dosulepin 75mg/5ml oral suspension,oral suspension,oral,dosulepin hydrochloride,15.000mg/1.000ml,4030100,Dosulepin,Tricyclic Antidepressants
+5993441000033118,14014011000001102,gabapentin 400mg/5ml oral suspension,gabapentin 400mg/5ml oral suspension,oral suspension,oral,gabapentin,80.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+5997941000033119,14016711000001109,pregabalin 75mg/5ml oral solution,pregabalin 75mg/5ml oral solution,oral solution,oral,pregabalin,15.000mg/1.000ml,4080100,Pregabalin,Antiepileptics
+5998741000033118,15914411000001109,melatonin 5mg tablets,melatonin 5mg tablets,tablet/ oral tablet,oral,melatonin,5.000mg,4010100,Melatonin,Hyptonics
+6000441000033115,14017911000001109,venlafaxine 37.5mg/5ml oral solution,venlafaxine 37.5mg/5ml oral solution,oral solution,oral,venlafaxine hydrochloride,7.500mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+6001741000033117,14056911000001104,melatonin 5mg/5ml oral suspension,melatonin 5mg/5ml oral suspension,oral suspension,oral,melatonin,1.000mg/1.000ml,4010100,Melatonin,Hyptonics
+6013841000033113,15534611000001106,pregabalin 75mg oral powder sachets,pregabalin 75mg oral powder sachets, oral powder/ powder,oral/ route of administration not applicable,pregabalin,75.000mg,4080100,Pregabalin,Antiepileptics
+6029641000033116,18148811000001100,venlaneo xl 150mg capsules (kent pharma (uk) ltd),venlaneo xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+6029741000033113,18148611000001104,venlaneo xl 75mg capsules (kent pharma (uk) ltd),venlaneo xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+6161741000033111,18765111000001101,venlafaxine 37.5mg modified-release tablets,venlafaxine 37.5mg modified-release tablets,modified-release tablet,oral,venlafaxine hydrochloride,37.500mg,4030400,Venlafaxine,Other Antidepressants
+6161841000033118,18748311000001101,venlalic xl 37.5mg tablets (ethypharm uk ltd),venlalic xl 37.5mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+6456641000033117,19609611000001101,zopiclone 3.75mg/5ml oral solution,zopiclone 3.75mg/5ml oral solution,oral solution,oral,zopiclone,750.000microgram/1.000ml,4010100,Zolpidem,Hyptonics
+6496341000033116,42271611000001102,fluoxetine 10mg tablets,fluoxetine 10mg tablets,tablet/ oral tablet,oral,fluoxetine hydrochloride,10.000mg,4030300,Fluoxetine,SSRIs
+6529041000033112,20065611000001108,clonazepam 2mg/5ml oral solution sugar free,clonazepam 2mg/5ml oral solution sugar free,oral solution,oral,clonazepam,400.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+6529741000033110,20128211000001100,clonazepam 500micrograms/5ml oral solution sugar free,clonazepam 500micrograms/5ml oral solution sugar free,oral solution,oral,clonazepam,100.000microgram/1.000ml,4080100,Clonazepam,Antiepileptics
+7871541000033119,20556411000001107,pregabalin 20mg/ml oral solution sugar free,pregabalin 20mg/ml oral solution sugar free,oral solution,oral,pregabalin,20.000mg/1.000ml,4080100,Pregabalin,Antiepileptics
+7871641000033118,20545811000001103,lyrica 20mg/ml oral solution (viatris uk healthcare ltd),lyrica 20mg/ml oral solution,oral solution,oral,pregabalin,20.000mg/1.000ml,,Pregabalin,Antiepileptics
+8125341000033112,12089611000001102,gabapentin 500mg/5ml oral suspension,gabapentin 500mg/5ml oral suspension,oral suspension,oral,gabapentin,100.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+8237041000033117,21660111000001105,gabapentin 50mg/ml oral solution sugar free,gabapentin 50mg/ml oral solution sugar free,oral solution,oral,gabapentin,50.000mg/1.000ml,4080100,Gabapentin,Antiepileptics
+8265541000033112,21992411000001101,bonilux xl 75mg capsules (sandoz ltd),bonilux xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+8265641000033113,21992211000001100,bonilux xl 150mg capsules (sandoz ltd),bonilux xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+8298641000033115,21990711000001108,sunveniz xl 150mg tablets (sun pharma uk ltd),sunveniz xl 150mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+8298741000033112,21965311000001104,sunveniz xl 75mg tablets (sun pharma uk ltd),sunveniz xl 75mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+8535841000033110,22663911000001101,sodium valproate 400mg/4ml solution for injection ampoules,sodium valproate 400mg/4ml solution for injection ampoules,solution for injection,intravenous,sodium valproate,100.000mg/1.000ml,4080100,Valproate,Antiepileptics
+8536541000033119,8582611000001104,lamotrigine 50mg/5ml oral suspension,lamotrigine 50mg/5ml oral suspension,oral suspension,oral,lamotrigine,10.000mg/1.000ml,4080100,Lamotrigine,Antiepileptics
+8867941000033118,14018111000001107,venlafaxine 75mg/5ml oral suspension,venlafaxine 75mg/5ml oral suspension,oral suspension,oral,venlafaxine hydrochloride,15.000mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+8870741000033111,23466511000001106,clonazepam 2.5mg/ml drops,clonazepam 2.5mg/ml drops,oral drops,oral,clonazepam,2.500mg/1.000ml,4080100,Clonazepam,Antiepileptics
+8885441000033118,23560511000001101,venlafaxine 37.5mg modified-release capsules,venlafaxine 37.5mg modified-release capsules,modified-release capsule,oral,venlafaxine hydrochloride,37.500mg,4030400,Venlafaxine,Other Antidepressants
+8885541000033117,23474511000001108,venlablue xl 37.5mg capsules (zentiva pharma uk ltd),venlablue xl 37.5mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+9120641000033112,24407811000001108,fluoxetine 20mg dispersible tablets sugar free,fluoxetine 20mg dispersible tablets sugar free,dispersible tablet/,oral,fluoxetine hydrochloride,20.000mg,4030300,Fluoxetine,SSRIs
+9120741000033115,24397511000001101,olena 20mg dispersible tablets (advanz pharma),olena 20mg dispersible tablets,dispersible tablet/,oral,fluoxetine hydrochloride,20.000mg,,Fluoxetine,SSRIs
+9177941000033119,24510911000001105,zopiclone 7.5mg/5ml oral solution,zopiclone 7.5mg/5ml oral solution,oral solution,oral,zopiclone,1.500mg/1.000ml,4010100,Zolpidem,Hyptonics
+9300741000033116,24677311000001106,amphero xl 75mg capsules (viatris uk healthcare ltd),amphero xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+9300841000033114,24676911000001109,amphero xl 150mg capsules (viatris uk healthcare ltd),amphero xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+9703341000033113,17651711000001105,gabapentin 6% gel,gabapentin 6% gel,gel,route of administration not applicable,gabapentin,60.000mg/1.000gram,4070300,Gabapentin,Antiepileptics
+9776141000033110,28012811000001102,melatonin 2.5mg/5ml oral solution,melatonin 2.5mg/5ml oral solution,oral solution,oral,melatonin,500.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+10205841000033114,28736711000001104,rewisca 25mg capsules (consilient health ltd),rewisca 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,,Pregabalin,Antiepileptics
+10205941000033118,28737611000001105,rewisca 50mg capsules (consilient health ltd),rewisca 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,,Pregabalin,Antiepileptics
+10206041000033111,28738211000001107,rewisca 75mg capsules (consilient health ltd),rewisca 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,,Pregabalin,Antiepileptics
+10206141000033110,28736211000001106,rewisca 100mg capsules (consilient health ltd),rewisca 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,,Pregabalin,Antiepileptics
+10206241000033115,28738711000001100,rewisca 150mg capsules (consilient health ltd),rewisca 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,,Pregabalin,Antiepileptics
+10206341000033113,28739111000001108,rewisca 200mg capsules (consilient health ltd),rewisca 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,,Pregabalin,Antiepileptics
+10206441000033119,28740211000001105,rewisca 225mg capsules (consilient health ltd),rewisca 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,,Pregabalin,Antiepileptics
+10206541000033118,28742111000001100,rewisca 300mg capsules (consilient health ltd),rewisca 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,,Pregabalin,Antiepileptics
+10220341000033117,28909711000001107,lecaent 25mg capsules (accord-uk ltd),lecaent 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,,Pregabalin,Antiepileptics
+10220441000033111,28910011000001104,lecaent 50mg capsules (accord-uk ltd),lecaent 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,,Pregabalin,Antiepileptics
+10220541000033112,28910211000001109,lecaent 75mg capsules (actavis uk ltd),lecaent 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,,Pregabalin,Antiepileptics
+10220641000033113,28910411000001108,lecaent 100mg capsules (accord-uk ltd),lecaent 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,,Pregabalin,Antiepileptics
+10220741000033116,28910611000001106,lecaent 150mg capsules (accord-uk ltd),lecaent 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,,Pregabalin,Antiepileptics
+10220841000033114,28910811000001105,lecaent 200mg capsules (accord-uk ltd),lecaent 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,,Pregabalin,Antiepileptics
+10220941000033118,28911011000001108,lecaent 225mg capsules (accord-uk ltd),lecaent 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,,Pregabalin,Antiepileptics
+10221041000033111,28911211000001103,lecaent 300mg capsules (actavis uk ltd),lecaent 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,,Pregabalin,Antiepileptics
+10253941000033110,28996411000001106,alzain 25mg capsules (dr reddy's laboratories (uk) ltd),alzain 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,,Pregabalin,Antiepileptics
+10254041000033112,28996611000001109,alzain 50mg capsules (dr reddy's laboratories (uk) ltd),alzain 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,,Pregabalin,Antiepileptics
+10254141000033111,28996911000001103,alzain 75mg capsules (dr reddy's laboratories (uk) ltd),alzain 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,,Pregabalin,Antiepileptics
+10254241000033116,28997111000001103,alzain 100mg capsules (dr reddy's laboratories (uk) ltd),alzain 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,,Pregabalin,Antiepileptics
+10254341000033114,28997311000001101,alzain 150mg capsules (dr reddy's laboratories (uk) ltd),alzain 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,,Pregabalin,Antiepileptics
+10254441000033115,28997511000001107,alzain 200mg capsules (dr reddy's laboratories (uk) ltd),alzain 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,,Pregabalin,Antiepileptics
+10254541000033119,28997711000001102,alzain 225mg capsules (dr reddy's laboratories (uk) ltd),alzain 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,,Pregabalin,Antiepileptics
+10254641000033118,28997911000001100,alzain 300mg capsules (dr reddy's laboratories (uk) ltd),alzain 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,,Pregabalin,Antiepileptics
+10332441000033118,29686711000001103,amitriptyline 10mg/5ml oral solution sugar free,amitriptyline 10mg/5ml oral solution sugar free,oral solution,oral,amitriptyline hydrochloride,2.000mg/1.000ml,4030100,Amitriptyline,Tricyclic Antidepressants
+10616941000033112,30738811000001109,vortioxetine 5mg tablets,vortioxetine 5mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,5.000mg,4030400,Vortioxetine,SSRIs
+10617041000033113,30738611000001105,vortioxetine 10mg tablets,vortioxetine 10mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,10.000mg,4030400,Vortioxetine,SSRIs
+10617141000033112,30738711000001101,vortioxetine 20mg tablets,vortioxetine 20mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,20.000mg,4030400,Vortioxetine,SSRIs
+10617241000033117,30247511000001100,brintellix 5mg tablets (lundbeck ltd),brintellix 5mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,5.000mg,,Vortioxetine,SSRIs
+10617341000033110,30248111000001105,brintellix 10mg tablets (lundbeck ltd),brintellix 10mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,10.000mg,,Vortioxetine,SSRIs
+10617441000033116,30247811000001102,brintellix 20mg tablets (lundbeck ltd),brintellix 20mg tablets,tablet/ oral tablet,oral,vortioxetine hydrobromide,20.000mg,,Vortioxetine,SSRIs
+10701841000033115,30990411000001105,duciltia 30mg gastro-resistant capsules (pharmathen s.a.),duciltia 30mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,30.000mg,,Duloxetine,Other Antidepressants
+10701941000033111,30990611000001108,duciltia 60mg gastro-resistant capsules (pharmathen s.a.),duciltia 60mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,60.000mg,,Duloxetine,Other Antidepressants
+10730041000033110,31016011000001103,venlafaxine 225mg modified-release capsules,venlafaxine 225mg modified-release capsules,modified-release capsule,oral,venlafaxine hydrochloride,225.000mg,4030400,Venlafaxine,Other Antidepressants
+10730141000033114,30991111000001106,efexor xl 225mg capsules (viatris uk healthcare ltd),efexor xl 225mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+11603841000033119,42271511000001101,fluoxetine 10mg capsules,fluoxetine 10mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,10.000mg,4030300,Fluoxetine,SSRIs
+11616241000033110,4217711000001103,clonazepam 1mg/1ml solution for injection ampoules and diluent,clonazepam 1mg/1ml solution for injection ampoules and diluent,solution for injection,intravenous,clonazepam,1.000mg/1.000ml,4080200,Clonazepam,Antiepileptics
+11616341000033117,32636411000001107,rivotril 1mg/1ml concentrate for solution for injection ampoules and diluent (imported (france)),rivotril 1mg/1ml concentrate for solution for injection ampoules and diluent,solution for injection,,clonazepam,1.000mg/1.000ml,,Clonazepam,Antiepileptics
+11693641000033117,32833611000001107,vensir xl 225mg capsules (morningside healthcare ltd),vensir xl 225mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+11707441000033119,32960811000001102,fluoxetine 30mg capsules,fluoxetine 30mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,30.000mg,4030300,Fluoxetine,SSRIs
+11707541000033118,42271911000001108,fluoxetine 40mg capsules,fluoxetine 40mg capsules,capsule/ oral capsule,oral,fluoxetine hydrochloride,40.000mg,4030300,Fluoxetine,SSRIs
+11718041000033112,28413211000001101,icenia melatonin 3mg capsules (imported (bulgaria)),icenia melatonin 3mg capsules,capsule/ oral capsule,,melatonin,3.000mg,,Melatonin,Hyptonics
+11724841000033116,16102411000001104,valproic acid 500mg/5ml oral suspension,valproic acid 500mg/5ml oral suspension,oral suspension,oral,valproate semisodium,100.000mg/1.000ml,4080100,Valproic acid,Antimanic
+11755441000033119,42276711000001100,paroxetine 40mg tablets,paroxetine 40mg tablets,tablet/ oral tablet,oral,paroxetine hydrochloride,40.000mg,4030300,Paroxetine,SSRIs
+11821741000033110,33709111000001104,axalid 25mg capsules (kent pharma (uk) ltd),axalid 25mg capsules,capsule/ oral capsule,oral,pregabalin,25.000mg,,Pregabalin,Antiepileptics
+11821841000033117,33709711000001103,axalid 50mg capsules (kent pharma (uk) ltd),axalid 50mg capsules,capsule/ oral capsule,oral,pregabalin,50.000mg,,Pregabalin,Antiepileptics
+11821941000033113,33710311000001109,axalid 75mg capsules (kent pharma (uk) ltd),axalid 75mg capsules,capsule/ oral capsule,oral,pregabalin,75.000mg,,Pregabalin,Antiepileptics
+11822041000033119,33710511000001103,axalid 100mg capsules (kent pharma (uk) ltd),axalid 100mg capsules,capsule/ oral capsule,oral,pregabalin,100.000mg,,Pregabalin,Antiepileptics
+11822141000033115,33712111000001106,axalid 150mg capsules (kent pharma (uk) ltd),axalid 150mg capsules,capsule/ oral capsule,oral,pregabalin,150.000mg,,Pregabalin,Antiepileptics
+11822241000033110,33712511000001102,axalid 200mg capsules (kent pharma (uk) ltd),axalid 200mg capsules,capsule/ oral capsule,oral,pregabalin,200.000mg,,Pregabalin,Antiepileptics
+11822341000033117,33715511000001108,axalid 225mg capsules (kent pharma (uk) ltd),axalid 225mg capsules,capsule/ oral capsule,oral,pregabalin,225.000mg,,Pregabalin,Antiepileptics
+11822441000033111,33715911000001101,axalid 300mg capsules (kent pharma (uk) ltd),axalid 300mg capsules,capsule/ oral capsule,oral,pregabalin,300.000mg,,Pregabalin,Antiepileptics
+12194541000033118,34180811000001108,vencarm xl 150mg capsules (aspire pharma ltd),vencarm xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+12194641000033117,34180611000001109,vencarm xl 225mg capsules (aspire pharma ltd),vencarm xl 225mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+12194741000033114,34181211000001101,vencarm xl 37.5mg capsules (aspire pharma ltd),vencarm xl 37.5mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+12194841000033116,34181011000001106,vencarm xl 75mg capsules (aspire pharma ltd),vencarm xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+12373741000033114,,lorazepam  oral solution  1 mg/ml (5 mg/5 ml),,,,,,,Lorazepam,Anxiolytics
+12389941000033119,34740911000001104,venlasov xl 75mg capsules (sovereign medical ltd),venlasov xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+12390341000033114,34740711000001101,venlasov xl 150mg capsules (sovereign medical ltd),venlasov xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+12475941000033119,35034711000001103,depalta 30mg gastro-resistant capsules (glucorx ltd),depalta 30mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,30.000mg,,Duloxetine,Other Antidepressants
+12476041000033112,35035211000001106,depalta 60mg gastro-resistant capsules (glucorx ltd),depalta 60mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,60.000mg,,Duloxetine,Other Antidepressants
+12476541000033119,35113311000001104,trazodone 100mg/5ml oral solution sugar free,trazodone 100mg/5ml oral solution sugar free,oral solution,oral,trazodone hydrochloride,20.000mg/1.000ml,4030100,Trazodone,MOAIS
+12503341000033119,34697811000001107,lorazepam 1mg/ml oral solution sugar free,lorazepam 1mg/ml oral solution sugar free,oral solution,oral,lorazepam,1.000mg/1.000ml,4010200,Lorazepam,Anxiolytics
+12578741000033117,35596611000001107,depakin 200mg/ml oral solution (imported (italy)),depakin 200mg/ml oral solution,oral solution,,sodium valproate,200.000mg/1.000ml,,Valproate,Antiepileptics
+12605341000033111,23343411000001101,venladex xl 75mg tablets (dexcel-pharma ltd),venladex xl 75mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+12605441000033117,23343211000001100,venladex xl 150mg tablets (dexcel-pharma ltd),venladex xl 150mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+12605541000033116,35638211000001107,venladex xl 225mg tablets (dexcel-pharma ltd),venladex xl 225mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+12608441000033113,30104111000001109,melatonin 3mg modified-release tablets,melatonin 3mg modified-release tablets,modified-release tablet,oral,melatonin,3.000mg,4010100,Melatonin,Hyptonics
+12641541000033113,35797111000001102,venzip xl 150mg capsules (milpharm ltd),venzip xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+12641641000033114,35797611000001105,venzip xl 75mg capsules (milpharm ltd),venzip xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+12687741000033118,28772811000001108,melatonin 2mg modified-release capsules,melatonin 2mg modified-release capsules,modified-release capsule,oral,melatonin,2.000mg,4010100,Melatonin,Hyptonics
+12900941000033117,13045911000001105,sertraline 25mg/5ml oral suspension,sertraline 25mg/5ml oral suspension,oral suspension,oral,sertraline hydrochloride,5.000mg/1.000ml,4030300,Sertraline,SSRIs
+12901041000033110,36606311000001107,majoven xl 37.5mg capsules (bristol laboratories ltd),majoven xl 37.5mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,37.500mg,,Venlafaxine,Other Antidepressants
+12901141000033114,36606511000001101,majoven xl 75mg capsules (bristol laboratories ltd),majoven xl 75mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,75.000mg,,Venlafaxine,Other Antidepressants
+12901241000033119,36606711000001106,majoven xl 150mg capsules (bristol laboratories ltd),majoven xl 150mg capsules,modified-release capsule,oral,venlafaxine hydrochloride,150.000mg,,Venlafaxine,Other Antidepressants
+12904541000033119,36656911000001104,viepax xl 225mg tablets (dexcel-pharma ltd),viepax xl 225mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,225.000mg,,Venlafaxine,Other Antidepressants
+12989241000033116,36871311000001102,dutor 20mg gastro-resistant capsules (torrent pharma (uk) ltd),dutor 20mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,20.000mg,,Duloxetine,Other Antidepressants
+13000041000033115,36811611000001101,melatonin 1mg modified-release tablets,melatonin 1mg modified-release tablets,modified-release tablet,oral,melatonin,1.000mg,4010100,Melatonin,Hyptonics
+13000141000033116,36811911000001107,melatonin 5mg modified-release tablets,melatonin 5mg modified-release tablets,modified-release tablet,oral,melatonin,5.000mg,4010100,Melatonin,Hyptonics
+13000241000033111,36800811000001108,slenyto 1mg modified-release tablets (flynn pharma ltd),slenyto 1mg modified-release tablets,modified-release tablet,oral,melatonin,1.000mg,,Melatonin,Hyptonics
+13000341000033118,36801111000001107,slenyto 5mg modified-release tablets (flynn pharma ltd),slenyto 5mg modified-release tablets,modified-release tablet,oral,melatonin,5.000mg,,Melatonin,Hyptonics
+13007941000033115,34847811000001105,icenia melatonin 2mg capsules (imported (bulgaria)),icenia melatonin 2mg capsules,capsule/ oral capsule,,melatonin,2.000mg,,Melatonin,Hyptonics
+13008041000033117,34848011000001103,icenia melatonin 5mg capsules (imported (bulgaria)),icenia melatonin 5mg capsules,capsule/ oral capsule,,melatonin,5.000mg,,Melatonin,Hyptonics
+13058141000033113,42131711000001107,lorazepam 500microgram tablets,lorazepam 500microgram tablets,tablet/ oral tablet,oral,lorazepam,500.000microgram,4010200,Lorazepam,Anxiolytics
+13122341000033117,37406111000001108,melatonin 1mg/ml oral solution sugar free,melatonin 1mg/ml oral solution sugar free,oral solution,oral/ gastroenteral,melatonin,1.000mg/1.000ml,4010100,Melatonin,Hyptonics
+13149541000033117,37573711000001104,belvo 250mg gastro-resistant tablets (consilient health ltd),belvo 250mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,250.000mg,,Valproate,Antiepileptics
+13149641000033116,37574111000001103,belvo 500mg gastro-resistant tablets (consilient health ltd),belvo 500mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,500.000mg,,Valproate,Antiepileptics
+13159441000033115,37600511000001104,lorazepam 1mg orodispersible tablets,lorazepam 1mg orodispersible tablets,orodispersible tablet,oral,lorazepam,1.000mg,4010200,Lorazepam,Anxiolytics
+13159541000033119,37600611000001100,lorazepam 2.5mg orodispersible tablets,lorazepam 2.5mg orodispersible tablets,orodispersible tablet,oral,lorazepam,2.500mg,4010200,Lorazepam,Anxiolytics
+13285041000033117,12700611000001107,melatonin 4mg/5ml oral suspension,melatonin 4mg/5ml oral suspension,oral suspension,oral,melatonin,800.000microgram/1.000ml,4010100,Melatonin,Hyptonics
+13292441000033115,37802811000001105,melatonin 5mg/5ml oral solution alcohol free (drug tariff special order),melatonin 5mg/5ml oral solution alcohol free,oral solution,,melatonin,1.000mg/1.000ml,,Melatonin,Hyptonics
+13292541000033119,37803111000001109,melatonin 5mg/5ml oral suspension alcohol free (drug tariff special order),melatonin 5mg/5ml oral suspension alcohol free,oral suspension,,melatonin,1.000mg/1.000ml,,Melatonin,Hyptonics
+13318341000033119,38003311000001102,venlafaxine 300mg modified-release tablets,venlafaxine 300mg modified-release tablets,modified-release tablet,oral,venlafaxine hydrochloride,300.000mg,4030400,Venlafaxine,Other Antidepressants
+13318441000033113,37997111000001105,venlalic xl 300mg tablets (ethypharm uk ltd),venlalic xl 300mg tablets,modified-release tablet,oral,venlafaxine hydrochloride,300.000mg,,Venlafaxine,Other Antidepressants
+13344341000033118,38019911000001101,pregabalin 25mg tablets,pregabalin 25mg tablets,tablet/ oral tablet,oral,pregabalin,25.000mg,4080100,Pregabalin,Antiepileptics
+13344541000033113,38020111000001103,pregabalin 50mg tablets,pregabalin 50mg tablets,tablet/ oral tablet,oral,pregabalin,50.000mg,4080100,Pregabalin,Antiepileptics
+13344641000033114,38020211000001109,pregabalin 75mg tablets,pregabalin 75mg tablets,tablet/ oral tablet,oral,pregabalin,75.000mg,4080100,Pregabalin,Antiepileptics
+13344741000033117,38019511000001108,pregabalin 100mg tablets,pregabalin 100mg tablets,tablet/ oral tablet,oral,pregabalin,100.000mg,4080100,Pregabalin,Antiepileptics
+13344841000033110,38019611000001107,pregabalin 150mg tablets,pregabalin 150mg tablets,tablet/ oral tablet,oral,pregabalin,150.000mg,4080100,Pregabalin,Antiepileptics
+13344941000033119,38019711000001103,pregabalin 200mg tablets,pregabalin 200mg tablets,tablet/ oral tablet,oral,pregabalin,200.000mg,4080100,Pregabalin,Antiepileptics
+13345041000033119,38019811000001106,pregabalin 225mg tablets,pregabalin 225mg tablets,tablet/ oral tablet,oral,pregabalin,225.000mg,4080100,Pregabalin,Antiepileptics
+13345141000033115,38020011000001104,pregabalin 300mg tablets,pregabalin 300mg tablets,tablet/ oral tablet,oral,pregabalin,300.000mg,4080100,Pregabalin,Antiepileptics
+13348941000033113,37982411000001102,syonell 250mg gastro-resistant tablets (lupin healthcare (uk) ltd),syonell 250mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,250.000mg,,Valproate,Antiepileptics
+13349541000033114,37982211000001101,syonell 500mg gastro-resistant tablets (lupin healthcare (uk) ltd),syonell 500mg gastro-resistant tablets,gastro-resistant tablet,oral,valproate semisodium,500.000mg,,Valproate,Antiepileptics
+13444241000033119,42280811000001102,trazodone 50mg tablets,trazodone 50mg tablets,tablet/ oral tablet,oral,trazodone hydrochloride,50.000mg,4030100,Trazodone,MOAIS
+13444341000033112,42280511000001100,trazodone 100mg tablets,trazodone 100mg tablets,tablet/ oral tablet,oral,trazodone hydrochloride,100.000mg,4030100,Trazodone,MOAIS
+13716441000033110,38830111000001104,syncrodin 3mg tablets (pharma nord (uk) ltd),syncrodin 3mg tablets,tablet/ oral tablet,oral,melatonin,3.000mg,,Melatonin,Hyptonics
+13722141000033112,38998111000001101,dyzantil 200mg modified-release tablets (aspire pharma ltd),dyzantil 200mg modified-release tablets,modified-release tablet,oral,sodium valproate,200.000mg,,Valproate,Antiepileptics
+13722241000033117,38998711000001100,dyzantil 300mg modified-release tablets (aspire pharma ltd),dyzantil 300mg modified-release tablets,modified-release tablet,oral,sodium valproate,300.000mg,,Valproate,Antiepileptics
+13722341000033110,38999111000001108,dyzantil 500mg modified-release tablets (aspire pharma ltd),dyzantil 500mg modified-release tablets,modified-release tablet,oral,sodium valproate,500.000mg,,Valproate,Antiepileptics
+13740541000033117,38962111000001102,fluoxetine 10mg tablets (imported),fluoxetine 10mg tablets,tablet/ oral tablet,,fluoxetine hydrochloride,10.000mg,,Fluoxetine,SSRIs
+13740641000033116,38962311000001100,fluoxetine 30mg capsules (imported),fluoxetine 30mg capsules,capsule/ oral capsule,,fluoxetine hydrochloride,30.000mg,,Fluoxetine,SSRIs
+13743641000033113,39134011000001104,sertraline 25mg tablets,sertraline 25mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,25.000mg,4030300,Sertraline,SSRIs
+13898641000033112,39964811000001101,duloxetine 90mg gastro-resistant capsules,duloxetine 90mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,90.000mg,4030400,Duloxetine,Other Antidepressants
+13898741000033115,39964711000001109,duloxetine 120mg gastro-resistant capsules,duloxetine 120mg gastro-resistant capsules,gastro-resistant capsule,oral,duloxetine hydrochloride,120.000mg,4030400,Duloxetine,Other Antidepressants
+13914141000033116,40031411000001102,ceyesto 3mg tablets (alturix ltd),ceyesto 3mg tablets,tablet/ oral tablet,oral,melatonin,3.000mg,,Melatonin,Hyptonics
+13916241000033115,40111011000001106,venlafaxine 37.5mg/5ml oral solution sugar free,venlafaxine 37.5mg/5ml oral solution sugar free,oral solution,oral,venlafaxine hydrochloride,7.500mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+13916341000033113,40111111000001107,venlafaxine 75mg/5ml oral solution sugar free,venlafaxine 75mg/5ml oral solution sugar free,oral solution,oral,venlafaxine hydrochloride,15.000mg/1.000ml,4030400,Venlafaxine,Other Antidepressants
+14004441000033115,15914311000001102,melatonin 2mg tablets,melatonin 2mg tablets,tablet/ oral tablet,oral,melatonin,2.000mg,4010100,Melatonin,Hyptonics
+14004541000033119,34447811000001100,melatonin 4mg tablets,melatonin 4mg tablets,tablet/ oral tablet,oral,melatonin,4.000mg,4010100,Melatonin,Hyptonics
+14004641000033118,40484711000001107,adaflex 1mg tablets (agb-pharma),adaflex 1mg tablets,tablet/ oral tablet,oral,melatonin,1.000mg,,Melatonin,Hyptonics
+14004741000033110,40485111000001105,adaflex 2mg tablets (agb-pharma),adaflex 2mg tablets,tablet/ oral tablet,oral,melatonin,2.000mg,,Melatonin,Hyptonics
+14004841000033117,40485311000001107,adaflex 3mg tablets (agb-pharma),adaflex 3mg tablets,tablet/ oral tablet,oral,melatonin,3.000mg,,Melatonin,Hyptonics
+14004941000033113,40485611000001102,adaflex 4mg tablets (agb-pharma),adaflex 4mg tablets,tablet/ oral tablet,oral,melatonin,4.000mg,,Melatonin,Hyptonics
+14005041000033113,40485911000001108,adaflex 5mg tablets (agb-pharma),adaflex 5mg tablets,tablet/ oral tablet,oral,melatonin,5.000mg,,Melatonin,Hyptonics
+14006641000033110,40528811000001107,melatonin 1mg/ml oral solution alcohol free sugar free (special order),melatonin 1mg/ml oral solution alcohol free sugar free,oral solution,,melatonin,1.000mg/1.000ml,,Melatonin,Hyptonics
+14032541000033118,42127211000001108,clonazepam 1mg tablets,clonazepam 1mg tablets,tablet/ oral tablet,oral,clonazepam,1.000mg,4080100,Clonazepam,Antiepileptics
+14061741000033112,40746711000001100,contulen 50mg tablets (hfa healthcare ltd),contulen 50mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,50.000mg,,Sertraline,SSRIs
+14061841000033119,40746911000001103,contulen 100mg tablets (hfa healthcare ltd),contulen 100mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,100.000mg,,Sertraline,SSRIs
+14109141000033116,41082311000001100,temazepam 10mg tablets (imported),temazepam 10mg tablets,tablet/ oral tablet,,temazepam,10.000mg,,Temazepam,Hyptonics
+14116141000033111,41166911000001105,sertraline 150mg tablets,sertraline 150mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,150.000mg,4030300,Sertraline,SSRIs
+14116241000033116,41167011000001109,sertraline 200mg tablets,sertraline 200mg tablets,tablet/ oral tablet,oral,sertraline hydrochloride,200.000mg,4030300,Sertraline,SSRIs
+14128741000033117,40635311000001101,melatonin 1mg/ml oral solution sugar free (consilient health ltd),melatonin 1mg/ml oral solution sugar free,oral solution,oral,melatonin,1.000mg/1.000ml,,Melatonin,Hyptonics
+14183941000033115,41535111000001102,fluoxetine 20mg/5ml oral suspension,fluoxetine 20mg/5ml oral suspension,oral suspension,oral,fluoxetine hydrochloride,4.000mg/1.000ml,4030300,Fluoxetine,SSRIs
+14190441000033119,41557011000001106,sertraline 100mg/5ml concentrate for oral solution sugar free,sertraline 100mg/5ml concentrate for oral solution sugar free,oral solution/ concentrate for oral solution,oral,sertraline hydrochloride,20.000mg/1.000ml,4030300,Sertraline,SSRIs
+14190641000033117,41556811000001102,lorazepam 250microgram tablets,lorazepam 250microgram tablets,tablet/ oral tablet,oral,lorazepam,250.000microgram,4010200,Lorazepam,Anxiolytics
+14240441000033110,42250111000001101,ceyesto 1mg/ml oral solution (alturix ltd),ceyesto 1mg/ml oral solution,oral solution,oral/ gastroenteral,melatonin,1.000mg/1.000ml,,Melatonin,Hyptonics
+14265741000033119,42495311000001104,diazepam 2mg/5ml oral suspension sugar free (special order),diazepam 2mg/5ml oral suspension sugar free,oral suspension,,diazepam,400.000microgram/1.000ml,,Diazepam,Anxiolytics
+14265941000033116,35839111000001104,duloxetine 30mg/5ml oral suspension,duloxetine 30mg/5ml oral suspension,oral suspension,oral,duloxetine hydrochloride,6.000mg/1.000ml,7040200,Duloxetine,Other Antidepressants
+14410541000033116,42768711000001104,lamotrigine 10mg/ml oral suspension sugar free,lamotrigine 10mg/ml oral suspension sugar free,oral suspension,oral,lamotrigine,10.000mg/1.000ml,4080100,Lamotrigine,Antiepileptics
+14507641000033111,43159711000001104,sertraline 50mg/5ml oral suspension sugar free,sertraline 50mg/5ml oral suspension sugar free,oral suspension,oral,sertraline hydrochloride,10.000mg/1.000ml,4030300,Sertraline,SSRIs
+14513141000033114,43292611000001108,melatonin 2mg/ml oral solution sugar free,melatonin 2mg/ml oral solution sugar free,oral solution,oral,melatonin,2.000mg/1.000ml,,Melatonin,Hyptonics
